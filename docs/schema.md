@@ -18,13 +18,24 @@ current_city    | string    |
 hometown        | string    |
 relationship    | string    |
 
-## friendships
+## friendrequests
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 friender_id     | integer   | not null, foreign key (references users), indexed
 friendee_id     | integer   | not null, foreign key (references users), indexed
-friendiversary  | date      | not null, indexed
+date_sent       | date      | not null, indexed
+responded       | boolean   | not null
+accepted        | boolean   |
+
+## friendships
+column name       | data type | details
+------------------|-----------|-----------------------
+id                | integer   | not null, primary key
+friendrequest_id  |  integer  | not null, foreign key (references friendrequests), indexed
+friender_id       | integer   | not null, foreign key (references users), indexed
+friendee_id       | integer   | not null, foreign key (references users), indexed
+friendiversary    | date      | not null, indexed
 
 ## posts
 column name | data type | details
@@ -41,6 +52,16 @@ id              | integer   | not null, primary key
 username        | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
+
+## ads
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+title           | string    | not null, indexed, unique
+description     | string    | not null
+image           | string    | not null, indexed, unique
+
+
 
 ## BONUS
 

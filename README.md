@@ -52,6 +52,7 @@ Friendex is a web application inspired by Facebook that will be build using Ruby
 - [ ] authentication
 - [ ] user signup/signin pages
 - [ ] blank landing page after signin
+- [ ] Heroku set up for project
 
 ### Phase 2: Profile Model, API, and basic APIUtil (1.5 days, W1 Th 12pm)
 
@@ -74,68 +75,88 @@ user interface.
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router
 - implement each profile component, building out the flux loop as needed.
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
+  - [ ] `ProfileAbout`
+  - [ ] `ProfileEditForm`
 - [ ] save Profiles to the DB when the form loses focus or is left idle
   after editing.
 
 ### Phase 4: Start Styling (0.5 days, W2 M 12pm)
 
-**Objective:** Existing pages (including signup/signin) will look good.
+**Objective:** Existing pages (including signup/signin/profile) will look good.
 
+- [ ] create a basic header - add nested components as they're made
 - [ ] create a basic style guide
 - [ ] position elements on the page
 - [ ] add basic colors & styles
 
-### Phase 5: Notebooks (1 day, W2 Tu 12pm)
+### Phase 5: Friend Requests (1.5 days, W2 Tu 6pm)
 
-**Objective:** Notes belong to Notebooks, and can be viewed by notebook.
+**Objective:** Users can send & receive FriendRequests (create & destroy). Users who have received a friend request can accept or deny (create a friendship, destroy a friend request).
 
-- [ ] create `Notebook` model
+- [ ] create `FriendRequests` model
+- [ ] create `Friendships` model
 - build out API, Flux loop, and components for:
-  - [ ] Notebook CRUD
-  - [ ] adding notes requires a notebook
-  - [ ] moving notes to a different notebook
-  - [ ] viewing notes by notebook
+  - [ ] FriendRequests CRUD
+  - [ ] Friendships CRUD
+  - [ ] creating a friendship requires a friendrequest
+  - [ ] fetching all friends via Friendships table
+- [ ] list friendrequests in header
+  - [ ] FriendRequestIndex
+  - [ ] FriendRequestIndexItem
 - Use CSS to style new views
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook,
-which has its own `Index` view.
+Phase 3 allows users to send & receive friend requests, create friendships, and find a user's friends.
 
-### Phase 6: Tags (1 days, W2 Th 12pm)
+### Phase 6: Posts (1 day, W2 Wed 6pm)
 
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
+**Objective:** Users can make posts. Users can post on their own wall or a friend's wall
 
-- [ ] create `Tag` model and join table
+- [ ] create `Post` model
 - build out API, Flux loop, and components for:
-  - [ ] fetching tags for notebook
-  - [ ] adding tags to notebook
-  - [ ] creating tags while adding to notebooks
-  - [ ] searching notebooks by tag
+  - [ ] fetching posts for a profile
+  - [ ] adding posts to a profile
+  - [ ] deleting posts from a profile
 - [ ] Style new elements
 
-### Phase 7: Allow Complex Styling in Notes (0.5 days, W2 Th 6pm)
+### Phase 7: Newsfeed (1 day, W2 Th 6pm)
 
-**objective:** Enable complex styling of notes.
+**objective:** Populate the newsfeed with posts by the user, on the user's profile, and by the user's friends
 
-- [ ] Integrate `react-quill` (based on Quill.js).
+- [ ] create Newsfeed components
+  - [ ] NewsfeedContent component
+  - [ ] NewsfeedIndex component
+    - [ ] NewsfeedIndexItem component
+  - [ ] NewsfeedLinkIndex component
+    - [ ] may be a static list of links
+      - Edit Profile
+      - News Feed
+      - Friends
+      - etc.
+    - [ ] NewsfeedLinkIndexItem component
+  - [ ] NewsfeedAdIndex component
+    - [ ] NewsfeedAdIndexItem component
+      - if low on time, create static ads for each page
+      - if have time, randomly populate sidebar with different ads
+      - [ ] seed ads table
+- [ ] create filler content for NewsfeedAdIndexItems
 - [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new Quill elements.
 
 ### Phase 8: Styling Cleanup and Seeding (1 day, W2 F 6pm)
 
-**objective:** Make the site feel more cohesive and awesome.
+**objective:** Make the site feel cohesive and awesome.
 
 - [ ] Get feedback on my UI from others
 - [ ] Refactor HTML classes & CSS rules
 - [ ] Add modals, transitions, and other styling flourishes.
 
 ### Bonus Features (TBD)
-- [ ] Search through notes for blocks of text
+- [ ] Notifications
+- [ ] Likes
+- [ ] Comments on a comment
 - [ ] Pagination / infinite scroll for Notes Index
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
+- [ ] Search - by username only
+- [ ] Messaging
+- [ ] Pictures/albums
 - [ ] Multiple sessions
 
 [phase-one]: docs/phases/phase1.md

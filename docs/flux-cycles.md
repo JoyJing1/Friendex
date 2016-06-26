@@ -31,10 +31,10 @@ what you'll need to do.
   0. `PATCH /api/users/:id` is called.
   0. `receiveSingleProfile` is set as the callback.
 
-<!-- * `destroyProfile`
+* `destroyProfile`
   0. invoked from delete profile button `onClick`
   0. `DELETE /api/users/:id` is called.
-  0. `removeProfile` is set as the callback. -->
+  0. `removeProfile` is set as the callback.
 
 ### Profiles API Response Actions
 
@@ -42,9 +42,9 @@ what you'll need to do.
   0. invoked from an API callback.
   0. `Profile` store updates `_profile` and emits change.
 
-<!-- * `removeProfile`
+* `removeProfile`
   0. invoked from an API callback.
-  0. `Profile` store removes `_profile` and emits change. -->
+  0. `Profile` store removes `_profile` and emits change.
 
 ### Store Listeners
 
