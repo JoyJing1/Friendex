@@ -2,7 +2,7 @@
 
 [Heroku link] [heroku] **Note:** This will be a link to my production site
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://friendex.herokuapp.com/
 
 ## Minimum Viable Product
 
