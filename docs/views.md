@@ -35,9 +35,9 @@
 [header-messages]: ./wireframes/header-messages.jpg
 [header-notifications]: ./wireframes/header-notifications.jpg
 
-[newsfeed-content]: ./wireframes/newsfeed-content.jpg
+[newsfeed-content]: ./wireframes/newsfeed-content-2.jpg
 
-[profile-content]: ./wireframes/profile-content.jpg
+[profile-content]: ./wireframes/profile-content-2.jpg
 [profile-about]: ./wireframes/profile-about.jpg
 [profile-friends]: ./wireframes/profile-friends.jpg
 [profile-edit-form]: ./wireframes/profile-edit-form.jpg

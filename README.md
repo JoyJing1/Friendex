@@ -1,6 +1,6 @@
 # Friendex
 
-[Heroku link][heroku] **Note:** This will be a link to my production site
+[Heroku link] [heroku] **Note:** This will be a link to my production site
 
 [heroku]: http://www.herokuapp.com
 
@@ -125,21 +125,14 @@ Phase 3 allows users to send & receive friend requests, create friendships, and 
 - [ ] create Newsfeed components
   - [ ] NewsfeedContent component
   - [ ] NewsfeedIndex component
-    - [ ] NewsfeedIndexItem component
+    - [ ] NewPostForm component
+    - [ ] PostIndexItem component
   - [ ] NewsfeedLinkIndex component
-    - [ ] may be a static list of links
-      - Edit Profile
-      - News Feed
-      - Friends
-      - etc.
-    - [ ] NewsfeedLinkIndexItem component
+     - Static links
   - [ ] NewsfeedAdIndex component
-    - [ ] NewsfeedAdIndexItem component
-      - if low on time, create static ads for each page
-      - if have time, randomly populate sidebar with different ads
-      - [ ] seed ads table
-- [ ] create filler content for NewsfeedAdIndexItems
-- [ ] Use Rails helpers to sanitize HTML before rendering.
+    - Static faux ads
+    - [ ] NewsfeedAdIndexItem component (extra)
+      - [ ] seed ads table (extra)
 
 ### Phase 8: Styling Cleanup and Seeding (1 day, W2 F 6pm)
 
@@ -160,7 +153,9 @@ Phase 3 allows users to send & receive friend requests, create friendships, and 
 - [ ] Multiple sessions
 
 [phase-one]: docs/phases/phase1.md
-[phase-two]: docs/phases/phase2.md
-[phase-three]: docs/phases/phase3.md
-[phase-four]: docs/phases/phase4.md
+[phase-two-three]: docs/phases/phase2-3.md
+[phase-four]: CSS
 [phase-five]: docs/phases/phase5.md
+[phase-six]: docs/phases/phase6.md
+[phase-seven]: docs/phases/phase7.md
+[phase-eight]: docs/phases/phase8.md

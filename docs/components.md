@@ -19,18 +19,16 @@ _**exactly**_ match the nesting of your routes.)
     * NotificationIndex (extra)
       * NotificationIndexItem (extra)
   * **NewsfeedContent** (IndexRoute - default)
-    * NewsfeedHeader
-    * NewsfeedLinkIndex
-      * NewsfeedLinkIndexItem
+    * NewsfeedLinks
     * NewsfeedIndex
       * NewPostForm
-      * NewsfeedIndexItem
-    * NewsfeedAdIndex
-      * NewsfeedAdIndexItem
+      * PostIndexItem
+    * NewsfeedAds
   * **ProfileContent**
-    * ProfileNavbar
-    * **ProfileTimeline**
-      * ProfileTimelineSidebar
+    * ProfileNavbar (with profile_img and background_img)
+    * **ProfileContent**
+      * ProfileSidebar
+        * ProfileAbout
         * FriendPicIndex
           * FriendPicIndexItem
         * PhotoIndex (extra)
@@ -39,11 +37,14 @@ _**exactly**_ match the nesting of your routes.)
         * NewPostForm
         * PostIndexItem
     * **ProfileAbout**
-      * ProfileAboutEditIndex (extra)
+      * ProfileAboutSidebar
       * ProfileAbout
       * FriendIndex (same as on ProfileFriends page)
         * FriendIndexItem (same as on ProfileFriends page)
-    * **ProfieFriends**
+    * **ProfileAboutEdit**
+      * Sidebar
+      * ProfiletEditForm
+    * **ProfileFriends**
       * FriendIndex
         * FriendIndexItem
 

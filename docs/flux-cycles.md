@@ -189,6 +189,26 @@ what you'll need to do.
 * `PostIndexItem` component listens to `Post` store.
 
 
+## Newsfeed Cycles
+
+### Newsfeed API Request Actions
+
+* `fetchAllNewsfeedPosts`
+  0. invoked from `NewsfeedIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/newsfeed` is called.
+  0. `receiveAllNewsfeedPosts` is set as the callback.
+
+### Newsfeed API Response Actions
+
+* `receiveAllPosts`
+  0. invoked from an API callback.
+  0. `Newsfeed` store updates `_newsfeed_posts` and emits change.
+
+### Store Listeners
+
+* `NewsfeedIndex` component listens to `Newsfeed` store.
+
+
 ## BONUS
 
 ## Comments Cycles

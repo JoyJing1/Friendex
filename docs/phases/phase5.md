@@ -1,33 +1,46 @@
-# Phase 3: Comments (1 day)
+# Phase 3: FriendRequests (2 days)
 
 ## Rails
 ### Models
-* Comments
+* FriendRequests
+* Friendships
 
 ### Controllers
-* Api::CommentsController (create, update, destroy)
+* Api::FriendRequestsController (create, destroy)
+* Api::FriendshipsController (create, destroy)
 
 ### Views
-* comments/index.json.jbuilder
-* comments/show.json.jbuilder
+* friendrequests/index.json.jbuilder
+* friendships/index.json.jbuilder
+* friends/index.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* CommentIndex
-  - CommentIndexItem
+* FriendRequestIndex
+  - FriendRequestIndexItem
+* FriendIndex
+  - FriendIndexItem
+* FriendPicIndex
+  - FriendPicIndexItem
+* SearchIndex
 
 ### Stores
-* Comment
+* Friend
 
 ### Actions
-* ApiActions.receiveAllComments -> triggered by ApiUtil
-* ApiActions.receiveSingleComment
-* ApiActions.removeComment
+* ApiActions.receiveAllFriendRequests -> triggered by ApiUtil
+* ApiActions.receiveSingleFriendRequest
+* ApiActions.removeFriendRequest
+* ApiActions.receiveSingleFriendship
+* ApiActions.removeFriendship
+* ApiActions.receiveAllFriends
 
 ### ApiUtil
-* ApiUtil.fetchAllComments
-* ApiUtil.createComment
-* ApiUtil.updateComment
-* ApiUtil.destroyComment
+* ApiUtil.fetchAllFriendRequests
+* ApiUtil.createFriendRequest
+* ApiUtil.destroyFriendRequest
+* ApiUtil.createFriendship
+* ApiUtil.destroyFriendship
+* ApiUtil.fetchAllFriends
 
 ## Gems/Libraries

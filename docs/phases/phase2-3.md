@@ -1,13 +1,14 @@
-# Phase 2: Flux Architecture and Profile CRUD (3 days)
+# Phase 2-3: Flux Architecture and Profile CRUD (3 days)
 
 ## Rails
 ### Models
 
 ### Controllers
-* Api::ProfilesController (create, update, destroy)
+* Api::ProfilesController (create, update, destroy, show)
 
 ### Views
 * profiles/show.json.jbuilder
+* profiles/edit.json.jbuilder
 
 ## Flux
 ### Views (React Components)
