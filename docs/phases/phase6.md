@@ -1,34 +1,30 @@
-# Phase 3: Posts (1 day)
+# Phase 6: Newsfeed (1.5 days)
 
 ## Rails
 ### Models
-* Posts
 
 ### Controllers
-* Api::PostsController (create, update, destroy)
+* Api::NewsfeedController (index)
 
 ### Views
-* posts/index.json.jbuilder
-* posts/show.json.jbuilder
+* newsfeed/index.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* PostIndex
-  - PostIndexItem
+* NewsfeedContent
+* NewsfeedIndex
+  - PostForm (developed in phase 6)
+  - PostIndexItem (developed in phase 6)
+* NewsfeedLeftSidebar
+* NewsfeedRightSidebar
 
 ### Stores
-* Post
+* Newsfeed
 
 ### Actions
-* ApiActions.receiveAllPosts -> triggered by ApiUtil
-* ApiActions.receiveSinglePost
-* ApiActions.removePost
+* ApiActions.receiveAllNewsfeedPosts -> triggered by ApiUtil
 
 ### ApiUtil
-* ApiUtil.fetchAllPosts
-* ApiUtil.createPost
-* ApiUtil.fetchSinglePost
-* ApiUtil.updatePost
-* ApiUtil.destroyPost
+* ApiUtil.fetchAllNewsfeedPosts
 
 ## Gems/Libraries

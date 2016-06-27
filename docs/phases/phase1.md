@@ -1,14 +1,12 @@
-# Phase 1: User Authentication, Profile Model and JSON API (1 day)
+# Phase 1: User Authentication, Profile Model and JSON API (1.5 days)
 
 ## Rails
 ### Models
 * User
-<!-- * Profile -->
 
 ### Controllers
 * UsersController (create, new)
-* SessionsController (create, new, destroy)
-<!-- * Api::ProfilesController (create, destroy, index, show, update) -->
+* SessionsController (create, new)
 
 ### Views
 * users/new.html.erb - same as session/new (or 2 partials)

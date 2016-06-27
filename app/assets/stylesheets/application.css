@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require profile-main
+ *= require profile-about
+ *= require profile-friends
+ *= require newsfeed
  */
+
+ /* require separate stylesheets here - save under stylesheets subfolder*/

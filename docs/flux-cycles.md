@@ -51,60 +51,35 @@ what you'll need to do.
 * `ProfileAbout` component listens to `Profile` store.
 
 
-## FriendRequest Cycles
+## Friendship Cycles
 
-### FriendRequest API Request Actions
-
-* `fetchAllFriendRequests`
+### Friendship API Request Actions
+* `fetchAllFriendships`
+  0. invoked from `FriendIndex` `didMount`/`willReceiveProps`
   0. invoked from `FriendRequestIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/friendrequests` is called.
-  0. `receiveAllFriendRequests` is set as the callback.
-
-* `createFriendRequest`
-  0. invoked from Add Friend button `onClick`
-  0. `POST /api/users/:userId/friendrequests` is called.
-  0. `receiveSingleFriendRequest` is set as the callback.
-
-* `destroyFriendRequest`
-  0. invoked from Cancel Friend Request button `onClick`
-  0. `DELETE /api/users/:userId/friendrequests` is called.
-  0. `removeFriendRequest` is set as the callback.
-
-### FriendRequest API Response Actions
-
-* `receiveAllFriendRequests`
-  0. invoked from an API callback.
-  0. `FriendRequest` store updates `_friendrequests` and emits change.
-
-* `receiveSingleFriendRequest`
-  0. invoked from an API callback.
-  0. `FriendRequest` store updates `_friendrequests[id]` and emits change.
-
-* `removeFriendRequest`
-  0. invoked from an API callback.
-  0. `FriendRequest` store removes `_friendrequests[id]` and emits change.
-
-### Store Listeners
-
-* `FriendRequestIndex` component listens to `FriendRequest` store.
-
-
-
-## Friendships Cycles
-
-### Friendships API Request Actions
+  0. `GET /api/friendships` is called.
+  0. `receiveAllFriendships` is set as the callback.
 
 * `createFriendship`
   0. invoked from Add Friend button `onClick`
-  0. `POST /api/users/:userId/friendships` is called.
+  0. `POST /api/friendships` is called.
+  0. `receiveSingleFriendship` is set as the callback.
+
+* `updateFriendship`
+  0. invoked from Accept/Deny buttons `onClick`
+  0. `POST /api/friendships` is called.
   0. `receiveSingleFriendship` is set as the callback.
 
 * `destroyFriendship`
   0. invoked from Unfriend button `onClick`
-  0. `DELETE /api/users/:userId/friendrequests/:id` is called.
+  0. `DELETE /api/friendrequests/:id` is called.
   0. `removeFriendship` is set as the callback.
 
-### FriendRequest API Response Actions
+### Friendship API Response Actions
+
+* `receiveAllFriendships`
+  0. invoked from an API callback.
+  0. `Friendship` store updates `_friendships[id]` and emits change.
 
 * `receiveSingleFriendship`
   0. invoked from an API callback.
@@ -116,23 +91,9 @@ what you'll need to do.
 
 ### Store Listeners
 
-* `FriendRequestIndex` component listens to `FriendRequest` store.
-
-
-## Friends Cycles
-
-### Friends API Request Actions
-
-* `fetchAllFriends`
-  0. invoked from `FriendsIndex` `didMount`/`willReceiveProps`
-  0. `POST /api/users/:userId/friends` is called.
-  0. `receiveAllFriends` is set as the callback.
-
-### Friends API Response Actions
-
-* `receiveAllFriends`
-  0. invoked from an API callback.
-  0. `Friends` store updates `_friends[id]` and emits change.
+* `FriendIndex` component listens to `Friendship` store.
+* `FriendRequestIndex` component listens to `Friendship` store.
+* `FriendPicIndex` component listens to `Friendship` store.
 
 ### Store Listeners
 
@@ -146,12 +107,12 @@ what you'll need to do.
 
 * `fetchAllPosts`
   0. invoked from `PostsIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/users/:userId/posts` is called.
+  0. `GET /api/posts` is called.
   0. `receiveAllPosts` is set as the callback.
 
 * `createPost`
-  0. invoked from Create Post button `onClick`
-  0. `POST /api/users/:userId/posts` is called.
+  0. invoked from PostForm `onSubmit`
+  0. `POST /api/posts` is called.
   0. `receiveSinglePost` is set as the callback.
 
 * `fetchSinglePost`
@@ -217,12 +178,12 @@ what you'll need to do.
 
 * `fetchAllComments`
   0. invoked from `CommentsIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/posts/:postId/comments` is called.
+  0. `GET /api/comments` is called.
   0. `receiveAllComments` is set as the callback.
 
 * `createComment`
   0. invoked from New Comment form `onSubmit`
-  0. `POST /api/posts/:postId/comments` is called.
+  0. `POST /api/comments` is called.
   0. `receiveSingleComment` is set as the callback.
 
 * `updateComment`
@@ -255,99 +216,66 @@ what you'll need to do.
 * `CommentIndexItem` component listens to `Comment` store.
 
 
-## PostLikes Cycles
+## Like Cycles
 
-### PostLikes API Request Actions
+### Like API Request Actions
 
-* `fetchAllPostLikes`
-  0. invoked from `PostLikesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/posts/:postId/likes` is called.
-  0. `receiveAllPostLikes` is set as the callback.
+* `fetchAllLikes`
+  0. invoked from `PostLikeIndex` `didMount`/`willReceiveProps`
+  0. invoked from `CommentLikeIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/likes` is called.
+  0. `receiveAllLikes` is set as the callback.
 
-* `createPostLike`
+* `createLike`
   0. invoked from Add Like button `onClick`
-  0. `POST /api/posts/:postId/likes` is called.
-  0. `receiveSinglePostLike` is set as the callback.
+  0. `POST /api/likes` is called.
+  0. `receiveSingleLike` is set as the callback.
 
-* `destroyPostLike`
+* `destroyLike`
   0. invoked from UnLike button `onClick`
-  0. `DELETE /api/posts/:postId/likes/:id` is called.
+  0. `DELETE /api/likes/:id` is called.
   0. `removeLike` is set as the callback.
 
-### PostLikes API Response Actions
+### Like API Response Actions
 
-* `receiveAllPostLikes`
+* `receiveAllLikes`
   0. invoked from an API callback.
   0. `PostLike` store updates `_post_likes` and emits change.
+  0. `CommentLike` store updates `_comment_likes` and emits change.
 
-* `receiveSinglePostLike`
+* `receiveSingleLike`
   0. invoked from an API callback.
   0. `PostLike` store updates `_post_likes[id]` and emits change.
+  0. `CommentLike` store updates `_comment_likes[id]` and emits change.
 
-* `removePostLike`
+* `removeLike`
   0. invoked from an API callback.
-  0. `PostLike` store removes `_post_likes[id]` and emits change.
+  0. `PostLike` store removes `_post_likes[id]` if it's a post_like and emits change.
+  0. `CommentLike` store removes `_comment_likes[id]` if it's a comment_like and emits change.
 
 ### Store Listeners
 
 * `PostLikeIndex` component listens to `PostLike` store.
 * `PostLikeIndexItem` component listens to `PostLike` store.
-
-
-## CommentLikes Cycles
-
-### CommentLikes API Request Actions
-
-* `fetchAllCommentLikes`
-  0. invoked from `CommentLikesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/comments/:commentId/likes` is called.
-  0. `receiveAllLikes` is set as the callback.
-
-* `createCommentLike`
-  0. invoked from Add Like button `onClick`
-  0. `POST /api/comments/:commentId/likes` is called.
-  0. `receiveSingleLike` is set as the callback.
-
-* `destroyCommentLike`
-  0. invoked from UnLike button `onClick`
-  0. `DELETE /api/comments/:commentId/likes/:id` is called.
-  0. `removeLike` is set as the callback.
-
-### CommentLikes API Response Actions
-
-* `receiveAllCommentLikes`
-  0. invoked from an API callback.
-  0. `CommentLike` store updates `_comment_likes` and emits change.
-
-* `receiveSingleCommentLike`
-  0. invoked from an API callback.
-  0. `CommentLike` store updates `_comment_likes[id]` and emits change.
-
-* `removeCommentLike`
-  0. invoked from an API callback.
-  0. `CommentLike` store removes `_comment_likes[id]` and emits change.
-
-### Store Listeners
-
 * `CommentLikeIndex` component listens to `CommentLike` store.
 * `CommentLikeIndexItem` component listens to `CommentLike` store.
 
 
-## Messages Cycles
+## Message Cycles
 
-### Messages API Request Actions
+### Message API Request Actions
 
 * `fetchAllMessages`
-  0. invoked from `MessagesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/messages/:receiverId` is called.
+  0. invoked from `MessageIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/messages` is called.
   0. `receiveAllMessages` is set as the callback.
 
-* `createCommentLike`
+* `createMessage`
   0. invoked from New Message form `onSubmit`
-  0. `POST /api/messages/:receiverId` is called.
+  0. `POST /api/messages` is called.
   0. `receiveSingleMessage` is set as the callback.
 
-### Messages API Response Actions
+### Message API Response Actions
 
 * `receiveAllMessages`
   0. invoked from an API callback.

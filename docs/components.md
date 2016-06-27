@@ -9,40 +9,36 @@ _**exactly**_ match the nesting of your routes.)
 * **App**
   * **LoginPage** (if logged out & no current_user)
     * NewSessionForm
-    * LoggedOutContent - may not be its own component
+    * LoggedOutContainer - may not be its own component
     * NewUserForm
   * Header (only show if logged in)
     * FriendRequestIndex
       * FriendRequestIndexItem
-    * MessageIndex
-      * MessageIndexItem
-    * NotificationIndex (extra)
-      * NotificationIndexItem (extra)
-  * **NewsfeedContent** (IndexRoute - default)
-    * NewsfeedLinks
+    * MessageIndex (bonus)
+      * MessageIndexItem (bonus)
+    * NotificationIndex (bonus)
+      * NotificationIndexItem (bonus)
+  * **NewsfeedContainer** (IndexRoute - default)
     * NewsfeedIndex
       * NewPostForm
       * PostIndexItem
-    * NewsfeedAds
-  * **ProfileContent**
+  * **ProfileContainer**
     * ProfileNavbar (with profile_img and background_img)
-    * **ProfileContent**
+    * **ProfileContainer**
       * ProfileSidebar
         * ProfileAbout
-        * FriendPicIndex
-          * FriendPicIndexItem
-        * PhotoIndex (extra)
-          * PhotoIndexItem (extra)
+        * FriendPicIndex (bonus)
+          * FriendPicIndexItem (bonus)
+        * PhotoIndex (bonus)
+          * PhotoIndexItem (bonus)
       * PostIndex
         * NewPostForm
         * PostIndexItem
-    * **ProfileAbout**
-      * ProfileAboutSidebar
+    * **ProfileAboutContainer**
       * ProfileAbout
       * FriendIndex (same as on ProfileFriends page)
         * FriendIndexItem (same as on ProfileFriends page)
     * **ProfileAboutEdit**
-      * Sidebar
       * ProfiletEditForm
     * **ProfileFriends**
       * FriendIndex
@@ -56,11 +52,11 @@ _**exactly**_ match the nesting of your routes.)
   * **component:** `LoginPage` **path:** none
     * **component:** `NewSessionForm` **path:** create
     * **component:** `NewUserForm` **path:** create
-  * **component:** `NewsfeedContent` **path:** show
-  * **component:** `ProfileContent` **path:** show
-  * **component:** `ProfileContent` **path:** `users/:userId`
+  * **component:** `NewsfeedContainer` **path:** show
+  * **component:** `ProfileContainer` **path:** show
+  * **component:** `ProfileContainer` **path:** `users/:userId`
     * **component:** `ProfileTimeline` **path:** `users/:userId`
     * **component:** `ProfileAbout` **path:** `users/:userId/about`
     * **component:** `ProfileFriends` **path:** `users/:userId/friends`
 
-NewsfeedContent is the IndexRoute - default content to be displayed
+NewsfeedContainer is the IndexRoute - default content to be displayed

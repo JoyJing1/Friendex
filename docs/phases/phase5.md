@@ -1,46 +1,35 @@
-# Phase 3: FriendRequests (2 days)
+# Phase 5: Posts (1.5 days)
 
 ## Rails
 ### Models
-* FriendRequests
-* Friendships
+* Posts
 
 ### Controllers
-* Api::FriendRequestsController (create, destroy)
-* Api::FriendshipsController (create, destroy)
+* Api::PostsController (create, update, destroy)
 
 ### Views
-* friendrequests/index.json.jbuilder
-* friendships/index.json.jbuilder
-* friends/index.json.jbuilder
+* posts/index.json.jbuilder
+* posts/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* FriendRequestIndex
-  - FriendRequestIndexItem
-* FriendIndex
-  - FriendIndexItem
-* FriendPicIndex
-  - FriendPicIndexItem
-* SearchIndex
+* PostIndex
+  - PostIndexItem
+* PostForm
 
 ### Stores
-* Friend
+* Post
 
 ### Actions
-* ApiActions.receiveAllFriendRequests -> triggered by ApiUtil
-* ApiActions.receiveSingleFriendRequest
-* ApiActions.removeFriendRequest
-* ApiActions.receiveSingleFriendship
-* ApiActions.removeFriendship
-* ApiActions.receiveAllFriends
+* ApiActions.receiveAllPosts -> triggered by ApiUtil
+* ApiActions.receiveSinglePost
+* ApiActions.removePost
 
 ### ApiUtil
-* ApiUtil.fetchAllFriendRequests
-* ApiUtil.createFriendRequest
-* ApiUtil.destroyFriendRequest
-* ApiUtil.createFriendship
-* ApiUtil.destroyFriendship
-* ApiUtil.fetchAllFriends
+* ApiUtil.fetchAllPosts
+* ApiUtil.createPost
+* ApiUtil.fetchSinglePost
+* ApiUtil.updatePost
+* ApiUtil.destroyPost
 
 ## Gems/Libraries

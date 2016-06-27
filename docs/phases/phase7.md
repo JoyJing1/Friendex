@@ -1,30 +1,33 @@
-# Phase 7: Newsfeed (1 day)
+# Phase 3: Comments (1 day)
 
 ## Rails
 ### Models
+* Comments
 
 ### Controllers
-* Api::NewsfeedController (index)
+* Api::CommentsController (create, update, destroy)
 
 ### Views
-* newsfeed/index.json.jbuilder
+* comments/index.json.jbuilder
+* comments/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NewsfeedContent
-* NewsfeedIndex
-  - NewPostForm (developed in phase 6)
-  - PostIndexItem (developed in phase 6)
-* NewsfeedLinkIndex
-* NewsfeedAdIndex
+* CommentIndex
+  - CommentIndexItem
 
 ### Stores
-* Newsfeed
+* Comment
 
 ### Actions
-* ApiActions.receiveAllNewsfeedPosts -> triggered by ApiUtil
+* ApiActions.receiveAllComments -> triggered by ApiUtil
+* ApiActions.receiveSingleComment
+* ApiActions.removeComment
 
 ### ApiUtil
-* ApiUtil.fetchAllNewsfeedPosts
+* ApiUtil.fetchAllComments
+* ApiUtil.createComment
+* ApiUtil.updateComment
+* ApiUtil.destroyComment
 
 ## Gems/Libraries

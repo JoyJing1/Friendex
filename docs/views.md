@@ -6,10 +6,12 @@
 ## Header - Friend Requests
 ![header-friendrequests]
 
-## Header - Messages
+## Header - Messages (extra)
+Messages will appear in NewsfeedIndex at first
 ![header-messages]
 
-## Header - Notifications
+## Header - Notifications (extra)
+Notifications will appear in NewsfeedIndex at first
 ![header-notifications]
 
 ## Newsfeed
@@ -21,13 +23,13 @@
 ## Profile - About
 ![profile-about]
 
-## Profile - Friends
+## Profile - Friends (extra)
 ![profile-friends]
 
 ## Profile - Edit
 ![profile-edit-form]
 
-## Profile - Non-Friend
+## Profile - Non-Friend (extra)
 ![profile-nonfriend]
 
 [login-page]: ./wireframes/login-page.jpg
