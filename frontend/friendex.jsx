@@ -1,28 +1,33 @@
-const React = require('react'),
-      ReactDOM = require('react-dom'),
-      ReactRouter = require('react-router'),
-      Router = require('react-router').Router,
-      Route = require('react-router').Route,
-      hashHistory = require('react-router').hashHistory;
+// React
+const React = require('react');
+const ReactDOM = require('react-dom');
+// Router
+const ReactRouter = require('react-router');
+const Router = require('react-router').Router;
+const Route = require('react-router').Route;
+const hashHistory = require('react-router').hashHistory;
+//Authentication
+const SessionStore = require('./stores/session_store');
+const SessionActions = require('./actions/session_actions');
+// Components
+const App = require('./components/app');
+const LoginForm = require('./components/login_form');
 
-const App = React.createClass({
-  render () {
-    return (
-      <div>
-        <h1>Welcome to Friendex!</h1>
-        {this.props.children}
-      </div>
-    );
-  }
-});
-
-const routes = (
-  <Route path="/" component={App}>
-
-  </Route>
+const appRouter = (
+  <Router history={ hashHistory }>
+    <Route path="/" component={ App }>
+      
+    </Route>
+  </Router>
 );
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  if (window.currentUser) {
+    SessionActions.receiveCurrentUser(window.currentUser);
+  }
+
   const root = document.getElementById("content");
-  ReactDOM.render(<Router history={hashHistory} routes={routes}/>, root);
+  ReactDOM.render(appRouter, root);
 });
