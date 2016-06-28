@@ -8,17 +8,19 @@ const hashHistory = require('react-router').hashHistory;
 
 const SessionActions = {
 
-  signUp(formData){
-    console.log("signUp(formData) in session_actions.js");
+  signUp(userData, createProfile){
+    console.log("signUp(userData) in session_actions.js");
     SessionApiUtil.signUp(
-      formData,
-      SessionActions.receiveCurrentUser,
-      //Redirect to continue adding profile info
-      SessionActions.redirectToProfile,
+      userData,
+      (resp) => {
+        SessionActions.receiveCurrentUser(resp);
+        createProfile(resp.id);
+        SessionActions._redirectToProfile(resp.id);
+      },
       ErrorActions.setErrors);
   },
 
-  redirectToProfile(id) {
+  _redirectToProfile(id) {
     hashHistory.push(`/users/${id}`);
   },
 

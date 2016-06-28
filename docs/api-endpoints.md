@@ -23,9 +23,20 @@
 ### Users
 
 - `GET /api/users/:id`
-  - Returns all profile information
+  - Returns all user information
 - `PATCH /api/users/:id`
   - Checks that current_user can only edit their own profile
+
+### Profiles
+
+- `GET /api/profiles/:id`
+  - Returns all profile information
+- `POST /api/profiles`
+  - Create new profile upon completion of signup
+- `PATCH /api/profiles/:id`
+  - Checks that current_user can only edit their own profile
+
+
 
 ### Friendships
 - `GET /api/friendships`: returns all friendships

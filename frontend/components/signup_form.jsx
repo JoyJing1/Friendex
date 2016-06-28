@@ -2,6 +2,7 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
+const ProfileActions = require('../actions/profile_actions');
 const SessionActions = require('../actions/session_actions');
 const SessionStore = require('../stores/session_store');
 const ErrorStore = require('../stores/error_store');
@@ -38,17 +39,17 @@ const SignupForm = React.createClass({
 
   redirectIfLoggedIn() {
     if (SessionStore.isUserLoggedIn()) {
-      this.context.router.push("/"); // Just send to newsfeed instead
+      this.context.router.push("/newsfeed"); // Just send to newsfeed instead
     }
   },
 
 	handleSubmit(e) {
 		e.preventDefault();
     const birthday = this.state.birthYear + "-" + this.state.birthMonth + "-" + this.state.birthDay;
-		const formData = {
+		const profileData = {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
-      birthday: new Date(birthday),
+      birthday: birthday,
       gender: this.state.gender
 			// email: this.state.email1,
 			// password: this.state.password
@@ -58,11 +59,13 @@ const SignupForm = React.createClass({
       email: this.state.email1,
       password: this.state.password
     };
-    console.log(formData);
-    console.log("hanleSubmit(e) in signup_form.jsx");
-    //Need to pass profile info as a callback to occur after created user;
-    SessionActions.signUp(userData);
-    // Also need to create profiles
+    console.log(profileData);
+    console.log("handleSubmit(e) in signup_form.jsx");
+    //Create profile after creating user
+    SessionActions.signUp(userData, (id) => {
+      profileData["user_id"] = id;
+      ProfileActions.createProfile(profileData);
+    });
 	},
 
   // Will need to update formatting
@@ -79,8 +82,6 @@ const SignupForm = React.createClass({
   },
 
   update(property) {
-    // console.log(this.state);
-    // debugger;
     return (e) => this.setState( { [property]: e.target.value } );
   },
 

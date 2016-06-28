@@ -3,7 +3,7 @@
 const SessionApiUtil = {
 	logIn(user, success, error) {
     console.log("logIn(user, success, error) in session_api_util.js");
-    debugger;
+    // debugger;
 		$.ajax({
 			url: '/api/session',
 			type: 'POST',
@@ -11,7 +11,7 @@ const SessionApiUtil = {
 			success,
 			error(xhr) {
 				const errors = xhr.responseJSON;
-
+        // debugger;
 				error("login", errors);
 			}
 		});
@@ -23,28 +23,32 @@ const SessionApiUtil = {
 			method: 'delete',
 			success,
 			error: function () {
+        // debugger;
 			  console.log("Logout error in SessionApiUtil#logout");
 			}
 		});
 	},
 
-	signUp(user, successCallback, redirectUser, error) {
+	signUp(user, successCallback, error) {
     console.log("signUp(user, success, error) in session_api_util.js");
-    // debugger;
+    debugger;
 		$.ajax({
 			url: '/api/user',
 			type: 'POST',
 			dataType: 'json',
 			data: { user },
 			success(resp) {
-        successCallback();
-        debugger;
-        console.log(resp);
-        redirectUser(resp.id);
+        successCallback(resp);
+        // debugger;
+        // Need to add in user_id
+        // createProfile(resp.id);
+        // console.log(resp);
+        // redirectUser(resp.id);
         // hashHistory.push(`/users/${resp.id}`);
       },
 			error(xhr) {
 				const errors = xhr.responseJSON;
+        // debugger;
 				error("signup", errors);
 			}
 		});
@@ -56,6 +60,7 @@ const SessionApiUtil = {
 			method: 'GET',
 			success,
 			error: function (xhr) {
+        // debugger;
 			  console.log("Error in SessionApiUtil#fetchCurrentUser");
 			},
       complete: function(){
