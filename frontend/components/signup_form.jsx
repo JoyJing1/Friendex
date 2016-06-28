@@ -19,7 +19,9 @@ const SignupForm = React.createClass({
       email1: "",
       email2: "",
       password: "",
-      birthday: "",
+      birthMonth: "",
+      birthDay: "",
+      birthYear: "",
       gender: ""
     };
   },
@@ -42,17 +44,25 @@ const SignupForm = React.createClass({
 
 	handleSubmit(e) {
 		e.preventDefault();
-
+    const birthday = this.state.birthYear + "-" + this.state.birthMonth + "-" + this.state.birthDay;
 		const formData = {
-			email: this.state.email,
-			password: this.state.password
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+      birthday: new Date(birthday),
+      gender: this.state.gender
+			// email: this.state.email1,
+			// password: this.state.password
 		};
 
-    if (this.props.location.pathname === "/login") {
-      SessionActions.logIn(formData);
-    } else {
-      SessionActions.signUp(formData);
-    }
+    const userData = {
+      email: this.state.email1,
+      password: this.state.password
+    };
+    console.log(formData);
+    console.log("hanleSubmit(e) in signup_form.jsx");
+    //Need to pass profile info as a callback to occur after created user;
+    SessionActions.signUp(userData);
+    // Also need to create profiles
 	},
 
   // Will need to update formatting
@@ -69,6 +79,8 @@ const SignupForm = React.createClass({
   },
 
   update(property) {
+    // console.log(this.state);
+    // debugger;
     return (e) => this.setState( { [property]: e.target.value } );
   },
 
@@ -89,35 +101,37 @@ const SignupForm = React.createClass({
 
 
 		return (
-		  <div className="signup-form-container">
-        <div className="signup-form-header">
+		  <div className="signup-form-container clearfix">
+        <div className="signup-form-header clearfix">
           <h1>Sign Up</h1>
           <h2>It's free and always will be</h2>
         </div>
 
-        <form className="login-form-box">
+        <form className="signup-form-box" onSubmit={this.handleSubmit}>
 
-          <input type="string"
-                  value={this.state.firstName}
-                  label="firstName"
-                  placeholder="First name"
-                  onChange={this.update("firstName")}/>
+          <div className="new-user-name clearfix">
+            <input type="text"
+                    value={this.state.firstName}
+                    label="firstName"
+                    placeholder="First name"
+                    onChange={this.update("firstName")}/>
 
-          <input type="string"
-                  value={this.state.lastName}
-                  label="lastName"
-                  placeholder="Last name"
-                  onChange={this.update("lastName")}/>
-                  <br/>
+                  <input type="text"
+                    value={this.state.lastName}
+                    label="lastName"
+                    placeholder="Last name"
+                    onChange={this.update("lastName")}/>
+                    <br/>
+          </div>
 
-          <input type="string"
+          <input type="text"
                   value={this.state.email1}
                   label="email1"
                   placeholder="Email"
                   onChange={this.update("email1")}/>
                   <br/>
 
-          <input type="string"
+          <input type="text"
                   value={this.state.email2}
                   label="email2"
                   placeholder="Re-enter email"
@@ -131,21 +145,24 @@ const SignupForm = React.createClass({
                   onChange={this.update("password")}/>
                   <br/>
 
-          <select className="birthday-month" defaultValue={0}>
+          <select className="birthday-month" defaultValue={0}
+            onChange={this.update("birthMonth")}>
             <option value={0} disabled>Month</option>
             { months.map( (month, i) => {
               return <option value={i+1} key={i+1}>{month}</option>;
             } )}
           </select>
 
-          <select className="birthday-day" defaultValue={0}>
+          <select className="birthday-day" defaultValue={0}
+            onChange={this.update("birthDay")}>
             <option value={0} disabled>Day</option>
             { days.map(i => {
               return <option value={i} key={i}>{i}</option>;
             }) }
           </select>
 
-          <select className="birthday-year" defaultValue={0}>
+          <select className="birthday-year" defaultValue={0}
+            onChange={this.update("birthYear")}>
             <option value={0} disabled>Year</option>
             { years.map(i => {
               return <option value={i} key={i}>{i}</option>;
@@ -156,21 +173,24 @@ const SignupForm = React.createClass({
             <input type="radio"
                     name="gender"
                     value="female"
-                    key="f"/> Female
+                    key="f"
+                    onChange={this.update("gender")}/> Female
             <input type="radio"
                     name="gender"
                     value="male"
-                    key="m"/> Male
+                    key="m"
+                    onChange={this.update("gender")}/> Male
             <input type="radio"
                     name="gender"
                     value="other"
-                    key="o"/> Other
+                    key="o"
+                    onChange={this.update("gender")}/> Other
           </div>
           <br/>
 
           <p>By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
 
-          <input type="submit" value="Sign Up"/>
+          <input type="submit" value="Sign Up" id="signup-button"/>
 
         </form>
 		  </div>

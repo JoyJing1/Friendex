@@ -10,18 +10,15 @@ const SignupForm = require('./signup_form');
 const App = React.createClass({
   render () {
     return (
-      <div>
-        <header>
-          <Link to="/" className="header-link">
-            <h1>Welcome to Friendex!</h1>
-          </Link>
+      <div className="logged-out-page">
+        <header className="logged-out-header">
+          <LoginForm/>
         </header>
 
-
-        <LoginForm/>
-
-        <aside className="signup-left"/>
-        <SignupForm/>
+        <div className="logged-out-body">
+          <aside className="signup-left"/>
+          <SignupForm className="signup=form"/>
+        </div>
 
         {this.props.children}
       </div>
@@ -30,3 +27,6 @@ const App = React.createClass({
 });
 
 module.exports = App;
+
+// Create Header component
+// state - track current_user

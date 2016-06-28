@@ -12,11 +12,13 @@ const SessionActions = require('./actions/session_actions');
 // Components
 const App = require('./components/app');
 const LoginForm = require('./components/login_form');
+const Profile = require('./components/profile');
 
 const appRouter = (
   <Router history={ hashHistory }>
     <Route path="/" component={ App }>
-      
+      <Route path="/users/:id" component={ Profile }/>
+
     </Route>
   </Router>
 );

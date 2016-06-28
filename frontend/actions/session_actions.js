@@ -9,13 +9,21 @@ const hashHistory = require('react-router').hashHistory;
 const SessionActions = {
 
   signUp(formData){
+    console.log("signUp(formData) in session_actions.js");
     SessionApiUtil.signUp(
       formData,
       SessionActions.receiveCurrentUser,
+      //Redirect to continue adding profile info
+      SessionActions.redirectToProfile,
       ErrorActions.setErrors);
   },
 
+  redirectToProfile(id) {
+    hashHistory.push(`/users/${id}`);
+  },
+
   logIn(formData){
+    console.log("logIn(formData) in session_actions.js");
     SessionApiUtil.logIn(
       formData,
       SessionActions.receiveCurrentUser,
@@ -33,6 +41,7 @@ const SessionActions = {
   },
 
   receiveCurrentUser(currentUser) {
+    console.log("receiveCurrentUser(currentUser) in session_actions.js");
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOGIN,
       currentUser: currentUser

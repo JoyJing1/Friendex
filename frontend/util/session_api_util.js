@@ -2,6 +2,8 @@
 
 const SessionApiUtil = {
 	logIn(user, success, error) {
+    console.log("logIn(user, success, error) in session_api_util.js");
+    debugger;
 		$.ajax({
 			url: '/api/session',
 			type: 'POST',
@@ -26,13 +28,21 @@ const SessionApiUtil = {
 		});
 	},
 
-	signUp(user, success, error) {
+	signUp(user, successCallback, redirectUser, error) {
+    console.log("signUp(user, success, error) in session_api_util.js");
+    // debugger;
 		$.ajax({
 			url: '/api/user',
 			type: 'POST',
 			dataType: 'json',
 			data: { user },
-			success,
+			success(resp) {
+        successCallback();
+        debugger;
+        console.log(resp);
+        redirectUser(resp.id);
+        // hashHistory.push(`/users/${resp.id}`);
+      },
 			error(xhr) {
 				const errors = xhr.responseJSON;
 				error("signup", errors);

@@ -43,11 +43,15 @@ const LoginForm = React.createClass({
 			password: this.state.password
 		};
 
-    if (this.props.location.pathname === "/login") {
-      SessionActions.logIn(formData);
-    } else {
-      SessionActions.signUp(formData);
-    }
+    console.log("handleSubmit(e) in login_form.jsx");
+    SessionActions.logIn(formData, () => {
+      console.log("Successfully logged in");
+    });
+    // if (this.props.location.pathname === "/login") {
+    // } else {
+    //   console.log(this.props.location.pathname);
+    //   SessionActions.signUp(formData);
+    // }
 	},
 
   // Will need to update formatting
@@ -74,27 +78,45 @@ const LoginForm = React.createClass({
 	render() {
 
 		return (
-		  <div className="login-form-container">
-        <h1 className="fd-logo">friendex</h1>
+		  <header className="logged-out-container">
+        <nav className="header-nav clearfix">
+          <h1 className="fd-logo">
+            <a href="#">friendex</a>
+          </h1>
 
-        <form className="login-form-box">
+          <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
-          <label for="email">Email</label>
-          <input type="string"
-                  value={this.state.email}
-                  label="email"
-                  onChange={this.update("email")}/>
+            <table cellspace="0" role="presentation">
+              <tbody>
+                <tr>
+                  <td><label for="email">Email</label></td>
+                  <td><label for="password">Password</label></td>
+                </tr>
 
-          <label for="password">Password</label>
-          <input type="password"
-                  value={this.state.password}
-                  label="password"
-                  onChange={this.update("password")}/>
+                <tr>
+                  <td>
+                    <input type="text"
+                      value={this.state.email}
+                      label="email"
+                      onChange={this.update("email")}/>
+                  </td>
+                  <td>
+                    <input type="password"
+                      value={this.state.password}
+                      label="password"
+                      onChange={this.update("password")}/>
+                  </td>
 
-          <input type="submit" value="Log In"/>
+                  <td>
+                    <input type="submit" value="Log In"/>
+                  </td>
+                </tr>
 
-        </form>
-		  </div>
+              </tbody>
+            </table>
+          </form>
+        </nav>
+		  </header>
 		);
 	}
 });

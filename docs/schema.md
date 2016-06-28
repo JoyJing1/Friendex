@@ -4,10 +4,10 @@ All tables will include created_at and updated_at timestamps.
 ## profiles
 column name     | data type | details
 ----------------|-----------|-----------------------
-id              | integer   | not null, foreign key (references users), indexed
+id              | integer   | not null, primary key
+user_id         | integer   | not null, foreign key (references users), indexed
 first_name      | string    | not null
 last_name       | string    | not null
-email           | string    | not null, indexed, unique
 birthday        | date      | not null
 gender          | string    | not null, default: other
 profile_img     | string    |

@@ -10,11 +10,13 @@ let _currentUser = {};
 let _currentUserHasBeenFetched = false;
 
 const _login = function(currentUser) {
+  console.log("_login in session_store.js");
   _currentUser = currentUser;
   _currentUserHasBeenFetched = true;
 };
 
 const _logout = function() {
+  console.log("_logout in session_store.js");
   _currentUser = {};
   _currentUserHasBeenFetched = true;
 };
@@ -41,7 +43,9 @@ SessionStore.currentUserHasBeenFetched = function () {
 };
 
 SessionStore.isUserLoggedIn = function() {
-  return !!_currentUser.id;
+  // debugger;
+  return !!_currentUser;
+  // return !!_currentUser.id;
 };
 
 module.exports = SessionStore;
