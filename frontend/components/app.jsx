@@ -33,25 +33,3 @@ const App = React.createClass({
 });
 
 module.exports = App;
-
-// Create Header component
-// state - track current_user
-// if (SessionStore.isUserLoggedIn()) {
-//   return (
-//     <Profile/>
-//   );
-// } else {
-//   return (
-//     <div className="logged-out-page">
-//       <header className="logged-out-header">
-//         <LoginForm/>
-//       </header>
-//
-//       <div className="logged-out-body">
-//         <aside className="signup-left"/>
-//         <SignupForm className="signup=form"/>
-//       </div>
-//
-//       {this.props.children}
-//     </div>
-//   );

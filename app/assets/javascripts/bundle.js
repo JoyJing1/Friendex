@@ -33013,28 +33013,6 @@
 	});
 	
 	module.exports = App;
-	
-	// Create Header component
-	// state - track current_user
-	// if (SessionStore.isUserLoggedIn()) {
-	//   return (
-	//     <Profile/>
-	//   );
-	// } else {
-	//   return (
-	//     <div className="logged-out-page">
-	//       <header className="logged-out-header">
-	//         <LoginForm/>
-	//       </header>
-	//
-	//       <div className="logged-out-body">
-	//         <aside className="signup-left"/>
-	//         <SignupForm className="signup=form"/>
-	//       </div>
-	//
-	//       {this.props.children}
-	//     </div>
-	//   );
 
 /***/ },
 /* 258 */
@@ -33562,22 +33540,170 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(253);
+	var ProfileStore = __webpack_require__(265);
+	var ProfileActions = __webpack_require__(267);
 	
 	var Profile = React.createClass({
 	  displayName: 'Profile',
+	  getInitialState: function getInitialState() {
+	    return { profile: ProfileStore.getProfile() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    ProfileActions.fetchSingleProfile(this.props.params.id);
+	    ProfileStore.addListener(this._updateProfile);
+	  },
+	  _updateProfile: function _updateProfile(profile) {
+	    this.setState({ profile: ProfileStore.getProfile() });
+	    console.log("_updateProfile(profile) in profile.jsx");
+	    console.log(this.state);
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'profile-page', __self: this
 	      },
 	      React.createElement(
-	        'h1',
-	        {
-	          __self: this
+	        'nav',
+	        { className: 'profile-nav clearfix', __self: this
 	        },
-	        'Welcome to your profile page'
+	        React.createElement('img', { src: this.state.profile.background_img, className: 'background-img', __self: this
+	        }),
+	        React.createElement('img', { src: this.state.profile.profile_img, className: 'profile-img', __self: this
+	        }),
+	        React.createElement(
+	          'h1',
+	          {
+	            __self: this
+	          },
+	          this.state.profile.username
+	        ),
+	        React.createElement(
+	          'nav',
+	          { className: 'profile-tabs', __self: this
+	          },
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + this.props.params.id, __self: this
+	            },
+	            'Timeline'
+	          ),
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + this.props.params.id, __self: this
+	            },
+	            'About'
+	          ),
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + this.props.params.id, __self: this
+	            },
+	            'Friends'
+	          ),
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + this.props.params.id, __self: this
+	            },
+	            'Photos'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'aside',
+	        { className: 'profile-left col-1-3', __self: this
+	        },
+	        React.createElement(
+	          'div',
+	          { className: 'profile-about-sidebar', __self: this
+	          },
+	          React.createElement(
+	            'ul',
+	            {
+	              __self: this
+	            },
+	            'List of Attributes',
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.first_name
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.last_name
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.birthday
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.email
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.workplace
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.profile_img
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.background_img
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.user_id
+	            ),
+	            React.createElement(
+	              'li',
+	              {
+	                __self: this
+	              },
+	              this.state.profile.id
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'main',
+	        { className: 'profile-main col-2-3', __self: this
+	        },
+	        React.createElement(
+	          'ul',
+	          {
+	            __self: this
+	          },
+	          React.createElement(
+	            'li',
+	            {
+	              __self: this
+	            },
+	            'This is where the PostIndex would go'
+	          )
+	        )
 	      ),
 	      this.props.children
 	    );
@@ -33607,6 +33733,8 @@
 	    return Profile.find("user_id", currentUser.id);
 	  },
 	  render: function render() {
+	    // debugger;
+	    var currentUsername = window.currentUser;
 	    return React.createElement(
 	      'div',
 	      { className: 'header-main clearfix', __self: this
@@ -33617,6 +33745,12 @@
 	        },
 	        React.createElement('img', { className: 'f-square-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png', __self: this
 	        }),
+	        React.createElement(
+	          Link,
+	          { to: '/users/' + currentUser.id, className: 'username-link', __self: this
+	          },
+	          currentUser.username
+	        ),
 	        React.createElement(
 	          'button',
 	          { onClick: this._logout,
@@ -33630,6 +33764,9 @@
 	});
 	
 	module.exports = Header;
+	
+	// <Link to={`/api/users/${currentUser.id}`}>{currentUser.username}</Link>
+	// <Link className="header-nav-userName">{window.currentUser.username}</Link>
 
 /***/ },
 /* 263 */
@@ -33717,6 +33854,108 @@
 	});
 	
 	module.exports = Newsfeed;
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var AppDispatcher = __webpack_require__(231);
+	var Store = __webpack_require__(235).Store;
+	var ProfileConstants = __webpack_require__(266);
+	
+	var _profile = {};
+	
+	var ProfileStore = new Store(AppDispatcher);
+	
+	var _setProfile = function _setProfile(profile) {
+	  console.log("set _profile = profile in profile_store.js");
+	  _profile = profile;
+	};
+	
+	ProfileStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case ProfileConstants.UPDATE_PROFILE:
+	      _setProfile(payload.profile);
+	      ProfileStore.__emitChange();
+	      break;
+	  }
+	};
+	
+	ProfileStore.getProfile = function () {
+	  return _profile;
+	};
+	
+	module.exports = ProfileStore;
+
+/***/ },
+/* 266 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var ProfileConstants = {
+		UPDATE_PROFILE: "UPDATE_PROFILE"
+	};
+	
+	module.exports = ProfileConstants;
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var AppDispatcher = __webpack_require__(231);
+	var ProfileConstants = __webpack_require__(266);
+	var ProfileApiUtil = __webpack_require__(268);
+	var ErrorActions = __webpack_require__(255);
+	var hashHistory = __webpack_require__(168).hashHistory;
+	
+	var ProfileActions = {
+	  fetchSingleProfile: function fetchSingleProfile(id) {
+	    console.log("fetchSingleProfile(id) in profile_actions.js");
+	    ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
+	  },
+	  receiveSingleProfile: function receiveSingleProfile(profile) {
+	    AppDispatcher.dispatch({
+	      actionType: ProfileConstants.UPDATE_PROFILE,
+	      profile: profile
+	    });
+	  }
+	};
+	
+	module.exports = ProfileActions;
+
+/***/ },
+/* 268 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var ProfileApiUtil = {
+		fetchProfile: function fetchProfile(id, _success, error) {
+			console.log("fetchProfile(id, success, error) in profile_api_util.js");
+	
+			$.ajax({
+				url: "/api/profiles/" + id,
+				type: 'GET',
+				success: function success(resp) {
+					console.log("successfully pulled profile info in fetchProfile");
+					console.log(resp);
+					_success(resp);
+				},
+				error: function error(xhr) {
+					console.log("failed to pull profile info");
+					var errors = xhr.responseJSON;
+					errors();
+				}
+			});
+		}
+	};
+	
+	module.exports = ProfileApiUtil;
 
 /***/ }
 /******/ ]);

@@ -35,8 +35,6 @@ const appRouter = (
   </Router>
 );
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   if (window.currentUser) {
     SessionActions.receiveCurrentUser(window.currentUser);

@@ -38,6 +38,8 @@ Profile.create!(user_id: 2,
     last_name: "Sandberg",
     birthday: "1969-08-28",
     gender: "female",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157223/profiles/110711_r21057_hr-900.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1439123068749-20f4035bd7ed.jpg",
     workplace: "Facebook")
 
 Profile.create!(user_id: 3,
@@ -45,6 +47,8 @@ Profile.create!(user_id: 3,
     last_name: "Andreessen",
     birthday: "1971-07-09",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157354/profiles/150518_r26512-1200-630-06150519.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155783/backgrounds/photo-1463003416389-296a1ad37ca0.jpg",
     workplace: "Facebook")
 
 # Google
@@ -53,6 +57,8 @@ Profile.create!(user_id: 4,
     last_name: "Pichai",
     birthday: "1972-07-12",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467156929/profiles/SundarPichai129-_2.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155788/backgrounds/photo-1461770354136-8f58567b617a.jpg",
     workplace: "Google")
 
 Profile.create!(user_id: 5,
@@ -67,6 +73,7 @@ Profile.create!(user_id: 6,
     last_name: "Brin",
     birthday: "1973-08-21",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157152/profiles/Sergey-Brin.jpg",
     workplace: "Google")
 
 # Whatsapp
