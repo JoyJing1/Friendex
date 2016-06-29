@@ -1,0 +1,32 @@
+.header-main {
+  background-color: #3B5998;
+  height: 42px;
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+}
+
+.header-nav {
+  padding: 8px 10px;
+}
+
+.f-square-icon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 9px;
+}
+
+.button-logout {
+  background-color: #4267B2;
+  border: 1px solid #29487D;
+  border-radius: 5px;
+  margin: 8px 10px;
+  padding: 0 8px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
+}

@@ -39,12 +39,13 @@ const SignupForm = React.createClass({
 
   redirectIfLoggedIn() {
     if (SessionStore.isUserLoggedIn()) {
-      this.context.router.push("/newsfeed"); // Just send to newsfeed instead
+      this.context.router.push("/"); // Just send to newsfeed instead
     }
   },
 
 	handleSubmit(e) {
 		e.preventDefault();
+
     const birthday = this.state.birthYear + "-" + this.state.birthMonth + "-" + this.state.birthDay;
 		const profileData = {
       first_name: this.state.firstName,

@@ -43,9 +43,7 @@ SessionStore.currentUserHasBeenFetched = function () {
 };
 
 SessionStore.isUserLoggedIn = function() {
-  // debugger;
-  return !!_currentUser;
-  // return !!_currentUser.id;
+  return Boolean(_currentUser.id);
 };
 
 module.exports = SessionStore;

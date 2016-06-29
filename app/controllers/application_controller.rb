@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find_by(session_token: session[:session_token])
   end
 
+  # def current_username
+  #   profile = Profile.find_by(user_id, @current_user.id)
+  #   # "#{profile.first_name} #{profile.last_name}"
+  # end
+
   def logged_in?
     !!current_user
   end

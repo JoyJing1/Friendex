@@ -1,7 +1,6 @@
 const ProfileApiUtil = {
   createProfile(profile, errorCb) {
     console.log("createProfile(formData) in profile_api_util.js");
-    debugger;
     $.ajax({
       url: '/api/profiles',
       type: 'POST',

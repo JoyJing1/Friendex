@@ -79,41 +79,29 @@ const LoginForm = React.createClass({
 
 		return (
 		  <header className="logged-out-container">
-        <nav className="header-nav clearfix">
+        <nav className="logged-out-header-nav clearfix">
           <h1 className="fd-logo">
             <a href="#">friendex</a>
           </h1>
 
           <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
-            <table cellspace="0" role="presentation">
-              <tbody>
-                <tr>
-                  <td><label for="email">Email</label></td>
-                  <td><label for="password">Password</label></td>
-                </tr>
+              <label for="email">Email
+              <input type="text"
+                value={this.state.email}
+                label="email"
+                onChange={this.update("email")}/>
+              </label>
 
-                <tr>
-                  <td>
-                    <input type="text"
-                      value={this.state.email}
-                      label="email"
-                      onChange={this.update("email")}/>
-                  </td>
-                  <td>
-                    <input type="password"
-                      value={this.state.password}
-                      label="password"
-                      onChange={this.update("password")}/>
-                  </td>
+              <label for="password">Password
+              <input type="password"
+                value={this.state.password}
+                label="password"
+                onChange={this.update("password")}/>
+              </label>
 
-                  <td>
-                    <input type="submit" value="Log In"/>
-                  </td>
-                </tr>
+              <input type="submit" value="Log In"/>
 
-              </tbody>
-            </table>
           </form>
         </nav>
 		  </header>

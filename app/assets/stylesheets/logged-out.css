@@ -1,66 +1,75 @@
+html, body {
+  height: 100%;
+  background-color: #EDF0F5;
+}
+
 .logged-out-page {
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
-  letter-spacing: normal;
 }
 
 .logged-out-header {
-  width: 100%;
-  height: 82px;
-  background-color: #3B5998;
   color: white;
 }
 
-
-.header-nav {
-  width: 980px;
-  margin: 0 auto;
-  /*margin: 0 auto 15px auto;*/
-  /*float: right;*/
-  /*display: flex;*/
-  /*justify-content: space-between;*/
+.logged-out-container {
+  background-color:  #3B5998;
+  padding: 10px;
 }
 
-
+.logged-out-header-nav {
+  display: flex;
+  justify-content: space-around;
+}
 
 .fd-logo {
   display: inline-block;
-  float: left;
   font-size: 36px;
   letter-spacing: 1px;
   width: 170px;
   height: 34px;
-  margin-top: 17px;
-  /*color: white;*/
+  font-weight: bold;
+}
+
+.login-form-box.clearfix {
+  display: flex;
 }
 
 .login-form-box {
-  display: inline-block;
   float: right;
+}
+
+label {
+  margin-right: 10px
 }
 
 .login-form-box > input {
   background-color: white;
 }
 
-
 input[type="password"], input[type="text"] {
   background: white;
   color: black;
+  padding: 4px 5px;
+}
+
+input[type="text"] {
+  display: block;
+}
+
+input[type="password"] {
+  display: block;
 }
 
 input[type="submit"] {
   background: #4267B2;
   border: 1px solid #29487D;
-  /*padding: 8px 10px;*/
+  padding: 0 13px;
+  height: 35px;
+  align-self: flex-end;
 }
 
 .logged-out-body {
-  width: 900px;
   margin: 0 auto;
-}
-
-.signup-left {
-
 }
 
 .signup-form-container {
@@ -72,6 +81,7 @@ input[type="submit"] {
 
 .signup-form-header > h1 {
   font-size: 36px;
+  font-weight: bold;
 }
 
 .signup-form-header > h2 {
@@ -81,8 +91,6 @@ input[type="submit"] {
 
 .signup-form-box {
   width: 377px;
-  /*display: flex;*/
-  /*justify-content: space-between;*/
 }
 
 .signup-form-box > input {
@@ -110,18 +118,17 @@ input[type="submit"] {
 
 #signup-button {
   width: 75px;
-  background-color: green;
+  background: #609D4D;
+  color: white;
+  text-align: center;
 }
 
 .signup-form {
-  /*display: inline-block;*/
   float: right
 }
 
 .signup-left {
-  /*display: inline-block;*/
   float: left;
-  width: 365px;
+  width: 30%;
   height: 100px;
-  background: green;
 }

@@ -28,13 +28,22 @@ const SessionActions = {
     console.log("logIn(formData) in session_actions.js");
     SessionApiUtil.logIn(
       formData,
-      SessionActions.receiveCurrentUser,
+      (resp) => {
+        SessionActions.receiveCurrentUser(resp);
+        SessionActions._redirectToProfile(resp.id);
+      },
       ErrorActions.setErrors);
   },
 
   logOut() {
-    SessionApiUtil.logOut(SessionActions.removeCurrentUser);
+    SessionApiUtil.logOut((resp) => {
+      SessionActions.removeCurrentUser();
+      this._redirectToLogin();
+    });
+  },
 
+  _redirectToLogin() {
+    hashHistory.push(`login`);
   },
 
   fetchCurrentUser(complete){
