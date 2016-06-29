@@ -58,32 +58,32 @@ Friendex is a web application inspired by Facebook that will be build using Ruby
 
 **Objective:** Functioning rails project with Authentication
 
-- [X] create new project
-- [X] create `User` model
-- [X] authentication
-- [X] user signup/signin pages
-- [X] blank landing page after signin
-- [X] Heroku set up for project
-- [X] Basic styling for new user & new session forms
+- [x] create new project
+- [x] create `User` model
+- [x] authentication
+- [x] user signup/signin pages
+- [x] blank landing page after signin
+- [x] Heroku set up for project
+- [x] Basic styling for new user & new session forms
 
 ### Phase 2: Profile Model, API, and basic APIUtil (1.5 days, W1 Th 6pm)
 
 **Objective:** Profiles can be created, read, edited and destroyed through
 the API.
 
-- [X] create `Profile` model
-- [X] seed the database with a small amount of test data
-- [X] CRUD API for profiles (`ProfilesController`)
-- [X] jBuilder views for profiles
-- [X] setup Webpack & Flux scaffold
-- [X] setup `APIUtil` to interact with the API
-- [Xs] test out API interaction in the console.
-- [ ] setup Cloudinary to host `profile_img`s and `background_img`s
+- [x] create `Profile` model
+- [x] seed the database with a small amount of test data
+- [x] CRUD API for profiles (`ProfilesController`)
+- [x] jBuilder views for profiles
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
+- [x] setup Cloudinary to host `profile_img`s and `background_img`s
 
 ### Phase 3: Flux Architecture and Router (1 day, W1 Fri 6pm)
 
-**Objective:** Profiles can be created, read, edited and destroyed with the
-user interface.
+**Objective:** Profiles can be created and read
+user interface (edited & destroyed are bonus).
 
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router

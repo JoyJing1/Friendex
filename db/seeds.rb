@@ -11,13 +11,13 @@ User.destroy_all()
 Profile.destroy_all()
 
 User.create!(email: "test", password: "testtest", username: "Mark Zuckerberg")
-User.create!(email: "test2", password: "testtest", username: "Sheryl Sandberg")
-User.create!(email: "test3", password: "testtest", username: "Mark Andreessen")
-User.create!(email: "test4", password: "testtest", username: "Sundar Pichai")
-User.create!(email: "test5", password: "testtest", username: "Larry Page")
-User.create!(email: "test6", password: "testtest", username: "Sergey Brin")
-User.create!(email: "test7", password: "testtest", username: "Jan Koum")
-User.create!(email: "test8", password: "testtest", username: "Jeff Weiner")
+User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
+User.create!(email: "marc@facebook.com", password: "testtest", username: "Mark Andreessen")
+User.create!(email: "sundar@gmail.com", password: "testtest", username: "Sundar Pichai")
+User.create!(email: "larry@gmail.com", password: "testtest", username: "Larry Page")
+User.create!(email: "sergey@gmail.com", password: "testtest", username: "Sergey Brin")
+User.create!(email: "jan@whatsapp.com", password: "testtest", username: "Jan Koum")
+User.create!(email: "jeff@linkedin.com", password: "testtest", username: "Jeff Weiner")
 
 # (9..29).each |_| do
 #   User.create(email: Faker::Internet.email, password: "password")
@@ -31,24 +31,28 @@ Profile.create!(user_id: 1,
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155555/profiles/mark_zucker_profile.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155572/backgrounds/mark_zucker_background.jpg",
-    workplace: "Facebook")
+    workplace: "Facebook",
+    current_city: "Menlo Park, CA")
 
 Profile.create!(user_id: 2,
     first_name: "Sheryl",
     last_name: "Sandberg",
     birthday: "1969-08-28",
     gender: "female",
-    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157223/profiles/110711_r21057_hr-900.jpg",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_350,w_350/v1467198451/profiles/sheryl-sandberg-hed-2014.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1439123068749-20f4035bd7ed.jpg",
-    workplace: "Facebook")
+    workplace: "Facebook",
+    current_city: "Menlo Park, CA",
+    hometown: "Washington D.C.")
 
 Profile.create!(user_id: 3,
     first_name: "Marc",
     last_name: "Andreessen",
     birthday: "1971-07-09",
     gender: "male",
-    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157354/profiles/150518_r26512-1200-630-06150519.jpg",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_600,w_600/v1467157354/profiles/150518_r26512-1200-630-06150519.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155783/backgrounds/photo-1463003416389-296a1ad37ca0.jpg",
+    current_city: "Menlo Park, CA"
     workplace: "Facebook")
 
 # Google
@@ -57,8 +61,9 @@ Profile.create!(user_id: 4,
     last_name: "Pichai",
     birthday: "1972-07-12",
     gender: "male",
-    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467156929/profiles/SundarPichai129-_2.jpg",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_300,w_300,x_80/v1467156929/profiles/SundarPichai129-_2.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155788/backgrounds/photo-1461770354136-8f58567b617a.jpg",
+    current_city: "Mountain View, CA",
     workplace: "Google")
 
 Profile.create!(user_id: 5,
@@ -66,6 +71,9 @@ Profile.create!(user_id: 5,
     last_name: "Page",
     birthday: "1973-03-26",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_675,w_675,x_350/v1467157122/profiles/LarryPage1.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155737/backgrounds/photo-1464621922360-27f3bf0eca75.jpg",
+    current_city: "Mountain View, CA",
     workplace: "Google")
 
 Profile.create!(user_id: 6,
@@ -73,7 +81,9 @@ Profile.create!(user_id: 6,
     last_name: "Brin",
     birthday: "1973-08-21",
     gender: "male",
-    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467157152/profiles/Sergey-Brin.jpg",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_400,w_400/v1467157152/profiles/Sergey-Brin.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155760/backgrounds/photo-1464400694175-33544b41703d.jpg",
+    current_city: "Mountain View, CA",
     workplace: "Google")
 
 # Whatsapp
@@ -82,6 +92,9 @@ Profile.create!(user_id: 7,
     last_name: "Koum",
     birthday: "1976-02-24",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_360,w_360/v1467198808/profiles/jan-koum-whatsapp.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155729/backgrounds/photo-1465205568425-23fdd3805e49.jpg",
+    hometown: "Fastiv, Ukraine"
     workplace: "Whatsapp")
 
 Profile.create!(user_id: 8,
@@ -89,6 +102,9 @@ Profile.create!(user_id: 8,
     last_name: "Weiner",
     birthday: "1970-02-21",
     gender: "male",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_1124,w_1124,x_50/v1467198942/profiles/linkedin-ceo-jeff-weiner-explains-how-fixing-a-common-mistake-helped-him-grow-as-a-leader.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1431057499046-ecd6e0f36ebe.jpg",
+    current_city: "New York City, NY"
     workplace: "LinkedIn")
 
 # (9..20).each |i| do

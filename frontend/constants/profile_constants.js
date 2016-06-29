@@ -2,7 +2,8 @@
 
 const ProfileConstants = {
 	UPDATE_PROFILE: "UPDATE_PROFILE",
-	// LOGOUT: "LOGOUT"
+  MONTHS: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 };
 
 module.exports = ProfileConstants;

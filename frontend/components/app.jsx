@@ -16,7 +16,7 @@ const App = React.createClass({
     if (SessionStore.isUserLoggedIn()) {
       return(
         <div className="app-container">
-          <h1>Currently logged in</h1>
+
           <Header/>
           {this.props.children}
         </div>
@@ -24,7 +24,7 @@ const App = React.createClass({
     } else {
       return(
         <div className="app-container">
-          <h1>Currently NOT logged in</h1>
+
           {this.props.children}
         </div>
       );
@@ -33,3 +33,5 @@ const App = React.createClass({
 });
 
 module.exports = App;
+// <h1>Currently NOT logged in</h1>
+// <h1>Currently logged in</h1>

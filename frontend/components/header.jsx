@@ -4,6 +4,7 @@ const React = require('react');
 const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
+const Profile = require('./profile');
 
 const Header = React.createClass({
   _logout() {
@@ -11,12 +12,10 @@ const Header = React.createClass({
   },
 
   _currentUserName() {
-    debugger;
     return Profile.find("user_id", currentUser.id);
   },
 
   render() {
-    // debugger;
     const currentUsername = window.currentUser;
     return(
       <div className="header-main clearfix">
@@ -24,7 +23,11 @@ const Header = React.createClass({
 
           <img className="f-square-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png"></img>
 
-          <Link to={`/users/${currentUser.id}`} className="username-link">{currentUser.username}</Link>
+          <div>
+
+            <Link to={`/users/${currentUser.id}`}
+                  className="username-link">{currentUser.username}</Link>
+          </div>
 
           <button onClick={this._logout}
                   className="button-logout">Log Out</button>
@@ -36,5 +39,6 @@ const Header = React.createClass({
 
 module.exports = Header;
 
-          // <Link to={`/api/users/${currentUser.id}`}>{currentUser.username}</Link>
-// <Link className="header-nav-userName">{window.currentUser.username}</Link>
+
+// <img className="header-profile-icon"
+//       src={currentUser.profile_img}></img>

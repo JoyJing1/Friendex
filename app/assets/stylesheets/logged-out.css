@@ -1,10 +1,13 @@
 html, body {
   height: 100%;
-  background-color: #EDF0F5;
+  background-color: #E9EBEE;
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
 }
 
 .logged-out-page {
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  background-color: #EDF0F5;
+  padding-bottom: 35px;
 }
 
 .logged-out-header {
@@ -39,7 +42,7 @@ html, body {
 }
 
 label {
-  margin-right: 10px
+  margin-right: 22px
 }
 
 .login-form-box > input {
@@ -47,17 +50,11 @@ label {
 }
 
 input[type="password"], input[type="text"] {
+  display: block;
   background: white;
   color: black;
   padding: 4px 5px;
-}
-
-input[type="text"] {
-  display: block;
-}
-
-input[type="password"] {
-  display: block;
+  margin-bottom: 10px;
 }
 
 input[type="submit"] {
@@ -65,7 +62,11 @@ input[type="submit"] {
   border: 1px solid #29487D;
   padding: 0 13px;
   height: 35px;
-  align-self: flex-end;
+  align-self: center;
+}
+
+input[type="select"] {
+  font-size: 18px;
 }
 
 .logged-out-body {
@@ -82,23 +83,23 @@ input[type="submit"] {
 .signup-form-header > h1 {
   font-size: 36px;
   font-weight: bold;
+  margin: 10px
 }
 
 .signup-form-header > h2 {
   font-size: 19px;
-  margin-bottom: 20px;
+  margin: 10px
 }
 
 .signup-form-box {
-  width: 377px;
+  width: 350px;
 }
 
 .signup-form-box > input {
   padding: 8px 10px;
   border: 1px solid #bdc7d8;
   border-radius: 5px;
-  margin: 8px 10px;
-  width: 377px;
+  width: 94%;
   font-size: 18px;
 }
 
@@ -110,14 +111,19 @@ input[type="submit"] {
 .new-user-name > input {
   padding: 8px 10px;
   border: 1px solid #bdc7d8;
-  margin: 8px 0 8px 10px;
-  width: 172px;
+  width: 50%;
   font-size: 18px;
   border-radius: 5px;
 }
 
+#new-last-name {
+  margin-left: 10px;
+}
+
 #signup-button {
-  width: 75px;
+  width: 25%;
+  height: auto;
+  margin: 10px 0;
   background: #609D4D;
   color: white;
   text-align: center;
@@ -131,4 +137,17 @@ input[type="submit"] {
   float: left;
   width: 30%;
   height: 100px;
+}
+
+form > p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.signup-birthday {
+
+}
+
+.signup-gender {
+  margin: 13px 0;
 }
