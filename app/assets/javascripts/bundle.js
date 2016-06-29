@@ -64,7 +64,7 @@
 	var LoginPage = __webpack_require__(268);
 	var ProfileTimeline = __webpack_require__(272);
 	var ProfileHeader = __webpack_require__(271);
-	var ProfileAbout = __webpack_require__(270);
+	var ProfileAboutPage = __webpack_require__(273);
 	var Newsfeed = __webpack_require__(269);
 	
 	// Redirect to login page if user not logged in
@@ -99,15 +99,11 @@
 	      },
 	      React.createElement(IndexRedirect, { to: '/users/:id/timeline', component: ProfileTimeline, __self: undefined
 	      }),
-	      React.createElement(Route, { path: '/users/:id/timeline', component: ProfileTimeline, __self: undefined
+	      React.createElement(Route, { path: 'timeline', component: ProfileTimeline, __self: undefined
 	      }),
-	      '// ',
-	      React.createElement(Route, { path: 'about', component: ProfileAbout, onEnter: _ensureLoggedIn, __self: undefined
+	      React.createElement(Route, { path: 'about', component: ProfileAboutPage, onEnter: _ensureLoggedIn, __self: undefined
 	      })
-	    ),
-	    '// ',
-	    React.createElement(Route, { path: '/users/:id/test', component: ProfileAbout, onEnter: _ensureLoggedIn, __self: undefined
-	    })
+	    )
 	  )
 	);
 	
@@ -33638,6 +33634,7 @@
 	var ProfileActions = {
 	  fetchSingleProfile: function fetchSingleProfile(id) {
 	    console.log("fetchSingleProfile(id) in profile_actions.js");
+	    // console.log(id);
 	    ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
 	  },
 	  receiveSingleProfile: function receiveSingleProfile(profile) {
@@ -33659,7 +33656,8 @@
 	var ProfileApiUtil = {
 		fetchProfile: function fetchProfile(id, _success, error) {
 			console.log("fetchProfile(id, success, error) in profile_api_util.js");
-	
+			console.log(id);
+			// debugger;
 			$.ajax({
 				url: "/api/profiles/" + id,
 				type: 'GET',
@@ -33671,7 +33669,7 @@
 				error: function error(xhr) {
 					console.log("failed to pull profile info");
 					var errors = xhr.responseJSON;
-					errors();
+					// errors();
 				}
 			});
 		}
@@ -33847,26 +33845,11 @@
 	var ProfileAbout = React.createClass({
 	  displayName: 'ProfileAbout',
 	
-	  // getInitialState() {
-	  //   return { profile: ProfileStore.getProfile() };
-	  // },
-	  //
-	  // componentDidMount() {
-	  //   console.log(this.props.params);
-	  //   debugger;
-	  //   ProfileActions.fetchSingleProfile(this.props.params.user_id);
-	  //   this.profileListener = ProfileStore.addListener(this._updateProfile);
-	  // },
-	  //
-	  // componentWillUnmount() {
-	  //   this.profileListener.remove();
+	  // _updateProfile(profile) {
+	  //   this.setState({ profile: ProfileStore.getProfile() });
+	  //   console.log("_updateProfile(profile) in profile.jsx");
 	  // },
 	
-	  _updateProfile: function _updateProfile(profile) {
-	    this.setState({ profile: ProfileStore.getProfile() });
-	    console.log("_updateProfile(profile) in profile.jsx");
-	    // console.log(this.props);
-	  },
 	  _location: function _location() {
 	    if (this.props.profile.hometown) {
 	      return React.createElement(
@@ -33985,9 +33968,10 @@
 	    return { profile: ProfileStore.getProfile() };
 	  },
 	  componentDidMount: function componentDidMount() {
+	    console.log("componentDidMount() in profile_header.jsx");
 	    // console.log(this.props.params);
-	    // debugger;
-	    ProfileActions.fetchSingleProfile(this.props.params.user_id);
+	    var id = parseInt(this.props.params.id);
+	    ProfileActions.fetchSingleProfile(id);
 	    this.profileListener = ProfileStore.addListener(this._updateProfile);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
@@ -33995,8 +33979,8 @@
 	  },
 	  _updateProfile: function _updateProfile(profile) {
 	    this.setState({ profile: ProfileStore.getProfile() });
-	    console.log("_updateProfile(profile) in profile.jsx");
-	    console.log(this.state);
+	    console.log("_updateProfile(profile) in profile_header.jsx");
+	    // console.log(this.state);
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -34020,13 +34004,13 @@
 	        },
 	        React.createElement(
 	          Link,
-	          { to: '/users/' + this.state.profile.user_id, __self: this
+	          { to: '/users/' + this.state.profile.user_id + '/timeline', __self: this
 	          },
 	          'Timeline'
 	        ),
 	        React.createElement(
 	          Link,
-	          { to: '/users/' + this.state.profile.user_id, __self: this
+	          { to: '/users/' + this.state.profile.user_id + '/about', __self: this
 	          },
 	          'About'
 	        ),
@@ -34128,6 +34112,54 @@
 	module.exports = ProfileTimeline;
 	
 	// <ProfileHeader profile={this.state.profile}/>
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	// const Link = require('react-router').Link;
+	var ProfileStore = __webpack_require__(262);
+	var ProfileActions = __webpack_require__(264);
+	var ProfileAbout = __webpack_require__(270);
+	var ProfileHeader = __webpack_require__(271);
+	
+	var ProfileAboutPage = React.createClass({
+	  displayName: 'ProfileAboutPage',
+	  getInitialState: function getInitialState() {
+	    return { profile: ProfileStore.getProfile() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var id = parseInt(this.props.params.id);
+	    console.log("componentDidMount() in profile_about_page.jsx");
+	    console.log(id);
+	    // debugger;
+	    ProfileActions.fetchSingleProfile(id);
+	    this.profileListener = ProfileStore.addListener(this._updateProfile);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.profileListener.remove();
+	  },
+	  _updateProfile: function _updateProfile(profile) {
+	    this.setState({ profile: ProfileStore.getProfile() });
+	    console.log("_updateProfile(profile) in profile.jsx");
+	    console.log(this.state);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'profile-about-full', __self: this
+	      },
+	      React.createElement(ProfileAbout, { profile: this.state.profile, __self: this
+	      }),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = ProfileAboutPage;
 
 /***/ }
 /******/ ]);

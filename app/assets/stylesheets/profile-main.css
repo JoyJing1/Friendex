@@ -66,6 +66,7 @@ html, body {
   display: flex;
   border-bottom: 1px solid #E9EAED;
   border-top: 1px solid #E9EAED;
+  margin-bottom: 27px;
 }
 
 .profile-tabs a {
@@ -90,7 +91,7 @@ html, body {
 
 .profile-body {
   /*background-color: blue;*/
-  margin-top: 27px;
+  /*margin-top: 27px;*/
   display: flex;
   justify-content: space-between;
 }

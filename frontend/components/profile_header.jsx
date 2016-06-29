@@ -12,9 +12,10 @@ const ProfileHeader = React.createClass({
   },
 
   componentDidMount() {
+    console.log("componentDidMount() in profile_header.jsx");
     // console.log(this.props.params);
-    // debugger;
-    ProfileActions.fetchSingleProfile(this.props.params.user_id);
+    const id = parseInt(this.props.params.id);
+    ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._updateProfile);
   },
 
@@ -24,8 +25,8 @@ const ProfileHeader = React.createClass({
 
   _updateProfile(profile) {
     this.setState({ profile: ProfileStore.getProfile() });
-    console.log("_updateProfile(profile) in profile.jsx");
-    console.log(this.state);
+    console.log("_updateProfile(profile) in profile_header.jsx");
+    // console.log(this.state);
   },
 
   render() {
@@ -36,8 +37,8 @@ const ProfileHeader = React.createClass({
         <h1>{this.state.profile.username}</h1>
 
         <nav className="profile-tabs">
-          <Link to={`/users/${this.state.profile.user_id}`}>Timeline</Link>
-          <Link to={`/users/${this.state.profile.user_id}`}>About</Link>
+          <Link to={`/users/${this.state.profile.user_id}/timeline`}>Timeline</Link>
+          <Link to={`/users/${this.state.profile.user_id}/about`}>About</Link>
           <Link to={`/users/${this.state.profile.user_id}`}>Friends</Link>
           <Link to={`/users/${this.state.profile.user_id}`}>Photos</Link>
         </nav>

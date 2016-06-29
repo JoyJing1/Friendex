@@ -46,3 +46,14 @@ ul.profile-about-info li:not(:last-child):after {
   position: absolute;
   bottom: 0;
 }
+
+div.profile-about-full ul.profile-about-info li:not(:last-child):after {
+  width: 90%;
+}
+
+/* PROFILE ABOUT PAGE **************************/
+
+.profile-about-full {
+  width: 900px;
+  margin: 0 auto;
+}

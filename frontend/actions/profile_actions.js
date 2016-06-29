@@ -9,6 +9,7 @@ const hashHistory = require('react-router').hashHistory;
 const ProfileActions = {
   fetchSingleProfile(id) {
     console.log("fetchSingleProfile(id) in profile_actions.js");
+    // console.log(id);
     ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
   },
 

@@ -9,26 +9,10 @@ const ProfileConstants = require('../constants/profile_constants');
 // const ProfileActions = require('../actions/profile_actions');
 
 const ProfileAbout = React.createClass({
-  // getInitialState() {
-  //   return { profile: ProfileStore.getProfile() };
+  // _updateProfile(profile) {
+  //   this.setState({ profile: ProfileStore.getProfile() });
+  //   console.log("_updateProfile(profile) in profile.jsx");
   // },
-  //
-  // componentDidMount() {
-  //   console.log(this.props.params);
-  //   debugger;
-  //   ProfileActions.fetchSingleProfile(this.props.params.user_id);
-  //   this.profileListener = ProfileStore.addListener(this._updateProfile);
-  // },
-  //
-  // componentWillUnmount() {
-  //   this.profileListener.remove();
-  // },
-
-  _updateProfile(profile) {
-    this.setState({ profile: ProfileStore.getProfile() });
-    console.log("_updateProfile(profile) in profile.jsx");
-    // console.log(this.props);
-  },
 
   _location() {
     if (this.props.profile.hometown) {
