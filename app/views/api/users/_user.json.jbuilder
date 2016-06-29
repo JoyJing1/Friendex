@@ -1,6 +1,14 @@
 json.extract!(
   user,
-  :id, :email
+  :id, :email, :username
 )
 
-json.profile json.extract! user.profile
+
+
+# json.username do
+#   json.extract!(
+#   user.profile,
+#   "#{:first_name}+#{:last_name}"
+#   )
+# end
+  # json.extract! user.profile

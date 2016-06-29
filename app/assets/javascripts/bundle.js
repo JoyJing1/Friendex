@@ -60,9 +60,9 @@
 	var SessionActions = __webpack_require__(253);
 	// Components
 	var App = __webpack_require__(257);
-	var LoginPage = __webpack_require__(264);
-	var Profile = __webpack_require__(263);
-	var Newsfeed = __webpack_require__(266);
+	var LoginPage = __webpack_require__(263);
+	var Profile = __webpack_require__(261);
+	var Newsfeed = __webpack_require__(264);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -32806,11 +32806,11 @@
 	var hashHistory = __webpack_require__(168).hashHistory;
 	
 	var SessionActions = {
-	  signUp: function signUp(userData, createProfile) {
+	  signUp: function signUp(userData) {
 	    console.log("signUp(userData) in session_actions.js");
 	    SessionApiUtil.signUp(userData, function (resp) {
+	      console.log("inside succesCallback of signUp, in session_actions.js");
 	      SessionActions.receiveCurrentUser(resp);
-	      createProfile(resp.id);
 	      SessionActions._redirectToProfile(resp.id);
 	    }, ErrorActions.setErrors);
 	  },
@@ -32878,20 +32878,20 @@
 		logOut: function logOut(success) {
 			$.ajax({
 				url: '/api/session',
-				method: 'delete',
+				method: 'DELETE',
 				success: success,
 				error: function error() {
 					console.log("Logout error in SessionApiUtil#logout");
 				}
 			});
 		},
-		signUp: function signUp(user, successCallback, _error2) {
+		signUp: function signUp(formData, successCallback, _error2) {
 			console.log("signUp(user, success, error) in session_api_util.js");
 			$.ajax({
 				url: '/api/user',
 				type: 'POST',
 				dataType: 'json',
-				data: { user: user },
+				data: formData,
 				success: function success(resp) {
 					successCallback(resp);
 				},
@@ -32970,8 +32970,8 @@
 	
 	var LoginForm = __webpack_require__(258);
 	var SignupForm = __webpack_require__(260);
-	var Profile = __webpack_require__(263);
-	var Header = __webpack_require__(265);
+	var Profile = __webpack_require__(261);
+	var Header = __webpack_require__(262);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -33262,7 +33262,6 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var ProfileActions = __webpack_require__(261);
 	var SessionActions = __webpack_require__(253);
 	var SessionStore = __webpack_require__(230);
 	var ErrorStore = __webpack_require__(259);
@@ -33310,21 +33309,17 @@
 	      last_name: this.state.lastName,
 	      birthday: birthday,
 	      gender: this.state.gender
-	      // email: this.state.email1,
-	      // password: this.state.password
 	    };
 	
 	    var userData = {
 	      email: this.state.email1,
-	      password: this.state.password
+	      password: this.state.password,
+	      username: this.state.firstName + ' ' + this.state.lastName
 	    };
+	    console.log(userData);
 	    console.log(profileData);
 	    console.log("handleSubmit(e) in signup_form.jsx");
-	    //Create profile after creating user
-	    SessionActions.signUp(userData, function (id) {
-	      profileData["user_id"] = id;
-	      ProfileActions.createProfile(profileData);
-	    });
+	    SessionActions.signUp({ user: userData, profile: profileData });
 	  },
 	
 	
@@ -33565,53 +33560,6 @@
 
 	"use strict";
 	
-	var AppDispatcher = __webpack_require__(231);
-	var ProfileConstants = __webpack_require__(252);
-	var ProfileApiUtil = __webpack_require__(262);
-	var ErrorActions = __webpack_require__(255);
-	var hashHistory = __webpack_require__(168).hashHistory;
-	
-	var ProfileActions = {
-	  createProfile: function createProfile(formData) {
-	    console.log("createProfile(formData) in profile_actions.js");
-	    ProfileApiUtil.createProfile(formData, ErrorActions.setErrors);
-	  }
-	};
-	
-	module.exports = ProfileActions;
-
-/***/ },
-/* 262 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var ProfileApiUtil = {
-	  createProfile: function createProfile(profile, errorCb) {
-	    console.log("createProfile(formData) in profile_api_util.js");
-	    $.ajax({
-	      url: '/api/profiles',
-	      type: 'POST',
-	      data: { profile: profile },
-	      success: function success() {
-	        console.log("created new profile successfully");
-	      },
-	      error: function error(xhr) {
-	        var errors = xhr.responseJSON;
-	        errorCb("profile creation", errors);
-	      }
-	    });
-	  }
-	};
-	
-	module.exports = ProfileApiUtil;
-
-/***/ },
-/* 263 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	var SessionStore = __webpack_require__(230);
@@ -33639,63 +33587,7 @@
 	module.exports = Profile;
 
 /***/ },
-/* 264 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(253);
-	
-	var LoginForm = __webpack_require__(258);
-	var SignupForm = __webpack_require__(260);
-	var Profile = __webpack_require__(263);
-	
-	var LoginPage = React.createClass({
-	  displayName: 'LoginPage',
-	  render: function render() {
-	    if (!SessionStore.isUserLoggedIn()) {
-	      return React.createElement(
-	        'div',
-	        { className: 'logged-out-page', __self: this
-	        },
-	        React.createElement(
-	          'header',
-	          { className: 'logged-out-header', __self: this
-	          },
-	          React.createElement(LoginForm, {
-	            __self: this
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'logged-out-body', __self: this
-	          },
-	          React.createElement('aside', { className: 'signup-left', __self: this
-	          }),
-	          React.createElement(SignupForm, { className: 'signup=form', __self: this
-	          })
-	        ),
-	        this.props.children
-	      );
-	    } else {
-	      return React.createElement(
-	        'div',
-	        {
-	          __self: this
-	        },
-	        'Logged in but trying to access login_page'
-	      );
-	    }
-	  }
-	});
-	
-	module.exports = LoginPage;
-
-/***/ },
-/* 265 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33740,7 +33632,63 @@
 	module.exports = Header;
 
 /***/ },
-/* 266 */
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var SessionActions = __webpack_require__(253);
+	
+	var LoginForm = __webpack_require__(258);
+	var SignupForm = __webpack_require__(260);
+	var Profile = __webpack_require__(261);
+	
+	var LoginPage = React.createClass({
+	  displayName: 'LoginPage',
+	  render: function render() {
+	    if (!SessionStore.isUserLoggedIn()) {
+	      return React.createElement(
+	        'div',
+	        { className: 'logged-out-page', __self: this
+	        },
+	        React.createElement(
+	          'header',
+	          { className: 'logged-out-header', __self: this
+	          },
+	          React.createElement(LoginForm, {
+	            __self: this
+	          })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'logged-out-body', __self: this
+	          },
+	          React.createElement('aside', { className: 'signup-left', __self: this
+	          }),
+	          React.createElement(SignupForm, { className: 'signup=form', __self: this
+	          })
+	        ),
+	        this.props.children
+	      );
+	    } else {
+	      return React.createElement(
+	        'div',
+	        {
+	          __self: this
+	        },
+	        'Logged in but trying to access login_page'
+	      );
+	    }
+	  }
+	});
+	
+	module.exports = LoginPage;
+
+/***/ },
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

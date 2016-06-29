@@ -2,7 +2,6 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
-const ProfileActions = require('../actions/profile_actions');
 const SessionActions = require('../actions/session_actions');
 const SessionStore = require('../stores/session_store');
 const ErrorStore = require('../stores/error_store');
@@ -52,21 +51,17 @@ const SignupForm = React.createClass({
       last_name: this.state.lastName,
       birthday: birthday,
       gender: this.state.gender
-			// email: this.state.email1,
-			// password: this.state.password
 		};
 
     const userData = {
       email: this.state.email1,
-      password: this.state.password
+      password: this.state.password,
+      username: `${this.state.firstName} ${this.state.lastName}`
     };
+    console.log(userData);
     console.log(profileData);
     console.log("handleSubmit(e) in signup_form.jsx");
-    //Create profile after creating user
-    SessionActions.signUp(userData, (id) => {
-      profileData["user_id"] = id;
-      ProfileActions.createProfile(profileData);
-    });
+    SessionActions.signUp({user: userData, profile: profileData});
 	},
 
   // Will need to update formatting

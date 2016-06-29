@@ -18,7 +18,7 @@ const SessionApiUtil = {
 	logOut(success) {
 		$.ajax({
 			url: '/api/session',
-			method: 'delete',
+			method: 'DELETE',
 			success,
 			error: function () {
 			  console.log("Logout error in SessionApiUtil#logout");
@@ -26,13 +26,13 @@ const SessionApiUtil = {
 		});
 	},
 
-	signUp(user, successCallback, error) {
+	signUp(formData, successCallback, error) {
     console.log("signUp(user, success, error) in session_api_util.js");
 		$.ajax({
 			url: '/api/user',
 			type: 'POST',
 			dataType: 'json',
-			data: { user },
+			data: formData,
 			success(resp) {
         successCallback(resp);
       },

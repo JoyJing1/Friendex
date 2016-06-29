@@ -8,13 +8,13 @@ const hashHistory = require('react-router').hashHistory;
 
 const SessionActions = {
 
-  signUp(userData, createProfile){
+  signUp(userData){
     console.log("signUp(userData) in session_actions.js");
     SessionApiUtil.signUp(
       userData,
       (resp) => {
+        console.log("inside succesCallback of signUp, in session_actions.js");
         SessionActions.receiveCurrentUser(resp);
-        createProfile(resp.id);
         SessionActions._redirectToProfile(resp.id);
       },
       ErrorActions.setErrors);
