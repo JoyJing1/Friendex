@@ -7,7 +7,7 @@ const SessionActions = require('../actions/session_actions');
 
 const LoginForm = require('./login_form');
 const SignupForm = require('./signup_form');
-const Profile = require('./profile');
+// const ProfileTimelie = require('./profile_timelie');
 
 const LoginPage = React.createClass({
   render () {
@@ -29,7 +29,7 @@ const LoginPage = React.createClass({
     } else {
       return(
         <div>Logged in but trying to access login_page</div>
-      )
+      );
     }
   }
 });

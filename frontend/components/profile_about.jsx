@@ -2,11 +2,34 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
-const Profile = require('./profile');
+const ProfileStore = require('../stores/profile_store');
+const ProfileActions = require('../actions/profile_actions');
+// const ProfileTimelie = require('./profile_timelie');
 const ProfileConstants = require('../constants/profile_constants');
 // const ProfileActions = require('../actions/profile_actions');
 
 const ProfileAbout = React.createClass({
+  // getInitialState() {
+  //   return { profile: ProfileStore.getProfile() };
+  // },
+  //
+  // componentDidMount() {
+  //   console.log(this.props.params);
+  //   debugger;
+  //   ProfileActions.fetchSingleProfile(this.props.params.user_id);
+  //   this.profileListener = ProfileStore.addListener(this._updateProfile);
+  // },
+  //
+  // componentWillUnmount() {
+  //   this.profileListener.remove();
+  // },
+
+  _updateProfile(profile) {
+    this.setState({ profile: ProfileStore.getProfile() });
+    console.log("_updateProfile(profile) in profile.jsx");
+    // console.log(this.props);
+  },
+
   _location() {
     if (this.props.profile.hometown) {
       return (<li>
@@ -29,6 +52,7 @@ const ProfileAbout = React.createClass({
     }
   },
   _email() {
+    // debugger;
     if (this.props.profile.email) {
       return (<li>
         <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png">

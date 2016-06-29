@@ -4,9 +4,10 @@ const React = require('react');
 const Link = require('react-router').Link;
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
-const ProfileAbout = require('./profile-about');
+const ProfileAbout = require('./profile_about');
+const ProfileHeader = require('./profile_header');
 
-const Profile = React.createClass({
+const ProfileTimeline = React.createClass({
   getInitialState() {
     return { profile: ProfileStore.getProfile() };
   },
@@ -30,20 +31,7 @@ const Profile = React.createClass({
     return (
       <div className="profile-page">
 
-        <header className="profile-nav clearfix">
-          <img src={this.state.profile.background_img} className="background-img"/>
-          <img src={this.state.profile.profile_img} className="profile-img"/>
-          <h1>{this.state.profile.username}</h1>
-
-          <nav className="profile-tabs">
-            <Link to={`/users/${this.props.params.id}`}>Timeline</Link>
-            <Link to={`/users/${this.props.params.id}`}>About</Link>
-            <Link to={`/users/${this.props.params.id}`}>Friends</Link>
-            <Link to={`/users/${this.props.params.id}`}>Photos</Link>
-          </nav>
-        </header>
-
-        <div className="profile-body">
+      <div className="profile-body">
           <aside className="profile-left col-1-3">
             <div className="profile-about-sidebar clearfix">
 
@@ -65,4 +53,7 @@ const Profile = React.createClass({
   }
 });
 
-module.exports = Profile;
+module.exports = ProfileTimeline;
+
+
+// <ProfileHeader profile={this.state.profile}/>

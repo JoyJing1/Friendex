@@ -39,7 +39,7 @@ img.profile-about-icon {
 ul.profile-about-info li:not(:last-child):after {
   content: "";
   display: block;
-  width: 70%;
+  width: 75%;
   height: 1px;
   background-color: #D4D5DC;
   margin: 0 0 0 30px;

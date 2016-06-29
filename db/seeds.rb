@@ -52,7 +52,7 @@ Profile.create!(user_id: 3,
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_600,w_600/v1467157354/profiles/150518_r26512-1200-630-06150519.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155783/backgrounds/photo-1463003416389-296a1ad37ca0.jpg",
-    current_city: "Menlo Park, CA"
+    current_city: "Menlo Park, CA",
     workplace: "Facebook")
 
 # Google
@@ -94,7 +94,7 @@ Profile.create!(user_id: 7,
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_360,w_360/v1467198808/profiles/jan-koum-whatsapp.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155729/backgrounds/photo-1465205568425-23fdd3805e49.jpg",
-    hometown: "Fastiv, Ukraine"
+    hometown: "Fastiv, Ukraine",
     workplace: "Whatsapp")
 
 Profile.create!(user_id: 8,
@@ -104,7 +104,7 @@ Profile.create!(user_id: 8,
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_1124,w_1124,x_50/v1467198942/profiles/linkedin-ceo-jeff-weiner-explains-how-fixing-a-common-mistake-helped-him-grow-as-a-leader.jpg",
     background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1431057499046-ecd6e0f36ebe.jpg",
-    current_city: "New York City, NY"
+    current_city: "New York City, NY",
     workplace: "LinkedIn")
 
 # (9..20).each |i| do

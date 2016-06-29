@@ -1,13 +1,13 @@
 "use strict";
 
 const React = require('react');
-const Link = require('react-router').Link;
+// const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
-const SessionActions = require('../actions/session_actions');
+// const SessionActions = require('../actions/session_actions');
 
-const LoginForm = require('./login_form');
-const SignupForm = require('./signup_form');
-const Profile = require('./profile');
+// const LoginForm = require('./login_form');
+// const SignupForm = require('./signup_form');
+// const ProfileTimeline = require('./profile_timelie');
 const Header = require('./header');
 
 const App = React.createClass({
@@ -16,7 +16,6 @@ const App = React.createClass({
     if (SessionStore.isUserLoggedIn()) {
       return(
         <div className="app-container">
-
           <Header/>
           {this.props.children}
         </div>
@@ -24,7 +23,6 @@ const App = React.createClass({
     } else {
       return(
         <div className="app-container">
-
           {this.props.children}
         </div>
       );
