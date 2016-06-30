@@ -67,6 +67,7 @@ html, body {
   border-bottom: 1px solid #E9EAED;
   border-top: 1px solid #E9EAED;
   margin-bottom: 27px;
+  color: #464C9F;
 }
 
 .profile-tabs a {
@@ -107,7 +108,9 @@ html, body {
 
 .col-2-3 {
   width: 58%;
-  background-color: green;
+  /*background-color: green;*/
+  /*border: 2px solid black;*/
+  /*Remember to remove border!!!*/
 }
 
 .profile-about-sidebar {

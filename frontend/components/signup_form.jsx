@@ -79,7 +79,6 @@ const SignupForm = React.createClass({
 
   // Will need to update formatting
   fieldErrors(field) {
-    // debugger;
     const errors = ErrorStore.formErrors("signup");
 
     if (!errors[field]) { return; }
@@ -109,7 +108,6 @@ const SignupForm = React.createClass({
       years.push(i);
     }
     years.reverse();
-
 
 		return (
 		  <div className="signup-form-container clearfix">

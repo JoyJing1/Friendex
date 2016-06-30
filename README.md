@@ -85,15 +85,26 @@ the API.
 **Objective:** Profiles can be created and read
 user interface (edited & destroyed are bonus).
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [x] setup the flux loop with skeleton files
+- [x] setup React Router
 - implement each profile component, building out the flux loop as needed.
-  - [ ] `ProfileAbout`
-  - [ ] `ProfileEditForm`
+  - [x] `ProfileAbout`
+  - [ ] `ProfileEditForm` (bonus)
 - [ ] save Profiles to the DB when the form loses focus or is left idle
-  after editing.
+  after editing. (bonus)
 
-### Phase 4: Friendships (1.5 day, W2 Tues 12pm)
+### Phase 4: Posts (1.5 day, W2 Tues 12pm)
+
+  **Objective:** Users can make posts. Users can post on their own wall or on a friend's wall
+
+  - [ ] create `Post` model
+  - build out API, Flux loop, and components for:
+  - [ ] fetching posts for a profile
+  - [ ] adding posts to a profile
+  - [ ] deleting posts from a profile
+  - [ ] Style new elements
+
+### Phase 5: Friendships (1.5 day, W2 Wed 6pm)
 
 **Objective:** Users can send & receive Friend Requests (create & destroy `Friendship`s). Users who have received a friend request can accept or deny (update status of `Friendship`). Users profile page should display all of user's friends.
 
@@ -110,16 +121,6 @@ user interface (edited & destroyed are bonus).
   - [ ] `FriendIndexItem`
 - Use CSS to style Friend Requests & current Friends
 
-### Phase 5: Posts (1.5 day, W2 Wed 6pm)
-
-**Objective:** Users can make posts. Users can post on their own wall or on a friend's wall
-
-- [ ] create `Post` model
-- build out API, Flux loop, and components for:
-  - [ ] fetching posts for a profile
-  - [ ] adding posts to a profile
-  - [ ] deleting posts from a profile
-- [ ] Style new elements
 
 ### Phase 6: Newsfeed (1.5 days, W2 Fri 12pm)
 

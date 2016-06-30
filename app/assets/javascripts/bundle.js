@@ -61,11 +61,11 @@
 	var SessionActions = __webpack_require__(253);
 	// Components
 	var App = __webpack_require__(257);
-	var LoginPage = __webpack_require__(268);
-	var ProfileTimeline = __webpack_require__(272);
-	var ProfileHeader = __webpack_require__(271);
-	var ProfileAboutPage = __webpack_require__(273);
-	var Newsfeed = __webpack_require__(269);
+	var LoginPage = __webpack_require__(259);
+	var ProfileTimeline = __webpack_require__(263);
+	var ProfileHeader = __webpack_require__(269);
+	var ProfileAboutPage = __webpack_require__(271);
+	var Newsfeed = __webpack_require__(272);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -25992,7 +25992,6 @@
 	var AppDispatcher = __webpack_require__(231);
 	var Store = __webpack_require__(235).Store;
 	var SessionConstants = __webpack_require__(252);
-	
 	var SessionStore = new Store(AppDispatcher);
 	
 	var _currentUser = {};
@@ -32992,7 +32991,7 @@
 	// const LoginForm = require('./login_form');
 	// const SignupForm = require('./signup_form');
 	// const ProfileTimeline = require('./profile_timelie');
-	var Header = __webpack_require__(267);
+	var Header = __webpack_require__(258);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -33029,13 +33028,132 @@
 
 	"use strict";
 	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var SessionActions = __webpack_require__(253);
+	// const ProfileTimeline = require('./profile_timelie');
+	
+	var Header = React.createClass({
+	  displayName: 'Header',
+	  _logout: function _logout() {
+	    SessionActions.logOut();
+	  },
+	  _currentUserName: function _currentUserName() {
+	    return Profile.find("user_id", currentUser.id);
+	  },
+	  render: function render() {
+	    var currentUsername = window.currentUser;
+	    return React.createElement(
+	      'div',
+	      { className: 'header-main clearfix', __self: this
+	      },
+	      React.createElement(
+	        'nav',
+	        { className: 'header-nav', __self: this
+	        },
+	        React.createElement('img', { className: 'f-square-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png', __self: this
+	        }),
+	        React.createElement(
+	          'div',
+	          {
+	            __self: this
+	          },
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + currentUser.id,
+	              className: 'username-link', __self: this
+	            },
+	            currentUser.username
+	          )
+	        ),
+	        React.createElement(
+	          'button',
+	          { onClick: this._logout,
+	            className: 'button-logout', __self: this
+	          },
+	          'Log Out'
+	        )
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = Header;
+	
+	// http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png
+	// <img className="header-profile-icon"
+	//       src={currentUser.profile_img}></img>
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var SessionActions = __webpack_require__(253);
+	
+	var LoginForm = __webpack_require__(260);
+	var SignupForm = __webpack_require__(262);
+	
+	var LoginPage = React.createClass({
+	  displayName: 'LoginPage',
+	  render: function render() {
+	    if (!SessionStore.isUserLoggedIn()) {
+	      return React.createElement(
+	        'div',
+	        { className: 'logged-out-page', __self: this
+	        },
+	        React.createElement(
+	          'header',
+	          { className: 'logged-out-header', __self: this
+	          },
+	          React.createElement(LoginForm, {
+	            __self: this
+	          })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'logged-out-body', __self: this
+	          },
+	          React.createElement('aside', { className: 'signup-left', __self: this
+	          }),
+	          React.createElement(SignupForm, { className: 'signup=form', __self: this
+	          })
+	        ),
+	        this.props.children
+	      );
+	    } else {
+	      return React.createElement(
+	        'div',
+	        {
+	          __self: this
+	        },
+	        'Logged in but trying to access login_page'
+	      );
+	    }
+	  }
+	});
+	
+	module.exports = LoginPage;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	var SessionActions = __webpack_require__(253);
 	var SessionStore = __webpack_require__(230);
-	var ErrorStore = __webpack_require__(259);
+	var ErrorStore = __webpack_require__(261);
 	
 	var LoginForm = React.createClass({
 	  displayName: 'LoginForm',
@@ -33182,7 +33300,7 @@
 	module.exports = LoginForm;
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33240,7 +33358,7 @@
 	module.exports = ErrorStore;
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33251,7 +33369,7 @@
 	var Link = __webpack_require__(168).Link;
 	var SessionActions = __webpack_require__(253);
 	var SessionStore = __webpack_require__(230);
-	var ErrorStore = __webpack_require__(259);
+	var ErrorStore = __webpack_require__(261);
 	
 	var SignupForm = React.createClass({
 	  displayName: 'SignupForm',
@@ -33326,7 +33444,6 @@
 	  fieldErrors: function fieldErrors(field) {
 	    var _this = this;
 	
-	    // debugger;
 	    var errors = ErrorStore.formErrors("signup");
 	
 	    if (!errors[field]) {
@@ -33571,15 +33688,86 @@
 	module.exports = SignupForm;
 
 /***/ },
-/* 261 */,
-/* 262 */
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var ProfileStore = __webpack_require__(264);
+	var ProfileActions = __webpack_require__(266);
+	var ProfileAbout = __webpack_require__(268);
+	var ProfileHeader = __webpack_require__(269);
+	var NewPostForm = __webpack_require__(270);
+	
+	var ProfileTimeline = React.createClass({
+	  displayName: 'ProfileTimeline',
+	  getInitialState: function getInitialState() {
+	    return { profile: ProfileStore.currentProfile() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    ProfileActions.fetchSingleProfile(this.props.params.id);
+	    this.profileListener = ProfileStore.addListener(this._updateProfile);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.profileListener.remove();
+	  },
+	  _updateProfile: function _updateProfile(profile) {
+	    this.setState({ profile: ProfileStore.currentProfile() });
+	    console.log("_updateProfile(profile) in profile.jsx");
+	    console.log(this.state);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'profile-page', __self: this
+	      },
+	      React.createElement(
+	        'div',
+	        { className: 'profile-body', __self: this
+	        },
+	        React.createElement(
+	          'aside',
+	          { className: 'profile-left col-1-3', __self: this
+	          },
+	          React.createElement(
+	            'div',
+	            { className: 'profile-about-sidebar clearfix', __self: this
+	            },
+	            React.createElement(ProfileAbout, { profile: this.state.profile, __self: this
+	            })
+	          )
+	        ),
+	        React.createElement(
+	          'main',
+	          { className: 'profile-main col-2-3 clearfix', __self: this
+	          },
+	          React.createElement(
+	            'ul',
+	            { className: 'profile-main-posts', __self: this
+	            },
+	            React.createElement(NewPostForm, { profile: this.state.profile, __self: this
+	            })
+	          )
+	        )
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = ProfileTimeline;
+
+/***/ },
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var AppDispatcher = __webpack_require__(231);
 	var Store = __webpack_require__(235).Store;
-	var ProfileConstants = __webpack_require__(263);
+	var ProfileConstants = __webpack_require__(265);
 	
 	var _profile = {};
 	
@@ -33599,14 +33787,14 @@
 	  }
 	};
 	
-	ProfileStore.getProfile = function () {
+	ProfileStore.currentProfile = function () {
 	  return _profile;
 	};
 	
 	module.exports = ProfileStore;
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -33620,14 +33808,14 @@
 	module.exports = ProfileConstants;
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var AppDispatcher = __webpack_require__(231);
-	var ProfileConstants = __webpack_require__(263);
-	var ProfileApiUtil = __webpack_require__(265);
+	var ProfileConstants = __webpack_require__(265);
+	var ProfileApiUtil = __webpack_require__(267);
 	var ErrorActions = __webpack_require__(255);
 	var hashHistory = __webpack_require__(168).hashHistory;
 	
@@ -33648,7 +33836,7 @@
 	module.exports = ProfileActions;
 
 /***/ },
-/* 265 */
+/* 267 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -33657,7 +33845,7 @@
 		fetchProfile: function fetchProfile(id, _success, error) {
 			console.log("fetchProfile(id, success, error) in profile_api_util.js");
 			console.log(id);
-			// debugger;
+	
 			$.ajax({
 				url: "/api/profiles/" + id,
 				type: 'GET',
@@ -33669,77 +33857,12 @@
 				error: function error(xhr) {
 					console.log("failed to pull profile info");
 					var errors = xhr.responseJSON;
-					// errors();
 				}
 			});
 		}
 	};
 	
 	module.exports = ProfileApiUtil;
-
-/***/ },
-/* 266 */,
-/* 267 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(253);
-	// const ProfileTimeline = require('./profile_timelie');
-	
-	var Header = React.createClass({
-	  displayName: 'Header',
-	  _logout: function _logout() {
-	    SessionActions.logOut();
-	  },
-	  _currentUserName: function _currentUserName() {
-	    return Profile.find("user_id", currentUser.id);
-	  },
-	  render: function render() {
-	    var currentUsername = window.currentUser;
-	    return React.createElement(
-	      'div',
-	      { className: 'header-main clearfix', __self: this
-	      },
-	      React.createElement(
-	        'nav',
-	        { className: 'header-nav', __self: this
-	        },
-	        React.createElement('img', { className: 'f-square-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png', __self: this
-	        }),
-	        React.createElement(
-	          'div',
-	          {
-	            __self: this
-	          },
-	          React.createElement(
-	            Link,
-	            { to: '/users/' + currentUser.id,
-	              className: 'username-link', __self: this
-	            },
-	            currentUser.username
-	          )
-	        ),
-	        React.createElement(
-	          'button',
-	          { onClick: this._logout,
-	            className: 'button-logout', __self: this
-	          },
-	          'Log Out'
-	        )
-	      ),
-	      this.props.children
-	    );
-	  }
-	});
-	
-	module.exports = Header;
-	
-	// <img className="header-profile-icon"
-	//       src={currentUser.profile_img}></img>
 
 /***/ },
 /* 268 */
@@ -33749,107 +33872,14 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(253);
-	
-	var LoginForm = __webpack_require__(258);
-	var SignupForm = __webpack_require__(260);
+	var ProfileStore = __webpack_require__(264);
+	var ProfileActions = __webpack_require__(266);
 	// const ProfileTimelie = require('./profile_timelie');
-	
-	var LoginPage = React.createClass({
-	  displayName: 'LoginPage',
-	  render: function render() {
-	    if (!SessionStore.isUserLoggedIn()) {
-	      return React.createElement(
-	        'div',
-	        { className: 'logged-out-page', __self: this
-	        },
-	        React.createElement(
-	          'header',
-	          { className: 'logged-out-header', __self: this
-	          },
-	          React.createElement(LoginForm, {
-	            __self: this
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'logged-out-body', __self: this
-	          },
-	          React.createElement('aside', { className: 'signup-left', __self: this
-	          }),
-	          React.createElement(SignupForm, { className: 'signup=form', __self: this
-	          })
-	        ),
-	        this.props.children
-	      );
-	    } else {
-	      return React.createElement(
-	        'div',
-	        {
-	          __self: this
-	        },
-	        'Logged in but trying to access login_page'
-	      );
-	    }
-	  }
-	});
-	
-	module.exports = LoginPage;
-
-/***/ },
-/* 269 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(253);
-	
-	var Newsfeed = React.createClass({
-	  displayName: 'Newsfeed',
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'header-main clearfix', __self: this
-	      },
-	      React.createElement(
-	        'h1',
-	        {
-	          __self: this
-	        },
-	        'This is the Newsfeed'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = Newsfeed;
-
-/***/ },
-/* 270 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var ProfileStore = __webpack_require__(262);
-	var ProfileActions = __webpack_require__(264);
-	// const ProfileTimelie = require('./profile_timelie');
-	var ProfileConstants = __webpack_require__(263);
+	var ProfileConstants = __webpack_require__(265);
 	// const ProfileActions = require('../actions/profile_actions');
 	
 	var ProfileAbout = React.createClass({
 	  displayName: 'ProfileAbout',
-	
-	  // _updateProfile(profile) {
-	  //   this.setState({ profile: ProfileStore.getProfile() });
-	  //   console.log("_updateProfile(profile) in profile.jsx");
-	  // },
-	
 	  _location: function _location() {
 	    if (this.props.profile.hometown) {
 	      return React.createElement(
@@ -33889,7 +33919,6 @@
 	    }
 	  },
 	  _email: function _email() {
-	    // debugger;
 	    if (this.props.profile.email) {
 	      return React.createElement(
 	        'li',
@@ -33903,7 +33932,6 @@
 	    }
 	  },
 	  _birthday: function _birthday() {
-	    // debugger;
 	    if (this.props.profile.birthday) {
 	      return React.createElement(
 	        'li',
@@ -33951,25 +33979,24 @@
 	module.exports = ProfileAbout;
 
 /***/ },
-/* 271 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var ProfileStore = __webpack_require__(262);
-	var ProfileActions = __webpack_require__(264);
-	var ProfileAbout = __webpack_require__(270);
+	var ProfileStore = __webpack_require__(264);
+	var ProfileActions = __webpack_require__(266);
+	var ProfileAbout = __webpack_require__(268);
 	
 	var ProfileHeader = React.createClass({
 	  displayName: 'ProfileHeader',
 	  getInitialState: function getInitialState() {
-	    return { profile: ProfileStore.getProfile() };
+	    return { profile: ProfileStore.currentProfile() };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    console.log("componentDidMount() in profile_header.jsx");
-	    // console.log(this.props.params);
 	    var id = parseInt(this.props.params.id);
 	    ProfileActions.fetchSingleProfile(id);
 	    this.profileListener = ProfileStore.addListener(this._updateProfile);
@@ -33978,9 +34005,8 @@
 	    this.profileListener.remove();
 	  },
 	  _updateProfile: function _updateProfile(profile) {
-	    this.setState({ profile: ProfileStore.getProfile() });
+	    this.setState({ profile: ProfileStore.currentProfile() });
 	    console.log("_updateProfile(profile) in profile_header.jsx");
-	    // console.log(this.state);
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -34035,101 +34061,120 @@
 	module.exports = ProfileHeader;
 
 /***/ },
-/* 272 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var ProfileStore = __webpack_require__(262);
-	var ProfileActions = __webpack_require__(264);
-	var ProfileAbout = __webpack_require__(270);
-	var ProfileHeader = __webpack_require__(271);
+	// const hashHistory = require('react-router').hashHistory;
+	var PostActions = __webpack_require__(273);
+	var SessionStore = __webpack_require__(230);
+	var ProfileStore = __webpack_require__(264);
+	var ErrorStore = __webpack_require__(261);
 	
-	var ProfileTimeline = React.createClass({
-	  displayName: 'ProfileTimeline',
+	var NewPostForm = React.createClass({
+	  displayName: 'NewPostForm',
 	  getInitialState: function getInitialState() {
-	    return { profile: ProfileStore.getProfile() };
+	    return { body: "" };
 	  },
-	  componentDidMount: function componentDidMount() {
-	    ProfileActions.fetchSingleProfile(this.props.params.id);
-	    this.profileListener = ProfileStore.addListener(this._updateProfile);
+	  _newPostPrompt: function _newPostPrompt() {
+	    var receiverId = this.props.profile.user_id;
+	    if (receiverId && receiverId === SessionStore.currentUser().id) {
+	      return 'What\'s on your mind?';
+	    } else if (receiverId && receiverId !== SessionStore.currentUser().id) {
+	      return 'Write something to ' + this.props.profile.first_name + '...';
+	    } else {
+	      return "Write a new post!";
+	    }
 	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.profileListener.remove();
+	  _currentUserProfileImg: function _currentUserProfileImg() {
+	    // Need to write a function to pull profile info for current user
+	    // Write in SessionStore
+	
+	    // Insert image in NewPostForm & Header
 	  },
-	  _updateProfile: function _updateProfile(profile) {
-	    this.setState({ profile: ProfileStore.getProfile() });
-	    console.log("_updateProfile(profile) in profile.jsx");
-	    console.log(this.state);
+	  handleSubmit: function handleSubmit(e) {
+	    var _this = this;
+	
+	    e.preventDefault();
+	    var post = { body: this.state.body,
+	      author_id: parseInt(SessionStore.currentUser().id),
+	      receiver_id: parseInt(this.props.profile.id) };
+	
+	    PostActions.createPost(post, function () {
+	      _this.setState({ body: "" });
+	    });
+	  },
+	  _updatePost: function _updatePost(e) {
+	    this.setState({ body: e.target.value });
 	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'profile-page', __self: this
+	      { className: 'new-post-form-container', __self: this
 	      },
 	      React.createElement(
-	        'div',
-	        { className: 'profile-body', __self: this
+	        'nav',
+	        {
+	          __self: this
+	        },
+	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png',
+	          className: 'icon-status', __self: this
+	        }),
+	        'Status',
+	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
+	          className: 'icon-photo', __self: this
+	        }),
+	        'Photo/Video'
+	      ),
+	      React.createElement(
+	        'form',
+	        { className: 'new-post-form',
+	          onSubmit: this.handleSubmit, __self: this
 	        },
 	        React.createElement(
-	          'aside',
-	          { className: 'profile-left col-1-3', __self: this
+	          'div',
+	          { className: 'new-post-body clearfix', __self: this
 	          },
-	          React.createElement(
-	            'div',
-	            { className: 'profile-about-sidebar clearfix', __self: this
-	            },
-	            React.createElement(ProfileAbout, { profile: this.state.profile, __self: this
-	            })
-	          )
+	          React.createElement('input', { type: 'text',
+	            value: this.state.body,
+	            placeholder: this._newPostPrompt(),
+	            onChange: this._updatePost, __self: this
+	          })
 	        ),
 	        React.createElement(
-	          'main',
-	          { className: 'profile-main col-2-3 clearfix', __self: this
+	          'div',
+	          { className: 'new-post-submit', __self: this
 	          },
-	          React.createElement(
-	            'ul',
-	            {
-	              __self: this
-	            },
-	            React.createElement(
-	              'li',
-	              {
-	                __self: this
-	              },
-	              'This is where the PostIndex would go'
-	            )
-	          )
+	          React.createElement('input', { type: 'submit', value: 'Post', __self: this
+	          })
 	        )
-	      ),
-	      this.props.children
+	      )
 	    );
 	  }
 	});
 	
-	module.exports = ProfileTimeline;
-	
-	// <ProfileHeader profile={this.state.profile}/>
+	module.exports = NewPostForm;
 
 /***/ },
-/* 273 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var React = __webpack_require__(1);
 	// const Link = require('react-router').Link;
-	var ProfileStore = __webpack_require__(262);
-	var ProfileActions = __webpack_require__(264);
-	var ProfileAbout = __webpack_require__(270);
-	var ProfileHeader = __webpack_require__(271);
+	var ProfileStore = __webpack_require__(264);
+	var ProfileActions = __webpack_require__(266);
+	var ProfileAbout = __webpack_require__(268);
+	var ProfileHeader = __webpack_require__(269);
 	
 	var ProfileAboutPage = React.createClass({
 	  displayName: 'ProfileAboutPage',
 	  getInitialState: function getInitialState() {
-	    return { profile: ProfileStore.getProfile() };
+	    return { profile: ProfileStore.currentProfile() };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    var id = parseInt(this.props.params.id);
@@ -34143,7 +34188,7 @@
 	    this.profileListener.remove();
 	  },
 	  _updateProfile: function _updateProfile(profile) {
-	    this.setState({ profile: ProfileStore.getProfile() });
+	    this.setState({ profile: ProfileStore.currentProfile() });
 	    console.log("_updateProfile(profile) in profile.jsx");
 	    console.log(this.state);
 	  },
@@ -34160,6 +34205,176 @@
 	});
 	
 	module.exports = ProfileAboutPage;
+
+/***/ },
+/* 272 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var SessionActions = __webpack_require__(253);
+	
+	var Newsfeed = React.createClass({
+	  displayName: 'Newsfeed',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'header-main clearfix', __self: this
+	      },
+	      React.createElement(
+	        'h1',
+	        {
+	          __self: this
+	        },
+	        'This is the Newsfeed'
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Newsfeed;
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var AppDispatcher = __webpack_require__(231);
+	var PostConstants = __webpack_require__(274);
+	var PostApiUtil = __webpack_require__(275);
+	var ErrorActions = __webpack_require__(255);
+	var hashHistory = __webpack_require__(168).hashHistory;
+	
+	var PostActions = {
+	  createPost: function createPost(post, resetNewPostForm) {
+	    var _this = this;
+	
+	    console.log("createPost(post) in post_actions.js");
+	    PostApiUtil.createPost(post, function (resp) {
+	      _this.receiveSinglePost(resp);
+	      resetNewPostForm();
+	    });
+	  },
+	  updatePost: function updatePost(post) {
+	    console.log("updatePost(post) in post_actions.js");
+	    PostApiUtil.updatePost(post, this.receiveSinglePost);
+	  },
+	  deletePost: function deletePost(id) {
+	    console.log("deletePost(id) in post_actions.js");
+	    PostApiUtil.deletePost(id, function () {
+	      console.log("Post successfully deleted");
+	    });
+	  },
+	  fetchSinglePost: function fetchSinglePost(id) {
+	    console.log("fetchSinglePost(id) in post_actions.js");
+	    PostApiUtil.fetchPost(id, this.receiveSinglePost);
+	  },
+	  receiveSinglePost: function receiveSinglePost(post) {
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.UPDATE_POST,
+	      post: post
+	    });
+	  }
+	};
+	
+	module.exports = PostActions;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var PostConstants = {
+	  UPDATE_POST: "UPDATE_POST"
+	};
+	
+	module.exports = PostConstants;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var PostApiUtil = {
+	  createPost: function createPost(post, _success, error) {
+	    console.log("createPost(post, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts",
+	      type: 'POST',
+	      data: { post: post },
+	      success: function success(resp) {
+	        console.log("successfully created new post");
+	        console.log(resp);
+	        _success(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  updatePost: function updatePost(post, _success2, error) {
+	    console.log("updatePost(post, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + post.id,
+	      type: 'PATCH',
+	      data: { post: post },
+	      success: function success(resp) {
+	        console.log("successfully edited post");
+	        console.log(resp);
+	        _success2(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  deletePost: function deletePost(id, _success3, error) {
+	    console.log("deletePost(id, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + id,
+	      type: 'DELETE',
+	      success: function success(resp) {
+	        console.log("successfully deleted post");
+	        console.log(resp);
+	        _success3(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to delete post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchPost: function fetchPost(id, _success4, error) {
+	    console.log("fetchPost(id, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + id,
+	      type: 'GET',
+	      success: function success(resp) {
+	        console.log("successfully fetched post");
+	        console.log(resp);
+	        _success4(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  }
+	};
+	
+	module.exports = PostApiUtil;
 
 /***/ }
 /******/ ]);

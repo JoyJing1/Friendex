@@ -7,6 +7,16 @@ class User < ActiveRecord::Base
 	validates :password, length: {minimum: 6}, allow_nil: :true
   has_one :profile, inverse_of: :user
 
+  has_many :posts_authored,
+    class_name: :post,
+    foreign_key: :author_id,
+    inverse_of: true
+
+  has_many :posts_received,
+    class_name: :post,
+    foreign_key: :receiver_id,
+    inverse_of: true
+
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
 

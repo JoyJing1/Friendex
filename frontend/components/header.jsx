@@ -21,7 +21,7 @@ const Header = React.createClass({
       <div className="header-main clearfix">
         <nav className="header-nav">
 
-          <img className="f-square-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png"></img>
+          <img className="f-square-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
 
           <div>
             <Link to={`/users/${currentUser.id}`}
@@ -41,5 +41,6 @@ const Header = React.createClass({
 module.exports = Header;
 
 
+// http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png
 // <img className="header-profile-icon"
 //       src={currentUser.profile_img}></img>

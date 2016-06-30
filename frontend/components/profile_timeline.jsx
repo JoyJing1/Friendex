@@ -6,10 +6,11 @@ const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
 const ProfileAbout = require('./profile_about');
 const ProfileHeader = require('./profile_header');
+const NewPostForm = require('./new_post_form');
 
 const ProfileTimeline = React.createClass({
   getInitialState() {
-    return { profile: ProfileStore.getProfile() };
+    return { profile: ProfileStore.currentProfile() };
   },
 
   componentDidMount() {
@@ -22,7 +23,7 @@ const ProfileTimeline = React.createClass({
   },
 
   _updateProfile(profile) {
-    this.setState({ profile: ProfileStore.getProfile() });
+    this.setState({ profile: ProfileStore.currentProfile() });
     console.log("_updateProfile(profile) in profile.jsx");
     console.log(this.state);
   },
@@ -41,8 +42,10 @@ const ProfileTimeline = React.createClass({
           </aside>
 
           <main className="profile-main col-2-3 clearfix">
-            <ul>
-              <li>This is where the PostIndex would go</li>
+            <ul className="profile-main-posts">
+
+              <NewPostForm profile={this.state.profile}/>
+
             </ul>
           </main>
         </div>
@@ -54,6 +57,3 @@ const ProfileTimeline = React.createClass({
 });
 
 module.exports = ProfileTimeline;
-
-
-// <ProfileHeader profile={this.state.profile}/>

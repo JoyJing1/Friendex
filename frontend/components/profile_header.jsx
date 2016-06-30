@@ -8,12 +8,11 @@ const ProfileAbout = require('./profile_about');
 
 const ProfileHeader = React.createClass({
   getInitialState() {
-    return { profile: ProfileStore.getProfile() };
+    return { profile: ProfileStore.currentProfile() };
   },
 
   componentDidMount() {
     console.log("componentDidMount() in profile_header.jsx");
-    // console.log(this.props.params);
     const id = parseInt(this.props.params.id);
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._updateProfile);
@@ -24,9 +23,8 @@ const ProfileHeader = React.createClass({
   },
 
   _updateProfile(profile) {
-    this.setState({ profile: ProfileStore.getProfile() });
+    this.setState({ profile: ProfileStore.currentProfile() });
     console.log("_updateProfile(profile) in profile_header.jsx");
-    // console.log(this.state);
   },
 
   render() {

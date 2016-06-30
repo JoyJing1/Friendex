@@ -16,6 +16,7 @@
  *= require header
  *= require profile-main
  *= require profile-about
+ *= require profile-posts
  *= require profile-friends
  *= require newsfeed
  */

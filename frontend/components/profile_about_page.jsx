@@ -9,7 +9,7 @@ const ProfileHeader = require('./profile_header');
 
 const ProfileAboutPage = React.createClass({
   getInitialState() {
-    return { profile: ProfileStore.getProfile() };
+    return { profile: ProfileStore.currentProfile() };
   },
 
   componentDidMount() {
@@ -26,7 +26,7 @@ const ProfileAboutPage = React.createClass({
   },
 
   _updateProfile(profile) {
-    this.setState({ profile: ProfileStore.getProfile() });
+    this.setState({ profile: ProfileStore.currentProfile() });
     console.log("_updateProfile(profile) in profile.jsx");
     console.log(this.state);
   },

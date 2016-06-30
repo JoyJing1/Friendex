@@ -9,11 +9,6 @@ const ProfileConstants = require('../constants/profile_constants');
 // const ProfileActions = require('../actions/profile_actions');
 
 const ProfileAbout = React.createClass({
-  // _updateProfile(profile) {
-  //   this.setState({ profile: ProfileStore.getProfile() });
-  //   console.log("_updateProfile(profile) in profile.jsx");
-  // },
-
   _location() {
     if (this.props.profile.hometown) {
       return (<li>
@@ -36,7 +31,6 @@ const ProfileAbout = React.createClass({
     }
   },
   _email() {
-    // debugger;
     if (this.props.profile.email) {
       return (<li>
         <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png">
@@ -45,7 +39,6 @@ const ProfileAbout = React.createClass({
     }
   },
   _birthday() {
-    // debugger;
     if (this.props.profile.birthday) {
       return (<li>
         <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467223004/icons/Birthday_Cake-52.png">
@@ -76,6 +69,5 @@ const ProfileAbout = React.createClass({
     );
   },
 });
-
 
 module.exports = ProfileAbout;

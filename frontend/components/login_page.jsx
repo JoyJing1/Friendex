@@ -7,7 +7,6 @@ const SessionActions = require('../actions/session_actions');
 
 const LoginForm = require('./login_form');
 const SignupForm = require('./signup_form');
-// const ProfileTimelie = require('./profile_timelie');
 
 const LoginPage = React.createClass({
   render () {

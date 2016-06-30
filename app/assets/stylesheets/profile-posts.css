@@ -1,0 +1,69 @@
+.new-post-form-container {
+
+}
+
+.new-post-form-container nav {
+  background-color: #F6F7F9;
+  border-top: 1px solid #D4D5DC;
+  border-left: 1px solid #D4D5DC;
+  border-right: 1px solid #D4D5DC;
+  display: flex;
+  align-items: center;
+}
+
+.icon-status {
+  background-color: #6B74C9;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+.icon-photo {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 20px;
+}
+
+.new-post-form {
+  background: white;
+  border: 1px solid #D4D5DC;
+}
+
+.new-post-body {
+  padding: 38px;
+}
+
+.profile-pic-new-post {
+  height: 50px;
+  width: 50px;
+}
+
+.new-post-body input[type="text"] {
+  width: 70%
+  padding: 60px 0;
+  margin: 0 auto;
+}
+
+.new-post-submit {
+  display: inline-block;
+  background: white;
+  width: 100%;
+  border-top: 1px solid #D4D5DC;
+}
+
+.new-post-submit input[type="submit"] {
+  background: #5459B9;
+  border: 1px solid #29487D;
+  padding: 6px 21px;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin: 17px 17px;
+}

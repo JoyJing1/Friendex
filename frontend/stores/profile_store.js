@@ -1,4 +1,3 @@
-
 const AppDispatcher = require('../dispatcher/dispatcher.js');
 const Store = require('flux/utils').Store;
 const ProfileConstants = require('../constants/profile_constants');
@@ -21,7 +20,7 @@ ProfileStore.__onDispatch = payload => {
   }
 };
 
-ProfileStore.getProfile = function() {
+ProfileStore.currentProfile = function() {
   return _profile;
 };
 
