@@ -12,7 +12,7 @@ Profile.destroy_all()
 
 User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
-User.create!(email: "marc@facebook.com", password: "testtest", username: "Mark Andreessen")
+User.create!(email: "marc@facebook.com", password: "testtest", username: "Marc Andreessen")
 User.create!(email: "sundar@gmail.com", password: "testtest", username: "Sundar Pichai")
 User.create!(email: "larry@gmail.com", password: "testtest", username: "Larry Page")
 User.create!(email: "sergey@gmail.com", password: "testtest", username: "Sergey Brin")

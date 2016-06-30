@@ -12,11 +12,15 @@ PostStore.__onDispatch = payload => {
       _updatePost(payload.post);
       PostStore.__emitChange();
       break;
+    case PostConstants.UPDATE_POSTS:
+      _resetPosts(payload.posts);
+      PostStore.__emitChange();
+      break;
   }
 };
 
 function _resetPosts(posts) {
-  _posts = {}; // Assumes we receive a list of posts
+  _posts = {};
   posts.forEach(post => {
     _posts[post.id] = post;
   });

@@ -52,6 +52,8 @@ const NewPostForm = React.createClass({
   },
 
   render() {
+    const numRows = Math.floor(this.state.body.length / 25);
+
     return(
       <div className="new-post-form-container">
         <nav>
@@ -70,11 +72,12 @@ const NewPostForm = React.createClass({
             <img src={this.state.currentUserProfileImg} className="new-post-profile-pic"></img>
 
             <div className="new-post-text-container">
-              <textarea rows="3" cols="35" wrap="hard"
+              <textarea rows={numRows}
+                cols="35" wrap="hard"
                 value={this.state.body}
                 placeholder={this._newPostPrompt()}
                 onChange={this._updatePost}>
-              </textarea>
+              {numRows}</textarea>
 
             </div>
           </div>
@@ -90,3 +93,5 @@ const NewPostForm = React.createClass({
 });
 
 module.exports = NewPostForm;
+
+ // cols="35"  wrap="hard"

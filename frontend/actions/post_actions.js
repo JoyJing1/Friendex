@@ -32,12 +32,25 @@ const PostActions = {
     PostApiUtil.fetchPost(id, this.receiveSinglePost);
   },
 
+  fetchManyPosts(ids) {
+    console.log("fetchManyPosts(ids) in post_actions.js");
+    PostApiUtil.fetchManyPosts(ids, this.receiveManyPosts);
+  },
+
   receiveSinglePost(post) {
     AppDispatcher.dispatch({
       actionType: PostConstants.UPDATE_POST,
       post: post
     });
+  },
+
+  receiveManyPosts(posts) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.UPDATE_POSTS,
+      posts: posts
+    });
   }
+
 };
 
 module.exports = PostActions;

@@ -3,12 +3,14 @@ class Post < ActiveRecord::Base
 
   belongs_to :author,
     foreign_key: :author_id,
-    class_name: :user,
-    inverse_of: true
+    class_name: :User
 
   belongs_to :receiver,
     foreign_key: :receiver_id,
-    class_name: :user,
-    inverse_of: true
+    class_name: :User
+
+  has_one :author_profile,
+    through: :author,
+    source: :profile
 
 end

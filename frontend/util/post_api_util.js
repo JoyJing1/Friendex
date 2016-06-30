@@ -73,6 +73,25 @@ const PostApiUtil = {
         console.log(errors);
 			}
 		});
+  },
+
+  fetchManyPosts(ids, success, error) {
+    console.log("fetchPosts(ids, success, error) in post_api_util.js");
+    $.ajax({
+      url: `/api/posts/`,
+      type: 'GET',
+      data: { receiver_id: ids.receiver_id, author_id: ids.author_id },
+      success(resp) {
+        console.log("successfully fetched posts");
+        console.log(resp);
+        success(resp);
+      },
+      error(xhr) {
+        console.log("failed to fetch posts");
+        const errors = xhr.responseJSON;
+        console.log(errors);
+      }
+    });
   }
 
 };

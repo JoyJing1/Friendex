@@ -8,14 +8,12 @@ class User < ActiveRecord::Base
   has_one :profile, inverse_of: :user
 
   has_many :posts_authored,
-    class_name: :post,
-    foreign_key: :author_id,
-    inverse_of: true
+    class_name: :Post,
+    foreign_key: :author_id
 
   has_many :posts_received,
-    class_name: :post,
-    foreign_key: :receiver_id,
-    inverse_of: true
+    class_name: :Post,
+    foreign_key: :receiver_id
 
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness

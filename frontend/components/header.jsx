@@ -39,7 +39,6 @@ const Header = React.createClass({
 
   render() {
     const currentUsername = window.currentUser;
-    const profile_img = this._currentUserProfile().profile_img;
     return(
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">

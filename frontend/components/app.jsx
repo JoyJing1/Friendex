@@ -1,13 +1,9 @@
 "use strict";
 
 const React = require('react');
-// const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
-// const SessionActions = require('../actions/session_actions');
+const ProfileActions = require('../actions/profile_actions');
 
-// const LoginForm = require('./login_form');
-// const SignupForm = require('./signup_form');
-// const ProfileTimeline = require('./profile_timelie');
 const Header = require('./header');
 
 const App = React.createClass({
@@ -31,5 +27,3 @@ const App = React.createClass({
 });
 
 module.exports = App;
-// <h1>Currently NOT logged in</h1>
-// <h1>Currently logged in</h1>

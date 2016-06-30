@@ -7,6 +7,7 @@ const ProfileActions = require('../actions/profile_actions');
 const ProfileAbout = require('./profile_about');
 const ProfileHeader = require('./profile_header');
 const NewPostForm = require('./new_post_form');
+const PostIndex = require('./post_index');
 
 const ProfileTimeline = React.createClass({
   getInitialState() {
@@ -42,11 +43,14 @@ const ProfileTimeline = React.createClass({
           </aside>
 
           <main className="profile-main col-2-3 clearfix">
-            <ul className="profile-main-posts">
+            <div className="profile-main-posts">
 
               <NewPostForm profile={this.state.profile}/>
 
-            </ul>
+              <h3>POST INDEX BELOW - IN TIMELINE</h3>
+              <PostIndex profile={this.state.profile}/>
+
+            </div>
           </main>
         </div>
 

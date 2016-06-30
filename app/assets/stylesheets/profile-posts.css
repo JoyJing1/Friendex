@@ -1,3 +1,5 @@
+/* NEW POST FORM **********************/
+
 .new-post-form-container {
 
 }
@@ -58,6 +60,7 @@
 
 .new-post-text-container textarea {
   margin-left: 122px;
+  resize: none;
 }
 
 .new-post-body input[type="text"] {
@@ -84,4 +87,41 @@
   font-weight: bold;
   float: right;
   margin: 7px 8px 5px 10px;
+}
+
+/* POST INDEX ITEMS **********************/
+.post-item-container {
+  background: white;
+  margin: 10px;
+  position: relative;
+}
+
+.post-author-info {
+
+}
+
+.post-author-info img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+}
+
+.post-author-info h5 {
+  display: inline-block;
+  color: #365899;
+  margin: 0 auto;
+}
+
+.post-footer {
+
+}
+
+.post-item-container p:after {
+  content: "";
+  display: block;
+  width: 95%;
+  height: 1px;
+  background-color: #D4D5DC;
+  position: absolute;
+  left: 13px;
 }

@@ -54,4 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const root = document.getElementById("content");
   ReactDOM.render(appRouter, root);
+
+  // timeago plugin to render time ago in strings
+  jQuery(document).ready(function() {
+    jQuery("time.timeago").timeago();
+  });
 });

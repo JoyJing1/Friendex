@@ -114,6 +114,11 @@
 	
 	  var root = document.getElementById("content");
 	  ReactDOM.render(appRouter, root);
+	
+	  // timeago plugin to render time ago in strings
+	  jQuery(document).ready(function () {
+	    jQuery("time.timeago").timeago();
+	  });
 	});
 
 /***/ },
@@ -32996,13 +33001,9 @@
 	"use strict";
 	
 	var React = __webpack_require__(1);
-	// const Link = require('react-router').Link;
 	var SessionStore = __webpack_require__(230);
-	// const SessionActions = require('../actions/session_actions');
+	var ProfileActions = __webpack_require__(266);
 	
-	// const LoginForm = require('./login_form');
-	// const SignupForm = require('./signup_form');
-	// const ProfileTimeline = require('./profile_timelie');
 	var Header = __webpack_require__(258);
 	
 	var App = React.createClass({
@@ -33031,8 +33032,6 @@
 	});
 	
 	module.exports = App;
-	// <h1>Currently NOT logged in</h1>
-	// <h1>Currently logged in</h1>
 
 /***/ },
 /* 258 */
@@ -33074,7 +33073,6 @@
 	  },
 	  render: function render() {
 	    var currentUsername = window.currentUser;
-	    var profile_img = this._currentUserProfile().profile_img;
 	    return React.createElement(
 	      'div',
 	      { className: 'header-main clearfix', __self: this
@@ -33727,6 +33725,7 @@
 	var ProfileAbout = __webpack_require__(268);
 	var ProfileHeader = __webpack_require__(269);
 	var NewPostForm = __webpack_require__(270);
+	var PostIndex = __webpack_require__(276);
 	
 	var ProfileTimeline = React.createClass({
 	  displayName: 'ProfileTimeline',
@@ -33771,10 +33770,19 @@
 	          { className: 'profile-main col-2-3 clearfix', __self: this
 	          },
 	          React.createElement(
-	            'ul',
+	            'div',
 	            { className: 'profile-main-posts', __self: this
 	            },
 	            React.createElement(NewPostForm, { profile: this.state.profile, __self: this
+	            }),
+	            React.createElement(
+	              'h3',
+	              {
+	                __self: this
+	              },
+	              'POST INDEX BELOW - IN TIMELINE'
+	            ),
+	            React.createElement(PostIndex, { profile: this.state.profile, __self: this
 	            })
 	          )
 	        )
@@ -34153,6 +34161,8 @@
 	    this.setState({ body: e.target.value });
 	  },
 	  render: function render() {
+	    var numRows = Math.floor(this.state.body.length / 25);
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'new-post-form-container', __self: this
@@ -34186,11 +34196,16 @@
 	            'div',
 	            { className: 'new-post-text-container', __self: this
 	            },
-	            React.createElement('textarea', { rows: '3', cols: '35', wrap: 'hard',
-	              value: this.state.body,
-	              placeholder: this._newPostPrompt(),
-	              onChange: this._updatePost, __self: this
-	            })
+	            React.createElement(
+	              'textarea',
+	              { rows: numRows,
+	                cols: '35', wrap: 'hard',
+	                value: this.state.body,
+	                placeholder: this._newPostPrompt(),
+	                onChange: this._updatePost, __self: this
+	              },
+	              numRows
+	            )
 	          )
 	        ),
 	        React.createElement(
@@ -34206,6 +34221,8 @@
 	});
 	
 	module.exports = NewPostForm;
+	
+	// cols="35"  wrap="hard"
 
 /***/ },
 /* 271 */
@@ -34322,10 +34339,20 @@
 	    console.log("fetchSinglePost(id) in post_actions.js");
 	    PostApiUtil.fetchPost(id, this.receiveSinglePost);
 	  },
+	  fetchManyPosts: function fetchManyPosts(ids) {
+	    console.log("fetchManyPosts(ids) in post_actions.js");
+	    PostApiUtil.fetchManyPosts(ids, this.receiveManyPosts);
+	  },
 	  receiveSinglePost: function receiveSinglePost(post) {
 	    AppDispatcher.dispatch({
 	      actionType: PostConstants.UPDATE_POST,
 	      post: post
+	    });
+	  },
+	  receiveManyPosts: function receiveManyPosts(posts) {
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.UPDATE_POSTS,
+	      posts: posts
 	    });
 	  }
 	};
@@ -34339,7 +34366,8 @@
 	"use strict";
 	
 	var PostConstants = {
-	  UPDATE_POST: "UPDATE_POST"
+	  UPDATE_POST: "UPDATE_POST",
+	  UPDATE_POSTS: "UPDATE_POSTS"
 	};
 	
 	module.exports = PostConstants;
@@ -34420,10 +34448,224 @@
 	        console.log(errors);
 	      }
 	    });
+	  },
+	  fetchManyPosts: function fetchManyPosts(ids, _success5, error) {
+	    console.log("fetchPosts(ids, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/",
+	      type: 'GET',
+	      data: { receiver_id: ids.receiver_id, author_id: ids.author_id },
+	      success: function success(resp) {
+	        console.log("successfully fetched posts");
+	        console.log(resp);
+	        _success5(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch posts");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
 	  }
 	};
 	
 	module.exports = PostApiUtil;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var PostStore = __webpack_require__(277);
+	var PostActions = __webpack_require__(273);
+	var PostIndexItem = __webpack_require__(278);
+	
+	var PostIndex = React.createClass({
+	  displayName: 'PostIndex',
+	  getInitialState: function getInitialState() {
+	    return { posts: PostStore.all() };
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    var ids = { receiver_id: newProps.profile.user_id };
+	    PostActions.fetchManyPosts(ids);
+	    PostStore.addListener(this._onChange);
+	    console.log("componentDidMount() in post_index.jsx");
+	    console.log(ids);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    PostStore.remove(this._onChange);
+	  },
+	  _onChange: function _onChange() {
+	    this.setState({ posts: PostStore.all() });
+	    console.log("_onChange() in post_index.jsx");
+	    console.log(this.state);
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return React.createElement(
+	      'ul',
+	      {
+	        __self: this
+	      },
+	      React.createElement(
+	        'h4',
+	        {
+	          __self: this
+	        },
+	        'Inside My Post Index'
+	      ),
+	      this.state.posts.map(function (post) {
+	        return React.createElement(PostIndexItem, { post: post, key: post.id, __self: _this
+	        });
+	      })
+	    );
+	  }
+	});
+	
+	module.exports = PostIndex;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var AppDispatcher = __webpack_require__(231);
+	var Store = __webpack_require__(235).Store;
+	var PostConstants = __webpack_require__(274);
+	
+	var _posts = {};
+	
+	var PostStore = new Store(AppDispatcher);
+	
+	PostStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case PostConstants.UPDATE_POST:
+	      _updatePost(payload.post);
+	      PostStore.__emitChange();
+	      break;
+	    case PostConstants.UPDATE_POSTS:
+	      _resetPosts(payload.posts);
+	      PostStore.__emitChange();
+	      break;
+	  }
+	};
+	
+	function _resetPosts(posts) {
+	  _posts = {};
+	  posts.forEach(function (post) {
+	    _posts[post.id] = post;
+	  });
+	}
+	
+	function _updatePost(post) {
+	  _posts[post.id] = post;
+	}
+	
+	PostStore.find = function (id) {
+	  if (typeof id === "string") {
+	    id = parseInt(id);
+	  }
+	
+	  return _posts[id];
+	};
+	
+	PostStore.all = function () {
+	  var posts = [];
+	
+	  for (var pId in _posts) {
+	    if (_posts.hasOwnProperty(pId)) {
+	      posts.push(_posts[pId]);
+	    }
+	  }
+	  return posts;
+	};
+	
+	// Will need to write a method to pull all posts based on a profile_id
+	// 1st function -- only posts to a receiver_id
+	// 2nd function - all posts where user_id === author_id or receiver_id
+	// Write 2 different functions
+	// Write 3rd function combines the other two to get full list
+	
+	module.exports = PostStore;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var PostIndexItem = React.createClass({
+	  displayName: "PostIndexItem",
+	  _timeWritten: function _timeWritten() {
+	    // const now = new Date();
+	    // debugger;
+	    // const timeAgo = new Date(this.props.post.created_at) - now;
+	    // Use timeago jQuery plugin
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      "li",
+	      {
+	        __self: this
+	      },
+	      React.createElement(
+	        "div",
+	        { className: "post-item-container", __self: this
+	        },
+	        React.createElement(
+	          "div",
+	          { className: "post-author-info", __self: this
+	          },
+	          React.createElement("img", { src: this.props.post.profile_img, __self: this
+	          }),
+	          React.createElement(
+	            "h5",
+	            {
+	              __self: this
+	            },
+	            this.props.post.author_name
+	          ),
+	          React.createElement("time", { className: "timeago", datetime: this.props.post.created_at, __self: this
+	          })
+	        ),
+	        React.createElement(
+	          "p",
+	          {
+	            __self: this
+	          },
+	          this.props.post.body
+	        ),
+	        React.createElement(
+	          "ul",
+	          { classNAme: "post-footer", __self: this
+	          },
+	          React.createElement(
+	            "li",
+	            {
+	              __self: this
+	            },
+	            "Like"
+	          ),
+	          React.createElement(
+	            "li",
+	            {
+	              __self: this
+	            },
+	            "Comment"
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = PostIndexItem;
 
 /***/ }
 /******/ ]);

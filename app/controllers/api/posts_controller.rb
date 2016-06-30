@@ -25,7 +25,9 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    receiver_id = params[:receiver_id]
+    author_id = params[:author_id]
+    @posts = Post.where("receiver_id = ? OR author_id=  ?", receiver_id, author_id)
   end
 
   def destroy
