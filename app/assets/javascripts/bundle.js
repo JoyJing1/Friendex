@@ -116,9 +116,9 @@
 	  ReactDOM.render(appRouter, root);
 	
 	  // timeago plugin to render time ago in strings
-	  jQuery(document).ready(function () {
-	    jQuery("time.timeago").timeago();
-	  });
+	  // jQuery(document).ready(function() {
+	  jQuery("time.timeago").timeago();
+	  // });
 	});
 
 /***/ },
@@ -34631,8 +34631,13 @@
 	            },
 	            this.props.post.author_name
 	          ),
-	          React.createElement("time", { className: "timeago", datetime: this.props.post.created_at, __self: this
-	          })
+	          React.createElement(
+	            "p",
+	            {
+	              __self: this
+	            },
+	            $.timeago(this.props.post.created_at)
+	          )
 	        ),
 	        React.createElement(
 	          "p",

@@ -15,7 +15,7 @@ const PostIndexItem = React.createClass({
           <div className="post-author-info">
             <img src={this.props.post.profile_img}></img>
             <h5>{this.props.post.author_name}</h5>
-            <time className="timeago" datetime={this.props.post.created_at}></time>
+            <p>{$.timeago(this.props.post.created_at)}</p>
           </div>
 
           <p>{this.props.post.body}</p>
