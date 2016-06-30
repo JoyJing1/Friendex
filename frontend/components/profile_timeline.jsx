@@ -47,7 +47,6 @@ const ProfileTimeline = React.createClass({
 
               <NewPostForm profile={this.state.profile}/>
 
-              <h3>POST INDEX BELOW - IN TIMELINE</h3>
               <PostIndex profile={this.state.profile}/>
 
             </div>

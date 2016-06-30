@@ -1,11 +1,19 @@
 const React = require('react');
+const SessionStore = require('../stores/session_store');
+const PostActions = require('../actions/post_actions');
 
 const PostIndexItem = React.createClass({
-  _timeWritten() {
-    // const now = new Date();
-    // debugger;
-    // const timeAgo = new Date(this.props.post.created_at) - now;
-    // Use timeago jQuery plugin
+  _deletePost() {
+    PostActions.deletePost(this.props.post.id);
+  },
+
+  deleteButton() {
+    if (this.props.post.author_id === SessionStore.currentUser().id || this.props.post.receiver_id === SessionStore.currentUser().id) {
+      return (
+        <button onClick={this._deletePost}
+                className="delete-post">Remove Post</button>
+      );
+    }
   },
 
   render() {
@@ -14,15 +22,29 @@ const PostIndexItem = React.createClass({
         <div className="post-item-container">
           <div className="post-author-info">
             <img src={this.props.post.profile_img}></img>
-            <h5>{this.props.post.author_name}</h5>
-            <p>{$.timeago(this.props.post.created_at)}</p>
+
+            <div className="post-author-text">
+              <h5>{this.props.post.author_name}</h5>
+              <h6>{$.timeago(this.props.post.created_at)}</h6>
+            </div>
           </div>
 
           <p>{this.props.post.body}</p>
 
-          <ul classNAme="post-footer">
-            <li>Like</li>
-            <li>Comment</li>
+          <ul className="post-footer">
+            <a>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
+                className="post-footer-like">
+              </img>Like
+            </a>
+
+            <a>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
+                className="post-footer-comment">
+              </img>Comment
+            </a>
+
+            {this.deleteButton()}
           </ul>
 
         </div>

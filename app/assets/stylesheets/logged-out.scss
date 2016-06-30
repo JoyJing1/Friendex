@@ -1,12 +1,14 @@
+@import 'colors';
+
 html, body {
   height: 100%;
-  background-color: #E9EBEE;
+  background-color: $gray-background-default;
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
 }
 
 .logged-out-page {
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
-  background-color: #EDF0F5;
+  background-color: $blue-light-background;
   padding-bottom: 35px;
 }
 
@@ -15,7 +17,7 @@ html, body {
 }
 
 .logged-out-container {
-  background-color:  #3B5998;
+  background-color: $blue-default;
   padding: 10px;
 }
 
@@ -58,8 +60,8 @@ input[type="password"], input[type="text"] {
 }
 
 input[type="submit"] {
-  background: #4267B2;
-  border: 1px solid #29487D;
+  background: $blue-medium-dark;
+  border: 1px solid $blue-border;
   padding: 0 13px;
   height: 35px;
   align-self: center;
@@ -97,7 +99,7 @@ input[type="select"] {
 
 .signup-form-box > input {
   padding: 8px 10px;
-  border: 1px solid #bdc7d8;
+  border: 1px solid $gray-border;
   border-radius: 5px;
   width: 94%;
   font-size: 18px;
@@ -110,7 +112,7 @@ input[type="select"] {
 
 .new-user-name > input {
   padding: 8px 10px;
-  border: 1px solid #bdc7d8;
+  border: 1px solid $gray-border;
   width: 50%;
   font-size: 18px;
   border-radius: 5px;
@@ -124,7 +126,7 @@ input[type="select"] {
   width: 25%;
   height: auto;
   margin: 10px 0;
-  background: #609D4D;
+  background: $light-green;
   color: white;
   text-align: center;
 }

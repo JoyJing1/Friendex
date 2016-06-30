@@ -1,5 +1,7 @@
+@import 'colors';
+
 .header-main {
-  background-color: #3B5998;
+  background-color: $blue-default;
   height: 42px;
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
   display: flex;
@@ -44,8 +46,8 @@
 }
 
 button.button-logout {
-  background-color: #4267B2;
-  border: 1px solid #29487D;
+  background-color: $blue-medium-dark;
+  border: 1px solid $blue-border;
   border-radius: 5px;
   padding: 4 9px;
   color: white;

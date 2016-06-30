@@ -29,7 +29,6 @@ const PostIndex = React.createClass({
   render() {
     return (
       <ul>
-        <h4>Inside My Post Index</h4>
         {this.state.posts.map( post => {
           return(
             <PostIndexItem post={post} key={post.id}/>

@@ -11,6 +11,10 @@ const ProfileHeader = React.createClass({
     return { profile: ProfileStore.currentProfile() };
   },
 
+  componentWillReceiveProps(newProps) {
+    ProfileActions.fetchSingleProfile(newProps.params.id);
+  },
+
   componentDidMount() {
     console.log("componentDidMount() in profile_header.jsx");
     const id = parseInt(this.props.params.id);

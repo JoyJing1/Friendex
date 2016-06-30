@@ -38,7 +38,7 @@ const Header = React.createClass({
   },
 
   render() {
-    const currentUsername = window.currentUser;
+    const currentUser = window.currentUser;
     return(
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">

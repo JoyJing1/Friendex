@@ -1,8 +1,10 @@
+@import 'colors';
+
 /* GENERAL DEFAULTS **************************/
 
 html, body {
   height: 100%;
-  background-color: #E9EBEE;
+  background-color: $gray-background-default;
 }
 
 .profile-page {
@@ -25,7 +27,7 @@ html, body {
   display: block;
   width: 100%;
   height: 150px;
-  background-color: #1D2129;
+  background-color: $dark-gray;
   z-index: 5;
 }
 
@@ -39,7 +41,7 @@ html, body {
   background-color: #white;
   border: 4px solid white;
   border-radius: 2px;
-  box-shadow: 1px 1px #BBB;
+  box-shadow: 1px 1px $gray-shadow;
   z-index: 10;
 }
 
@@ -58,16 +60,16 @@ html, body {
   width: 100%;
   height: 50px;
   display: flex;
-  border-bottom: 1px solid #E9EAED;
-  border-top: 1px solid #E9EAED;
+  border-bottom: 1px solid $gray-lighter-border;
+  border-top: 1px solid $gray-lighter-border;
   margin-bottom: 27px;
-  color: #464C9F;
+  color: $blue-dark-font;
 }
 
 .profile-tabs a {
   padding: 15px 20px;
   font-weight: bold;
-  border-left: 1px solid #E9EAED;
+  border-left: 1px solid $gray-lighter-border;
 }
 
 
@@ -76,10 +78,10 @@ html, body {
 }
 
 .profile-tabs > a:last-child {
-  border-right: 1px solid #E9EAED;
+  border-right: 1px solid $gray-lighter-border;
 }
 .profile-tabs a:hover {
-  background: #F6F7F9;
+  background: $gray-background-light;
 }
 
 /* PROFILE CONTENT **************************/

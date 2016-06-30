@@ -33072,7 +33072,7 @@
 	    return SessionStore.currentUserProfile();
 	  },
 	  render: function render() {
-	    var currentUsername = window.currentUser;
+	    var currentUser = window.currentUser;
 	    return React.createElement(
 	      'div',
 	      { className: 'header-main clearfix', __self: this
@@ -33775,13 +33775,6 @@
 	            },
 	            React.createElement(NewPostForm, { profile: this.state.profile, __self: this
 	            }),
-	            React.createElement(
-	              'h3',
-	              {
-	                __self: this
-	              },
-	              'POST INDEX BELOW - IN TIMELINE'
-	            ),
 	            React.createElement(PostIndex, { profile: this.state.profile, __self: this
 	            })
 	          )
@@ -34039,6 +34032,9 @@
 	  displayName: 'ProfileHeader',
 	  getInitialState: function getInitialState() {
 	    return { profile: ProfileStore.currentProfile() };
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    ProfileActions.fetchSingleProfile(newProps.params.id);
 	  },
 	  componentDidMount: function componentDidMount() {
 	    console.log("componentDidMount() in profile_header.jsx");
@@ -34510,13 +34506,6 @@
 	      {
 	        __self: this
 	      },
-	      React.createElement(
-	        'h4',
-	        {
-	          __self: this
-	        },
-	        'Inside My Post Index'
-	      ),
 	      this.state.posts.map(function (post) {
 	        return React.createElement(PostIndexItem, { post: post, key: post.id, __self: _this
 	        });
@@ -34537,7 +34526,7 @@
 	var Store = __webpack_require__(235).Store;
 	var PostConstants = __webpack_require__(274);
 	
-	var _posts = {};
+	var _posts = [];
 	
 	var PostStore = new Store(AppDispatcher);
 	
@@ -34548,40 +34537,38 @@
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.UPDATE_POSTS:
-	      _resetPosts(payload.posts);
+	      _posts = payload.posts;
 	      PostStore.__emitChange();
 	      break;
 	  }
 	};
 	
-	function _resetPosts(posts) {
-	  _posts = {};
-	  posts.forEach(function (post) {
-	    _posts[post.id] = post;
-	  });
-	}
-	
 	function _updatePost(post) {
-	  _posts[post.id] = post;
+	  for (var i = 0; i < _posts.length; i++) {
+	    if (_posts[i].id === post.id) {
+	      _posts[i] = post;
+	    }
+	  }
 	}
 	
 	PostStore.find = function (id) {
+	  var post = {};
+	
 	  if (typeof id === "string") {
 	    id = parseInt(id);
 	  }
 	
-	  return _posts[id];
+	  for (var i = 0; i < _posts.length; i++) {
+	    var currPost = _posts[i];
+	    if (currPost.id === id) {
+	      post = currPost;
+	    }
+	  }
+	  return post;
 	};
 	
 	PostStore.all = function () {
-	  var posts = [];
-	
-	  for (var pId in _posts) {
-	    if (_posts.hasOwnProperty(pId)) {
-	      posts.push(_posts[pId]);
-	    }
-	  }
-	  return posts;
+	  return _posts.slice();
 	};
 	
 	// Will need to write a method to pull all posts based on a profile_id
@@ -34596,74 +34583,96 @@
 /* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var React = __webpack_require__(1);
+	var SessionStore = __webpack_require__(230);
+	var PostActions = __webpack_require__(273);
 	
 	var PostIndexItem = React.createClass({
-	  displayName: "PostIndexItem",
-	  _timeWritten: function _timeWritten() {
-	    // const now = new Date();
-	    // debugger;
-	    // const timeAgo = new Date(this.props.post.created_at) - now;
-	    // Use timeago jQuery plugin
+	  displayName: 'PostIndexItem',
+	  _deletePost: function _deletePost() {
+	    PostActions.deletePost(this.props.post.id);
+	  },
+	  deleteButton: function deleteButton() {
+	    if (this.props.post.author_id === SessionStore.currentUser().id || this.props.post.receiver_id === SessionStore.currentUser().id) {
+	      return React.createElement(
+	        'button',
+	        { onClick: this._deletePost,
+	          className: 'delete-post', __self: this
+	        },
+	        'Remove Post'
+	      );
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
-	      "li",
+	      'li',
 	      {
 	        __self: this
 	      },
 	      React.createElement(
-	        "div",
-	        { className: "post-item-container", __self: this
+	        'div',
+	        { className: 'post-item-container', __self: this
 	        },
 	        React.createElement(
-	          "div",
-	          { className: "post-author-info", __self: this
+	          'div',
+	          { className: 'post-author-info', __self: this
 	          },
-	          React.createElement("img", { src: this.props.post.profile_img, __self: this
+	          React.createElement('img', { src: this.props.post.profile_img, __self: this
 	          }),
 	          React.createElement(
-	            "h5",
-	            {
-	              __self: this
+	            'div',
+	            { className: 'post-author-text', __self: this
 	            },
-	            this.props.post.author_name
-	          ),
-	          React.createElement(
-	            "p",
-	            {
-	              __self: this
-	            },
-	            $.timeago(this.props.post.created_at)
+	            React.createElement(
+	              'h5',
+	              {
+	                __self: this
+	              },
+	              this.props.post.author_name
+	            ),
+	            React.createElement(
+	              'h6',
+	              {
+	                __self: this
+	              },
+	              $.timeago(this.props.post.created_at)
+	            )
 	          )
 	        ),
 	        React.createElement(
-	          "p",
+	          'p',
 	          {
 	            __self: this
 	          },
 	          this.props.post.body
 	        ),
 	        React.createElement(
-	          "ul",
-	          { classNAme: "post-footer", __self: this
+	          'ul',
+	          { className: 'post-footer', __self: this
 	          },
 	          React.createElement(
-	            "li",
+	            'a',
 	            {
 	              __self: this
 	            },
-	            "Like"
+	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
+	              className: 'post-footer-like', __self: this
+	            }),
+	            'Like'
 	          ),
 	          React.createElement(
-	            "li",
+	            'a',
 	            {
 	              __self: this
 	            },
-	            "Comment"
-	          )
+	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
+	              className: 'post-footer-comment', __self: this
+	            }),
+	            'Comment'
+	          ),
+	          this.deleteButton()
 	        )
 	      )
 	    );

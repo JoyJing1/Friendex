@@ -1,10 +1,12 @@
+@import 'colors';
+
 .profile-about h3 {
-  background-color: #F6F7F9;
+  background-color: $gray-background-light;
   padding: 16px 16px;
   margin: 0 auto;
-  border-left: 1px solid #D4D5DC;
-  border-right: 1px solid #D4D5DC;
-  border-top: 1px solid #D4D5DC;
+  border-left: 1px solid $gray-light-border;
+  border-right: 1px solid $gray-light-border;
+  border-top: 1px solid $gray-light-border;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -18,7 +20,7 @@ img.profile-about-icon {
 
 .profile-about-info {
   background-color: white;
-  border: 1px solid #D4D5DC;
+  border: 1px solid $gray-light-border;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -41,7 +43,7 @@ ul.profile-about-info li:not(:last-child):after {
   display: block;
   width: 75%;
   height: 1px;
-  background-color: #D4D5DC;
+  background-color: $gray-light-border;
   margin: 0 0 0 30px;
   position: absolute;
   bottom: 0;
