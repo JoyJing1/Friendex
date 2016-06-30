@@ -9,13 +9,25 @@ const hashHistory = require('react-router').hashHistory;
 const ProfileActions = {
   fetchSingleProfile(id) {
     console.log("fetchSingleProfile(id) in profile_actions.js");
-    // console.log(id);
     ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
+  },
+
+  fetchCurrentUserProfile() {
+    console.log("fetchCurrentUserProfile(id) in profile_actions.js");
+    console.log(currentUser);
+    ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
   },
 
   receiveSingleProfile(profile) {
     AppDispatcher.dispatch({
       actionType: ProfileConstants.UPDATE_PROFILE,
+      profile: profile
+    });
+  },
+
+  receiveCurrentUserProfile(profile) {
+    AppDispatcher.dispatch({
+      actionType: ProfileConstants.UPDATE_CURRENT_USER_PROFILE,
       profile: profile
     });
   }

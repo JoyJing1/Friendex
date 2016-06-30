@@ -10,7 +10,7 @@ my_rand = Random.new(4928)
 User.destroy_all()
 Profile.destroy_all()
 
-User.create!(email: "test", password: "testtest", username: "Mark Zuckerberg")
+User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
 User.create!(email: "marc@facebook.com", password: "testtest", username: "Mark Andreessen")
 User.create!(email: "sundar@gmail.com", password: "testtest", username: "Sundar Pichai")

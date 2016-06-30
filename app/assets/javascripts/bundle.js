@@ -25991,11 +25991,13 @@
 	
 	var AppDispatcher = __webpack_require__(231);
 	var Store = __webpack_require__(235).Store;
+	var ProfileConstants = __webpack_require__(265);
 	var SessionConstants = __webpack_require__(252);
 	var SessionStore = new Store(AppDispatcher);
 	
 	var _currentUser = {};
 	var _currentUserHasBeenFetched = false;
+	var _currentUserProfile = {};
 	
 	var _login = function _login(currentUser) {
 	  console.log("_login in session_store.js");
@@ -26021,6 +26023,10 @@
 	      _logout();
 	      SessionStore.__emitChange();
 	      break;
+	    case ProfileConstants.UPDATE_CURRENT_USER_PROFILE:
+	      _currentUserProfile = payload.profile;
+	      SessionStore.__emitChange();
+	      break;
 	  }
 	};
 	
@@ -26028,8 +26034,12 @@
 	  return Object.assign({}, _currentUser);
 	};
 	
+	SessionStore.currentUserProfile = function () {
+	  return Object.assign({}, _currentUserProfile);
+	};
+	
 	SessionStore.currentUserHasBeenFetched = function () {
-	  return !!_currentUserHasBeenFetched;
+	  return Boolean(_currentUserHasBeenFetched);
 	};
 	
 	SessionStore.isUserLoggedIn = function () {
@@ -32822,6 +32832,7 @@
 	var SessionApiUtil = __webpack_require__(254);
 	var ErrorActions = __webpack_require__(255);
 	var hashHistory = __webpack_require__(168).hashHistory;
+	var ProfileActions = __webpack_require__(266);
 	
 	var SessionActions = {
 	  signUp: function signUp(userData) {
@@ -32840,6 +32851,7 @@
 	    SessionApiUtil.logIn(formData, function (resp) {
 	      SessionActions.receiveCurrentUser(resp);
 	      SessionActions._redirectToProfile(resp.id);
+	      // ProfileActions.fetchCurrentUserProfile(resp.id);
 	      // window.currentUser = SessionStore.currentUser();
 	    }, ErrorActions.setErrors);
 	  },
@@ -33032,33 +33044,54 @@
 	var Link = __webpack_require__(168).Link;
 	var SessionStore = __webpack_require__(230);
 	var SessionActions = __webpack_require__(253);
+	var ProfileActions = __webpack_require__(266);
 	// const ProfileTimeline = require('./profile_timelie');
 	
 	var Header = React.createClass({
 	  displayName: 'Header',
+	  getInitialState: function getInitialState() {
+	    return { currentUserProfile: SessionStore.currentUserProfile() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("componentDidMount in header.jsx");
+	    console.log(currentUser);
+	    ProfileActions.fetchCurrentUserProfile();
+	    this.sessionListener = SessionStore.addListener(this._onChange);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.sessionListener.remove();
+	  },
+	  _onChange: function _onChange() {
+	    this.setState({ currentUserProfile: SessionStore.currentUserProfile() });
+	  },
 	  _logout: function _logout() {
 	    SessionActions.logOut();
 	  },
-	  _currentUserName: function _currentUserName() {
-	    return Profile.find("user_id", currentUser.id);
+	  _currentUserProfile: function _currentUserProfile() {
+	    console.log("_currentUserProfile() in header.jsx");
+	    console.log(SessionStore.currentUserProfile());
+	    return SessionStore.currentUserProfile();
 	  },
 	  render: function render() {
 	    var currentUsername = window.currentUser;
+	    var profile_img = this._currentUserProfile().profile_img;
 	    return React.createElement(
 	      'div',
 	      { className: 'header-main clearfix', __self: this
 	      },
 	      React.createElement(
 	        'nav',
-	        { className: 'header-nav', __self: this
+	        { className: 'header-nav clearfix', __self: this
 	        },
 	        React.createElement('img', { className: 'f-square-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png', __self: this
 	        }),
 	        React.createElement(
 	          'div',
-	          {
-	            __self: this
+	          { className: 'header-user', __self: this
 	          },
+	          React.createElement('img', { className: 'header-user-icon',
+	            src: this.state.currentUserProfile.profile_img, __self: this
+	          }),
 	          React.createElement(
 	            Link,
 	            { to: '/users/' + currentUser.id,
@@ -33081,10 +33114,6 @@
 	});
 	
 	module.exports = Header;
-	
-	// http://res.cloudinary.com/joyjing1/image/upload/v1467161024/icons/iconmonstr-facebook-3-240.png
-	// <img className="header-profile-icon"
-	//       src={currentUser.profile_img}></img>
 
 /***/ },
 /* 259 */
@@ -33191,9 +33220,7 @@
 	    };
 	
 	    console.log("handleSubmit(e) in login_form.jsx");
-	    SessionActions.logIn(formData, function () {
-	      console.log("Successfully logged in");
-	    });
+	    SessionActions.logIn(formData);
 	    // if (this.props.location.pathname === "/login") {
 	    // } else {
 	    //   console.log(this.props.location.pathname);
@@ -33801,8 +33828,8 @@
 	
 	var ProfileConstants = {
 	  UPDATE_PROFILE: "UPDATE_PROFILE",
-	  MONTHS: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	
+	  MONTHS: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+	  UPDATE_CURRENT_USER_PROFILE: "UPDATE_CURRENT_USER_PROFILE"
 	};
 	
 	module.exports = ProfileConstants;
@@ -33822,12 +33849,22 @@
 	var ProfileActions = {
 	  fetchSingleProfile: function fetchSingleProfile(id) {
 	    console.log("fetchSingleProfile(id) in profile_actions.js");
-	    // console.log(id);
 	    ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
+	  },
+	  fetchCurrentUserProfile: function fetchCurrentUserProfile() {
+	    console.log("fetchCurrentUserProfile(id) in profile_actions.js");
+	    console.log(currentUser);
+	    ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
 	  },
 	  receiveSingleProfile: function receiveSingleProfile(profile) {
 	    AppDispatcher.dispatch({
 	      actionType: ProfileConstants.UPDATE_PROFILE,
+	      profile: profile
+	    });
+	  },
+	  receiveCurrentUserProfile: function receiveCurrentUserProfile(profile) {
+	    AppDispatcher.dispatch({
+	      actionType: ProfileConstants.UPDATE_CURRENT_USER_PROFILE,
 	      profile: profile
 	    });
 	  }
@@ -34077,7 +34114,18 @@
 	var NewPostForm = React.createClass({
 	  displayName: 'NewPostForm',
 	  getInitialState: function getInitialState() {
-	    return { body: "" };
+	    return { body: "",
+	      currentUserProfileImg: "" };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.sessionListener = SessionStore.addListener(this._onChange);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.sessionListener.remove();
+	  },
+	  _onChange: function _onChange() {
+	    var currentUserProfile = SessionStore.currentUserProfile();
+	    this.setState({ currentUserProfileImg: currentUserProfile.profile_img });
 	  },
 	  _newPostPrompt: function _newPostPrompt() {
 	    var receiverId = this.props.profile.user_id;
@@ -34088,12 +34136,6 @@
 	    } else {
 	      return "Write a new post!";
 	    }
-	  },
-	  _currentUserProfileImg: function _currentUserProfileImg() {
-	    // Need to write a function to pull profile info for current user
-	    // Write in SessionStore
-	
-	    // Insert image in NewPostForm & Header
 	  },
 	  handleSubmit: function handleSubmit(e) {
 	    var _this = this;
@@ -34138,11 +34180,18 @@
 	          'div',
 	          { className: 'new-post-body clearfix', __self: this
 	          },
-	          React.createElement('input', { type: 'text',
-	            value: this.state.body,
-	            placeholder: this._newPostPrompt(),
-	            onChange: this._updatePost, __self: this
-	          })
+	          React.createElement('img', { src: this.state.currentUserProfileImg, className: 'new-post-profile-pic', __self: this
+	          }),
+	          React.createElement(
+	            'div',
+	            { className: 'new-post-text-container', __self: this
+	            },
+	            React.createElement('textarea', { rows: '3', cols: '35', wrap: 'hard',
+	              value: this.state.body,
+	              placeholder: this._newPostPrompt(),
+	              onChange: this._updatePost, __self: this
+	            })
+	          )
 	        ),
 	        React.createElement(
 	          'div',

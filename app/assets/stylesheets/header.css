@@ -9,15 +9,38 @@
 }
 
 .header-nav {
-  padding: 8px 10px;
+  width: 900px;
   display: flex;
+  justify-content: space-around;
 }
 
 .f-square-icon {
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: auto;
+  display: inline-block;
+  margin: auto 50px;
+}
+
+.header-user {
+  height: 100%;
+  display: flex;
+  vertical-align: middle;
+}
+
+.header-user-icon {
+  height: 30px;
+  width: auto;
+  border-radius: 3px;
+  margin: auto 10px;
   display: inline-block;
   vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.username-link {
+  color: white;
+  margin: auto;
+  font-weight: bold;
 }
 
 button.button-logout {
@@ -30,10 +53,4 @@ button.button-logout {
   padding: 4px 12px;
   font-size: 14px;
   font-weight: normal;
-}
-
-.username-link {
-  color: white;
-  margin: 10px 40px;
-  font-weight: bold;
 }

@@ -44,9 +44,7 @@ const LoginForm = React.createClass({
 		};
 
     console.log("handleSubmit(e) in login_form.jsx");
-    SessionActions.logIn(formData, () => {
-      console.log("Successfully logged in");
-    });
+    SessionActions.logIn(formData);
     // if (this.props.location.pathname === "/login") {
     // } else {
     //   console.log(this.props.location.pathname);

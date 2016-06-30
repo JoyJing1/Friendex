@@ -5,6 +5,7 @@ const SessionConstants = require('../constants/session_constants');
 const SessionApiUtil = require('../util/session_api_util');
 const ErrorActions = require('./error_actions');
 const hashHistory = require('react-router').hashHistory;
+const ProfileActions = require('./profile_actions');
 
 const SessionActions = {
 
@@ -31,6 +32,7 @@ const SessionActions = {
       (resp) => {
         SessionActions.receiveCurrentUser(resp);
         SessionActions._redirectToProfile(resp.id);
+        // ProfileActions.fetchCurrentUserProfile(resp.id);
         // window.currentUser = SessionStore.currentUser();
       },
       ErrorActions.setErrors);

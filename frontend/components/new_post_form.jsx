@@ -10,7 +10,21 @@ const ErrorStore = require('../stores/error_store');
 
 const NewPostForm = React.createClass({
   getInitialState() {
-    return { body: "" };
+    return { body: "",
+            currentUserProfileImg: "" };
+  },
+
+  componentDidMount() {
+    this.sessionListener = SessionStore.addListener(this._onChange);
+  },
+
+  componentWillUnmount() {
+    this.sessionListener.remove();
+  },
+
+  _onChange() {
+    const currentUserProfile = SessionStore.currentUserProfile();
+    this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
   },
 
   _newPostPrompt() {
@@ -22,13 +36,6 @@ const NewPostForm = React.createClass({
     } else {
       return "Write a new post!";
     }
-  },
-
-  _currentUserProfileImg() {
-    // Need to write a function to pull profile info for current user
-    // Write in SessionStore
-
-    // Insert image in NewPostForm & Header
   },
 
   handleSubmit(e) {
@@ -60,10 +67,16 @@ const NewPostForm = React.createClass({
               onSubmit={this.handleSubmit}>
           <div className="new-post-body clearfix">
 
-            <input type="text"
-                  value={this.state.body}
-                  placeholder={this._newPostPrompt()}
-                  onChange={this._updatePost}></input>
+            <img src={this.state.currentUserProfileImg} className="new-post-profile-pic"></img>
+
+            <div className="new-post-text-container">
+              <textarea rows="3" cols="35" wrap="hard"
+                value={this.state.body}
+                placeholder={this._newPostPrompt()}
+                onChange={this._updatePost}>
+              </textarea>
+
+            </div>
           </div>
 
           <div className="new-post-submit">
