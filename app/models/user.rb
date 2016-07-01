@@ -18,6 +18,20 @@ class User < ActiveRecord::Base
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
 
+  def friends
+    User.where('requestor_id = ? OR receiver_id = ? AND status="ACCEPTED"', params[:id], params[:id])
+  end
+
+  def friends_requested
+    User.where(requestor_id: params[:id]).where(status: :PENDING)
+  end
+
+  def friend_requests_received
+    User.where(receiver_id: params[:id]).where(status: :PENDING)
+  end
+
+# User Authentication
+
   def self.find_by_credentials email, password
     user = User.find_by(email: email)
     return nil unless user

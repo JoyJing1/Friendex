@@ -25,7 +25,6 @@ id                | integer   | not null, primary key
 friender_id       | integer   | not null, foreign key (references users), indexed
 friendee_id       | integer   | not null, foreign key (references users), indexed
 status            | string    | not null
-friendiversary    | date      | not null, indexed
 
 ## posts
 column name | data type | details
