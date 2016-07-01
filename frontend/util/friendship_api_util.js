@@ -10,6 +10,7 @@ const FriendshipApiUtil = {
 			success(resp) {
         console.log("successfully created new friendship");
         console.log(resp);
+        // debugger;
         success(resp);
       },
 			error(xhr) {

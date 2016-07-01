@@ -35,19 +35,24 @@ const FriendsPage = React.createClass({
     this.friendListener.remove();
   },
 
-  componentWillReceiveProps() {
-    FriendshipActions.fetchAllFriends(id);
+  componentWillReceiveProps(newProps) {
+    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
   },
 
   _updateFriends() {
     console.log("_updateFriends() in FriendsPage");
-    this.setState({ friends: FriendshipStore.friends(),
-      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
-      friendRequestsSent: FriendshipStore.friendRequestsSent()
+    const friends = FriendshipStore.friends();
+    const friendRequestsReceived = FriendshipStore.friendRequestsReceived();
+    const friendRequestsSent = FriendshipStore.friendRequestsSent();
+
+    this.setState({ friends: friends,
+      friendRequestsReceived: friendRequestsReceived,
+      friendRequestsSent: friendRequestsSent
     });
-    console.log(FriendshipStore.friends());
-    console.log(FriendshipStore.friendRequestsReceived());
-    console.log(FriendshipStore.friendRequestsSent());
+    console.log('after this.setState() in friends_page.jsx. New state below:');
+    console.log(friends);
+    console.log(friendRequestsReceived);
+    console.log(friendRequestsSent);
   },
 
   render() {
