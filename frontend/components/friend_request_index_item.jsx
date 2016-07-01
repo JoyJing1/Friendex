@@ -5,7 +5,7 @@ const FriendRequestIndexItem = React.createClass({
   render() {
     const friend = this.props.friend;
     return (
-      <div className="friend-request-item">
+      <div className="friend-request-item clearfix">
         <img src={friend.profile_img}></img>
 
         <Link to={`/users/${friend.friend_id}`}>
@@ -14,8 +14,10 @@ const FriendRequestIndexItem = React.createClass({
           </h4>
         </Link>
 
-        <button className="confirm">Confirm</button>
-        <button className="deleteRequest">Delete Request</button>
+        <div className="friend-request-buttons">
+          <button className="confirm">Confirm</button>
+          <button className="delete-request">Delete Request</button>
+        </div>
       </div>
     );
   }

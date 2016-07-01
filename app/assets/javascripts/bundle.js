@@ -66,7 +66,7 @@
 	var ProfileHeader = __webpack_require__(269);
 	var ProfileAboutPage = __webpack_require__(280);
 	var FriendsPage = __webpack_require__(281);
-	var Newsfeed = __webpack_require__(284);
+	var Newsfeed = __webpack_require__(285);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -35124,7 +35124,7 @@
 	var React = __webpack_require__(1);
 	var FriendshipStore = __webpack_require__(282);
 	var FriendshipActions = __webpack_require__(270);
-	var FriendRequestIndexItem = __webpack_require__(285);
+	var FriendRequestIndexItem = __webpack_require__(284);
 	
 	var FriendRequestIndex = React.createClass({
 	  displayName: 'FriendRequestIndex',
@@ -35202,6 +35202,62 @@
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	
+	var FriendRequestIndexItem = React.createClass({
+	  displayName: 'FriendRequestIndexItem',
+	  render: function render() {
+	    var friend = this.props.friend;
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-request-item clearfix', __self: this
+	      },
+	      React.createElement('img', { src: friend.profile_img, __self: this
+	      }),
+	      React.createElement(
+	        Link,
+	        { to: '/users/' + friend.friend_id, __self: this
+	        },
+	        React.createElement(
+	          'h4',
+	          {
+	            __self: this
+	          },
+	          friend.first_name,
+	          ' ',
+	          friend.last_name
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'friend-request-buttons', __self: this
+	        },
+	        React.createElement(
+	          'button',
+	          { className: 'confirm', __self: this
+	          },
+	          'Confirm'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'delete-request', __self: this
+	          },
+	          'Delete Request'
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = FriendRequestIndexItem;
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 	
 	var React = __webpack_require__(1);
@@ -35228,57 +35284,6 @@
 	});
 	
 	module.exports = Newsfeed;
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	
-	var FriendRequestIndexItem = React.createClass({
-	  displayName: 'FriendRequestIndexItem',
-	  render: function render() {
-	    var friend = this.props.friend;
-	    return React.createElement(
-	      'div',
-	      { className: 'friend-request-item', __self: this
-	      },
-	      React.createElement('img', { src: friend.profile_img, __self: this
-	      }),
-	      React.createElement(
-	        Link,
-	        { to: '/users/' + friend.friend_id, __self: this
-	        },
-	        React.createElement(
-	          'h4',
-	          {
-	            __self: this
-	          },
-	          friend.first_name,
-	          ' ',
-	          friend.last_name
-	        )
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'confirm', __self: this
-	        },
-	        'Confirm'
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'deleteRequest', __self: this
-	        },
-	        'Delete Request'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = FriendRequestIndexItem;
 
 /***/ }
 /******/ ]);

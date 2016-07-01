@@ -7,6 +7,20 @@
   border: 1px solid $gray-light-border;
 }
 
+// ul.friend-request-body li:not(:last-child):after {
+.friend-request-item:not(:last-child):after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 1px;
+  background-color: $gray-light-border;
+  // background-color: black;
+  margin: 0 0 0 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+
 .friend-request-container h3 {
   background-color: $gray-background-light;
   padding: 16px 16px;
@@ -15,7 +29,7 @@
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   vertical-align: middle;
-  margin-bottom: 27px;
+  // margin-bottom: 16px;
 }
 
 img.friend-request-icon {
@@ -31,20 +45,51 @@ img.friend-request-icon {
 
 // FRIEND REQUEST INDEX ITEMS //////////////////////////
 .friend-request-item {
-  // display: flex;
-  // vertical-align: middle;
+  position: relative;
+  padding: 20px;
+
+  h4 {
+    display: inline-block;
+    color: $blue-medium-font;
+    margin: 0;
+    font-size: 16px;
+    padding: 30px;
+    position: absolute;
+  }
+
+  img {
+    height: 77px;
+    width: auto;
+    display: inline-block;
+    // padding: 0 16px 16px 16px;
+  }
 }
 
-.friend-request-item h4 {
+.friend-request-buttons {
   display: inline-block;
-  color: $blue-medium-font;
-  margin: 0;
-  font-size: 16px;
-}
+  float: right;
+  margin-top: 8px;
 
-.friend-request-item > img {
-  height: 77px;
-  width: auto;
-  display: inline-block;
-  margin: 16px 16px 0 16px;
+  button, input[type="submit"] {
+    cursor: pointer;
+    padding: 5px 10px;
+    float: right;
+    border-radius: 3px;
+    margin: 0 10px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button.confirm {
+    background-color: $blue-medium-dark;
+    color: white;
+    border: 1px solid $blue-border;
+  }
+
+  button.delete-request {
+    background-color: $gray-background-light;
+    color: $dark-gray-font;
+    border: 1px solid $gray-light-border;
+  }
+
 }

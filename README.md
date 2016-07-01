@@ -97,21 +97,21 @@ user interface (edited & destroyed are bonus).
 
   **Objective:** Users can make posts. Users can post on their own wall or on a friend's wall
 
-  - [ ] create `Post` model
+  - [x] create `Post` model
   - build out API, Flux loop, and components for:
-  - [ ] fetching posts for a profile
-  - [ ] adding posts to a profile
-  - [ ] deleting posts from a profile
-  - [ ] Style new elements
+  - [x] fetching posts for a profile
+  - [x] adding posts to a profile
+  - [x] deleting posts from a profile
+  - [x] Style new elements
 
 ### Phase 5: Friendships (1.5 day, W2 Wed 6pm)
 
 **Objective:** Users can send & receive Friend Requests (create & destroy `Friendship`s). Users who have received a friend request can accept or deny (update status of `Friendship`). Users profile page should display all of user's friends.
 
-- [ ] create `Friendship` model
+- [x] create `Friendship` model
 - build out API, Flux loop, and components for:
-  - [ ] `Friendship`s CRUD
-  - [ ] fetching all friends via Friendships table
+  - [x] `Friendship`s CRUD
+  - [x] fetching all friends via Friendships table
 - [ ] list friend requests in Profile-Friends tab
   - [ ] list friend requests in header (bonus - later)
   - [ ] `FriendRequestIndex`
