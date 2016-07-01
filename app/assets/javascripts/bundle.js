@@ -66,7 +66,7 @@
 	var ProfileHeader = __webpack_require__(269);
 	var ProfileAboutPage = __webpack_require__(280);
 	var FriendsPage = __webpack_require__(281);
-	var Newsfeed = __webpack_require__(285);
+	var Newsfeed = __webpack_require__(287);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -35304,7 +35304,9 @@
 	module.exports = FriendRequestIndexItem;
 
 /***/ },
-/* 285 */
+/* 285 */,
+/* 286 */,
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
