@@ -9,6 +9,7 @@ my_rand = Random.new(4928)
 
 User.destroy_all()
 Profile.destroy_all()
+Friendship.destroy_all()
 
 User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
@@ -31,6 +32,10 @@ Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
 Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
 Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted")
 Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted")
+Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted")
+Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted")
+Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
+Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
 
 

@@ -45,7 +45,7 @@ const FriendshipApiUtil = {
 			url: `/api/friendships/${id}`,
 			type: 'GET',
 			success(resp) {
-        console.log("successfully fetched friendship");
+        console.log("successfully fetched friendships");
         console.log(resp);
         success(resp);
       },

@@ -15,7 +15,6 @@
     };
   </script>
 
-
   <script type="text/javascript">
     <% if current_user %>
       window.currentUser = <%= render("api/users/user.json.jbuilder",
@@ -24,7 +23,6 @@
       window.currentUser = {}
     <% end %>
   </script>
-  <script src="jquery.timeago.js" type="text/javascript"></script>
 
 </head>
 <body>

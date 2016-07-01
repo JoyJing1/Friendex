@@ -52,7 +52,7 @@ const NewPostForm = React.createClass({
   },
 
   render() {
-    const numRows = Math.floor(this.state.body.length / 25);
+    const numRows = Math.floor(this.state.body.length / 18);
 
     return(
       <div className="new-post-form-container">

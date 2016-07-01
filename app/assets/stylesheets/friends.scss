@@ -28,3 +28,23 @@ img.friend-request-icon {
 .friend-request-body {
   background-color: white;
 }
+
+// FRIEND REQUEST INDEX ITEMS //////////////////////////
+.friend-request-item {
+  // display: flex;
+  // vertical-align: middle;
+}
+
+.friend-request-item h4 {
+  display: inline-block;
+  color: $blue-medium-font;
+  margin: 0;
+  font-size: 16px;
+}
+
+.friend-request-item > img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+  margin: 16px 16px 0 16px;
+}

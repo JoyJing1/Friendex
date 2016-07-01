@@ -37,7 +37,9 @@ const FriendshipActions = {
   receiveManyFriendships(friendships) {
     AppDispatcher.dispatch({
       actionType: FriendshipConstants.UPDATE_FRIENDSHIPS,
-      friendships: friendships
+      friends: friendships["friends"],
+      friend_requests_received: friendships["friend_requests_received"],
+      friend_requests_sent: friendships["friend_requests_sent"]
     });
   }
 

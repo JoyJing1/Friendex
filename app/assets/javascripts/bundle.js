@@ -64,9 +64,9 @@
 	var LoginPage = __webpack_require__(262);
 	var ProfileTimeline = __webpack_require__(266);
 	var ProfileHeader = __webpack_require__(269);
-	var ProfileAboutPage = __webpack_require__(277);
-	var FriendsPage = __webpack_require__(282);
-	var Newsfeed = __webpack_require__(278);
+	var ProfileAboutPage = __webpack_require__(280);
+	var FriendsPage = __webpack_require__(281);
+	var Newsfeed = __webpack_require__(284);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -26032,7 +26032,7 @@
 	      SessionStore.__emitChange();
 	      break;
 	    case ProfileConstants.UPDATE_CURRENT_USER_PROFILE:
-	      console.log('SesionStore.__onDispatch() for UPDATE_CURRENT_USER_PROFILE');
+	      console.log('SessionStore.__onDispatch() for UPDATE_CURRENT_USER_PROFILE');
 	      _currentUserProfile = payload.profile;
 	      SessionStore.__emitChange();
 	      break;
@@ -33809,8 +33809,8 @@
 	var ProfileActions = __webpack_require__(258);
 	var ProfileAbout = __webpack_require__(268);
 	var ProfileHeader = __webpack_require__(269);
-	var NewPostForm = __webpack_require__(270);
-	var PostIndex = __webpack_require__(274);
+	var NewPostForm = __webpack_require__(273);
+	var PostIndex = __webpack_require__(277);
 	
 	var ProfileTimeline = React.createClass({
 	  displayName: 'ProfileTimeline',
@@ -34031,7 +34031,7 @@
 	var ProfileAbout = __webpack_require__(268);
 	var ProfileStore = __webpack_require__(267);
 	var ProfileActions = __webpack_require__(258);
-	var FriendshipActions = __webpack_require__(279);
+	var FriendshipActions = __webpack_require__(270);
 	var SessionStore = __webpack_require__(230);
 	
 	var ProfileHeader = React.createClass({
@@ -34143,10 +34143,152 @@
 
 	"use strict";
 	
+	var AppDispatcher = __webpack_require__(231);
+	var FriendshipConstants = __webpack_require__(271);
+	var FriendshipApiUtil = __webpack_require__(272);
+	var ErrorActions = __webpack_require__(256);
+	var hashHistory = __webpack_require__(168).hashHistory;
+	
+	var FriendshipActions = {
+	  createFriendship: function createFriendship(friendship) {
+	    console.log("createFriendship(friendship) in friendship_actions.js");
+	    FriendshipApiUtil.createFriendship(friendship, this.receiveSingleFriendship);
+	  },
+	  updateFriendship: function updateFriendship(friendship) {
+	    console.log("updateFriendship(friendship) in friendship_actions.js");
+	    FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
+	  },
+	  fetchSingleFriendship: function fetchSingleFriendship(id) {
+	    console.log("fetchSingleFriendship(id) in friendship_actions.js");
+	    FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
+	  },
+	  fetchAllFriends: function fetchAllFriends(id) {
+	    console.log("fetchAllFriends(id) in friendship_actions.js");
+	    FriendshipApiUtil.fetchManyFriendships(id, this.receiveManyFriendships);
+	  },
+	  receiveSingleFriendship: function receiveSingleFriendship(friendship) {
+	    AppDispatcher.dispatch({
+	      actionType: FriendshipConstants.UPDATE_FRIENDSHIP,
+	      friendship: friendship
+	    });
+	  },
+	  receiveManyFriendships: function receiveManyFriendships(friendships) {
+	    AppDispatcher.dispatch({
+	      actionType: FriendshipConstants.UPDATE_FRIENDSHIPS,
+	      friends: friendships["friends"],
+	      friend_requests_received: friendships["friend_requests_received"],
+	      friend_requests_sent: friendships["friend_requests_sent"]
+	    });
+	  }
+	};
+	
+	module.exports = FriendshipActions;
+
+/***/ },
+/* 271 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var FriendshipConstants = {
+	  UPDATE_FRIENDSHIP: "UPDATE_FRIENDSHIP",
+	  UPDATE_FRIENDSHIPS: "UPDATE_FRIENDSHIPS"
+	};
+	
+	module.exports = FriendshipConstants;
+
+/***/ },
+/* 272 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var FriendshipApiUtil = {
+	  createFriendship: function createFriendship(friendship, _success, error) {
+	    console.log("createFriendship(friendship, success, error) in friendship_api_util.js");
+	    $.ajax({
+	      url: "/api/friendships",
+	      type: 'POST',
+	      data: { friendship: friendship },
+	      success: function success(resp) {
+	        console.log("successfully created new friendship");
+	        console.log(resp);
+	        _success(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new friendship");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  updateFriendship: function updateFriendship(friendship, _success2, error) {
+	    console.log("updateFriendship(friendship, success, error) in friendship_api_util.js");
+	    $.ajax({
+	      url: "/api/friendships/" + friendship.id,
+	      type: 'PATCH',
+	      data: { friendship: friendship },
+	      success: function success(resp) {
+	        console.log("successfully edited friendship");
+	        console.log(resp);
+	        _success2(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new friendship");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchFriendship: function fetchFriendship(id, _success3, error) {
+	    console.log("fetchFriendship(id, success, error) in friendship_api_util.js");
+	    $.ajax({
+	      url: "/api/friendships/" + id,
+	      type: 'GET',
+	      success: function success(resp) {
+	        console.log("successfully fetched friendships");
+	        console.log(resp);
+	        _success3(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch friendship");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchManyFriendships: function fetchManyFriendships(id, _success4, error) {
+	    console.log("fetchFriendships(ids, success, error) in friendship_api_util.js");
+	    $.ajax({
+	      url: "/api/friendships/",
+	      type: 'GET',
+	      data: { id: id },
+	      success: function success(resp) {
+	        console.log("successfully fetched friendships");
+	        console.log(resp);
+	        _success4(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch friendships");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  }
+	};
+	
+	module.exports = FriendshipApiUtil;
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	// const hashHistory = require('react-router').hashHistory;
-	var PostActions = __webpack_require__(271);
+	var PostActions = __webpack_require__(274);
 	var SessionStore = __webpack_require__(230);
 	var ProfileStore = __webpack_require__(267);
 	var ErrorStore = __webpack_require__(264);
@@ -34193,7 +34335,7 @@
 	    this.setState({ body: e.target.value });
 	  },
 	  render: function render() {
-	    var numRows = Math.floor(this.state.body.length / 25);
+	    var numRows = Math.floor(this.state.body.length / 18);
 	
 	    return React.createElement(
 	      'div',
@@ -34253,14 +34395,14 @@
 	// cols="35"  wrap="hard"
 
 /***/ },
-/* 271 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var AppDispatcher = __webpack_require__(231);
-	var PostConstants = __webpack_require__(272);
-	var PostApiUtil = __webpack_require__(273);
+	var PostConstants = __webpack_require__(275);
+	var PostApiUtil = __webpack_require__(276);
 	var ErrorActions = __webpack_require__(256);
 	var hashHistory = __webpack_require__(168).hashHistory;
 	
@@ -34318,7 +34460,7 @@
 	module.exports = PostActions;
 
 /***/ },
-/* 272 */
+/* 275 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34332,7 +34474,7 @@
 	module.exports = PostConstants;
 
 /***/ },
-/* 273 */
+/* 276 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34431,15 +34573,15 @@
 	module.exports = PostApiUtil;
 
 /***/ },
-/* 274 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var PostStore = __webpack_require__(275);
-	var PostActions = __webpack_require__(271);
-	var PostIndexItem = __webpack_require__(276);
+	var PostStore = __webpack_require__(278);
+	var PostActions = __webpack_require__(274);
+	var PostIndexItem = __webpack_require__(279);
 	
 	var PostIndex = React.createClass({
 	  displayName: 'PostIndex',
@@ -34486,14 +34628,14 @@
 	module.exports = PostIndex;
 
 /***/ },
-/* 275 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var AppDispatcher = __webpack_require__(231);
 	var Store = __webpack_require__(235).Store;
-	var PostConstants = __webpack_require__(272);
+	var PostConstants = __webpack_require__(275);
 	
 	var _posts = [];
 	
@@ -34566,7 +34708,7 @@
 	module.exports = PostStore;
 
 /***/ },
-/* 276 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34574,7 +34716,7 @@
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	var SessionStore = __webpack_require__(230);
-	var PostActions = __webpack_require__(271);
+	var PostActions = __webpack_require__(274);
 	
 	var PostIndexItem = React.createClass({
 	  displayName: 'PostIndexItem',
@@ -34679,7 +34821,7 @@
 	module.exports = PostIndexItem;
 
 /***/ },
-/* 277 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -34727,178 +34869,7 @@
 	module.exports = ProfileAboutPage;
 
 /***/ },
-/* 278 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var SessionActions = __webpack_require__(254);
-	
-	var Newsfeed = React.createClass({
-	  displayName: 'Newsfeed',
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'header-main clearfix', __self: this
-	      },
-	      React.createElement(
-	        'h1',
-	        {
-	          __self: this
-	        },
-	        'This is the Newsfeed'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = Newsfeed;
-
-/***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var AppDispatcher = __webpack_require__(231);
-	var FriendshipConstants = __webpack_require__(280);
-	var FriendshipApiUtil = __webpack_require__(281);
-	var ErrorActions = __webpack_require__(256);
-	var hashHistory = __webpack_require__(168).hashHistory;
-	
-	var FriendshipActions = {
-	  createFriendship: function createFriendship(friendship) {
-	    console.log("createFriendship(friendship) in friendship_actions.js");
-	    FriendshipApiUtil.createFriendship(friendship, this.receiveSingleFriendship);
-	  },
-	  updateFriendship: function updateFriendship(friendship) {
-	    console.log("updateFriendship(friendship) in friendship_actions.js");
-	    FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
-	  },
-	  fetchSingleFriendship: function fetchSingleFriendship(id) {
-	    console.log("fetchSingleFriendship(id) in friendship_actions.js");
-	    FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
-	  },
-	  fetchAllFriends: function fetchAllFriends(id) {
-	    console.log("fetchAllFriends(id) in friendship_actions.js");
-	    FriendshipApiUtil.fetchManyFriendships(id, this.receiveManyFriendships);
-	  },
-	  receiveSingleFriendship: function receiveSingleFriendship(friendship) {
-	    AppDispatcher.dispatch({
-	      actionType: FriendshipConstants.UPDATE_FRIENDSHIP,
-	      friendship: friendship
-	    });
-	  },
-	  receiveManyFriendships: function receiveManyFriendships(friendships) {
-	    AppDispatcher.dispatch({
-	      actionType: FriendshipConstants.UPDATE_FRIENDSHIPS,
-	      friendships: friendships
-	    });
-	  }
-	};
-	
-	module.exports = FriendshipActions;
-
-/***/ },
-/* 280 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var FriendshipConstants = {
-	  UPDATE_FRIENDSHIP: "UPDATE_FRIENDSHIP",
-	  UPDATE_FRIENDSHIPS: "UPDATE_FRIENDSHIPS"
-	};
-	
-	module.exports = FriendshipConstants;
-
-/***/ },
 /* 281 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var FriendshipApiUtil = {
-	  createFriendship: function createFriendship(friendship, _success, error) {
-	    console.log("createFriendship(friendship, success, error) in friendship_api_util.js");
-	    $.ajax({
-	      url: "/api/friendships",
-	      type: 'POST',
-	      data: { friendship: friendship },
-	      success: function success(resp) {
-	        console.log("successfully created new friendship");
-	        console.log(resp);
-	        _success(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to create a new friendship");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  updateFriendship: function updateFriendship(friendship, _success2, error) {
-	    console.log("updateFriendship(friendship, success, error) in friendship_api_util.js");
-	    $.ajax({
-	      url: "/api/friendships/" + friendship.id,
-	      type: 'PATCH',
-	      data: { friendship: friendship },
-	      success: function success(resp) {
-	        console.log("successfully edited friendship");
-	        console.log(resp);
-	        _success2(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to create a new friendship");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  fetchFriendship: function fetchFriendship(id, _success3, error) {
-	    console.log("fetchFriendship(id, success, error) in friendship_api_util.js");
-	    $.ajax({
-	      url: "/api/friendships/" + id,
-	      type: 'GET',
-	      success: function success(resp) {
-	        console.log("successfully fetched friendship");
-	        console.log(resp);
-	        _success3(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to fetch friendship");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  fetchManyFriendships: function fetchManyFriendships(id, _success4, error) {
-	    console.log("fetchFriendships(ids, success, error) in friendship_api_util.js");
-	    $.ajax({
-	      url: "/api/friendships/",
-	      type: 'GET',
-	      data: { id: id },
-	      success: function success(resp) {
-	        console.log("successfully fetched friendships");
-	        console.log(resp);
-	        _success4(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to fetch friendships");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  }
-	};
-	
-	module.exports = FriendshipApiUtil;
-
-/***/ },
-/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -34907,8 +34878,9 @@
 	// const Link = require('react-router').Link;
 	var SessionStore = __webpack_require__(230);
 	var ProfileStore = __webpack_require__(267);
-	var FriendshipStore = __webpack_require__(284);
-	var FriendshipActions = __webpack_require__(279);
+	var ProfileActions = __webpack_require__(258);
+	var FriendshipStore = __webpack_require__(282);
+	var FriendshipActions = __webpack_require__(270);
 	var FriendRequestIndex = __webpack_require__(283);
 	// const FriendHeader = require('./friend_header');
 	
@@ -34916,44 +34888,232 @@
 	  displayName: 'FriendsPage',
 	  getInitialState: function getInitialState() {
 	    return { profile: ProfileStore.currentProfile(),
-	      friends: {},
-	      friendRequests: {} };
+	      friends: FriendshipStore.friends(),
+	      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+	      friendRequestsSent: FriendshipStore.friendRequestsSent() };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    // Listen to ProfileStore
-	    // Pull id --> Pull friends
-	
 	    var id = parseInt(this.props.params.id);
 	    console.log("componentDidMount() in friends_page.jsx");
 	    console.log(id);
-	    // debugger;
+	
+	    ProfileActions.fetchSingleProfile(id);
+	    this.profileListener = ProfileStore.addListener(this._updateFriends);
+	
 	    FriendshipActions.fetchAllFriends(id);
-	    this.friendListener = FriendshipStore.addListener(this._updateFriend);
+	    this.friendListener = FriendshipStore.addListener(this._updateFriends);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
+	    this.profileListener.remove();
 	    this.friendListener.remove();
 	  },
-	  _updateFriend: function _updateFriend(friend) {
-	    // this.setState({ friend: FriendshipStore.currentFriend() });
-	    // console.log("_updateFriend(friend) in friend.jsx");
-	    // console.log(this.state);
+	  componentWillReceiveProps: function componentWillReceiveProps() {
+	    FriendshipActions.fetchAllFriends(id);
 	  },
-	  _splitFriends: function _splitFriends(friends) {
-	    // Helper method to split friend list into friends & friendRequests
+	  _updateFriends: function _updateFriends() {
+	    console.log("_updateFriends() in FriendsPage");
+	    this.setState({ friends: FriendshipStore.friends(),
+	      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+	      friendRequestsSent: FriendshipStore.friendRequestsSent()
+	    });
+	    console.log(FriendshipStore.friends());
+	    console.log(FriendshipStore.friendRequestsReceived());
+	    console.log(FriendshipStore.friendRequestsSent());
 	  },
 	  render: function render() {
-	    // Only want to show friend requests when on own profile page
+	    console.log('render() in friends_page.jsx');
+	    console.log(this.state);
 	    return React.createElement(
-	      'div',
-	      { className: 'friend-page', __self: this
+	      'ul',
+	      {
+	        __self: this
 	      },
-	      React.createElement(FriendRequestIndex, { friendRequests: this.state.friendRequests, __self: this
-	      })
+	      React.createElement(FriendRequestIndex, { friendRequestsReceived: this.state.friendRequestsReceived, __self: this
+	      }),
+	      this.props.children
 	    );
 	  }
 	});
 	
 	module.exports = FriendsPage;
+	
+	// className="friend-page"
+
+	// {
+	//   this.state.friends.map(friend => {
+	//     return <li key={friend.id}>{friend.id}</li>;
+	//   })
+	// }
+	// <FriendRequestIndex friendRequests={this.state.friendRequestsReceived}/>
+
+	//
+	// <h5>Friends</h5>
+	// {this.state.friends.length}
+	// {
+	//   this.state.friends.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+	// <h5>Requests Received</h5>
+	// {this.state.friendRequestsReceived.length}
+	// {
+	//   this.state.friendRequestsReceived.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+	// <h5>Requests Sent</h5>
+	// {this.state.friendRequestsSent.length}
+	// {
+	//   this.state.friendRequestsSent.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var AppDispatcher = __webpack_require__(231);
+	var Store = __webpack_require__(235).Store;
+	var FriendshipConstants = __webpack_require__(271);
+	var SessionStore = __webpack_require__(230);
+	
+	var _friends = {};
+	var _friendRequestsReceived = {};
+	var _friendRequestsSent = {};
+	
+	var FriendshipStore = new Store(AppDispatcher);
+	
+	FriendshipStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case FriendshipConstants.UPDATE_FRIENDSHIP:
+	      console.log('UPDATE_FRIENDSHIP in friendship_store.js');
+	      _updateFriendship(payload.friendship);
+	      FriendshipStore.__emitChange();
+	      break;
+	    case FriendshipConstants.UPDATE_FRIENDSHIPS:
+	      console.log('UPDATE_FRIENDSHIPS in friendship_store.js');
+	      console.log(payload);
+	      _resetFriendships(payload);
+	      FriendshipStore.__emitChange();
+	      break;
+	  }
+	};
+	
+	function _resetFriendships(payload) {
+	  _friends = {};
+	  _friendRequestsReceived = {};
+	  _friendRequestsSent = {};
+	
+	  console.log("_resetFriendship(payload) in friendship_store.js");
+	  console.log(payload);
+	
+	  payload.friends.forEach(function (friend) {
+	    _friends[friend.id] = friend;
+	  });
+	
+	  payload.friend_requests_received.forEach(function (friend) {
+	    _friendRequestsReceived[friend.id] = friend;
+	  });
+	
+	  payload.friend_requests_sent.forEach(function (friend) {
+	    _friendRequestsSent[friend.id] = friend;
+	  });
+	
+	  console.log('saved friend_request payload to store');
+	  console.log(_friends);
+	  console.log(_friendRequestsReceived);
+	  console.log(_friendRequestsSent);
+	
+	  // _friends = payload.friends;
+	  // debugger;
+	  // _friendRequestsReceived = payload.friend_requests_received;
+	  // _friendRequestsSent = payload.friend_requests_sent;
+	}
+	
+	function _updateFriendship(friendship) {
+	  "_updateFriendship in friendship_store.js";
+	
+	  console.log(friendship);
+	  if (friendship.status === "accepted") {
+	    _friends[friendship.id] = friendship;
+	  } else if (friendship.status === "denied") {
+	    delete _friendRequestsReceived[friendship.id];
+	    delete _friendRequestsSent[friendship.id];
+	  } else if (friendship.status === "pending") {
+	    if (SessionStore.currentUser().id === friendship.requestor_id) {
+	      _friendRequestsSent[friendship.id] = friendship;
+	    } else if (SessionStore.currentUser().id === friendship.receiver_id) {
+	      _friendRequestsReceived[friendship.id] = friendship;
+	    } else {
+	      console.log('pending friendrequest but not related with current_user');
+	    }
+	  } else {
+	    console.log('friendship status not accepted, denied, or pending');
+	  }
+	}
+	
+	function _removeFriendship(friendship) {
+	  delete _friends[friendship.id];
+	  delete _friendRequestsReceived[friendship.id];
+	  delete _friendRequestsSent[friendship.id];
+	}
+	
+	FriendshipStore.find = function (id) {
+	  return _friends[id] || _friendRequestsReceived[id] || _friendRequestsSent[id];
+	};
+	
+	FriendshipStore.friends = function () {
+	  console.log('pulling FriendshipStore.friends in friendship_store.js');
+	  console.log(_friends);
+	  var friends = [];
+	
+	  for (var id in _friends) {
+	    if (_friends.hasOwnProperty(id)) {
+	      friends.push(_friends[id]);
+	    }
+	  }
+	  return friends;
+	};
+	
+	FriendshipStore.friendRequestsReceived = function () {
+	  console.log('pulling FriendshipStore.friendRequestsReceived in friendship_store.js');
+	  console.log(_friendRequestsReceived);
+	  var friendRequestsReceived = [];
+	
+	  for (var id in _friendRequestsReceived) {
+	    if (_friendRequestsReceived.hasOwnProperty(id)) {
+	      friendRequestsReceived.push(_friendRequestsReceived[id]);
+	    }
+	  }
+	  return friendRequestsReceived;
+	};
+	
+	FriendshipStore.friendRequestsSent = function () {
+	  console.log('pulling FriendshipStore.friendRequestsSent in friendship_store.js');
+	  console.log(_friendRequestsSent);
+	  var friendRequestsSent = [];
+	
+	  for (var id in _friendRequestsSent) {
+	    if (_friendRequestsSent.hasOwnProperty(id)) {
+	      friendRequestsSent.push(_friendRequestsSent[id]);
+	    }
+	  }
+	  return friendRequestsSent;
+	};
+	
+	module.exports = FriendshipStore;
 
 /***/ },
 /* 283 */
@@ -34962,9 +35122,9 @@
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var FriendshipStore = __webpack_require__(284);
-	var FriendshipActions = __webpack_require__(279);
-	// const FriendRequestIndexItem = require('./friend_request_index_item');
+	var FriendshipStore = __webpack_require__(282);
+	var FriendshipActions = __webpack_require__(270);
+	var FriendRequestIndexItem = __webpack_require__(285);
 	
 	var FriendRequestIndex = React.createClass({
 	  displayName: 'FriendRequestIndex',
@@ -34999,6 +35159,11 @@
 	  // },
 	
 	  render: function render() {
+	    var _this = this;
+	
+	    console.log('rendering FriendRequestIndex');
+	    console.log(this.props.friendRequestsReceived);
+	    // debugger;
 	    return React.createElement(
 	      'div',
 	      { className: 'friend-request-container', __self: this
@@ -35016,27 +35181,10 @@
 	        'ul',
 	        { className: 'friend-request-body', __self: this
 	        },
-	        React.createElement(
-	          'li',
-	          {
-	            __self: this
-	          },
-	          'Friend Index Item will go here'
-	        ),
-	        React.createElement(
-	          'li',
-	          {
-	            __self: this
-	          },
-	          'Friend Index Item will go here'
-	        ),
-	        React.createElement(
-	          'li',
-	          {
-	            __self: this
-	          },
-	          'Friend Index Item will go here'
-	        )
+	        this.props.friendRequestsReceived.map(function (friend) {
+	          return React.createElement(FriendRequestIndexItem, { friend: friend, __self: _this
+	          });
+	        })
 	      )
 	    );
 	  }
@@ -35054,53 +35202,83 @@
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var SessionActions = __webpack_require__(254);
+	
+	var Newsfeed = React.createClass({
+	  displayName: 'Newsfeed',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'header-main clearfix', __self: this
+	      },
+	      React.createElement(
+	        'h1',
+	        {
+	          __self: this
+	        },
+	        'This is the Newsfeed'
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Newsfeed;
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
-	var AppDispatcher = __webpack_require__(231);
-	var Store = __webpack_require__(235).Store;
-	var FriendshipConstants = __webpack_require__(280);
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
 	
-	var _friendships = {};
-	
-	var FriendshipStore = new Store(AppDispatcher);
-	
-	FriendshipStore.__onDispatch = function (payload) {
-	  switch (payload.actionType) {
-	    case FriendshipConstants.UPDATE_FRIENDSHIP:
-	      _updateFriendship(payload.friendship);
-	      FriendshipStore.__emitChange();
-	      break;
-	    case FriendshipConstants.UPDATE_FRIENDSHIPS:
-	      _friendships = payload.friendships;
-	      FriendshipStore.__emitChange();
-	      break;
+	var FriendRequestIndexItem = React.createClass({
+	  displayName: 'FriendRequestIndexItem',
+	  render: function render() {
+	    var friend = this.props.friend;
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-request-item', __self: this
+	      },
+	      React.createElement('img', { src: friend.profile_img, __self: this
+	      }),
+	      React.createElement(
+	        Link,
+	        { to: '/users/' + friend.friend_id, __self: this
+	        },
+	        React.createElement(
+	          'h4',
+	          {
+	            __self: this
+	          },
+	          friend.first_name,
+	          ' ',
+	          friend.last_name
+	        )
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'confirm', __self: this
+	        },
+	        'Confirm'
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'deleteRequest', __self: this
+	        },
+	        'Delete Request'
+	      )
+	    );
 	  }
-	};
+	});
 	
-	function _updateFriendship(friendship) {
-	  _friendships[friendship.id] = friendship;
-	}
-	
-	function _removeFriendship(friendship) {
-	  delete _friendships[friendship.id];
-	}
-	
-	FriendshipStore.find = function (id) {
-	  return _friendships[id];
-	};
-	
-	FriendshipStore.all = function () {
-	  var friendships = [];
-	
-	  for (var id in _friendships) {
-	    if (_friendships.hasOwnProperty(id)) {
-	      friendships.push(_friendships[id]);
-	    }
-	  }
-	  return friendships;
-	};
-	
-	module.exports = FriendshipStore;
+	module.exports = FriendRequestIndexItem;
 
 /***/ }
 /******/ ]);

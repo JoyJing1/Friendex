@@ -4,6 +4,7 @@ const React = require('react');
 // const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
+const ProfileActions = require('../actions/profile_actions');
 const FriendshipStore = require('../stores/friendship_store');
 const FriendshipActions = require('../actions/friendship_actions');
 const FriendRequestIndex = require('./friend_request_index');
@@ -12,44 +13,95 @@ const FriendRequestIndex = require('./friend_request_index');
 const FriendsPage = React.createClass({
   getInitialState() {
     return { profile: ProfileStore.currentProfile(),
-              friends: {},
-              friendRequests: {} };
+              friends: FriendshipStore.friends(),
+              friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+              friendRequestsSent: FriendshipStore.friendRequestsSent() };
   },
 
   componentDidMount() {
-    // Listen to ProfileStore
-    // Pull id --> Pull friends
-
     const id = parseInt(this.props.params.id);
     console.log("componentDidMount() in friends_page.jsx");
     console.log(id);
-    // debugger;
+
+    ProfileActions.fetchSingleProfile(id);
+    this.profileListener = ProfileStore.addListener(this._updateFriends);
+
     FriendshipActions.fetchAllFriends(id);
-    this.friendListener = FriendshipStore.addListener(this._updateFriend);
+    this.friendListener = FriendshipStore.addListener(this._updateFriends);
   },
 
   componentWillUnmount() {
+    this.profileListener.remove();
     this.friendListener.remove();
   },
 
-  _updateFriend(friend) {
-    // this.setState({ friend: FriendshipStore.currentFriend() });
-    // console.log("_updateFriend(friend) in friend.jsx");
-    // console.log(this.state);
+  componentWillReceiveProps() {
+    FriendshipActions.fetchAllFriends(id);
   },
 
-  _splitFriends(friends) {
-    // Helper method to split friend list into friends & friendRequests
+  _updateFriends() {
+    console.log("_updateFriends() in FriendsPage");
+    this.setState({ friends: FriendshipStore.friends(),
+      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+      friendRequestsSent: FriendshipStore.friendRequestsSent()
+    });
+    console.log(FriendshipStore.friends());
+    console.log(FriendshipStore.friendRequestsReceived());
+    console.log(FriendshipStore.friendRequestsSent());
   },
 
-  render () {
-    // Only want to show friend requests when on own profile page
+  render() {
+    console.log('render() in friends_page.jsx');
+    console.log(this.state);
     return (
-      <div className="friend-page">
-        <FriendRequestIndex friendRequests={this.state.friendRequests}/>
-      </div>
+      <ul>
+        <FriendRequestIndex friendRequestsReceived={this.state.friendRequestsReceived}/>
+
+        {this.props.children}
+      </ul>
     );
   }
 });
 
 module.exports = FriendsPage;
+
+ // className="friend-page"
+
+// {
+//   this.state.friends.map(friend => {
+//     return <li key={friend.id}>{friend.id}</li>;
+//   })
+// }
+// <FriendRequestIndex friendRequests={this.state.friendRequestsReceived}/>
+
+//
+// <h5>Friends</h5>
+// {this.state.friends.length}
+// {
+//   this.state.friends.map(friend => {
+//     return (
+//       <li key={friend.id}>{friend.first_name}</li>
+//     );
+//   })
+// }
+//
+// <h5>Requests Received</h5>
+// {this.state.friendRequestsReceived.length}
+// {
+//   this.state.friendRequestsReceived.map(friend => {
+//     return (
+//       <li key={friend.id}>{friend.first_name}</li>
+//     );
+//   })
+// }
+//
+// <h5>Requests Sent</h5>
+// {this.state.friendRequestsSent.length}
+// {
+//   this.state.friendRequestsSent.map(friend => {
+//     return (
+//       <li key={friend.id}>{friend.first_name}</li>
+//     );
+//   })
+// }
+//

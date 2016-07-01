@@ -1,7 +1,7 @@
 const React = require('react');
 const FriendshipStore = require('../stores/friendship_store');
 const FriendshipActions = require('../actions/friendship_actions');
-// const FriendRequestIndexItem = require('./friend_request_index_item');
+const FriendRequestIndexItem = require('./friend_request_index_item');
 
 const FriendRequestIndex = React.createClass({
   // getInitialState() {
@@ -34,6 +34,9 @@ const FriendRequestIndex = React.createClass({
   // },
 
   render() {
+    console.log('rendering FriendRequestIndex');
+    console.log(this.props.friendRequestsReceived);
+    // debugger;
     return (
       <div className="friend-request-container">
           <h3>
@@ -42,9 +45,9 @@ const FriendRequestIndex = React.createClass({
           </h3>
 
           <ul className="friend-request-body">
-            <li>Friend Index Item will go here</li>
-            <li>Friend Index Item will go here</li>
-            <li>Friend Index Item will go here</li>
+            {this.props.friendRequestsReceived.map( friend => {
+              return <FriendRequestIndexItem friend={friend}/>;
+            })}
           </ul>
 
       </div>

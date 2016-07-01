@@ -43,7 +43,7 @@ const Header = React.createClass({
 
           <img className="f-square-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
 
-          <div className="header-user" >
+          <div className="header-user">
             <img className="header-user-icon"
                   src={this.state.currentUserProfile.profile_img}></img>
             <Link to={`/users/${currentUser.id}`}

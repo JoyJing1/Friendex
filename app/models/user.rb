@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
       FROM friendships f
       JOIN profiles p ON p.user_id = f.requestor_id
       WHERE f.receiver_id = :id
-        AND f.status = 'ACCEPTED'
+        AND f.status = 'accepted'
 
       UNION
 
@@ -66,8 +66,8 @@ class User < ActiveRecord::Base
         p.last_name,
         p.profile_img
       FROM friendships f
-      JOIN profiles p ON p.user_id = f.requestor_id
-      WHERE f.receiver_id = :id
+      JOIN profiles p ON p.user_id = f.receiver_id
+      WHERE f.requestor_id = :id
         AND f.status = 'pending'
     SQL
   end
@@ -85,8 +85,8 @@ class User < ActiveRecord::Base
         p.last_name,
         p.profile_img
       FROM friendships f
-      JOIN profiles p ON p.user_id = f.receiver_id
-      WHERE f.requestor_id = :id
+      JOIN profiles p ON p.user_id = f.requestor_id
+      WHERE f.receiver_id = :id
         AND f.status = 'pending'
     SQL
   end

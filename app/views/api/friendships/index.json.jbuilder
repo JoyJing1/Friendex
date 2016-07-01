@@ -5,7 +5,7 @@ json.friends do
 end
 
 json.friend_requests_received do
-  json.array!(@friend_requests) do |friend_request|
+  json.array!(@friend_requests_received) do |friend_request|
     json.partial!('friend_request', friend_request: friend_request)
   end
 end
