@@ -34899,6 +34899,7 @@
 	var FriendshipStore = __webpack_require__(282);
 	var FriendshipActions = __webpack_require__(270);
 	var FriendRequestIndex = __webpack_require__(283);
+	var FriendIndex = __webpack_require__(286);
 	// const FriendHeader = require('./friend_header');
 	
 	var FriendsPage = React.createClass({
@@ -34951,6 +34952,8 @@
 	        __self: this
 	      },
 	      React.createElement(FriendRequestIndex, { friendRequestsReceived: this.state.friendRequestsReceived, __self: this
+	      }),
+	      React.createElement(FriendIndex, { friends: this.state.friends, __self: this
 	      }),
 	      this.props.children
 	    );
@@ -35165,42 +35168,12 @@
 	
 	var FriendRequestIndex = React.createClass({
 	  displayName: 'FriendRequestIndex',
-	
-	  // getInitialState() {
-	  //   return { friendRequests: FriendRequestStore.all() };
-	  // },
-	  //
-	  // componentDidMount() {
-	  //   console.log("componentDidMount() in friendRequest_index.jsx");
-	  //   const ids = { receiver_id: this.props.profile.user_id };
-	  //   console.log(ids);
-	  //   FriendRequestActions.fetchManyFriendRequests(ids);
-	  //   this.friendRequestListener = FriendRequestStore.addListener(this._onChange);
-	  // },
-	  //
-	  // componentWillReceiveProps(newProps) {
-	  //   const ids = { receiver_id: newProps.profile.user_id };
-	  //   console.log(ids);
-	  //   FriendRequestActions.fetchManyFriendRequests(ids);
-	  // },
-	  //
-	  // componentWillUnmount() {
-	  //   this.friendRequestListener.remove();
-	  //   // FriendRequestStore.remove(this._onChange);
-	  // },
-	  //
-	  // _onChange() {
-	  //   this.setState( { friendRequests: FriendRequestStore.all() } );
-	  //   console.log("_onChange() in friendRequest_index.jsx");
-	  //   console.log(this.state);
-	  // },
-	
 	  render: function render() {
 	    var _this = this;
 	
 	    console.log('rendering FriendRequestIndex');
 	    console.log(this.props.friendRequestsReceived);
-	    // debugger;
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'friend-request-container', __self: this
@@ -35222,18 +35195,13 @@
 	          return React.createElement(FriendRequestIndexItem, { friend: friend, __self: _this
 	          });
 	        })
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
 	
 	module.exports = FriendRequestIndex;
-	
-	// {this.state.friendRequests.map( friendRequest => {
-	//   return(
-	//     <FriendRequestIndexItem friendRequest={friendRequest} key={friendRequest.id}/>
-	//   );
-	// })}
 
 /***/ },
 /* 284 */
@@ -35340,6 +35308,98 @@
 	});
 	
 	module.exports = Newsfeed;
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var FriendshipStore = __webpack_require__(282);
+	var FriendshipActions = __webpack_require__(270);
+	var FriendIndexItem = __webpack_require__(287);
+	
+	var FriendIndex = React.createClass({
+	  displayName: 'FriendIndex',
+	  render: function render() {
+	    var _this = this;
+	
+	    console.log('rendering FriendIndex');
+	    console.log(this.props.friends);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-container', __self: this
+	      },
+	      React.createElement(
+	        'h3',
+	        {
+	          __self: this
+	        },
+	        React.createElement('img', { className: 'friend-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467347814/icons/iconmonstr-user-29-240.png', __self: this
+	        }),
+	        'Friends'
+	      ),
+	      React.createElement(
+	        'ul',
+	        { className: 'friend-body', __self: this
+	        },
+	        this.props.friends.map(function (friend) {
+	          return React.createElement(FriendIndexItem, { friend: friend, __self: _this
+	          });
+	        })
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = FriendIndex;
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var FriendshipActions = __webpack_require__(270);
+	var FriendshipStore = __webpack_require__(282);
+	
+	var FriendIndexItem = React.createClass({
+	  displayName: 'FriendIndexItem',
+	  render: function render() {
+	    var friend = this.props.friend;
+	    console.log('rendering friend_index_item');
+	    console.log(friend);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-item clearfix', __self: this
+	      },
+	      React.createElement('img', { src: friend.profile_img, __self: this
+	      }),
+	      React.createElement(
+	        Link,
+	        { to: '/users/' + friend.friend_id, __self: this
+	        },
+	        React.createElement(
+	          'h4',
+	          {
+	            __self: this
+	          },
+	          friend.first_name,
+	          ' ',
+	          friend.last_name
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = FriendIndexItem;
 
 /***/ }
 /******/ ]);
