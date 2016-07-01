@@ -60,7 +60,7 @@ img.friend-request-icon {
   }
 }
 
-.friend-request-buttons {
+.friend-request-buttons, .friend-buttons {
   display: inline-block;
   float: right;
   margin-top: 8px;
@@ -81,7 +81,7 @@ img.friend-request-icon {
     border: 1px solid $blue-border;
   }
 
-  button.delete-request {
+  button.delete-request, button.remove-friend {
     background-color: $gray-background-light;
     color: $dark-gray-font;
     border: 1px solid $gray-light-border;

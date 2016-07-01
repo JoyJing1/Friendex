@@ -35339,6 +35339,12 @@
 	
 	var FriendIndexItem = React.createClass({
 	  displayName: 'FriendIndexItem',
+	  removeFriendship: function removeFriendship() {
+	    var friendship = { id: this.props.friend.id,
+	      status: "denied"
+	    };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
 	  render: function render() {
 	    var friend = this.props.friend;
 	    console.log('rendering friend_index_item');
@@ -35362,6 +35368,18 @@
 	          friend.first_name,
 	          ' ',
 	          friend.last_name
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'friend-buttons', __self: this
+	        },
+	        React.createElement(
+	          'button',
+	          { className: 'remove-friend',
+	            onClick: this.denyFriendship, __self: this
+	          },
+	          'Remove Friend'
 	        )
 	      )
 	    );
