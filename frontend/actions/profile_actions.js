@@ -14,11 +14,12 @@ const ProfileActions = {
 
   fetchCurrentUserProfile() {
     console.log("fetchCurrentUserProfile(id) in profile_actions.js");
-    console.log(currentUser);
+    // console.log(currentUser);
     ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
   },
 
   receiveSingleProfile(profile) {
+    console.log('receiveSingleProfile(profile) in profile_actions.js');
     AppDispatcher.dispatch({
       actionType: ProfileConstants.UPDATE_PROFILE,
       profile: profile
@@ -26,6 +27,7 @@ const ProfileActions = {
   },
 
   receiveCurrentUserProfile(profile) {
+    console.log('receiveCurrentUserProfile(profile) in profile_actions.js');
     AppDispatcher.dispatch({
       actionType: ProfileConstants.UPDATE_CURRENT_USER_PROFILE,
       profile: profile

@@ -77,7 +77,7 @@ const NewPostForm = React.createClass({
                 value={this.state.body}
                 placeholder={this._newPostPrompt()}
                 onChange={this._updatePost}>
-              {numRows}</textarea>
+              </textarea>
 
             </div>
           </div>

@@ -22,13 +22,33 @@ html, body {
   padding-bottom: 0;
 }
 
-.background-img {
-  position: relative;
-  display: block;
-  width: 100%;
+.background-container {
+  width: 900px;
   height: 150px;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  border-left: 1px solid $gray-light-border;
+  border-right: 1px solid $gray-light-border;
+  // border-bottom: 1px solid $gray-light-border;
+  // border-top: 1px solid $gray-light-border;
+}
+
+.background-img {
+  // border-left: 1px solid $gray-light-border;
+  border-right: 1px solid $gray-light-border;
+  position: absolute;
+  // bottom: -50%;
+  width: 100%;
+  margin: 0 auto;
+  display: inline-block;
   background-color: $dark-gray;
-  z-index: 5;
+}
+
+.profile-header-nav {
+  width: 900px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .profile-img {
@@ -47,11 +67,33 @@ html, body {
 
 .profile-nav h1 {
   position: absolute;
-  top: 93px;
-  left: 219px;
+  bottom: 80px;
+  left: 228px;
   color: white;
   font-size: 29px;
   z-index: 15;
+}
+
+.add-friend {
+  position: absolute;
+  background: red;
+  height: 25px;
+  width: 100px;
+  right: 18px;
+  bottom: 70px;
+  font-size: 12px;
+  text-align: center;
+  background: $gray-background-light;
+  color: $dark-gray-font;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.add-friend img {
+  display: inline-block;
+  height: 10px;
+  width: auto;
+  margin-right: 7px
 }
 
 .profile-tabs {
@@ -60,8 +102,11 @@ html, body {
   width: 100%;
   height: 50px;
   display: flex;
-  border-bottom: 1px solid $gray-lighter-border;
-  border-top: 1px solid $gray-lighter-border;
+  border: 1px solid $gray-light-border;
+  // border-left: 1px solid $gray-light-border;
+  // border-right: 1px solid $gray-light-border;
+  // border-bottom: 1px solid $gray-light-border;
+  // border-top: 1px solid $gray-lighter-border;
   margin-bottom: 27px;
   color: $blue-dark-font;
 }

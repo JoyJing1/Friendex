@@ -32,7 +32,7 @@ function _updatePost(post) {
     }
   }
   if (newPost) {
-    _posts.push(post);
+    _posts.unshift(post);
   }
 }
 

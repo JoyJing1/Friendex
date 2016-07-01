@@ -30,7 +30,7 @@ Profile.create!(user_id: 1,
     birthday: "1984-05-14",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155555/profiles/mark_zucker_profile.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155572/backgrounds/mark_zucker_background.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339505/backgrounds/Lakes.jpg",
     workplace: "Facebook",
     current_city: "Menlo Park, CA")
 
@@ -40,7 +40,7 @@ Profile.create!(user_id: 2,
     birthday: "1969-08-28",
     gender: "female",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_350,w_350/v1467198451/profiles/sheryl-sandberg-hed-2014.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1439123068749-20f4035bd7ed.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339268/backgrounds/panorama-sali2000.jpg",
     workplace: "Facebook",
     current_city: "Menlo Park, CA",
     hometown: "Washington D.C.")
@@ -51,7 +51,7 @@ Profile.create!(user_id: 3,
     birthday: "1971-07-09",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_600,w_600/v1467157354/profiles/150518_r26512-1200-630-06150519.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155783/backgrounds/photo-1463003416389-296a1ad37ca0.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339250/backgrounds/_DSC1434.jpg",
     current_city: "Menlo Park, CA",
     workplace: "Facebook")
 
@@ -62,7 +62,7 @@ Profile.create!(user_id: 4,
     birthday: "1972-07-12",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_300,w_300,x_80/v1467156929/profiles/SundarPichai129-_2.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155788/backgrounds/photo-1461770354136-8f58567b617a.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339181/backgrounds/4964-4967.jpg",
     current_city: "Mountain View, CA",
     workplace: "Google")
 
@@ -72,7 +72,7 @@ Profile.create!(user_id: 5,
     birthday: "1973-03-26",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_675,w_675,x_350/v1467157122/profiles/LarryPage1.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155737/backgrounds/photo-1464621922360-27f3bf0eca75.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339155/backgrounds/20160229092748-1bb97924-xx.jpg",
     current_city: "Mountain View, CA",
     workplace: "Google")
 
@@ -82,7 +82,7 @@ Profile.create!(user_id: 6,
     birthday: "1973-08-21",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_400,w_400/v1467157152/profiles/Sergey-Brin.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155760/backgrounds/photo-1464400694175-33544b41703d.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339046/backgrounds/ultra_wide_hougang_hdr_by_draken413o.jpg",
     current_city: "Mountain View, CA",
     workplace: "Google")
 
@@ -93,7 +93,7 @@ Profile.create!(user_id: 7,
     birthday: "1976-02-24",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_360,w_360/v1467198808/profiles/jan-koum-whatsapp.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155729/backgrounds/photo-1465205568425-23fdd3805e49.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467338932/backgrounds/photo-1414694762283-acccc27bca85.jpg",
     hometown: "Fastiv, Ukraine",
     workplace: "Whatsapp")
 
@@ -103,7 +103,7 @@ Profile.create!(user_id: 8,
     birthday: "1970-02-21",
     gender: "male",
     profile_img: "http://res.cloudinary.com/joyjing1/image/upload/c_crop,h_1124,w_1124,x_50/v1467198942/profiles/linkedin-ceo-jeff-weiner-explains-how-fixing-a-common-mistake-helped-him-grow-as-a-leader.jpg",
-    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467155771/backgrounds/photo-1431057499046-ecd6e0f36ebe.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
     current_city: "New York City, NY",
     workplace: "LinkedIn")
 

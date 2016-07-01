@@ -1,4 +1,5 @@
 const React = require('react');
+const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const PostActions = require('../actions/post_actions');
 
@@ -21,10 +22,15 @@ const PostIndexItem = React.createClass({
       <li>
         <div className="post-item-container">
           <div className="post-author-info">
-            <img src={this.props.post.profile_img}></img>
+
+            <Link to={`/users/${this.props.post.author_id}`}>
+              <img src={this.props.post.profile_img}></img>
+            </Link>
 
             <div className="post-author-text">
-              <h5>{this.props.post.author_name}</h5>
+              <Link to={`/users/${this.props.post.author_id}`}>
+                <h5>{this.props.post.author_name}</h5>
+              </Link>
               <h6>{$.timeago(this.props.post.created_at)}</h6>
             </div>
           </div>

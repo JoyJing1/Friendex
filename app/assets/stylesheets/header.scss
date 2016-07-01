@@ -8,9 +8,11 @@
   justify-content: space-around;
   vertical-align: middle;
   z-index: 100;
+  border-bottom: 1px solid $blue-border;
 }
 
 .header-nav {
+  margin: 0 auto;
   width: 900px;
   display: flex;
   justify-content: space-around;
@@ -52,7 +54,9 @@ button.button-logout {
   padding: 4 9px;
   color: white;
   text-align: center;
-  padding: 4px 12px;
+  height: 27px;
+  width: 77px;
+  margin: auto 50px;
   font-size: 14px;
-  font-weight: normal;
+
 }

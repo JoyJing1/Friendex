@@ -38,24 +38,6 @@ const FriendshipApiUtil = {
 			}
 		});
 	},
-  //
-  // deleteFriendship(id, success, error) {
-  //   console.log("deleteFriendship(id, success, error) in friendship_api_util.js");
-	// 	$.ajax({
-	// 		url: `/api/friendships/${id}`,
-	// 		type: 'DELETE',
-	// 		success(resp) {
-  //       console.log("successfully deleted friendship");
-  //       console.log(resp);
-  //       success(resp);
-  //     },
-	// 		error(xhr) {
-  //       console.log("failed to delete friendship");
-	// 			const errors = xhr.responseJSON;
-  //       console.log(errors);
-	// 		}
-	// 	});
-  // },
 
   fetchFriendship(id, success, error) {
     console.log("fetchFriendship(id, success, error) in friendship_api_util.js");

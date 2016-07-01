@@ -17,15 +17,6 @@ const FriendshipActions = {
     FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
   },
 
-  //
-  // deleteFriendship(id) {
-  //   console.log("deleteFriendship(id) in friendship_actions.js");
-  //   FriendshipApiUtil.deleteFriendship(id, (resp) => {
-  //     FriendshipActions.removedFriendship(resp);
-  //     console.log("Friendship successfully deleted");
-  //   });
-  // },
-
   fetchSingleFriendship(id) {
     console.log("fetchSingleFriendship(id) in friendship_actions.js");
     FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
@@ -50,14 +41,6 @@ const FriendshipActions = {
     });
   }
 
-  // removedFriendship(friendship) {
-  //   console.log('in removedFriendship(friendship) in friendship_actions.js');
-  //   console.log(friendship);
-  //   AppDispatcher.dispatch({
-  //     actionType: FriendshipConstants.REMOVED_FRIENDSHIP,
-  //     friendship: friendship
-  //   });
-  // }
 };
 
 module.exports = FriendshipActions;

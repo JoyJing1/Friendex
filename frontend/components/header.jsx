@@ -5,7 +5,6 @@ const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const ProfileActions = require('../actions/profile_actions');
-// const ProfileTimeline = require('./profile_timelie');
 
 const Header = React.createClass({
   getInitialState() {
@@ -14,7 +13,6 @@ const Header = React.createClass({
 
   componentDidMount() {
     console.log("componentDidMount in header.jsx");
-    console.log(currentUser);
     ProfileActions.fetchCurrentUserProfile();
     this.sessionListener = SessionStore.addListener(this._onChange);
   },
