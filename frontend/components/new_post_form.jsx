@@ -3,6 +3,7 @@
 const React = require('react');
 const Link = require('react-router').Link;
 // const hashHistory = require('react-router').hashHistory;
+const ProfileActions = require('../actions/profile_actions');
 const PostActions = require('../actions/post_actions');
 const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
@@ -20,6 +21,12 @@ const NewPostForm = React.createClass({
 
   componentWillUnmount() {
     this.sessionListener.remove();
+  },
+
+  componentWillReceiveProps(newProps) {
+    ProfileActions.fetchCurrentUserProfile();
+    // SessionActions.fetchCurrentUserProfile(newProps.profile.id);
+    // this._onChange();
   },
 
   _onChange() {
