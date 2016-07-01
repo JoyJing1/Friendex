@@ -4,10 +4,24 @@ class Api::FriendshipsController < ApplicationController
     @friendship = Friendship.new(friendship_params)
 
     if @friendship.save
-      render "api/friendships/show"
+
+      @friend = Profile.find(@friendship.requestor_id)
+      @friend_request = { id: @friendship.id,
+        status: @friendship.status,
+        date_request_sent: @friendship.created_at,
+        requestor_id: @friendship.requestor_id,
+        receiver_id: @friendship.receiver_id,
+        friend_id: @friendship.requestor_id,
+        first_name: @friend.first_name,
+        last_name: @friend.last_name,
+        profile_img: @friend.profile_img }
+
+      render "api/friendships/show_friend_request"
+
     else
       render json: @friendship.errors, status: 422
     end
+
   end
 
   def update

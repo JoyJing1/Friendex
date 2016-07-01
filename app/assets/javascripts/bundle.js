@@ -66,7 +66,7 @@
 	var ProfileHeader = __webpack_require__(269);
 	var ProfileAboutPage = __webpack_require__(280);
 	var FriendsPage = __webpack_require__(281);
-	var Newsfeed = __webpack_require__(284);
+	var Newsfeed = __webpack_require__(285);
 	
 	// Redirect to login page if user not logged in
 	// Otherwise, send to profile page
@@ -34047,12 +34047,15 @@
 	    var id = parseInt(this.props.params.id);
 	    ProfileActions.fetchSingleProfile(id);
 	    this.profileListener = ProfileStore.addListener(this._updateProfile);
+	    this.friendshipListener = FriendshipStore.addListener(this._updateProfile);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.profileListener.remove();
+	    this.friendshipListener.remove();
 	  },
 	  _updateProfile: function _updateProfile(profile) {
 	    this.setState({ profile: ProfileStore.currentProfile() });
+	    // Also need to update friendship value
 	    console.log("_updateProfile(profile) in profile_header.jsx");
 	  },
 	  _sendFriendRequest: function _sendFriendRequest(e) {
@@ -34213,6 +34216,7 @@
 	      success: function success(resp) {
 	        console.log("successfully created new friendship");
 	        console.log(resp);
+	        // debugger;
 	        _success(resp);
 	      },
 	      error: function error(xhr) {
@@ -34907,18 +34911,23 @@
 	    this.profileListener.remove();
 	    this.friendListener.remove();
 	  },
-	  componentWillReceiveProps: function componentWillReceiveProps() {
-	    FriendshipActions.fetchAllFriends(id);
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
 	  },
 	  _updateFriends: function _updateFriends() {
 	    console.log("_updateFriends() in FriendsPage");
-	    this.setState({ friends: FriendshipStore.friends(),
-	      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
-	      friendRequestsSent: FriendshipStore.friendRequestsSent()
+	    var friends = FriendshipStore.friends();
+	    var friendRequestsReceived = FriendshipStore.friendRequestsReceived();
+	    var friendRequestsSent = FriendshipStore.friendRequestsSent();
+	
+	    this.setState({ friends: friends,
+	      friendRequestsReceived: friendRequestsReceived,
+	      friendRequestsSent: friendRequestsSent
 	    });
-	    console.log(FriendshipStore.friends());
-	    console.log(FriendshipStore.friendRequestsReceived());
-	    console.log(FriendshipStore.friendRequestsSent());
+	    console.log('after this.setState() in friends_page.jsx. New state below:');
+	    console.log(friends);
+	    console.log(friendRequestsReceived);
+	    console.log(friendRequestsSent);
 	  },
 	  render: function render() {
 	    console.log('render() in friends_page.jsx');
@@ -34988,6 +34997,7 @@
 	var Store = __webpack_require__(235).Store;
 	var FriendshipConstants = __webpack_require__(271);
 	var SessionStore = __webpack_require__(230);
+	var ProfileStore = __webpack_require__(267);
 	
 	var _friends = {};
 	var _friendRequestsReceived = {};
@@ -35046,21 +35056,35 @@
 	  "_updateFriendship in friendship_store.js";
 	
 	  console.log(friendship);
+	  // debugger;
+	
 	  if (friendship.status === "accepted") {
 	    _friends[friendship.id] = friendship;
-	  } else if (friendship.status === "denied") {
 	    delete _friendRequestsReceived[friendship.id];
 	    delete _friendRequestsSent[friendship.id];
+	  } else if (friendship.status === "denied") {
+	    console.log('trying to delete friendship from friendship_store.js');
+	    // debugger;
+	
+	    delete _friendRequestsReceived[friendship.id];
+	    delete _friendRequestsSent[friendship.id];
+	
+	    console.log(_friendRequestsReceived);
 	  } else if (friendship.status === "pending") {
-	    if (SessionStore.currentUser().id === friendship.requestor_id) {
+	    // const currentUser = SessionStore.currentUser();
+	    var currentProfile = ProfileStore.currentProfile();
+	    console.log(currentProfile);
+	    // debugger;
+	
+	    if (currentProfile.id === friendship.requestor_id) {
 	      _friendRequestsSent[friendship.id] = friendship;
-	    } else if (SessionStore.currentUser().id === friendship.receiver_id) {
+	    } else if (currentProfile.id === friendship.receiver_id) {
 	      _friendRequestsReceived[friendship.id] = friendship;
 	    } else {
-	      console.log('pending friendrequest but not related with current_user');
+	      console.log('PROBLEM: pending friendrequest but not related with current_user');
 	    }
 	  } else {
-	    console.log('friendship status not accepted, denied, or pending');
+	    console.log('PROBLEM: friendship status not accepted, denied, or pending');
 	  }
 	}
 	
@@ -35124,7 +35148,7 @@
 	var React = __webpack_require__(1);
 	var FriendshipStore = __webpack_require__(282);
 	var FriendshipActions = __webpack_require__(270);
-	var FriendRequestIndexItem = __webpack_require__(285);
+	var FriendRequestIndexItem = __webpack_require__(284);
 	
 	var FriendRequestIndex = React.createClass({
 	  displayName: 'FriendRequestIndex',
@@ -35202,6 +35226,81 @@
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var FriendshipActions = __webpack_require__(270);
+	var FriendshipStore = __webpack_require__(282);
+	
+	var FriendRequestIndexItem = React.createClass({
+	  displayName: 'FriendRequestIndexItem',
+	  acceptFriendship: function acceptFriendship() {
+	    var friendship = { id: this.props.friend.id,
+	      status: "accepted"
+	    };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
+	  denyFriendship: function denyFriendship() {
+	    var friendship = { id: this.props.friend.id,
+	      status: "denied"
+	    };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
+	  render: function render() {
+	    var friend = this.props.friend;
+	    console.log('rendering friend_request_index_item');
+	    console.log(friend);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-request-item', __self: this
+	      },
+	      React.createElement('img', { src: friend.profile_img, __self: this
+	      }),
+	      React.createElement(
+	        Link,
+	        { to: '/users/' + friend.friend_id, __self: this
+	        },
+	        React.createElement(
+	          'h4',
+	          {
+	            __self: this
+	          },
+	          friend.first_name,
+	          ' ',
+	          friend.last_name
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'friend-request-buttons', __self: this
+	        },
+	        React.createElement(
+	          'button',
+	          { className: 'confirm',
+	            onClick: this.acceptFriendship, __self: this
+	          },
+	          'Confirm'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'delete-request',
+	            onClick: this.denyFriendship, __self: this
+	          },
+	          'Delete Request'
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = FriendRequestIndexItem;
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 	
 	var React = __webpack_require__(1);
@@ -35228,57 +35327,6 @@
 	});
 	
 	module.exports = Newsfeed;
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	
-	var FriendRequestIndexItem = React.createClass({
-	  displayName: 'FriendRequestIndexItem',
-	  render: function render() {
-	    var friend = this.props.friend;
-	    return React.createElement(
-	      'div',
-	      { className: 'friend-request-item', __self: this
-	      },
-	      React.createElement('img', { src: friend.profile_img, __self: this
-	      }),
-	      React.createElement(
-	        Link,
-	        { to: '/users/' + friend.friend_id, __self: this
-	        },
-	        React.createElement(
-	          'h4',
-	          {
-	            __self: this
-	          },
-	          friend.first_name,
-	          ' ',
-	          friend.last_name
-	        )
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'confirm', __self: this
-	        },
-	        'Confirm'
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'deleteRequest', __self: this
-	        },
-	        'Delete Request'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = FriendRequestIndexItem;
 
 /***/ }
 /******/ ]);

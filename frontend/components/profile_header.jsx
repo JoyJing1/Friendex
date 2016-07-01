@@ -22,14 +22,17 @@ const ProfileHeader = React.createClass({
     const id = parseInt(this.props.params.id);
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._updateProfile);
+    this.friendshipListener = FriendshipStore.addListener(this._updateProfile);
   },
 
   componentWillUnmount() {
     this.profileListener.remove();
+    this.friendshipListener.remove();
   },
 
   _updateProfile(profile) {
     this.setState({ profile: ProfileStore.currentProfile() });
+    // Also need to update friendship value
     console.log("_updateProfile(profile) in profile_header.jsx");
   },
 

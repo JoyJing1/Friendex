@@ -2,6 +2,7 @@ const AppDispatcher = require('../dispatcher/dispatcher.js');
 const Store = require('flux/utils').Store;
 const FriendshipConstants = require('../constants/friendship_constants');
 const SessionStore = require('./session_store');
+const ProfileStore = require('./profile_store');
 
 let _friends = {};
 let _friendRequestsReceived = {};
@@ -59,21 +60,37 @@ function _resetFriendships(payload) {
 function _updateFriendship(friendship) {
   "_updateFriendship in friendship_store.js";
   console.log(friendship);
+  // debugger;
+
   if (friendship.status === "accepted") {
     _friends[friendship.id] = friendship;
-  } else if (friendship.status === "denied") {
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
+
+  } else if (friendship.status === "denied") {
+    console.log('trying to delete friendship from friendship_store.js');
+    // debugger;
+
+    delete _friendRequestsReceived[friendship.id];
+    delete _friendRequestsSent[friendship.id];
+
+    console.log(_friendRequestsReceived);
+
   } else if (friendship.status === "pending") {
-    if (SessionStore.currentUser().id === friendship.requestor_id) {
+    // const currentUser = SessionStore.currentUser();
+    const currentProfile = ProfileStore.currentProfile();
+    console.log(currentProfile);
+    // debugger;
+
+    if (currentProfile.id === friendship.requestor_id) {
       _friendRequestsSent[friendship.id] = friendship;
-    } else if (SessionStore.currentUser().id === friendship.receiver_id) {
+    } else if (currentProfile.id === friendship.receiver_id) {
       _friendRequestsReceived[friendship.id] = friendship;
     } else {
-      console.log('pending friendrequest but not related with current_user');
+      console.log('PROBLEM: pending friendrequest but not related with current_user');
     }
   } else {
-    console.log('friendship status not accepted, denied, or pending');
+    console.log('PROBLEM: friendship status not accepted, denied, or pending');
   }
 }
 

@@ -1,9 +1,28 @@
 const React = require('react');
 const Link = require('react-router').Link;
+const FriendshipActions = require('../actions/friendship_actions');
+const FriendshipStore = require('../stores/friendship_store');
 
 const FriendRequestIndexItem = React.createClass({
+  acceptFriendship() {
+    const friendship = { id: this.props.friend.id,
+                          status: "accepted"
+    };
+    FriendshipActions.updateFriendship(friendship);
+  },
+
+  denyFriendship() {
+    const friendship = { id: this.props.friend.id,
+                          status: "denied"
+    };
+    FriendshipActions.updateFriendship(friendship);
+  },
+
   render() {
     const friend = this.props.friend;
+    console.log('rendering friend_request_index_item');
+    console.log(friend);
+    
     return (
       <div className="friend-request-item">
         <img src={friend.profile_img}></img>
@@ -14,8 +33,13 @@ const FriendRequestIndexItem = React.createClass({
           </h4>
         </Link>
 
-        <button className="confirm">Confirm</button>
-        <button className="deleteRequest">Delete Request</button>
+        <div className="friend-request-buttons">
+          <button className="confirm"
+            onClick={this.acceptFriendship}>Confirm</button>
+          <button className="delete-request"
+            onClick={this.denyFriendship}>Delete Request</button>
+        </div>
+
       </div>
     );
   }
