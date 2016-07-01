@@ -12,7 +12,7 @@ const App = React.createClass({
     if (SessionStore.isUserLoggedIn()) {
       return(
         <div className="app-container">
-
+          <Header/>
           {this.props.children}
         </div>
       );

@@ -8,7 +8,7 @@ const SessionActions = require('../actions/session_actions');
 const Newsfeed = React.createClass({
   render() {
     return(
-      <div className="header-main clearfix">
+      <div className="newsfeed-container clearfix">
         <h4>This is the Newsfeed</h4>
 
       </div>
