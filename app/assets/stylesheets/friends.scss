@@ -1,0 +1,30 @@
+@import 'colors';
+
+.friend-request-container {
+  width: 900px;
+  background: white;
+  margin: 0 auto;
+  border: 1px solid $gray-light-border;
+}
+
+.friend-request-container h3 {
+  background-color: $gray-background-light;
+  padding: 16px 16px;
+  margin: 0 auto;
+  border-bottom: 1px solid $gray-light-border;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  vertical-align: middle;
+  margin-bottom: 27px;
+}
+
+img.friend-request-icon {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.friend-request-body {
+  background-color: white;
+}

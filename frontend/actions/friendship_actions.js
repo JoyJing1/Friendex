@@ -22,9 +22,9 @@ const FriendshipActions = {
     FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
   },
 
-  fetchManyFriendships(ids) {
-    console.log("fetchManyFriendships(ids) in friendship_actions.js");
-    FriendshipApiUtil.fetchManyFriendships(ids, this.receiveManyFriendships);
+  fetchAllFriends(id) {
+    console.log("fetchAllFriends(id) in friendship_actions.js");
+    FriendshipApiUtil.fetchManyFriendships(id, this.receiveManyFriendships);
   },
 
   receiveSingleFriendship(friendship) {

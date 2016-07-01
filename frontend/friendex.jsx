@@ -17,6 +17,7 @@ const LoginPage = require('./components/login_page');
 const ProfileTimeline = require('./components/profile_timeline');
 const ProfileHeader = require('./components/profile_header');
 const ProfileAboutPage = require('./components/profile_about_page');
+const FriendsPage = require('./components/friends_page');
 const Newsfeed = require('./components/newsfeed');
 
 // Redirect to login page if user not logged in
@@ -42,6 +43,7 @@ const appRouter = (
         <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
         <Route path="timeline" component={ ProfileTimeline }/>
         <Route path="about" component={ ProfileAboutPage } onEnter={_ensureLoggedIn}/>
+        <Route path="friends" component={ FriendsPage } onEnter={_ensureLoggedIn}/>
       </Route>
     </Route>
   </Router>

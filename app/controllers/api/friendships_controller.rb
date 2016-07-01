@@ -34,9 +34,24 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def index
-    @friendships = Friendship.where("receiver_id = ? OR requestor_id = ?", params[:id], params[:id])
-                  .order(updated_at: :desc)
+    # debugger;
+    p params
+    @user = User.find(params[:id])
+    @friends = @user.friends
+    @friend_requests_received = @user.friend_requests_received
+    @friend_requests_sent = @user.friend_requests_sent
   end
+    # @friendships = Friendship.where("receiver_id = ? OR requestor_id = ?", params[:id], params[:id])
+    #               .order(updated_at: :desc)
+
+    # @friendships = Friendship.where(receiver_id: params[:id]).join
+
+
+  # end
+
+  # def friends
+  #   Friendship.
+  # end
 
 
 	private

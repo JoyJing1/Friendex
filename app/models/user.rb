@@ -19,15 +19,76 @@ class User < ActiveRecord::Base
 	before_validation :ensure_session_token_uniqueness
 
   def friends
-    User.where('requestor_id = ? OR receiver_id = ? AND status="ACCEPTED"', params[:id], params[:id])
+    binds = {id: id}
+
+    Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        f.id,
+        f.status,
+        f.updated_at AS friendiversary,
+        p.user_id AS friend_id,
+        p.first_name,
+        p.last_name,
+        p.profile_img
+      FROM friendships f
+      JOIN profiles p ON p.user_id = f.requestor_id
+      WHERE f.receiver_id = :id
+        AND f.status = 'ACCEPTED'
+
+      UNION
+
+      SELECT
+        f.id,
+        f.status,
+        f.updated_at AS friendiversary,
+        p.user_id AS friend_id,
+        p.first_name,
+        p.last_name,
+        p.profile_img
+      FROM friendships f
+      JOIN profiles p ON p.user_id = f.receiver_id
+      WHERE f.requestor_id = :id
+        AND f.status = 'accepted'
+
+    SQL
   end
 
-  def friends_requested
-    User.where(requestor_id: params[:id]).where(status: :PENDING)
+  def friend_requests_sent
+    binds = {id: id}
+
+    Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        f.id,
+        f.status,
+        f.updated_at AS date_request_sent,
+        p.user_id AS friend_id,
+        p.first_name,
+        p.last_name,
+        p.profile_img
+      FROM friendships f
+      JOIN profiles p ON p.user_id = f.requestor_id
+      WHERE f.receiver_id = :id
+        AND f.status = 'pending'
+    SQL
   end
 
   def friend_requests_received
-    User.where(receiver_id: params[:id]).where(status: :PENDING)
+    binds = {id: id}
+
+    Friendship.find_by_sql([<<-SQL, binds])
+      SELECT
+        f.id,
+        f.status,
+        f.created_at AS date_request_sent,
+        p.user_id AS friend_id,
+        p.first_name,
+        p.last_name,
+        p.profile_img
+      FROM friendships f
+      JOIN profiles p ON p.user_id = f.receiver_id
+      WHERE f.requestor_id = :id
+        AND f.status = 'pending'
+    SQL
   end
 
 # User Authentication

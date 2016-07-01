@@ -38,7 +38,7 @@ const ProfileHeader = React.createClass({
 
     const friendship = { requestor_id: SessionStore.currentUser().id,
                           receiver_id: ProfileStore.currentProfile().user_id,
-                          status: "PENDING"};
+                          status: "pending"};
     FriendshipActions.createFriendship(friendship);
   },
 
@@ -69,7 +69,7 @@ const ProfileHeader = React.createClass({
           <nav className="profile-tabs">
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>Timeline</Link>
             <Link to={`/users/${this.state.profile.user_id}/about`}>About</Link>
-            <Link to={`/users/${this.state.profile.user_id}`}>Friends</Link>
+            <Link to={`/users/${this.state.profile.user_id}/friends`}>Friends</Link>
             <Link to={`/users/${this.state.profile.user_id}`}>Photos</Link>
           </nav>
         </div>

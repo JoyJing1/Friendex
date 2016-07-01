@@ -19,6 +19,22 @@ User.create!(email: "sergey@gmail.com", password: "testtest", username: "Sergey 
 User.create!(email: "jan@whatsapp.com", password: "testtest", username: "Jan Koum")
 User.create!(email: "jeff@linkedin.com", password: "testtest", username: "Jeff Weiner")
 
+Friendship.create!(requestor_id: 2, receiver_id: 1, status: "pending")
+Friendship.create!(requestor_id: 3, receiver_id: 1, status: "pending")
+Friendship.create!(requestor_id: 4, receiver_id: 1, status: "pending")
+Friendship.create!(requestor_id: 3, receiver_id: 2, status: "pending")
+Friendship.create!(requestor_id: 4, receiver_id: 2, status: "pending")
+Friendship.create!(requestor_id: 6, receiver_id: 2, status: "pending")
+Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted")
+Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
+Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
+Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
+Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted")
+Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted")
+
+
+
+
 # (9..29).each |_| do
 #   User.create(email: Faker::Internet.email, password: "password")
 # end
