@@ -22,7 +22,8 @@ const PostActions = {
 
   deletePost(id) {
     console.log("deletePost(id) in post_actions.js");
-    PostApiUtil.deletePost(id, () => {
+    PostApiUtil.deletePost(id, (resp) => {
+      PostActions.removedPost(resp);
       console.log("Post successfully deleted");
     });
   },
@@ -49,8 +50,16 @@ const PostActions = {
       actionType: PostConstants.UPDATE_POSTS,
       posts: posts
     });
-  }
+  },
 
+  removedPost(post) {
+    console.log('in removedPost(post) in post_actions.js');
+    console.log(post);
+    AppDispatcher.dispatch({
+      actionType: PostConstants.REMOVED_POST,
+      post: post
+    });
+  }
 };
 
 module.exports = PostActions;

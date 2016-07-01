@@ -34327,7 +34327,8 @@
 	  },
 	  deletePost: function deletePost(id) {
 	    console.log("deletePost(id) in post_actions.js");
-	    PostApiUtil.deletePost(id, function () {
+	    PostApiUtil.deletePost(id, function (resp) {
+	      PostActions.removedPost(resp);
 	      console.log("Post successfully deleted");
 	    });
 	  },
@@ -34350,6 +34351,14 @@
 	      actionType: PostConstants.UPDATE_POSTS,
 	      posts: posts
 	    });
+	  },
+	  removedPost: function removedPost(post) {
+	    console.log('in removedPost(post) in post_actions.js');
+	    console.log(post);
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.REMOVED_POST,
+	      post: post
+	    });
 	  }
 	};
 	
@@ -34363,7 +34372,8 @@
 	
 	var PostConstants = {
 	  UPDATE_POST: "UPDATE_POST",
-	  UPDATE_POSTS: "UPDATE_POSTS"
+	  UPDATE_POSTS: "UPDATE_POSTS",
+	  REMOVED_POST: "REMOVED_POST"
 	};
 	
 	module.exports = PostConstants;
@@ -34483,15 +34493,21 @@
 	  getInitialState: function getInitialState() {
 	    return { posts: PostStore.all() };
 	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("componentDidMount() in post_index.jsx");
+	    var ids = { receiver_id: this.props.profile.user_id };
+	    console.log(ids);
+	    PostActions.fetchManyPosts(ids);
+	    this.postListener = PostStore.addListener(this._onChange);
+	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    var ids = { receiver_id: newProps.profile.user_id };
-	    PostActions.fetchManyPosts(ids);
-	    PostStore.addListener(this._onChange);
-	    console.log("componentDidMount() in post_index.jsx");
 	    console.log(ids);
+	    PostActions.fetchManyPosts(ids);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
-	    PostStore.remove(this._onChange);
+	    this.postListener.remove();
+	    // PostStore.remove(this._onChange);
 	  },
 	  _onChange: function _onChange() {
 	    this.setState({ posts: PostStore.all() });
@@ -34540,13 +34556,30 @@
 	      _posts = payload.posts;
 	      PostStore.__emitChange();
 	      break;
+	    case PostConstants.REMOVED_POST:
+	      _removePost(payload.post);
+	      PostStore.__emitChange();
+	      break;
 	  }
 	};
 	
 	function _updatePost(post) {
+	  var newPost = true;
 	  for (var i = 0; i < _posts.length; i++) {
 	    if (_posts[i].id === post.id) {
 	      _posts[i] = post;
+	      newPost = false;
+	    }
+	  }
+	  if (newPost) {
+	    _posts.push(post);
+	  }
+	}
+	
+	function _removePost(post) {
+	  for (var i = 0; i < _posts.length; i++) {
+	    if (_posts[i].id === post.id) {
+	      _posts = _posts.slice(0, i).concat(_posts.slice(i + 1));
 	    }
 	  }
 	}

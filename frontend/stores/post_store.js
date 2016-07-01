@@ -16,13 +16,30 @@ PostStore.__onDispatch = payload => {
       _posts = payload.posts;
       PostStore.__emitChange();
       break;
+    case PostConstants.REMOVED_POST:
+      _removePost(payload.post);
+      PostStore.__emitChange();
+      break;
   }
 };
 
 function _updatePost(post) {
+  let newPost = true;
   for(let i = 0; i < _posts.length; i++) {
     if (_posts[i].id === post.id) {
       _posts[i] = post;
+      newPost = false;
+    }
+  }
+  if (newPost) {
+    _posts.push(post);
+  }
+}
+
+function _removePost(post) {
+  for(let i = 0; i < _posts.length; i++) {
+    if (_posts[i].id === post.id) {
+      _posts = _posts.slice(0, i).concat(_posts.slice(i+1));
     }
   }
 }
