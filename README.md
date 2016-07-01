@@ -112,10 +112,10 @@ user interface (edited & destroyed are bonus).
 - build out API, Flux loop, and components for:
   - [x] `Friendship`s CRUD
   - [x] fetching all friends via Friendships table
-- [ ] list friend requests in Profile-Friends tab
+- [x] list friend requests in Profile-Friends tab
   - [ ] list friend requests in header (bonus - later)
-  - [ ] `FriendRequestIndex`
-  - [ ] `FriendRequestIndexItem`
+  - [x] `FriendRequestIndex`
+  - [x] `FriendRequestIndexItem`
 - [ ] list friends in Profile-Friends tab
   - [ ] `FriendIndex`
   - [ ] `FriendIndexItem`

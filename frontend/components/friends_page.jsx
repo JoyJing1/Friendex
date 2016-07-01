@@ -8,6 +8,7 @@ const ProfileActions = require('../actions/profile_actions');
 const FriendshipStore = require('../stores/friendship_store');
 const FriendshipActions = require('../actions/friendship_actions');
 const FriendRequestIndex = require('./friend_request_index');
+const FriendIndex = require('./friend_index');
 // const FriendHeader = require('./friend_header');
 
 const FriendsPage = React.createClass({
@@ -62,6 +63,7 @@ const FriendsPage = React.createClass({
       <ul>
         <FriendRequestIndex friendRequestsReceived={this.state.friendRequestsReceived}/>
 
+        <FriendIndex friends={this.state.friends}/>
         {this.props.children}
       </ul>
     );

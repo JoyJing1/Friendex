@@ -13,6 +13,7 @@ const App = React.createClass({
       return(
         <div className="app-container">
           <Header/>
+
           {this.props.children}
         </div>
       );

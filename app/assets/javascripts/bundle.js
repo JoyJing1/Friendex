@@ -90,8 +90,6 @@
 	    Route,
 	    { path: '/', component: App, __self: undefined
 	    },
-	    React.createElement(IndexRoute, { component: Newsfeed, onEnter: _ensureLoggedIn, __self: undefined
-	    }),
 	    React.createElement(Route, { path: 'login', component: LoginPage, onEnter: _autoLogin, __self: undefined
 	    }),
 	    React.createElement(
@@ -109,6 +107,9 @@
 	    )
 	  )
 	);
+	// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
+	// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
+	// <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  if (window.currentUser) {
@@ -33131,6 +33132,7 @@
 	var SessionStore = __webpack_require__(230);
 	var SessionActions = __webpack_require__(254);
 	var ProfileActions = __webpack_require__(258);
+	// const Util = require('../util/util');
 	
 	var Header = React.createClass({
 	  displayName: 'Header',
@@ -33166,7 +33168,7 @@
 	        'nav',
 	        { className: 'header-nav clearfix', __self: this
 	        },
-	        React.createElement('img', { className: 'f-square-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png', __self: this
+	        React.createElement('img', { className: 'f-square-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png', __self: this
 	        }),
 	        React.createElement(
 	          'div',
@@ -33517,11 +33519,11 @@
 	  },
 	  _setDefaultProfilePic: function _setDefaultProfilePic(profileData) {
 	    if (this.state.gender === "female") {
-	      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214764/profiles/profile_default_woman.jpg";
+	      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214764/profiles/profile_default_woman.jpg";
 	    } else if (this.state.gender === "male") {
-	      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214758/profiles/123.jpg";
+	      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214758/profiles/123.jpg";
 	    } else {
-	      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214732/profiles/no-profile-image.jpg";
+	      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214732/profiles/no-profile-image.jpg";
 	    }
 	    return profileData;
 	  },
@@ -33929,7 +33931,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
 	        }),
 	        'Was born in ',
 	        this.props.profile.hometown
@@ -33940,7 +33942,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
 	        }),
 	        'Lives in ',
 	        this.props.profile.current_city
@@ -33954,7 +33956,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467222106/icons/iconmonstr-briefcase-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467222106/icons/iconmonstr-briefcase-1-240.png', __self: this
 	        }),
 	        this.props.profile.workplace
 	      );
@@ -33967,7 +33969,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png', __self: this
 	        }),
 	        this.props.profile.email
 	      );
@@ -33980,7 +33982,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467223004/icons/Birthday_Cake-52.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467223004/icons/Birthday_Cake-52.png', __self: this
 	        }),
 	        this._parseDate(this.props.profile.birthday)
 	      );
@@ -34001,7 +34003,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { className: 'profile-about-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467220595/icons/iconmonstr-user-1-240_1.png', __self: this
+	        React.createElement('img', { className: 'profile-about-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467220595/icons/iconmonstr-user-1-240_1.png', __self: this
 	        }),
 	        'About'
 	      ),
@@ -34072,7 +34074,7 @@
 	      'button',
 	      { className: 'add-friend', onClick: this._sendFriendRequest, __self: this
 	      },
-	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
 	      }),
 	      'Add Friend'
 	    );
@@ -34344,6 +34346,11 @@
 	  _updatePost: function _updatePost(e) {
 	    this.setState({ body: e.target.value });
 	  },
+	  _submitWithEnterKey: function _submitWithEnterKey(e) {
+	    if (e.keyCode == 13) {
+	      this.handleSubmit(e);
+	    }
+	  },
 	  render: function render() {
 	    var numRows = Math.floor(this.state.body.length / 18);
 	
@@ -34356,11 +34363,11 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png',
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png',
 	          className: 'icon-status', __self: this
 	        }),
 	        'Status',
-	        React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
 	          className: 'icon-photo', __self: this
 	        }),
 	        'Photo/Video'
@@ -34384,7 +34391,8 @@
 	              cols: '35', wrap: 'hard',
 	              value: this.state.body,
 	              placeholder: this._newPostPrompt(),
-	              onChange: this._updatePost, __self: this
+	              onChange: this._updatePost,
+	              onKeyDown: this._submitWithEnterKey, __self: this
 	            })
 	          )
 	        ),
@@ -34806,7 +34814,7 @@
 	            {
 	              __self: this
 	            },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
 	              className: 'post-footer-like', __self: this
 	            }),
 	            'Like'
@@ -34816,7 +34824,7 @@
 	            {
 	              __self: this
 	            },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
 	              className: 'post-footer-comment', __self: this
 	            }),
 	            'Comment'
@@ -34892,6 +34900,7 @@
 	var FriendshipStore = __webpack_require__(282);
 	var FriendshipActions = __webpack_require__(270);
 	var FriendRequestIndex = __webpack_require__(283);
+	var FriendIndex = __webpack_require__(285);
 	// const FriendHeader = require('./friend_header');
 	
 	var FriendsPage = React.createClass({
@@ -34944,6 +34953,8 @@
 	        __self: this
 	      },
 	      React.createElement(FriendRequestIndex, { friendRequestsReceived: this.state.friendRequestsReceived, __self: this
+	      }),
+	      React.createElement(FriendIndex, { friends: this.state.friends, __self: this
 	      }),
 	      this.props.children
 	    );
@@ -35158,42 +35169,12 @@
 	
 	var FriendRequestIndex = React.createClass({
 	  displayName: 'FriendRequestIndex',
-	
-	  // getInitialState() {
-	  //   return { friendRequests: FriendRequestStore.all() };
-	  // },
-	  //
-	  // componentDidMount() {
-	  //   console.log("componentDidMount() in friendRequest_index.jsx");
-	  //   const ids = { receiver_id: this.props.profile.user_id };
-	  //   console.log(ids);
-	  //   FriendRequestActions.fetchManyFriendRequests(ids);
-	  //   this.friendRequestListener = FriendRequestStore.addListener(this._onChange);
-	  // },
-	  //
-	  // componentWillReceiveProps(newProps) {
-	  //   const ids = { receiver_id: newProps.profile.user_id };
-	  //   console.log(ids);
-	  //   FriendRequestActions.fetchManyFriendRequests(ids);
-	  // },
-	  //
-	  // componentWillUnmount() {
-	  //   this.friendRequestListener.remove();
-	  //   // FriendRequestStore.remove(this._onChange);
-	  // },
-	  //
-	  // _onChange() {
-	  //   this.setState( { friendRequests: FriendRequestStore.all() } );
-	  //   console.log("_onChange() in friendRequest_index.jsx");
-	  //   console.log(this.state);
-	  // },
-	
 	  render: function render() {
 	    var _this = this;
 	
 	    console.log('rendering FriendRequestIndex');
 	    console.log(this.props.friendRequestsReceived);
-	    // debugger;
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'friend-request-container', __self: this
@@ -35203,7 +35184,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { className: 'friend-request-icon', src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467347738/icons/iconmonstr-user-21-240_1.png', __self: this
+	        React.createElement('img', { className: 'friend-request-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467347738/icons/iconmonstr-user-21-240_1.png', __self: this
 	        }),
 	        'Friend Requests'
 	      ),
@@ -35215,18 +35196,13 @@
 	          return React.createElement(FriendRequestIndexItem, { friend: friend, __self: _this
 	          });
 	        })
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
 	
 	module.exports = FriendRequestIndex;
-	
-	// {this.state.friendRequests.map( friendRequest => {
-	//   return(
-	//     <FriendRequestIndexItem friendRequest={friendRequest} key={friendRequest.id}/>
-	//   );
-	// })}
 
 /***/ },
 /* 284 */
@@ -35304,8 +35280,116 @@
 	module.exports = FriendRequestIndexItem;
 
 /***/ },
-/* 285 */,
-/* 286 */,
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var FriendshipStore = __webpack_require__(282);
+	var FriendshipActions = __webpack_require__(270);
+	var FriendIndexItem = __webpack_require__(286);
+	
+	var FriendIndex = React.createClass({
+	  displayName: 'FriendIndex',
+	  render: function render() {
+	    var _this = this;
+	
+	    console.log('rendering FriendIndex');
+	    console.log(this.props.friends);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-container', __self: this
+	      },
+	      React.createElement(
+	        'h3',
+	        {
+	          __self: this
+	        },
+	        React.createElement('img', { className: 'friend-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467347814/icons/iconmonstr-user-29-240.png', __self: this
+	        }),
+	        'Friends'
+	      ),
+	      React.createElement(
+	        'ul',
+	        { className: 'friend-body', __self: this
+	        },
+	        this.props.friends.map(function (friend) {
+	          return React.createElement(FriendIndexItem, { friend: friend, __self: _this
+	          });
+	        })
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = FriendIndex;
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var FriendshipActions = __webpack_require__(270);
+	var FriendshipStore = __webpack_require__(282);
+	
+	var FriendIndexItem = React.createClass({
+	  displayName: 'FriendIndexItem',
+	  removeFriendship: function removeFriendship() {
+	    var friendship = { id: this.props.friend.id,
+	      status: "denied"
+	    };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
+	  render: function render() {
+	    var friend = this.props.friend;
+	    console.log('rendering friend_index_item');
+	    console.log(friend);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'friend-item clearfix', __self: this
+	      },
+	      React.createElement('img', { src: friend.profile_img, __self: this
+	      }),
+	      React.createElement(
+	        Link,
+	        { to: '/users/' + friend.friend_id, __self: this
+	        },
+	        React.createElement(
+	          'h4',
+	          {
+	            __self: this
+	          },
+	          friend.first_name,
+	          ' ',
+	          friend.last_name
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'friend-buttons', __self: this
+	        },
+	        React.createElement(
+	          'button',
+	          { className: 'remove-friend',
+	            onClick: this.denyFriendship, __self: this
+	          },
+	          'Remove Friend'
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = FriendIndexItem;
+
+/***/ },
 /* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35324,7 +35408,7 @@
 	      { className: 'header-main clearfix', __self: this
 	      },
 	      React.createElement(
-	        'h1',
+	        'h4',
 	        {
 	          __self: this
 	        },

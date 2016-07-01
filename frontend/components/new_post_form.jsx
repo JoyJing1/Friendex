@@ -58,16 +58,22 @@ const NewPostForm = React.createClass({
     this.setState({ body: e.target.value });
   },
 
+  _submitWithEnterKey(e) {
+    if (e.keyCode == 13) {
+      this.handleSubmit(e);
+    }
+  },
+
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
 
     return(
       <div className="new-post-form-container">
         <nav>
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png"
             className="icon-status">
           </img>Status
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
             className="icon-photo">
           </img>Photo/Video
         </nav>
@@ -83,7 +89,8 @@ const NewPostForm = React.createClass({
                 cols="35" wrap="hard"
                 value={this.state.body}
                 placeholder={this._newPostPrompt()}
-                onChange={this._updatePost}>
+                onChange={this._updatePost}
+                onKeyDown={this._submitWithEnterKey}>
               </textarea>
 
             </div>

@@ -1,13 +1,13 @@
 @import 'colors';
 
-.friend-request-container {
+.friend-request-container, .friend-container {
   width: 900px;
   background: white;
   margin: 0 auto;
   border: 1px solid $gray-light-border;
 }
 
-.friend-request-item:not(:last-child):after {
+.friend-request-item:not(:last-child):after, .friend-item:not(:last-child):after {
   content: "";
   display: block;
   width: 90%;
@@ -18,8 +18,7 @@
   bottom: 0;
 }
 
-
-.friend-request-container h3 {
+.friend-request-container h3, .friend-container h3 {
   background-color: $gray-background-light;
   padding: 16px 16px;
   margin: 0 auto;
@@ -36,12 +35,12 @@ img.friend-request-icon {
   margin-right: 10px;
 }
 
-.friend-request-body {
+.friend-request-body, .friend-body {
   background-color: white;
 }
 
 // FRIEND REQUEST INDEX ITEMS //////////////////////////
-.friend-request-item {
+.friend-request-item, .friend-item {
   position: relative;
   padding: 20px;
 
@@ -61,7 +60,7 @@ img.friend-request-icon {
   }
 }
 
-.friend-request-buttons {
+.friend-request-buttons, .friend-buttons {
   display: inline-block;
   float: right;
   margin-top: 8px;
@@ -82,10 +81,23 @@ img.friend-request-icon {
     border: 1px solid $blue-border;
   }
 
-  button.delete-request {
+  button.delete-request, button.remove-friend {
     background-color: $gray-background-light;
     color: $dark-gray-font;
     border: 1px solid $gray-light-border;
   }
 
+}
+
+// FRIENDS INDEX ######################
+
+img.friend-icon {
+ height: 35px;
+ width: 35px;
+ display: inline-block;
+ margin-right: 10px;
+}
+
+.friend-container {
+  margin-top: 27px;
 }
