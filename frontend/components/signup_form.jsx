@@ -44,11 +44,11 @@ const SignupForm = React.createClass({
 
   _setDefaultProfilePic(profileData) {
     if (this.state.gender === "female") {
-      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214764/profiles/profile_default_woman.jpg";
+      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214764/profiles/profile_default_woman.jpg";
     } else if (this.state.gender === "male") {
-      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214758/profiles/123.jpg";
+      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214758/profiles/123.jpg";
     } else {
-      profileData["profile_img"] = "http://res.cloudinary.com/joyjing1/image/upload/v1467214732/profiles/no-profile-image.jpg";
+      profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214732/profiles/no-profile-image.jpg";
     }
     return profileData;
   },

@@ -5,6 +5,7 @@ const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const ProfileActions = require('../actions/profile_actions');
+// const Util = require('../util/util');
 
 const Header = React.createClass({
   getInitialState() {
@@ -41,7 +42,7 @@ const Header = React.createClass({
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">
 
-          <img className="f-square-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
+          <img className="f-square-icon" src= "https://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
 
           <div className="header-user">
             <img className="header-user-icon"

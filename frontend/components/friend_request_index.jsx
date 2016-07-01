@@ -11,7 +11,7 @@ const FriendRequestIndex = React.createClass({
     return (
       <div className="friend-request-container">
           <h3>
-            <img className="friend-request-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467347738/icons/iconmonstr-user-21-240_1.png">
+            <img className="friend-request-icon" src="https://res.cloudinary.com/joyjing1/image/upload/v1467347738/icons/iconmonstr-user-21-240_1.png">
             </img>Friend Requests
           </h3>
 

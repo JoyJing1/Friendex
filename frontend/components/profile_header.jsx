@@ -49,7 +49,7 @@ const ProfileHeader = React.createClass({
     // Only return if not currently friends and no request has been sent
     return(
       <button className="add-friend" onClick={this._sendFriendRequest}>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
         </img>
         Add Friend
       </button>

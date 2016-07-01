@@ -12,12 +12,12 @@ const ProfileAbout = React.createClass({
   _location() {
     if (this.props.profile.hometown) {
       return (<li>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png">
         </img>Was born in {this.props.profile.hometown}
       </li>);
     } else if (this.props.profile.current_city) {
       return (<li>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467221755/icons/iconmonstr-location-1-240.png">
         </img>Lives in {this.props.profile.current_city}
       </li>);
     }
@@ -25,7 +25,7 @@ const ProfileAbout = React.createClass({
   _workplace() {
     if (this.props.profile.workplace) {
       return (<li>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467222106/icons/iconmonstr-briefcase-1-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467222106/icons/iconmonstr-briefcase-1-240.png">
         </img>{this.props.profile.workplace}
       </li>);
     }
@@ -33,7 +33,7 @@ const ProfileAbout = React.createClass({
   _email() {
     if (this.props.profile.email) {
       return (<li>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467222543/icons/iconmonstr-email-1-240.png">
         </img>{this.props.profile.email}
       </li>);
     }
@@ -41,7 +41,7 @@ const ProfileAbout = React.createClass({
   _birthday() {
     if (this.props.profile.birthday) {
       return (<li>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467223004/icons/Birthday_Cake-52.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467223004/icons/Birthday_Cake-52.png">
         </img>{this._parseDate(this.props.profile.birthday)}
       </li>);
     }
@@ -55,7 +55,7 @@ const ProfileAbout = React.createClass({
     return (
       <div className="profile-about">
         <h3>
-          <img className="profile-about-icon" src="http://res.cloudinary.com/joyjing1/image/upload/v1467220595/icons/iconmonstr-user-1-240_1.png">
+          <img className="profile-about-icon" src="https://res.cloudinary.com/joyjing1/image/upload/v1467220595/icons/iconmonstr-user-1-240_1.png">
           </img>About
         </h3>
 
