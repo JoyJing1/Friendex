@@ -90,8 +90,6 @@
 	    Route,
 	    { path: '/', component: App, __self: undefined
 	    },
-	    React.createElement(IndexRoute, { component: Newsfeed, onEnter: _ensureLoggedIn, __self: undefined
-	    }),
 	    React.createElement(Route, { path: 'login', component: LoginPage, onEnter: _autoLogin, __self: undefined
 	    }),
 	    React.createElement(
@@ -109,6 +107,9 @@
 	    )
 	  )
 	);
+	// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
+	// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
+	// <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  if (window.currentUser) {
@@ -34344,6 +34345,11 @@
 	  _updatePost: function _updatePost(e) {
 	    this.setState({ body: e.target.value });
 	  },
+	  _submitWithEnterKey: function _submitWithEnterKey(e) {
+	    if (e.keyCode == 13) {
+	      this.handleSubmit(e);
+	    }
+	  },
 	  render: function render() {
 	    var numRows = Math.floor(this.state.body.length / 18);
 	
@@ -34384,7 +34390,8 @@
 	              cols: '35', wrap: 'hard',
 	              value: this.state.body,
 	              placeholder: this._newPostPrompt(),
-	              onChange: this._updatePost, __self: this
+	              onChange: this._updatePost,
+	              onKeyDown: this._submitWithEnterKey, __self: this
 	            })
 	          )
 	        ),
@@ -35322,7 +35329,7 @@
 	      { className: 'header-main clearfix', __self: this
 	      },
 	      React.createElement(
-	        'h1',
+	        'h4',
 	        {
 	          __self: this
 	        },

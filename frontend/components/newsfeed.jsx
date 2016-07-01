@@ -9,7 +9,7 @@ const Newsfeed = React.createClass({
   render() {
     return(
       <div className="header-main clearfix">
-        <h1>This is the Newsfeed</h1>
+        <h4>This is the Newsfeed</h4>
 
       </div>
     );

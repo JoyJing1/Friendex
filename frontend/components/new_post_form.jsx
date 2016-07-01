@@ -58,6 +58,12 @@ const NewPostForm = React.createClass({
     this.setState({ body: e.target.value });
   },
 
+  _submitWithEnterKey(e) {
+    if (e.keyCode == 13) {
+      this.handleSubmit(e);
+    }
+  },
+
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
 
@@ -83,7 +89,8 @@ const NewPostForm = React.createClass({
                 cols="35" wrap="hard"
                 value={this.state.body}
                 placeholder={this._newPostPrompt()}
-                onChange={this._updatePost}>
+                onChange={this._updatePost}
+                onKeyDown={this._submitWithEnterKey}>
               </textarea>
 
             </div>

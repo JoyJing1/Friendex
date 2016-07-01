@@ -30,15 +30,11 @@ html, body {
   position: relative;
   border-left: 1px solid $gray-light-border;
   border-right: 1px solid $gray-light-border;
-  // border-bottom: 1px solid $gray-light-border;
-  // border-top: 1px solid $gray-light-border;
 }
 
 .background-img {
-  // border-left: 1px solid $gray-light-border;
   border-right: 1px solid $gray-light-border;
   position: absolute;
-  // bottom: -50%;
   width: 100%;
   margin: 0 auto;
   display: inline-block;
@@ -72,6 +68,7 @@ html, body {
   color: white;
   font-size: 29px;
   z-index: 15;
+  text-shadow: -1px 0 $dark-gray,0 1px $dark-gray,1px 0 $dark-gray,0 -1px $dark-gray;
 }
 
 .add-friend {
@@ -103,10 +100,6 @@ html, body {
   height: 50px;
   display: flex;
   border: 1px solid $gray-light-border;
-  // border-left: 1px solid $gray-light-border;
-  // border-right: 1px solid $gray-light-border;
-  // border-bottom: 1px solid $gray-light-border;
-  // border-top: 1px solid $gray-lighter-border;
   margin-bottom: 27px;
   color: $blue-dark-font;
 }
