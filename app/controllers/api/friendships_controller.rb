@@ -37,7 +37,6 @@ class Api::FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.where("requestor_id = ? AND receiver_id = ?", friendship_params.requestor_id, friendship_params.receiver_id)
 
-
     if @friendship.delete_all #Can change to destroy if make sure there can only be one request per pairing
       render "api/friendships/show"
     else
