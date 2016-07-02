@@ -33134,6 +33134,7 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
+	var hashHistory = __webpack_require__(168).hashHistory;
 	var SessionStore = __webpack_require__(230);
 	var SessionActions = __webpack_require__(254);
 	var ProfileActions = __webpack_require__(258);
@@ -33163,6 +33164,10 @@
 	    console.log(SessionStore.currentUserProfile());
 	    return SessionStore.currentUserProfile();
 	  },
+	  _toCurrUserProfile: function _toCurrUserProfile() {
+	    var currUserId = SessionStore.currentUser().id;
+	    hashHistory.push('users/' + currUserId);
+	  },
 	  render: function render() {
 	    var currentUser = window.currentUser;
 	    return React.createElement(
@@ -33177,7 +33182,8 @@
 	        }),
 	        React.createElement(
 	          'div',
-	          { className: 'header-user', __self: this
+	          { className: 'header-user redirect',
+	            onClick: this._toCurrUserProfile, __self: this
 	          },
 	          React.createElement('img', { className: 'header-user-icon',
 	            src: this.state.currentUserProfile.profile_img, __self: this
@@ -34125,6 +34131,10 @@
 	    var currUserId = SessionStore.currentUser().id;
 	    hashHistory.replace('users/' + currUserId + '/friends');
 	  },
+	  _toCurrUserProfile: function _toCurrUserProfile(id) {
+	    var currUserId = SessionStore.currentUser().id;
+	    hashHistory.replace('users/' + currUserId);
+	  },
 	  _currentlyFriendsButton: function _currentlyFriendsButton() {
 	    return React.createElement(
 	      'button',
@@ -34217,8 +34227,14 @@
 	        'div',
 	        { className: 'profile-header-nav', __self: this
 	        },
-	        React.createElement('img', { src: this.state.profile.profile_img, className: 'profile-img', __self: this
-	        }),
+	        React.createElement(
+	          'div',
+	          { className: 'redirect', onClick: this._toCurrUserProfile, __self: this
+	          },
+	          React.createElement('img', { src: this.state.profile.profile_img,
+	            className: 'profile-img', __self: this
+	          })
+	        ),
 	        React.createElement(
 	          'h1',
 	          {
@@ -34594,7 +34610,7 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	// const hashHistory = require('react-router').hashHistory;
+	var hashHistory = __webpack_require__(168).hashHistory;
 	var ProfileActions = __webpack_require__(258);
 	var PostActions = __webpack_require__(275);
 	var SessionStore = __webpack_require__(230);
@@ -34615,8 +34631,6 @@
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    ProfileActions.fetchCurrentUserProfile();
-	    // SessionActions.fetchCurrentUserProfile(newProps.profile.id);
-	    // this._onChange();
 	  },
 	  _onChange: function _onChange() {
 	    var currentUserProfile = SessionStore.currentUserProfile();
@@ -34652,6 +34666,10 @@
 	      this.handleSubmit(e);
 	    }
 	  },
+	  _toCurrUserProfile: function _toCurrUserProfile() {
+	    var currUserId = SessionStore.currentUser().id;
+	    hashHistory.push('users/' + currUserId);
+	  },
 	  render: function render() {
 	    var numRows = Math.floor(this.state.body.length / 18);
 	
@@ -34682,8 +34700,13 @@
 	          'div',
 	          { className: 'new-post-body clearfix', __self: this
 	          },
-	          React.createElement('img', { src: this.state.currentUserProfileImg, className: 'new-post-profile-pic', __self: this
-	          }),
+	          React.createElement(
+	            'div',
+	            { className: 'redirect', onClick: this._toCurrUserProfile, __self: this
+	            },
+	            React.createElement('img', { src: this.state.currentUserProfileImg, className: 'new-post-profile-pic', __self: this
+	            })
+	          ),
 	          React.createElement(
 	            'div',
 	            { className: 'new-post-text-container', __self: this
@@ -35364,6 +35387,7 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
+	var hashHistory = __webpack_require__(168).hashHistory;
 	var FriendshipActions = __webpack_require__(270);
 	var FriendshipStore = __webpack_require__(273);
 	
@@ -35390,12 +35414,12 @@
 	      'div',
 	      { className: 'friend-request-item clearfix', __self: this
 	      },
-	      React.createElement('img', { src: friend.profile_img, __self: this
-	      }),
 	      React.createElement(
 	        Link,
 	        { to: '/users/' + friend.friend_id, __self: this
 	        },
+	        React.createElement('img', { src: friend.profile_img, __self: this
+	        }),
 	        React.createElement(
 	          'h4',
 	          {
@@ -35507,12 +35531,12 @@
 	      'div',
 	      { className: 'friend-item clearfix', __self: this
 	      },
-	      React.createElement('img', { src: friend.profile_img, __self: this
-	      }),
 	      React.createElement(
 	        Link,
 	        { to: '/users/' + friend.friend_id, __self: this
 	        },
+	        React.createElement('img', { src: friend.profile_img, __self: this
+	        }),
 	        React.createElement(
 	          'h4',
 	          {

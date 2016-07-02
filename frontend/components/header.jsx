@@ -2,6 +2,7 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
+const hashHistory = require('react-router').hashHistory;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const ProfileActions = require('../actions/profile_actions');
@@ -36,6 +37,11 @@ const Header = React.createClass({
     return SessionStore.currentUserProfile();
   },
 
+  _toCurrUserProfile() {
+    const currUserId = SessionStore.currentUser().id;
+    hashHistory.push(`users/${currUserId}`);
+  },
+
   render() {
     const currentUser = window.currentUser;
     return(
@@ -44,7 +50,8 @@ const Header = React.createClass({
 
           <img className="f-square-icon" src= "https://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
 
-          <div className="header-user">
+          <div className="header-user redirect"
+                onClick={this._toCurrUserProfile}>
             <img className="header-user-icon"
                   src={this.state.currentUserProfile.profile_img}></img>
             <Link to={`/users/${currentUser.id}`}

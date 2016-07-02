@@ -102,6 +102,11 @@ const ProfileHeader = React.createClass({
     hashHistory.replace(`users/${currUserId}/friends`);
   },
 
+  _toCurrUserProfile(id) {
+    const currUserId = SessionStore.currentUser().id;
+    hashHistory.replace(`users/${currUserId}`);
+  },
+
   _currentlyFriendsButton() {
     return(
       <button className="add-friend currently-friends" onClick={this._toCurrUserFriends}>
@@ -192,7 +197,11 @@ const ProfileHeader = React.createClass({
         </div>
 
         <div className="profile-header-nav">
-          <img src={this.state.profile.profile_img} className="profile-img"/>
+          <div className="redirect" onClick={this._toCurrUserProfile}>
+            <img src={this.state.profile.profile_img}
+              className="profile-img"/>
+          </div>
+
           <h1>{this.state.profile.username}</h1>
 
           <div className='friend-request-response-buttons clearfix'>

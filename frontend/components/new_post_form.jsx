@@ -2,7 +2,7 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
-// const hashHistory = require('react-router').hashHistory;
+const hashHistory = require('react-router').hashHistory;
 const ProfileActions = require('../actions/profile_actions');
 const PostActions = require('../actions/post_actions');
 const SessionStore = require('../stores/session_store');
@@ -25,8 +25,6 @@ const NewPostForm = React.createClass({
 
   componentWillReceiveProps(newProps) {
     ProfileActions.fetchCurrentUserProfile();
-    // SessionActions.fetchCurrentUserProfile(newProps.profile.id);
-    // this._onChange();
   },
 
   _onChange() {
@@ -64,6 +62,11 @@ const NewPostForm = React.createClass({
     }
   },
 
+  _toCurrUserProfile() {
+    const currUserId = SessionStore.currentUser().id;
+    hashHistory.push(`users/${currUserId}`);
+  },
+
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
 
@@ -82,7 +85,9 @@ const NewPostForm = React.createClass({
               onSubmit={this.handleSubmit}>
           <div className="new-post-body clearfix">
 
-            <img src={this.state.currentUserProfileImg} className="new-post-profile-pic"></img>
+            <div className="redirect" onClick={this._toCurrUserProfile}>
+              <img src={this.state.currentUserProfileImg} className="new-post-profile-pic"></img>
+            </div>
 
             <div className="new-post-text-container">
               <textarea rows={numRows}
