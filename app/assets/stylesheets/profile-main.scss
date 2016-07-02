@@ -71,19 +71,44 @@ html, body {
   text-shadow: -1px 0 $dark-gray,0 1px $dark-gray,1px 0 $dark-gray,0 -1px $dark-gray;
 }
 
-.add-friend {
+
+.friend-request-response-buttons {
   position: absolute;
-  background: red;
   height: 25px;
-  width: 100px;
   right: 18px;
   bottom: 70px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.friend-request-accept-reject {
+  height: 100%;
+}
+
+.add-friend {
+  height: 100%;
+  width: 100px;
   font-size: 12px;
   text-align: center;
   background: $gray-background-light;
   color: $dark-gray-font;
   border: 1px solid black;
   border-radius: 2px;
+}
+
+.currently-friends {
+  width: 90px;
+}
+
+.cancel-request {
+  width: 140px;
+  height: 100%;
+}
+
+.accept-request {
+  width: 140px;
+  height: 100%;
+  margin-right: 18px;
 }
 
 .add-friend img {

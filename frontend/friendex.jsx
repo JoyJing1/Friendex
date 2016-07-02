@@ -37,6 +37,7 @@ const _autoLogin = function( _ , replace) {
 const appRouter = (
   <Router history={ hashHistory }>
     <Route path="/" component={ App } >
+      <IndexRoute component={ Newsfeed } onEnter={_ensureLoggedIn}/>
       <Route path="login" component={ LoginPage } onEnter={_autoLogin}/>
       <Route path="/users/:id" component={ ProfileHeader } onEnter={_ensureLoggedIn}>
         <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
@@ -52,6 +53,7 @@ const appRouter = (
 // <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded");
   if (window.currentUser) {
     SessionActions.receiveCurrentUser(window.currentUser);
   }

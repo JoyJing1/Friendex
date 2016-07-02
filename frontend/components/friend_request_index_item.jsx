@@ -1,5 +1,6 @@
 const React = require('react');
 const Link = require('react-router').Link;
+const hashHistory = require('react-router').hashHistory;
 const FriendshipActions = require('../actions/friendship_actions');
 const FriendshipStore = require('../stores/friendship_store');
 
@@ -25,9 +26,9 @@ const FriendRequestIndexItem = React.createClass({
 
     return (
       <div className="friend-request-item clearfix">
-        <img src={friend.profile_img}></img>
 
         <Link to={`/users/${friend.friend_id}`}>
+          <img src={friend.profile_img}></img>
           <h4>
             {friend.first_name} {friend.last_name}
           </h4>

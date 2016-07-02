@@ -18,9 +18,9 @@ const FriendIndexItem = React.createClass({
 
     return (
       <div className="friend-item clearfix">
-        <img src={friend.profile_img}></img>
 
         <Link to={`/users/${friend.friend_id}`}>
+          <img src={friend.profile_img}></img>
           <h4>
             {friend.first_name} {friend.last_name}
           </h4>
@@ -30,7 +30,6 @@ const FriendIndexItem = React.createClass({
           <button className="remove-friend"
             onClick={this.denyFriendship}>Remove Friend</button>
         </div>
-
 
       </div>
     );
