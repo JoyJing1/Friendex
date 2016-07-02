@@ -34035,6 +34035,7 @@
 	
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
+	var hashHistory = __webpack_require__(168).hashHistory;
 	var ProfileAbout = __webpack_require__(268);
 	var ProfileStore = __webpack_require__(267);
 	var ProfileActions = __webpack_require__(258);
@@ -34120,6 +34121,20 @@
 	    });
 	    return included;
 	  },
+	  _toCurrUserFriends: function _toCurrUserFriends(id) {
+	    var currUserId = SessionStore.currentUser().id;
+	    hashHistory.replace('users/' + currUserId + '/friends');
+	  },
+	  _currentlyFriendsButton: function _currentlyFriendsButton() {
+	    return React.createElement(
+	      'button',
+	      { className: 'add-friend currently-friends', onClick: this._toCurrUserFriends, __self: this
+	      },
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png', __self: this
+	      }),
+	      'Friends'
+	    );
+	  },
 	  _addFriendButton: function _addFriendButton() {
 	    return React.createElement(
 	      'button',
@@ -34133,10 +34148,9 @@
 	  _cancelFriendRequestButton: function _cancelFriendRequestButton() {
 	    return React.createElement(
 	      'button',
-	      { className: 'cancel-request', onClick: this._cancelFriendRequest, __self: this
+	      { className: 'add-friend cancel-request', onClick: this._cancelFriendRequest, __self: this
 	      },
-	      '// Change image',
-	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
 	      }),
 	      'Cancel Request'
 	    );
@@ -34144,7 +34158,7 @@
 	  _acceptFriendRequest: function _acceptFriendRequest() {
 	    return React.createElement(
 	      'button',
-	      { className: 'add-friend', onClick: this._acceptFriendship, __self: this
+	      { className: 'add-friend accept-request', onClick: this._acceptFriendship, __self: this
 	      },
 	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
 	      }),
@@ -34154,10 +34168,9 @@
 	  _rejectFriendRequest: function _rejectFriendRequest() {
 	    return React.createElement(
 	      'button',
-	      { className: 'add-friend', onClick: this._rejectFriendship, __self: this
+	      { className: 'add-friend cancel-request', onClick: this._rejectFriendship, __self: this
 	      },
-	      '// Change image',
-	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
 	      }),
 	      'Delete Request'
 	    );
@@ -34170,7 +34183,7 @@
 	      console.log("Visiting own page, do NOT show friend button");
 	    } else if (this._checkConnection(currentUserId, this.state.friends)) {
 	      console.log('Currently friends, do not show button');
-	      // Button says "Remove Friend" (?)
+	      return this._currentlyFriendsButton();
 	    } else if (this._checkConnection(currentUserId, this.state.friendRequestsReceived)) {
 	      console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
 	      return this._cancelFriendRequestButton();
@@ -34178,7 +34191,7 @@
 	      console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
 	      return React.createElement(
 	        'div',
-	        { className: 'friend-request-response-buttons', __self: this
+	        { className: 'friend-request-accept-reject', __self: this
 	        },
 	        this._acceptFriendRequest(),
 	        this._rejectFriendRequest()
@@ -34213,7 +34226,12 @@
 	          },
 	          this.state.profile.username
 	        ),
-	        this.friendshipButton(),
+	        React.createElement(
+	          'div',
+	          { className: 'friend-request-response-buttons clearfix', __self: this
+	          },
+	          this.friendshipButton()
+	        ),
 	        React.createElement(
 	          'nav',
 	          { className: 'profile-tabs', __self: this

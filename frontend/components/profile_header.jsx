@@ -2,6 +2,7 @@
 
 const React = require('react');
 const Link = require('react-router').Link;
+const hashHistory = require('react-router').hashHistory;
 const ProfileAbout = require('./profile_about');
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
@@ -96,6 +97,21 @@ const ProfileHeader = React.createClass({
       return included;
   },
 
+  _toCurrUserFriends(id) {
+    const currUserId = SessionStore.currentUser().id;
+    hashHistory.replace(`users/${currUserId}/friends`);
+  },
+
+  _currentlyFriendsButton() {
+    return(
+      <button className="add-friend currently-friends" onClick={this._toCurrUserFriends}>
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png">
+        </img>
+        Friends
+      </button>
+    );
+  },
+
   _addFriendButton() {
     return(
       <button className="add-friend" onClick={this._sendFriendRequest}>
@@ -108,9 +124,8 @@ const ProfileHeader = React.createClass({
 
   _cancelFriendRequestButton() {
     return(
-      <button className="cancel-request" onClick={this._cancelFriendRequest}>
-        // Change image
-        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+      <button className="add-friend cancel-request" onClick={this._cancelFriendRequest}>
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
         </img>
         Cancel Request
       </button>
@@ -119,7 +134,7 @@ const ProfileHeader = React.createClass({
 
   _acceptFriendRequest() {
     return(
-      <button className="add-friend" onClick={this._acceptFriendship}>
+      <button className="add-friend accept-request" onClick={this._acceptFriendship}>
         <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
         </img>
         Confirm Friendship
@@ -129,9 +144,8 @@ const ProfileHeader = React.createClass({
 
   _rejectFriendRequest() {
     return(
-      <button className="add-friend" onClick={this._rejectFriendship}>
-        // Change image
-        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+      <button className="add-friend cancel-request" onClick={this._rejectFriendship}>
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
         </img>
         Delete Request
       </button>
@@ -147,7 +161,7 @@ const ProfileHeader = React.createClass({
 
     } else if (this._checkConnection(currentUserId, this.state.friends)) {
       console.log('Currently friends, do not show button');
-      // Button says "Remove Friend" (?)
+      return this._currentlyFriendsButton();
 
     } else if (this._checkConnection(currentUserId, this.state.friendRequestsReceived)) {
       console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
@@ -156,7 +170,7 @@ const ProfileHeader = React.createClass({
     } else if (this._checkConnection(currentUserId, this.state.friendRequestsSent)) {
       console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
       return (
-        <div className='friend-request-response-buttons'>
+        <div className='friend-request-accept-reject'>
           {this._acceptFriendRequest()}
           {this._rejectFriendRequest()}
         </div>
@@ -180,7 +194,10 @@ const ProfileHeader = React.createClass({
         <div className="profile-header-nav">
           <img src={this.state.profile.profile_img} className="profile-img"/>
           <h1>{this.state.profile.username}</h1>
-          {this.friendshipButton()}
+
+          <div className='friend-request-response-buttons clearfix'>
+            {this.friendshipButton()}
+          </div>
 
           <nav className="profile-tabs">
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>Timeline</Link>
