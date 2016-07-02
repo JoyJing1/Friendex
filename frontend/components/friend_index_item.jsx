@@ -2,6 +2,8 @@ const React = require('react');
 const Link = require('react-router').Link;
 const FriendshipActions = require('../actions/friendship_actions');
 const FriendshipStore = require('../stores/friendship_store');
+const SessionStore = require('../stores/session_store');
+const ProfileStore = require('../stores/profile_store');
 
 const FriendIndexItem = React.createClass({
   removeFriendship() {
@@ -9,6 +11,19 @@ const FriendIndexItem = React.createClass({
                           status: "denied"
     };
     FriendshipActions.updateFriendship(friendship);
+  },
+
+  removeFriendButton() {
+    const currentUserId = SessionStore.currentUser().id;
+    const profileId = ProfileStore.currentProfile().user_id;
+    if (currentUserId === profileId) {
+      return(
+        <div className="friend-buttons">
+          <button className="remove-friend"
+            onClick={this.denyFriendship}>Remove Friend</button>
+        </div>
+      );
+    }
   },
 
   render() {
@@ -26,10 +41,7 @@ const FriendIndexItem = React.createClass({
           </h4>
         </Link>
 
-        <div className="friend-buttons">
-          <button className="remove-friend"
-            onClick={this.denyFriendship}>Remove Friend</button>
-        </div>
+        {this.removeFriendButton()}
 
       </div>
     );

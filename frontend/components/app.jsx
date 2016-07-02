@@ -8,7 +8,6 @@ const Header = require('./header');
 
 const App = React.createClass({
   render () {
-    // Decide on which header to place here
     if (SessionStore.isUserLoggedIn()) {
       return(
         <div className="app-container">

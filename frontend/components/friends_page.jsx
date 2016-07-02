@@ -37,7 +37,7 @@ const FriendsPage = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    FriendshipActions.fetchAllFriends(newProps.profile.user_id); // Changed from user_id
+    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
   },
 
   _updateFriends() {
@@ -56,12 +56,22 @@ const FriendsPage = React.createClass({
     console.log(friendRequestsSent);
   },
 
+  _friendRequestIndex() {
+    const currentUserId = SessionStore.currentUser().id;
+    const profileId = ProfileStore.currentProfile().user_id;
+    if (currentUserId === profileId) {
+      return(
+        <FriendRequestIndex friendRequestsReceived={this.state.friendRequestsReceived}/>
+      );
+    }
+  },
+
   render() {
     console.log('render() in friends_page.jsx');
     console.log(this.state);
     return (
       <ul>
-        <FriendRequestIndex friendRequestsReceived={this.state.friendRequestsReceived}/>
+        {this._friendRequestIndex()}
 
         <FriendIndex friends={this.state.friends}/>
         {this.props.children}
