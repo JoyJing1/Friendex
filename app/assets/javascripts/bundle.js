@@ -64,8 +64,8 @@
 	var LoginPage = __webpack_require__(262);
 	var ProfileTimeline = __webpack_require__(266);
 	var ProfileHeader = __webpack_require__(269);
-	var ProfileAboutPage = __webpack_require__(280);
-	var FriendsPage = __webpack_require__(281);
+	var ProfileAboutPage = __webpack_require__(281);
+	var FriendsPage = __webpack_require__(282);
 	var Newsfeed = __webpack_require__(287);
 	
 	// Redirect to login page if user not logged in
@@ -33811,8 +33811,8 @@
 	var ProfileActions = __webpack_require__(258);
 	var ProfileAbout = __webpack_require__(268);
 	var ProfileHeader = __webpack_require__(269);
-	var NewPostForm = __webpack_require__(273);
-	var PostIndex = __webpack_require__(277);
+	var NewPostForm = __webpack_require__(274);
+	var PostIndex = __webpack_require__(278);
 	
 	var ProfileTimeline = React.createClass({
 	  displayName: 'ProfileTimeline',
@@ -34289,725 +34289,6 @@
 /* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	// const hashHistory = require('react-router').hashHistory;
-	var ProfileActions = __webpack_require__(258);
-	var PostActions = __webpack_require__(274);
-	var SessionStore = __webpack_require__(230);
-	var ProfileStore = __webpack_require__(267);
-	var ErrorStore = __webpack_require__(264);
-	
-	var NewPostForm = React.createClass({
-	  displayName: 'NewPostForm',
-	  getInitialState: function getInitialState() {
-	    return { body: "",
-	      currentUserProfileImg: "" };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.sessionListener = SessionStore.addListener(this._onChange);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.sessionListener.remove();
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    ProfileActions.fetchCurrentUserProfile();
-	    // SessionActions.fetchCurrentUserProfile(newProps.profile.id);
-	    // this._onChange();
-	  },
-	  _onChange: function _onChange() {
-	    var currentUserProfile = SessionStore.currentUserProfile();
-	    this.setState({ currentUserProfileImg: currentUserProfile.profile_img });
-	  },
-	  _newPostPrompt: function _newPostPrompt() {
-	    var receiverId = this.props.profile.user_id;
-	    if (receiverId && receiverId === SessionStore.currentUser().id) {
-	      return 'What\'s on your mind?';
-	    } else if (receiverId && receiverId !== SessionStore.currentUser().id) {
-	      return 'Write something to ' + this.props.profile.first_name + '...';
-	    } else {
-	      return "Write a new post!";
-	    }
-	  },
-	  handleSubmit: function handleSubmit(e) {
-	    var _this = this;
-	
-	    e.preventDefault();
-	    var post = { body: this.state.body,
-	      author_id: parseInt(SessionStore.currentUser().id),
-	      receiver_id: parseInt(this.props.profile.id) };
-	
-	    PostActions.createPost(post, function () {
-	      _this.setState({ body: "" });
-	    });
-	  },
-	  _updatePost: function _updatePost(e) {
-	    this.setState({ body: e.target.value });
-	  },
-	  _submitWithEnterKey: function _submitWithEnterKey(e) {
-	    if (e.keyCode == 13) {
-	      this.handleSubmit(e);
-	    }
-	  },
-	  render: function render() {
-	    var numRows = Math.floor(this.state.body.length / 18);
-	
-	    return React.createElement(
-	      'div',
-	      { className: 'new-post-form-container', __self: this
-	      },
-	      React.createElement(
-	        'nav',
-	        {
-	          __self: this
-	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png',
-	          className: 'icon-status', __self: this
-	        }),
-	        'Status',
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
-	          className: 'icon-photo', __self: this
-	        }),
-	        'Photo/Video'
-	      ),
-	      React.createElement(
-	        'form',
-	        { className: 'new-post-form',
-	          onSubmit: this.handleSubmit, __self: this
-	        },
-	        React.createElement(
-	          'div',
-	          { className: 'new-post-body clearfix', __self: this
-	          },
-	          React.createElement('img', { src: this.state.currentUserProfileImg, className: 'new-post-profile-pic', __self: this
-	          }),
-	          React.createElement(
-	            'div',
-	            { className: 'new-post-text-container', __self: this
-	            },
-	            React.createElement('textarea', { rows: numRows,
-	              cols: '35', wrap: 'hard',
-	              value: this.state.body,
-	              placeholder: this._newPostPrompt(),
-	              onChange: this._updatePost,
-	              onKeyDown: this._submitWithEnterKey, __self: this
-	            })
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'new-post-submit', __self: this
-	          },
-	          React.createElement('input', { type: 'submit', value: 'Post', __self: this
-	          })
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = NewPostForm;
-	
-	// cols="35"  wrap="hard"
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var AppDispatcher = __webpack_require__(231);
-	var PostConstants = __webpack_require__(275);
-	var PostApiUtil = __webpack_require__(276);
-	var ErrorActions = __webpack_require__(256);
-	var hashHistory = __webpack_require__(168).hashHistory;
-	
-	var PostActions = {
-	  createPost: function createPost(post, resetNewPostForm) {
-	    var _this = this;
-	
-	    console.log("createPost(post) in post_actions.js");
-	    PostApiUtil.createPost(post, function (resp) {
-	      _this.receiveSinglePost(resp);
-	      resetNewPostForm();
-	    });
-	  },
-	  updatePost: function updatePost(post) {
-	    console.log("updatePost(post) in post_actions.js");
-	    PostApiUtil.updatePost(post, this.receiveSinglePost);
-	  },
-	  deletePost: function deletePost(id) {
-	    console.log("deletePost(id) in post_actions.js");
-	    PostApiUtil.deletePost(id, function (resp) {
-	      PostActions.removedPost(resp);
-	      console.log("Post successfully deleted");
-	    });
-	  },
-	  fetchSinglePost: function fetchSinglePost(id) {
-	    console.log("fetchSinglePost(id) in post_actions.js");
-	    PostApiUtil.fetchPost(id, this.receiveSinglePost);
-	  },
-	  fetchManyPosts: function fetchManyPosts(ids) {
-	    console.log("fetchManyPosts(ids) in post_actions.js");
-	    PostApiUtil.fetchManyPosts(ids, this.receiveManyPosts);
-	  },
-	  receiveSinglePost: function receiveSinglePost(post) {
-	    AppDispatcher.dispatch({
-	      actionType: PostConstants.UPDATE_POST,
-	      post: post
-	    });
-	  },
-	  receiveManyPosts: function receiveManyPosts(posts) {
-	    AppDispatcher.dispatch({
-	      actionType: PostConstants.UPDATE_POSTS,
-	      posts: posts
-	    });
-	  },
-	  removedPost: function removedPost(post) {
-	    console.log('in removedPost(post) in post_actions.js');
-	    console.log(post);
-	    AppDispatcher.dispatch({
-	      actionType: PostConstants.REMOVED_POST,
-	      post: post
-	    });
-	  }
-	};
-	
-	module.exports = PostActions;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var PostConstants = {
-	  UPDATE_POST: "UPDATE_POST",
-	  UPDATE_POSTS: "UPDATE_POSTS",
-	  REMOVED_POST: "REMOVED_POST"
-	};
-	
-	module.exports = PostConstants;
-
-/***/ },
-/* 276 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var PostApiUtil = {
-	  createPost: function createPost(post, _success, error) {
-	    console.log("createPost(post, success, error) in post_api_util.js");
-	    $.ajax({
-	      url: "/api/posts",
-	      type: 'POST',
-	      data: { post: post },
-	      success: function success(resp) {
-	        console.log("successfully created new post");
-	        console.log(resp);
-	        _success(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to create a new post");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  updatePost: function updatePost(post, _success2, error) {
-	    console.log("updatePost(post, success, error) in post_api_util.js");
-	    $.ajax({
-	      url: "/api/posts/" + post.id,
-	      type: 'PATCH',
-	      data: { post: post },
-	      success: function success(resp) {
-	        console.log("successfully edited post");
-	        console.log(resp);
-	        _success2(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to create a new post");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  deletePost: function deletePost(id, _success3, error) {
-	    console.log("deletePost(id, success, error) in post_api_util.js");
-	    $.ajax({
-	      url: "/api/posts/" + id,
-	      type: 'DELETE',
-	      success: function success(resp) {
-	        console.log("successfully deleted post");
-	        console.log(resp);
-	        _success3(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to delete post");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  fetchPost: function fetchPost(id, _success4, error) {
-	    console.log("fetchPost(id, success, error) in post_api_util.js");
-	    $.ajax({
-	      url: "/api/posts/" + id,
-	      type: 'GET',
-	      success: function success(resp) {
-	        console.log("successfully fetched post");
-	        console.log(resp);
-	        _success4(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to fetch post");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  },
-	  fetchManyPosts: function fetchManyPosts(ids, _success5, error) {
-	    console.log("fetchPosts(ids, success, error) in post_api_util.js");
-	    $.ajax({
-	      url: "/api/posts/",
-	      type: 'GET',
-	      data: { receiver_id: ids.receiver_id, author_id: ids.author_id },
-	      success: function success(resp) {
-	        console.log("successfully fetched posts");
-	        console.log(resp);
-	        _success5(resp);
-	      },
-	      error: function error(xhr) {
-	        console.log("failed to fetch posts");
-	        var errors = xhr.responseJSON;
-	        console.log(errors);
-	      }
-	    });
-	  }
-	};
-	
-	module.exports = PostApiUtil;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var PostStore = __webpack_require__(278);
-	var PostActions = __webpack_require__(274);
-	var PostIndexItem = __webpack_require__(279);
-	
-	var PostIndex = React.createClass({
-	  displayName: 'PostIndex',
-	  getInitialState: function getInitialState() {
-	    return { posts: PostStore.all() };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    console.log("componentDidMount() in post_index.jsx");
-	    var ids = { receiver_id: this.props.profile.user_id };
-	    console.log(ids);
-	    PostActions.fetchManyPosts(ids);
-	    this.postListener = PostStore.addListener(this._onChange);
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    var ids = { receiver_id: newProps.profile.user_id };
-	    console.log(ids);
-	    PostActions.fetchManyPosts(ids);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.postListener.remove();
-	    // PostStore.remove(this._onChange);
-	  },
-	  _onChange: function _onChange() {
-	    this.setState({ posts: PostStore.all() });
-	    console.log("_onChange() in post_index.jsx");
-	    console.log(this.state);
-	  },
-	  render: function render() {
-	    var _this = this;
-	
-	    return React.createElement(
-	      'ul',
-	      {
-	        __self: this
-	      },
-	      this.state.posts.map(function (post) {
-	        return React.createElement(PostIndexItem, { post: post, key: post.id, __self: _this
-	        });
-	      })
-	    );
-	  }
-	});
-	
-	module.exports = PostIndex;
-
-/***/ },
-/* 278 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var AppDispatcher = __webpack_require__(231);
-	var Store = __webpack_require__(235).Store;
-	var PostConstants = __webpack_require__(275);
-	
-	var _posts = [];
-	
-	var PostStore = new Store(AppDispatcher);
-	
-	PostStore.__onDispatch = function (payload) {
-	  switch (payload.actionType) {
-	    case PostConstants.UPDATE_POST:
-	      _updatePost(payload.post);
-	      PostStore.__emitChange();
-	      break;
-	    case PostConstants.UPDATE_POSTS:
-	      _posts = payload.posts;
-	      PostStore.__emitChange();
-	      break;
-	    case PostConstants.REMOVED_POST:
-	      _removePost(payload.post);
-	      PostStore.__emitChange();
-	      break;
-	  }
-	};
-	
-	function _updatePost(post) {
-	  var newPost = true;
-	  for (var i = 0; i < _posts.length; i++) {
-	    if (_posts[i].id === post.id) {
-	      _posts[i] = post;
-	      newPost = false;
-	    }
-	  }
-	  if (newPost) {
-	    _posts.unshift(post);
-	  }
-	}
-	
-	function _removePost(post) {
-	  for (var i = 0; i < _posts.length; i++) {
-	    if (_posts[i].id === post.id) {
-	      _posts = _posts.slice(0, i).concat(_posts.slice(i + 1));
-	    }
-	  }
-	}
-	
-	PostStore.find = function (id) {
-	  var post = {};
-	
-	  if (typeof id === "string") {
-	    id = parseInt(id);
-	  }
-	
-	  for (var i = 0; i < _posts.length; i++) {
-	    var currPost = _posts[i];
-	    if (currPost.id === id) {
-	      post = currPost;
-	    }
-	  }
-	  return post;
-	};
-	
-	PostStore.all = function () {
-	  return _posts.slice();
-	};
-	
-	// Will need to write a method to pull all posts based on a profile_id
-	// 1st function -- only posts to a receiver_id
-	// 2nd function - all posts where user_id === author_id or receiver_id
-	// Write 2 different functions
-	// Write 3rd function combines the other two to get full list
-	
-	module.exports = PostStore;
-
-/***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var Link = __webpack_require__(168).Link;
-	var SessionStore = __webpack_require__(230);
-	var PostActions = __webpack_require__(274);
-	
-	var PostIndexItem = React.createClass({
-	  displayName: 'PostIndexItem',
-	  _deletePost: function _deletePost() {
-	    PostActions.deletePost(this.props.post.id);
-	  },
-	  deleteButton: function deleteButton() {
-	    if (this.props.post.author_id === SessionStore.currentUser().id || this.props.post.receiver_id === SessionStore.currentUser().id) {
-	      return React.createElement(
-	        'button',
-	        { onClick: this._deletePost,
-	          className: 'delete-post', __self: this
-	        },
-	        'Remove Post'
-	      );
-	    }
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'li',
-	      {
-	        __self: this
-	      },
-	      React.createElement(
-	        'div',
-	        { className: 'post-item-container', __self: this
-	        },
-	        React.createElement(
-	          'div',
-	          { className: 'post-author-info', __self: this
-	          },
-	          React.createElement(
-	            Link,
-	            { to: '/users/' + this.props.post.author_id, __self: this
-	            },
-	            React.createElement('img', { src: this.props.post.profile_img, __self: this
-	            })
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'post-author-text', __self: this
-	            },
-	            React.createElement(
-	              Link,
-	              { to: '/users/' + this.props.post.author_id, __self: this
-	              },
-	              React.createElement(
-	                'h5',
-	                {
-	                  __self: this
-	                },
-	                this.props.post.author_name
-	              )
-	            ),
-	            React.createElement(
-	              'h6',
-	              {
-	                __self: this
-	              },
-	              $.timeago(this.props.post.created_at)
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'p',
-	          {
-	            __self: this
-	          },
-	          this.props.post.body
-	        ),
-	        React.createElement(
-	          'ul',
-	          { className: 'post-footer', __self: this
-	          },
-	          React.createElement(
-	            'a',
-	            {
-	              __self: this
-	            },
-	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
-	              className: 'post-footer-like', __self: this
-	            }),
-	            'Like'
-	          ),
-	          React.createElement(
-	            'a',
-	            {
-	              __self: this
-	            },
-	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
-	              className: 'post-footer-comment', __self: this
-	            }),
-	            'Comment'
-	          ),
-	          this.deleteButton()
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = PostIndexItem;
-
-/***/ },
-/* 280 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	// const Link = require('react-router').Link;
-	var ProfileStore = __webpack_require__(267);
-	var ProfileActions = __webpack_require__(258);
-	var ProfileAbout = __webpack_require__(268);
-	var ProfileHeader = __webpack_require__(269);
-	
-	var ProfileAboutPage = React.createClass({
-	  displayName: 'ProfileAboutPage',
-	  getInitialState: function getInitialState() {
-	    return { profile: ProfileStore.currentProfile() };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var id = parseInt(this.props.params.id);
-	    console.log("componentDidMount() in profile_about_page.jsx");
-	    console.log(id);
-	    // debugger;
-	    ProfileActions.fetchSingleProfile(id);
-	    this.profileListener = ProfileStore.addListener(this._updateProfile);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.profileListener.remove();
-	  },
-	  _updateProfile: function _updateProfile(profile) {
-	    this.setState({ profile: ProfileStore.currentProfile() });
-	    console.log("_updateProfile(profile) in profile.jsx");
-	    console.log(this.state);
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'profile-about-full', __self: this
-	      },
-	      React.createElement(ProfileAbout, { profile: this.state.profile, __self: this
-	      }),
-	      this.props.children
-	    );
-	  }
-	});
-	
-	module.exports = ProfileAboutPage;
-
-/***/ },
-/* 281 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(1);
-	// const Link = require('react-router').Link;
-	var SessionStore = __webpack_require__(230);
-	var ProfileStore = __webpack_require__(267);
-	var ProfileActions = __webpack_require__(258);
-	var FriendshipStore = __webpack_require__(282);
-	var FriendshipActions = __webpack_require__(270);
-	var FriendRequestIndex = __webpack_require__(283);
-	var FriendIndex = __webpack_require__(285);
-	// const FriendHeader = require('./friend_header');
-	
-	var FriendsPage = React.createClass({
-	  displayName: 'FriendsPage',
-	  getInitialState: function getInitialState() {
-	    return { profile: ProfileStore.currentProfile(),
-	      friends: FriendshipStore.friends(),
-	      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
-	      friendRequestsSent: FriendshipStore.friendRequestsSent() };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var id = parseInt(this.props.params.id);
-	    console.log("componentDidMount() in friends_page.jsx");
-	    console.log(id);
-	
-	    ProfileActions.fetchSingleProfile(id);
-	    this.profileListener = ProfileStore.addListener(this._updateFriends);
-	
-	    FriendshipActions.fetchAllFriends(id);
-	    this.friendListener = FriendshipStore.addListener(this._updateFriends);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.profileListener.remove();
-	    this.friendListener.remove();
-	  },
-	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
-	  },
-	  _updateFriends: function _updateFriends() {
-	    console.log("_updateFriends() in FriendsPage");
-	    var friends = FriendshipStore.friends();
-	    var friendRequestsReceived = FriendshipStore.friendRequestsReceived();
-	    var friendRequestsSent = FriendshipStore.friendRequestsSent();
-	
-	    this.setState({ friends: friends,
-	      friendRequestsReceived: friendRequestsReceived,
-	      friendRequestsSent: friendRequestsSent
-	    });
-	    console.log('after this.setState() in friends_page.jsx. New state below:');
-	    console.log(friends);
-	    console.log(friendRequestsReceived);
-	    console.log(friendRequestsSent);
-	  },
-	  render: function render() {
-	    console.log('render() in friends_page.jsx');
-	    console.log(this.state);
-	    return React.createElement(
-	      'ul',
-	      {
-	        __self: this
-	      },
-	      React.createElement(FriendRequestIndex, { friendRequestsReceived: this.state.friendRequestsReceived, __self: this
-	      }),
-	      React.createElement(FriendIndex, { friends: this.state.friends, __self: this
-	      }),
-	      this.props.children
-	    );
-	  }
-	});
-	
-	module.exports = FriendsPage;
-	
-	// className="friend-page"
-
-	// {
-	//   this.state.friends.map(friend => {
-	//     return <li key={friend.id}>{friend.id}</li>;
-	//   })
-	// }
-	// <FriendRequestIndex friendRequests={this.state.friendRequestsReceived}/>
-
-	//
-	// <h5>Friends</h5>
-	// {this.state.friends.length}
-	// {
-	//   this.state.friends.map(friend => {
-	//     return (
-	//       <li key={friend.id}>{friend.first_name}</li>
-	//     );
-	//   })
-	// }
-	//
-	// <h5>Requests Received</h5>
-	// {this.state.friendRequestsReceived.length}
-	// {
-	//   this.state.friendRequestsReceived.map(friend => {
-	//     return (
-	//       <li key={friend.id}>{friend.first_name}</li>
-	//     );
-	//   })
-	// }
-	//
-	// <h5>Requests Sent</h5>
-	// {this.state.friendRequestsSent.length}
-	// {
-	//   this.state.friendRequestsSent.map(friend => {
-	//     return (
-	//       <li key={friend.id}>{friend.first_name}</li>
-	//     );
-	//   })
-	// }
-	//
-
-/***/ },
-/* 282 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	
 	var AppDispatcher = __webpack_require__(231);
@@ -35157,13 +34438,732 @@
 	module.exports = FriendshipStore;
 
 /***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	// const hashHistory = require('react-router').hashHistory;
+	var ProfileActions = __webpack_require__(258);
+	var PostActions = __webpack_require__(275);
+	var SessionStore = __webpack_require__(230);
+	var ProfileStore = __webpack_require__(267);
+	var ErrorStore = __webpack_require__(264);
+	
+	var NewPostForm = React.createClass({
+	  displayName: 'NewPostForm',
+	  getInitialState: function getInitialState() {
+	    return { body: "",
+	      currentUserProfileImg: "" };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.sessionListener = SessionStore.addListener(this._onChange);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.sessionListener.remove();
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    ProfileActions.fetchCurrentUserProfile();
+	    // SessionActions.fetchCurrentUserProfile(newProps.profile.id);
+	    // this._onChange();
+	  },
+	  _onChange: function _onChange() {
+	    var currentUserProfile = SessionStore.currentUserProfile();
+	    this.setState({ currentUserProfileImg: currentUserProfile.profile_img });
+	  },
+	  _newPostPrompt: function _newPostPrompt() {
+	    var receiverId = this.props.profile.user_id;
+	    if (receiverId && receiverId === SessionStore.currentUser().id) {
+	      return 'What\'s on your mind?';
+	    } else if (receiverId && receiverId !== SessionStore.currentUser().id) {
+	      return 'Write something to ' + this.props.profile.first_name + '...';
+	    } else {
+	      return "Write a new post!";
+	    }
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    var _this = this;
+	
+	    e.preventDefault();
+	    var post = { body: this.state.body,
+	      author_id: parseInt(SessionStore.currentUser().id),
+	      receiver_id: parseInt(this.props.profile.id) };
+	
+	    PostActions.createPost(post, function () {
+	      _this.setState({ body: "" });
+	    });
+	  },
+	  _updatePost: function _updatePost(e) {
+	    this.setState({ body: e.target.value });
+	  },
+	  _submitWithEnterKey: function _submitWithEnterKey(e) {
+	    if (e.keyCode == 13) {
+	      this.handleSubmit(e);
+	    }
+	  },
+	  render: function render() {
+	    var numRows = Math.floor(this.state.body.length / 18);
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'new-post-form-container', __self: this
+	      },
+	      React.createElement(
+	        'nav',
+	        {
+	          __self: this
+	        },
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png',
+	          className: 'icon-status', __self: this
+	        }),
+	        'Status',
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
+	          className: 'icon-photo', __self: this
+	        }),
+	        'Photo/Video'
+	      ),
+	      React.createElement(
+	        'form',
+	        { className: 'new-post-form',
+	          onSubmit: this.handleSubmit, __self: this
+	        },
+	        React.createElement(
+	          'div',
+	          { className: 'new-post-body clearfix', __self: this
+	          },
+	          React.createElement('img', { src: this.state.currentUserProfileImg, className: 'new-post-profile-pic', __self: this
+	          }),
+	          React.createElement(
+	            'div',
+	            { className: 'new-post-text-container', __self: this
+	            },
+	            React.createElement('textarea', { rows: numRows,
+	              cols: '35', wrap: 'hard',
+	              value: this.state.body,
+	              placeholder: this._newPostPrompt(),
+	              onChange: this._updatePost,
+	              onKeyDown: this._submitWithEnterKey, __self: this
+	            })
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'new-post-submit', __self: this
+	          },
+	          React.createElement('input', { type: 'submit', value: 'Post', __self: this
+	          })
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = NewPostForm;
+	
+	// cols="35"  wrap="hard"
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var AppDispatcher = __webpack_require__(231);
+	var PostConstants = __webpack_require__(276);
+	var PostApiUtil = __webpack_require__(277);
+	var ErrorActions = __webpack_require__(256);
+	var hashHistory = __webpack_require__(168).hashHistory;
+	
+	var PostActions = {
+	  createPost: function createPost(post, resetNewPostForm) {
+	    var _this = this;
+	
+	    console.log("createPost(post) in post_actions.js");
+	    PostApiUtil.createPost(post, function (resp) {
+	      _this.receiveSinglePost(resp);
+	      resetNewPostForm();
+	    });
+	  },
+	  updatePost: function updatePost(post) {
+	    console.log("updatePost(post) in post_actions.js");
+	    PostApiUtil.updatePost(post, this.receiveSinglePost);
+	  },
+	  deletePost: function deletePost(id) {
+	    console.log("deletePost(id) in post_actions.js");
+	    PostApiUtil.deletePost(id, function (resp) {
+	      PostActions.removedPost(resp);
+	      console.log("Post successfully deleted");
+	    });
+	  },
+	  fetchSinglePost: function fetchSinglePost(id) {
+	    console.log("fetchSinglePost(id) in post_actions.js");
+	    PostApiUtil.fetchPost(id, this.receiveSinglePost);
+	  },
+	  fetchManyPosts: function fetchManyPosts(ids) {
+	    console.log("fetchManyPosts(ids) in post_actions.js");
+	    PostApiUtil.fetchManyPosts(ids, this.receiveManyPosts);
+	  },
+	  receiveSinglePost: function receiveSinglePost(post) {
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.UPDATE_POST,
+	      post: post
+	    });
+	  },
+	  receiveManyPosts: function receiveManyPosts(posts) {
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.UPDATE_POSTS,
+	      posts: posts
+	    });
+	  },
+	  removedPost: function removedPost(post) {
+	    console.log('in removedPost(post) in post_actions.js');
+	    console.log(post);
+	    AppDispatcher.dispatch({
+	      actionType: PostConstants.REMOVED_POST,
+	      post: post
+	    });
+	  }
+	};
+	
+	module.exports = PostActions;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var PostConstants = {
+	  UPDATE_POST: "UPDATE_POST",
+	  UPDATE_POSTS: "UPDATE_POSTS",
+	  REMOVED_POST: "REMOVED_POST"
+	};
+	
+	module.exports = PostConstants;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var PostApiUtil = {
+	  createPost: function createPost(post, _success, error) {
+	    console.log("createPost(post, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts",
+	      type: 'POST',
+	      data: { post: post },
+	      success: function success(resp) {
+	        console.log("successfully created new post");
+	        console.log(resp);
+	        _success(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  updatePost: function updatePost(post, _success2, error) {
+	    console.log("updatePost(post, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + post.id,
+	      type: 'PATCH',
+	      data: { post: post },
+	      success: function success(resp) {
+	        console.log("successfully edited post");
+	        console.log(resp);
+	        _success2(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to create a new post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  deletePost: function deletePost(id, _success3, error) {
+	    console.log("deletePost(id, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + id,
+	      type: 'DELETE',
+	      success: function success(resp) {
+	        console.log("successfully deleted post");
+	        console.log(resp);
+	        _success3(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to delete post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchPost: function fetchPost(id, _success4, error) {
+	    console.log("fetchPost(id, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/" + id,
+	      type: 'GET',
+	      success: function success(resp) {
+	        console.log("successfully fetched post");
+	        console.log(resp);
+	        _success4(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchManyPosts: function fetchManyPosts(ids, _success5, error) {
+	    console.log("fetchPosts(ids, success, error) in post_api_util.js");
+	    $.ajax({
+	      url: "/api/posts/",
+	      type: 'GET',
+	      data: { receiver_id: ids.receiver_id, author_id: ids.author_id },
+	      success: function success(resp) {
+	        console.log("successfully fetched posts");
+	        console.log(resp);
+	        _success5(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to fetch posts");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  }
+	};
+	
+	module.exports = PostApiUtil;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var PostStore = __webpack_require__(279);
+	var PostActions = __webpack_require__(275);
+	var PostIndexItem = __webpack_require__(280);
+	
+	var PostIndex = React.createClass({
+	  displayName: 'PostIndex',
+	  getInitialState: function getInitialState() {
+	    return { posts: PostStore.all() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("componentDidMount() in post_index.jsx");
+	    var ids = { receiver_id: this.props.profile.user_id };
+	    console.log(ids);
+	    PostActions.fetchManyPosts(ids);
+	    this.postListener = PostStore.addListener(this._onChange);
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    var ids = { receiver_id: newProps.profile.user_id };
+	    console.log(ids);
+	    PostActions.fetchManyPosts(ids);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.postListener.remove();
+	    // PostStore.remove(this._onChange);
+	  },
+	  _onChange: function _onChange() {
+	    this.setState({ posts: PostStore.all() });
+	    console.log("_onChange() in post_index.jsx");
+	    console.log(this.state);
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return React.createElement(
+	      'ul',
+	      {
+	        __self: this
+	      },
+	      this.state.posts.map(function (post) {
+	        return React.createElement(PostIndexItem, { post: post, key: post.id, __self: _this
+	        });
+	      })
+	    );
+	  }
+	});
+	
+	module.exports = PostIndex;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var AppDispatcher = __webpack_require__(231);
+	var Store = __webpack_require__(235).Store;
+	var PostConstants = __webpack_require__(276);
+	
+	var _posts = [];
+	
+	var PostStore = new Store(AppDispatcher);
+	
+	PostStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case PostConstants.UPDATE_POST:
+	      _updatePost(payload.post);
+	      PostStore.__emitChange();
+	      break;
+	    case PostConstants.UPDATE_POSTS:
+	      _posts = payload.posts;
+	      PostStore.__emitChange();
+	      break;
+	    case PostConstants.REMOVED_POST:
+	      _removePost(payload.post);
+	      PostStore.__emitChange();
+	      break;
+	  }
+	};
+	
+	function _updatePost(post) {
+	  var newPost = true;
+	  for (var i = 0; i < _posts.length; i++) {
+	    if (_posts[i].id === post.id) {
+	      _posts[i] = post;
+	      newPost = false;
+	    }
+	  }
+	  if (newPost) {
+	    _posts.unshift(post);
+	  }
+	}
+	
+	function _removePost(post) {
+	  for (var i = 0; i < _posts.length; i++) {
+	    if (_posts[i].id === post.id) {
+	      _posts = _posts.slice(0, i).concat(_posts.slice(i + 1));
+	    }
+	  }
+	}
+	
+	PostStore.find = function (id) {
+	  var post = {};
+	
+	  if (typeof id === "string") {
+	    id = parseInt(id);
+	  }
+	
+	  for (var i = 0; i < _posts.length; i++) {
+	    var currPost = _posts[i];
+	    if (currPost.id === id) {
+	      post = currPost;
+	    }
+	  }
+	  return post;
+	};
+	
+	PostStore.all = function () {
+	  return _posts.slice();
+	};
+	
+	// Will need to write a method to pull all posts based on a profile_id
+	// 1st function -- only posts to a receiver_id
+	// 2nd function - all posts where user_id === author_id or receiver_id
+	// Write 2 different functions
+	// Write 3rd function combines the other two to get full list
+	
+	module.exports = PostStore;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var Link = __webpack_require__(168).Link;
+	var SessionStore = __webpack_require__(230);
+	var PostActions = __webpack_require__(275);
+	
+	var PostIndexItem = React.createClass({
+	  displayName: 'PostIndexItem',
+	  _deletePost: function _deletePost() {
+	    PostActions.deletePost(this.props.post.id);
+	  },
+	  deleteButton: function deleteButton() {
+	    if (this.props.post.author_id === SessionStore.currentUser().id || this.props.post.receiver_id === SessionStore.currentUser().id) {
+	      return React.createElement(
+	        'button',
+	        { onClick: this._deletePost,
+	          className: 'delete-post', __self: this
+	        },
+	        'Remove Post'
+	      );
+	    }
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'li',
+	      {
+	        __self: this
+	      },
+	      React.createElement(
+	        'div',
+	        { className: 'post-item-container', __self: this
+	        },
+	        React.createElement(
+	          'div',
+	          { className: 'post-author-info', __self: this
+	          },
+	          React.createElement(
+	            Link,
+	            { to: '/users/' + this.props.post.author_id, __self: this
+	            },
+	            React.createElement('img', { src: this.props.post.profile_img, __self: this
+	            })
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'post-author-text', __self: this
+	            },
+	            React.createElement(
+	              Link,
+	              { to: '/users/' + this.props.post.author_id, __self: this
+	              },
+	              React.createElement(
+	                'h5',
+	                {
+	                  __self: this
+	                },
+	                this.props.post.author_name
+	              )
+	            ),
+	            React.createElement(
+	              'h6',
+	              {
+	                __self: this
+	              },
+	              $.timeago(this.props.post.created_at)
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'p',
+	          {
+	            __self: this
+	          },
+	          this.props.post.body
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'post-footer', __self: this
+	          },
+	          React.createElement(
+	            'a',
+	            {
+	              __self: this
+	            },
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
+	              className: 'post-footer-like', __self: this
+	            }),
+	            'Like'
+	          ),
+	          React.createElement(
+	            'a',
+	            {
+	              __self: this
+	            },
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
+	              className: 'post-footer-comment', __self: this
+	            }),
+	            'Comment'
+	          ),
+	          this.deleteButton()
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = PostIndexItem;
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	// const Link = require('react-router').Link;
+	var ProfileStore = __webpack_require__(267);
+	var ProfileActions = __webpack_require__(258);
+	var ProfileAbout = __webpack_require__(268);
+	var ProfileHeader = __webpack_require__(269);
+	
+	var ProfileAboutPage = React.createClass({
+	  displayName: 'ProfileAboutPage',
+	  getInitialState: function getInitialState() {
+	    return { profile: ProfileStore.currentProfile() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var id = parseInt(this.props.params.id);
+	    console.log("componentDidMount() in profile_about_page.jsx");
+	    console.log(id);
+	    // debugger;
+	    ProfileActions.fetchSingleProfile(id);
+	    this.profileListener = ProfileStore.addListener(this._updateProfile);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.profileListener.remove();
+	  },
+	  _updateProfile: function _updateProfile(profile) {
+	    this.setState({ profile: ProfileStore.currentProfile() });
+	    console.log("_updateProfile(profile) in profile.jsx");
+	    console.log(this.state);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'profile-about-full', __self: this
+	      },
+	      React.createElement(ProfileAbout, { profile: this.state.profile, __self: this
+	      }),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = ProfileAboutPage;
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	// const Link = require('react-router').Link;
+	var SessionStore = __webpack_require__(230);
+	var ProfileStore = __webpack_require__(267);
+	var ProfileActions = __webpack_require__(258);
+	var FriendshipStore = __webpack_require__(273);
+	var FriendshipActions = __webpack_require__(270);
+	var FriendRequestIndex = __webpack_require__(283);
+	var FriendIndex = __webpack_require__(285);
+	// const FriendHeader = require('./friend_header');
+	
+	var FriendsPage = React.createClass({
+	  displayName: 'FriendsPage',
+	  getInitialState: function getInitialState() {
+	    return { profile: ProfileStore.currentProfile(),
+	      friends: FriendshipStore.friends(),
+	      friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+	      friendRequestsSent: FriendshipStore.friendRequestsSent() };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var id = parseInt(this.props.params.id);
+	    console.log("componentDidMount() in friends_page.jsx");
+	    console.log(id);
+	
+	    ProfileActions.fetchSingleProfile(id);
+	    this.profileListener = ProfileStore.addListener(this._updateFriends);
+	
+	    FriendshipActions.fetchAllFriends(id);
+	    this.friendListener = FriendshipStore.addListener(this._updateFriends);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.profileListener.remove();
+	    this.friendListener.remove();
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
+	  },
+	  _updateFriends: function _updateFriends() {
+	    console.log("_updateFriends() in FriendsPage");
+	    var friends = FriendshipStore.friends();
+	    var friendRequestsReceived = FriendshipStore.friendRequestsReceived();
+	    var friendRequestsSent = FriendshipStore.friendRequestsSent();
+	
+	    this.setState({ friends: friends,
+	      friendRequestsReceived: friendRequestsReceived,
+	      friendRequestsSent: friendRequestsSent
+	    });
+	    console.log('after this.setState() in friends_page.jsx. New state below:');
+	    console.log(friends);
+	    console.log(friendRequestsReceived);
+	    console.log(friendRequestsSent);
+	  },
+	  render: function render() {
+	    console.log('render() in friends_page.jsx');
+	    console.log(this.state);
+	    return React.createElement(
+	      'ul',
+	      {
+	        __self: this
+	      },
+	      React.createElement(FriendRequestIndex, { friendRequestsReceived: this.state.friendRequestsReceived, __self: this
+	      }),
+	      React.createElement(FriendIndex, { friends: this.state.friends, __self: this
+	      }),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = FriendsPage;
+	
+	// className="friend-page"
+
+	// {
+	//   this.state.friends.map(friend => {
+	//     return <li key={friend.id}>{friend.id}</li>;
+	//   })
+	// }
+	// <FriendRequestIndex friendRequests={this.state.friendRequestsReceived}/>
+
+	//
+	// <h5>Friends</h5>
+	// {this.state.friends.length}
+	// {
+	//   this.state.friends.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+	// <h5>Requests Received</h5>
+	// {this.state.friendRequestsReceived.length}
+	// {
+	//   this.state.friendRequestsReceived.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+	// <h5>Requests Sent</h5>
+	// {this.state.friendRequestsSent.length}
+	// {
+	//   this.state.friendRequestsSent.map(friend => {
+	//     return (
+	//       <li key={friend.id}>{friend.first_name}</li>
+	//     );
+	//   })
+	// }
+	//
+
+/***/ },
 /* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var FriendshipStore = __webpack_require__(282);
+	var FriendshipStore = __webpack_require__(273);
 	var FriendshipActions = __webpack_require__(270);
 	var FriendRequestIndexItem = __webpack_require__(284);
 	
@@ -35213,7 +35213,7 @@
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	var FriendshipActions = __webpack_require__(270);
-	var FriendshipStore = __webpack_require__(282);
+	var FriendshipStore = __webpack_require__(273);
 	
 	var FriendRequestIndexItem = React.createClass({
 	  displayName: 'FriendRequestIndexItem',
@@ -35286,7 +35286,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var FriendshipStore = __webpack_require__(282);
+	var FriendshipStore = __webpack_require__(273);
 	var FriendshipActions = __webpack_require__(270);
 	var FriendIndexItem = __webpack_require__(286);
 	
@@ -35336,7 +35336,7 @@
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
 	var FriendshipActions = __webpack_require__(270);
-	var FriendshipStore = __webpack_require__(282);
+	var FriendshipStore = __webpack_require__(273);
 	
 	var FriendIndexItem = React.createClass({
 	  displayName: 'FriendIndexItem',
