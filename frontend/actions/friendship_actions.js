@@ -17,6 +17,11 @@ const FriendshipActions = {
     FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
   },
 
+  removeFriendship(friendship) {
+    console.log("removeFriendship(friendship) in friendship_actions.js");
+    FriendshipApiUtil.deleteFriendship(friendship, this.receiveSingleFriendship);
+  },
+
   fetchSingleFriendship(id) {
     console.log("fetchSingleFriendship(id) in friendship_actions.js");
     FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);

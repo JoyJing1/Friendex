@@ -17,7 +17,7 @@ const FriendIndex = React.createClass({
 
           <ul className="friend-body">
             {this.props.friends.map( friend => {
-              return <FriendIndexItem friend={friend}/>;
+              return <FriendIndexItem friend={friend} key={friend.id}/>;
             })}
           </ul>
 

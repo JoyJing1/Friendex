@@ -9,7 +9,6 @@ const FriendshipActions = require('../actions/friendship_actions');
 const SessionStore = require('../stores/session_store');
 const FriendshipStore = require('../stores/friendship_store');
 
-
 const ProfileHeader = React.createClass({
   getInitialState() {
     return { profile: ProfileStore.currentProfile(),
@@ -20,7 +19,7 @@ const ProfileHeader = React.createClass({
 
   componentWillReceiveProps(newProps) {
     ProfileActions.fetchSingleProfile(newProps.params.id);
-    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
+    FriendshipActions.fetchAllFriends(newProps.params.id);
   },
 
   componentDidMount() {
@@ -45,12 +44,10 @@ const ProfileHeader = React.createClass({
     const friendRequestsSent = FriendshipStore.friendRequestsSent();
 
     this.setState({ profile: profile,
-          friends: friends,
-          friendRequestsReceived: friendRequestsReceived,
-          friendRequestsSent: friendRequestsSent
-        });
-    // this.setState({ profile: ProfileStore.currentProfile() });
-    // Also need to update friendship value
+                    friends: friends,
+                    friendRequestsReceived: friendRequestsReceived,
+                    friendRequestsSent: friendRequestsSent });
+
     console.log("_updateProfile() in profile_header.jsx");
   },
 
@@ -58,28 +55,48 @@ const ProfileHeader = React.createClass({
     e.preventDefault(e);
 
     const friendship = { requestor_id: SessionStore.currentUser().id,
-                          receiver_id: ProfileStore.currentProfile().user_id,
+                          receiver_id: ProfileStore.currentProfile().id,
                           status: "pending"};
     FriendshipActions.createFriendship(friendship);
   },
 
-  friendshipButton() {
-    // const currentUser = SessionStore.currentUser();
-    // console.log("friendshipButton() in profile_header.jsx");
-    // // Need to just pull/check ids rather than full object (holding different info so won't be the same)
-    // if (currentUser === ProfileStore.currentProfile) {
-    //   console.log("Visiting own page, do NOT show friend button");
-    // } else if (this.state.friends.includes(currentUser)) {
-    //   // Button says "Remove Friend"
-    //   console.log('Currently friends, should remove button');
-    // } else if (this.state.friendRequestsReceived.includes(currentUser)) {
-    //   console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
-    // } else if (this.state.friendRequestsSent.includes(currentUser)) {
-    //   console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
-    // } else {
-    //   console.log("Pair not connected, show ADD FRIEND button");
-    // }
+  _acceptFriendship(e) {
+    e.preventDefault(e);
 
+    const friendship = { requestor_id: SessionStore.currentUser().id,
+                          receiver_id: ProfileStore.currentProfile().id,
+                          status: "accepted"};
+    FriendshipActions.updateFriendship(friendship);
+  },
+
+  _rejectFriendship(e) {
+    e.preventDefault(e);
+
+    const friendship = { requestor_id: SessionStore.currentUser().id,
+                          receiver_id: ProfileStore.currentProfile().id,
+                          status: "denied"};
+    FriendshipActions.updateFriendship(friendship);
+  },
+
+  _cancelFriendRequest(e) {
+    e.preventDefault(e);
+
+    const friendship = { requestor_id: SessionStore.currentUser().id,
+                          receiver_id: ProfileStore.currentProfile().id};
+    FriendshipActions.removeFriendship(friendship);
+  },
+
+  _checkConnection(id, arrayFriends) {
+      let included = false;
+      arrayFriends.forEach(friend => {
+        if (friend.friend_id === id) {
+          included = true;
+        }
+      });
+      return included;
+  },
+
+  _addFriendButton() {
     return(
       <button className="add-friend" onClick={this._sendFriendRequest}>
         <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
@@ -87,6 +104,69 @@ const ProfileHeader = React.createClass({
         Add Friend
       </button>
     );
+  },
+
+  _cancelFriendRequestButton() {
+    return(
+      <button className="cancel-request" onClick={this._cancelFriendRequest}>
+        // Change image
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        </img>
+        Cancel Request
+      </button>
+    );
+  },
+
+  _acceptFriendRequest() {
+    return(
+      <button className="add-friend" onClick={this._acceptFriendship}>
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        </img>
+        Confirm Friendship
+      </button>
+    );
+  },
+
+  _rejectFriendRequest() {
+    return(
+      <button className="add-friend" onClick={this._rejectFriendship}>
+        // Change image
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        </img>
+        Delete Request
+      </button>
+    );
+  },
+
+  friendshipButton() {
+    const currentUserId = SessionStore.currentUser().id;
+    console.log("friendshipButton() in profile_header.jsx");
+
+    if (currentUserId === ProfileStore.currentProfile().id) {
+      console.log("Visiting own page, do NOT show friend button");
+
+    } else if (this._checkConnection(currentUserId, this.state.friends)) {
+      console.log('Currently friends, do not show button');
+      // Button says "Remove Friend" (?)
+
+    } else if (this._checkConnection(currentUserId, this.state.friendRequestsReceived)) {
+      console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
+      return this._cancelFriendRequestButton();
+
+    } else if (this._checkConnection(currentUserId, this.state.friendRequestsSent)) {
+      console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
+      return (
+        <div className='friend-request-response-buttons'>
+          {this._acceptFriendRequest()}
+          {this._rejectFriendRequest()}
+        </div>
+      );
+
+    } else {
+      console.log("Pair not connected, show ADD FRIEND button");
+      return this._addFriendButton();
+    }
+
 
   },
 

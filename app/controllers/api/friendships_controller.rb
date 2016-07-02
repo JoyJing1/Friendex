@@ -34,40 +34,27 @@ class Api::FriendshipsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @friendship = Friendship.find(params[:id])
-  #   if @friendship.destroy
-  #     render "api/friendships/show"
-  #   else
-  #     render {}
-  #   end
-  # end
+  def destroy
+    @friendship = Friendship.where("requestor_id = ? AND receiver_id = ?", friendship_params.requestor_id, friendship_params.receiver_id)
+
+
+    if @friendship.delete_all #Can change to destroy if make sure there can only be one request per pairing
+      render "api/friendships/show"
+    else
+      render {}
+    end
+  end
 
   def show
     @friendship = Friendship.find(params[:id])
   end
 
   def index
-    # debugger;
-    p params
     @user = User.find(params[:id])
     @friends = @user.friends
     @friend_requests_received = @user.friend_requests_received
-    # debugger;
     @friend_requests_sent = @user.friend_requests_sent
   end
-    # @friendships = Friendship.where("receiver_id = ? OR requestor_id = ?", params[:id], params[:id])
-    #               .order(updated_at: :desc)
-
-    # @friendships = Friendship.where(receiver_id: params[:id]).join
-
-
-  # end
-
-  # def friends
-  #   Friendship.
-  # end
-
 
 	private
 

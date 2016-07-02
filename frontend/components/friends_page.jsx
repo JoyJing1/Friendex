@@ -37,7 +37,7 @@ const FriendsPage = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
+    FriendshipActions.fetchAllFriends(newProps.profile.user_id); // Changed from user_id
   },
 
   _updateFriends() {

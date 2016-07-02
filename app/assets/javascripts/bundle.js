@@ -34052,7 +34052,7 @@
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    ProfileActions.fetchSingleProfile(newProps.params.id);
-	    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
+	    FriendshipActions.fetchAllFriends(newProps.params.id);
 	  },
 	  componentDidMount: function componentDidMount() {
 	    console.log("componentDidMount() in profile_header.jsx");
@@ -34076,37 +34076,51 @@
 	    this.setState({ profile: profile,
 	      friends: friends,
 	      friendRequestsReceived: friendRequestsReceived,
-	      friendRequestsSent: friendRequestsSent
-	    });
-	    // this.setState({ profile: ProfileStore.currentProfile() });
-	    // Also need to update friendship value
+	      friendRequestsSent: friendRequestsSent });
+	
 	    console.log("_updateProfile() in profile_header.jsx");
 	  },
 	  _sendFriendRequest: function _sendFriendRequest(e) {
 	    e.preventDefault(e);
 	
 	    var friendship = { requestor_id: SessionStore.currentUser().id,
-	      receiver_id: ProfileStore.currentProfile().user_id,
+	      receiver_id: ProfileStore.currentProfile().id,
 	      status: "pending" };
 	    FriendshipActions.createFriendship(friendship);
 	  },
-	  friendshipButton: function friendshipButton() {
-	    // const currentUser = SessionStore.currentUser();
-	    // console.log("friendshipButton() in profile_header.jsx");
-	    // // Need to just pull/check ids rather than full object (holding different info so won't be the same)
-	    // if (currentUser === ProfileStore.currentProfile) {
-	    //   console.log("Visiting own page, do NOT show friend button");
-	    // } else if (this.state.friends.includes(currentUser)) {
-	    //   // Button says "Remove Friend"
-	    //   console.log('Currently friends, should remove button');
-	    // } else if (this.state.friendRequestsReceived.includes(currentUser)) {
-	    //   console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
-	    // } else if (this.state.friendRequestsSent.includes(currentUser)) {
-	    //   console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
-	    // } else {
-	    //   console.log("Pair not connected, show ADD FRIEND button");
-	    // }
+	  _acceptFriendship: function _acceptFriendship(e) {
+	    e.preventDefault(e);
 	
+	    var friendship = { requestor_id: SessionStore.currentUser().id,
+	      receiver_id: ProfileStore.currentProfile().id,
+	      status: "accepted" };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
+	  _rejectFriendship: function _rejectFriendship(e) {
+	    e.preventDefault(e);
+	
+	    var friendship = { requestor_id: SessionStore.currentUser().id,
+	      receiver_id: ProfileStore.currentProfile().id,
+	      status: "denied" };
+	    FriendshipActions.updateFriendship(friendship);
+	  },
+	  _cancelFriendRequest: function _cancelFriendRequest(e) {
+	    e.preventDefault(e);
+	
+	    var friendship = { requestor_id: SessionStore.currentUser().id,
+	      receiver_id: ProfileStore.currentProfile().id };
+	    FriendshipActions.removeFriendship(friendship);
+	  },
+	  _checkConnection: function _checkConnection(id, arrayFriends) {
+	    var included = false;
+	    arrayFriends.forEach(function (friend) {
+	      if (friend.friend_id === id) {
+	        included = true;
+	      }
+	    });
+	    return included;
+	  },
+	  _addFriendButton: function _addFriendButton() {
 	    return React.createElement(
 	      'button',
 	      { className: 'add-friend', onClick: this._sendFriendRequest, __self: this
@@ -34115,6 +34129,64 @@
 	      }),
 	      'Add Friend'
 	    );
+	  },
+	  _cancelFriendRequestButton: function _cancelFriendRequestButton() {
+	    return React.createElement(
+	      'button',
+	      { className: 'cancel-request', onClick: this._cancelFriendRequest, __self: this
+	      },
+	      '// Change image',
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      }),
+	      'Cancel Request'
+	    );
+	  },
+	  _acceptFriendRequest: function _acceptFriendRequest() {
+	    return React.createElement(
+	      'button',
+	      { className: 'add-friend', onClick: this._acceptFriendship, __self: this
+	      },
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      }),
+	      'Confirm Friendship'
+	    );
+	  },
+	  _rejectFriendRequest: function _rejectFriendRequest() {
+	    return React.createElement(
+	      'button',
+	      { className: 'add-friend', onClick: this._rejectFriendship, __self: this
+	      },
+	      '// Change image',
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      }),
+	      'Delete Request'
+	    );
+	  },
+	  friendshipButton: function friendshipButton() {
+	    var currentUserId = SessionStore.currentUser().id;
+	    console.log("friendshipButton() in profile_header.jsx");
+	
+	    if (currentUserId === ProfileStore.currentProfile().id) {
+	      console.log("Visiting own page, do NOT show friend button");
+	    } else if (this._checkConnection(currentUserId, this.state.friends)) {
+	      console.log('Currently friends, do not show button');
+	      // Button says "Remove Friend" (?)
+	    } else if (this._checkConnection(currentUserId, this.state.friendRequestsReceived)) {
+	      console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
+	      return this._cancelFriendRequestButton();
+	    } else if (this._checkConnection(currentUserId, this.state.friendRequestsSent)) {
+	      console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
+	      return React.createElement(
+	        'div',
+	        { className: 'friend-request-response-buttons', __self: this
+	        },
+	        this._acceptFriendRequest(),
+	        this._rejectFriendRequest()
+	      );
+	    } else {
+	      console.log("Pair not connected, show ADD FRIEND button");
+	      return this._addFriendButton();
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -34200,6 +34272,10 @@
 	    console.log("updateFriendship(friendship) in friendship_actions.js");
 	    FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
 	  },
+	  removeFriendship: function removeFriendship(friendship) {
+	    console.log("removeFriendship(friendship) in friendship_actions.js");
+	    FriendshipApiUtil.deleteFriendship(friendship, this.receiveSingleFriendship);
+	  },
 	  fetchSingleFriendship: function fetchSingleFriendship(id) {
 	    console.log("fetchSingleFriendship(id) in friendship_actions.js");
 	    FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
@@ -34283,7 +34359,25 @@
 	      }
 	    });
 	  },
-	  fetchFriendship: function fetchFriendship(id, _success3, error) {
+	  deleteFriendship: function deleteFriendship(friendship, _success3, error) {
+	    console.log("deleteFriendship(friendship, success, error) in friendship_api_util.js");
+	    $.ajax({
+	      url: "/api/friendships/" + friendship.id,
+	      type: 'DELETE',
+	      data: { friendship: friendship },
+	      success: function success(resp) {
+	        console.log("successfully deleted friendship");
+	        console.log(resp);
+	        _success3(resp);
+	      },
+	      error: function error(xhr) {
+	        console.log("failed to delete post");
+	        var errors = xhr.responseJSON;
+	        console.log(errors);
+	      }
+	    });
+	  },
+	  fetchFriendship: function fetchFriendship(id, _success4, error) {
 	    console.log("fetchFriendship(id, success, error) in friendship_api_util.js");
 	    $.ajax({
 	      url: "/api/friendships/" + id,
@@ -34291,7 +34385,7 @@
 	      success: function success(resp) {
 	        console.log("successfully fetched friendships");
 	        console.log(resp);
-	        _success3(resp);
+	        _success4(resp);
 	      },
 	      error: function error(xhr) {
 	        console.log("failed to fetch friendship");
@@ -34300,7 +34394,7 @@
 	      }
 	    });
 	  },
-	  fetchManyFriendships: function fetchManyFriendships(id, _success4, error) {
+	  fetchManyFriendships: function fetchManyFriendships(id, _success5, error) {
 	    console.log("fetchFriendships(ids, success, error) in friendship_api_util.js");
 	    $.ajax({
 	      url: "/api/friendships/",
@@ -34309,7 +34403,7 @@
 	      success: function success(resp) {
 	        console.log("successfully fetched friendships");
 	        console.log(resp);
-	        _success4(resp);
+	        _success5(resp);
 	      },
 	      error: function error(xhr) {
 	        console.log("failed to fetch friendships");
@@ -35049,12 +35143,15 @@
 	    var id = parseInt(this.props.params.id);
 	    console.log("componentDidMount() in profile_about_page.jsx");
 	    console.log(id);
-	    // debugger;
+	
 	    ProfileActions.fetchSingleProfile(id);
 	    this.profileListener = ProfileStore.addListener(this._updateProfile);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.profileListener.remove();
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    ProfileActions.fetchSingleProfile(newProps.id);
 	  },
 	  _updateProfile: function _updateProfile(profile) {
 	    this.setState({ profile: ProfileStore.currentProfile() });
@@ -35116,7 +35213,7 @@
 	    this.friendListener.remove();
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
+	    FriendshipActions.fetchAllFriends(newProps.profile.user_id); // Changed from user_id
 	  },
 	  _updateFriends: function _updateFriends() {
 	    console.log("_updateFriends() in FriendsPage");
@@ -35230,7 +35327,7 @@
 	        { className: 'friend-request-body', __self: this
 	        },
 	        this.props.friendRequestsReceived.map(function (friend) {
-	          return React.createElement(FriendRequestIndexItem, { friend: friend, __self: _this
+	          return React.createElement(FriendRequestIndexItem, { friend: friend, key: friend.id, __self: _this
 	          });
 	        })
 	      ),
@@ -35353,7 +35450,7 @@
 	        { className: 'friend-body', __self: this
 	        },
 	        this.props.friends.map(function (friend) {
-	          return React.createElement(FriendIndexItem, { friend: friend, __self: _this
+	          return React.createElement(FriendIndexItem, { friend: friend, key: friend.id, __self: _this
 	          });
 	        })
 	      ),
@@ -35450,7 +35547,8 @@
 	          __self: this
 	        },
 	        'This is the Newsfeed'
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});

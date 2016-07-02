@@ -16,13 +16,17 @@ const ProfileAboutPage = React.createClass({
     const id = parseInt(this.props.params.id);
     console.log("componentDidMount() in profile_about_page.jsx");
     console.log(id);
-    // debugger;
+
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._updateProfile);
   },
 
   componentWillUnmount() {
     this.profileListener.remove();
+  },
+
+  componentWillReceiveProps(newProps) {
+    ProfileActions.fetchSingleProfile(newProps.id);
   },
 
   _updateProfile(profile) {

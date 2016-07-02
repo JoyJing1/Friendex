@@ -11,6 +11,7 @@ const Newsfeed = React.createClass({
       <div className="newsfeed-container clearfix">
         <h4>This is the Newsfeed</h4>
 
+        {this.props.children}
       </div>
     );
   }
