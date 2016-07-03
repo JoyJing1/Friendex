@@ -10,17 +10,19 @@ const FriendIndexItem = React.createClass({
     const friendship = { id: this.props.friend.id,
                           status: "denied"
     };
+    // debugger;
     FriendshipActions.updateFriendship(friendship);
   },
 
   removeFriendButton() {
     const currentUserId = SessionStore.currentUser().id;
     const profileId = ProfileStore.currentProfile().user_id;
+
     if (currentUserId === profileId) {
       return(
         <div className="friend-buttons">
           <button className="remove-friend"
-            onClick={this.denyFriendship}>Remove Friend</button>
+            onClick={this.removeFriendship}>Remove Friend</button>
         </div>
       );
     }

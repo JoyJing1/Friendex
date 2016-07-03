@@ -26,19 +26,34 @@ class Api::FriendshipsController < ApplicationController
 
   def update
     @friendship = Friendship.find(params[:id])
+    # debugger;
 
     if @friendship.update_attributes(friendship_params)
-      render "api/friendships/show"
+      # debugger
+      @friend_request = { id: @friendship.id,
+                          requestor_id: @friendship.requestor_id,
+                          receiver_id: @friendship.receiver_id,
+                          status: @friendship.status,
+                          date_request_sent: @friendship.created_at,
+                          friend_id: @friendship.requestor_id,
+                          first_name: @friendship.requestor_profile.first_name,
+                          last_name: @friendship.requestor_profile.last_name,
+                          profile_img: @friendship.requestor_profile.profile_img }
+
+      # debugger;
+      render "api/friendships/show_friend_request"
     else
       render json: @friendship.errors, status: 422
     end
   end
 
   def destroy
-    @friendship = Friendship.where("requestor_id = ? AND receiver_id = ?", friendship_params.requestor_id, friendship_params.receiver_id)
+    p friendship_params
 
+    @friendships = Friendship.where("requestor_id = ? AND receiver_id = ?", friendship_params["requestor_id"], friendship_params["receiver_id"])
+    @friendship = @friendships[0]
 
-    if @friendship.delete_all #Can change to destroy if make sure there can only be one request per pairing
+    if @friendships.delete_all #Can change to destroy if make sure there can only be one request per pairing
       render "api/friendships/show"
     else
       render {}
@@ -59,7 +74,7 @@ class Api::FriendshipsController < ApplicationController
 	private
 
 	def friendship_params
-		params.require(:friendship).permit(:requestor_id, :receiver_id, :status)
+		params.require(:friendship).permit(:id, :requestor_id, :receiver_id, :status)
 	end
 
 end

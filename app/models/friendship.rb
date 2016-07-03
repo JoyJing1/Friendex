@@ -9,4 +9,12 @@ class Friendship < ActiveRecord::Base
     foreign_key: :receiver_id,
     class_name: :User
 
+  has_one :requestor_profile,
+    through: :requestor,
+    source: :profile
+
+  has_one :receiver_profile,
+    through: :receiver,
+    source: :profile
+
 end

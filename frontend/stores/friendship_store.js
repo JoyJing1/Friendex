@@ -64,13 +64,14 @@ function _updateFriendship(friendship) {
 
   if (friendship.status === "accepted") {
     _friends[friendship.id] = friendship;
+
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "denied") {
     console.log('trying to delete friendship from friendship_store.js');
     // debugger;
-
+    delete _friends[friendship.id];
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
