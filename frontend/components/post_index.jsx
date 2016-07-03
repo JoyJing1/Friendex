@@ -24,7 +24,6 @@ const PostIndex = React.createClass({
 
   componentWillUnmount() {
     this.postListener.remove();
-    // PostStore.remove(this._onChange);
   },
 
   _onChange() {

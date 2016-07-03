@@ -10,7 +10,7 @@ const FriendIndexItem = React.createClass({
     const friendship = { id: this.props.friend.id,
                           status: "denied"
     };
-    // debugger;
+
     FriendshipActions.updateFriendship(friendship);
   },
 

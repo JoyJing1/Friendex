@@ -50,38 +50,29 @@ function _resetFriendships(payload) {
   console.log(_friends);
   console.log(_friendRequestsReceived);
   console.log(_friendRequestsSent);
-
-  // _friends = payload.friends;
-  // debugger;
-  // _friendRequestsReceived = payload.friend_requests_received;
-  // _friendRequestsSent = payload.friend_requests_sent;
 }
 
 function _updateFriendship(friendship) {
-  "_updateFriendship in friendship_store.js";
+  console.log("_updateFriendship in friendship_store.js");
   console.log(friendship);
-  // debugger;
 
   if (friendship.status === "accepted") {
+    console.log("trying to update friendship status to 'accepted' from friendship_store.js");
     _friends[friendship.id] = friendship;
 
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "denied") {
-    console.log('trying to delete friendship from friendship_store.js');
-    // debugger;
+    console.log("trying to update friendship status to 'denied' from friendship_store.js");
+
     delete _friends[friendship.id];
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
-    console.log(_friendRequestsReceived);
-
   } else if (friendship.status === "pending") {
-    // const currentUser = SessionStore.currentUser();
+    console.log("trying to update friendship status to 'pending' from friendship_store.js");
     const currentProfile = ProfileStore.currentProfile();
-    console.log(currentProfile);
-    // debugger;
 
     if (currentProfile.user_id === friendship.requestor_id) {
       _friendRequestsSent[friendship.id] = friendship;
@@ -91,7 +82,7 @@ function _updateFriendship(friendship) {
       console.log('PROBLEM: pending friendrequest but not related with current_user');
     }
   } else {
-    console.log('PROBLEM: friendship status not accepted, denied, or pending');
+    console.log('PROBLEM: friendship status is not accepted, denied, or pending');
   }
 }
 

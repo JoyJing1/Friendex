@@ -6,7 +6,6 @@ const hashHistory = require('react-router').hashHistory;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const ProfileActions = require('../actions/profile_actions');
-// const Util = require('../util/util');
 
 const Header = React.createClass({
   getInitialState() {

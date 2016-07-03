@@ -112,5 +112,3 @@ const NewPostForm = React.createClass({
 });
 
 module.exports = NewPostForm;
-
- // cols="35"  wrap="hard"

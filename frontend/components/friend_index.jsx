@@ -4,13 +4,6 @@ const FriendshipActions = require('../actions/friendship_actions');
 const FriendIndexItem = require('./friend_index_item');
 
 const FriendIndex = React.createClass({
-  componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps() in friend_index.jsx");
-    console.log(newProps);
-    // debugger;
-    // FriendshipActions.fetchAllFriends(newProps.id);
-  },
-
   render() {
     console.log('rendering FriendIndex');
     console.log(this.props.friends);

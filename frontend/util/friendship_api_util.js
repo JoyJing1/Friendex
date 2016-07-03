@@ -3,6 +3,7 @@
 const FriendshipApiUtil = {
 	createFriendship(friendship, success, error) {
     console.log("createFriendship(friendship, success, error) in friendship_api_util.js");
+
 		$.ajax({
 			url: `/api/friendships`,
 			type: 'POST',
@@ -10,7 +11,6 @@ const FriendshipApiUtil = {
 			success(resp) {
         console.log("successfully created new friendship");
         console.log(resp);
-        // debugger;
         success(resp);
       },
 			error(xhr) {
@@ -23,7 +23,7 @@ const FriendshipApiUtil = {
 
   updateFriendship(friendship, page, success, error) {
     console.log("updateFriendship(friendship, success, error) in friendship_api_util.js");
-    // debugger;
+
 		$.ajax({
 			url: `/api/friendships/${friendship.id}`,
 			type: 'PATCH',
@@ -43,6 +43,7 @@ const FriendshipApiUtil = {
 
   deleteFriendship(friendship, success, error) {
     console.log("deleteFriendship(friendship, success, error) in friendship_api_util.js");
+
 		$.ajax({
 			url: `/api/friendships/${friendship.id}`,
 			type: 'DELETE',
@@ -62,6 +63,7 @@ const FriendshipApiUtil = {
 
   fetchFriendship(id, success, error) {
     console.log("fetchFriendship(id, success, error) in friendship_api_util.js");
+
 		$.ajax({
 			url: `/api/friendships/${id}`,
 			type: 'GET',
@@ -80,6 +82,7 @@ const FriendshipApiUtil = {
 
   fetchManyFriendships(id, success, error) {
     console.log("fetchFriendships(ids, success, error) in friendship_api_util.js");
+
     $.ajax({
       url: `/api/friendships/`,
       type: 'GET',

@@ -1,7 +1,6 @@
 "use strict";
 
 const React = require('react');
-// const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
@@ -9,7 +8,6 @@ const FriendshipStore = require('../stores/friendship_store');
 const FriendshipActions = require('../actions/friendship_actions');
 const FriendRequestIndex = require('./friend_request_index');
 const FriendIndex = require('./friend_index');
-// const FriendHeader = require('./friend_header');
 
 const FriendsPage = React.createClass({
   getInitialState() {
@@ -37,8 +35,6 @@ const FriendsPage = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    // debugger;
-    // FriendshipActions.fetchAllFriends(newProps.profile.id);
     FriendshipActions.fetchAllFriends(newProps.profile.user_id);
   },
 
@@ -83,44 +79,3 @@ const FriendsPage = React.createClass({
 });
 
 module.exports = FriendsPage;
-
- // className="friend-page"
-
-// {
-//   this.state.friends.map(friend => {
-//     return <li key={friend.id}>{friend.id}</li>;
-//   })
-// }
-// <FriendRequestIndex friendRequests={this.state.friendRequestsReceived}/>
-
-//
-// <h5>Friends</h5>
-// {this.state.friends.length}
-// {
-//   this.state.friends.map(friend => {
-//     return (
-//       <li key={friend.id}>{friend.first_name}</li>
-//     );
-//   })
-// }
-//
-// <h5>Requests Received</h5>
-// {this.state.friendRequestsReceived.length}
-// {
-//   this.state.friendRequestsReceived.map(friend => {
-//     return (
-//       <li key={friend.id}>{friend.first_name}</li>
-//     );
-//   })
-// }
-//
-// <h5>Requests Sent</h5>
-// {this.state.friendRequestsSent.length}
-// {
-//   this.state.friendRequestsSent.map(friend => {
-//     return (
-//       <li key={friend.id}>{friend.first_name}</li>
-//     );
-//   })
-// }
-//
