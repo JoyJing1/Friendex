@@ -37,6 +37,8 @@ const FriendsPage = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
+    // debugger;
+    // FriendshipActions.fetchAllFriends(newProps.profile.id);
     FriendshipActions.fetchAllFriends(newProps.profile.user_id);
   },
 

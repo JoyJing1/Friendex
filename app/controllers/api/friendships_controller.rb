@@ -25,23 +25,49 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = Friendship.find(params[:id])
+    @friendship = nil;
+
+    # debugger;
+    if params[:id] == "undefined"
+      # debugger;
+      @friendships = Friendship.where("requestor_id = ? AND receiver_id = ?", friendship_params["requestor_id"], friendship_params["receiver_id"])
+                    .order(created_at: :desc)
+      # debugger;
+      @friendship = @friendships[0]
+    else
+      # debugger;
+      @friendship = Friendship.find(params[:id])
+    end
     # debugger;
 
     if @friendship.update_attributes(friendship_params)
       # debugger
-      @friend_request = { id: @friendship.id,
-                          requestor_id: @friendship.requestor_id,
-                          receiver_id: @friendship.receiver_id,
-                          status: @friendship.status,
-                          date_request_sent: @friendship.created_at,
-                          friend_id: @friendship.requestor_id,
-                          first_name: @friendship.requestor_profile.first_name,
-                          last_name: @friendship.requestor_profile.last_name,
-                          profile_img: @friendship.requestor_profile.profile_img }
+      if params[:page] == "receiver"
+        @friend_request = { id: @friendship.id,
+                            requestor_id: @friendship.requestor_id,
+                            receiver_id: @friendship.receiver_id,
+                            status: @friendship.status,
+                            date_request_sent: @friendship.created_at,
+                            friend_id: @friendship.requestor_id,
+                            first_name: @friendship.requestor_profile.first_name,
+                            last_name: @friendship.requestor_profile.last_name,
+                            profile_img: @friendship.requestor_profile.profile_img }
+      render "api/friendships/show_friend_request"
 
+      else
+        @friend_request = { id: @friendship.id,
+                            requestor_id: @friendship.requestor_id,
+                            receiver_id: @friendship.receiver_id,
+                            status: @friendship.status,
+                            date_request_sent: @friendship.created_at,
+                            friend_id: @friendship.receiver_id,
+                            first_name: @friendship.receiver_profile.first_name,
+                            last_name: @friendship.receiver_profile.last_name,
+                            profile_img: @friendship.receiver_profile.profile_img }
       # debugger;
       render "api/friendships/show_friend_request"
+      end
+
     else
       render json: @friendship.errors, status: 422
     end

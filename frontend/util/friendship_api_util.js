@@ -21,19 +21,20 @@ const FriendshipApiUtil = {
 		});
 	},
 
-  updateFriendship(friendship, success, error) {
+  updateFriendship(friendship, page, success, error) {
     console.log("updateFriendship(friendship, success, error) in friendship_api_util.js");
+    // debugger;
 		$.ajax({
 			url: `/api/friendships/${friendship.id}`,
 			type: 'PATCH',
-      data: { friendship: friendship },
+      data: { friendship: friendship, page: page },
 			success(resp) {
         console.log("successfully edited friendship");
         console.log(resp);
         success(resp);
       },
 			error(xhr) {
-        console.log("failed to create a new friendship");
+        console.log("failed to update friendship");
 				const errors = xhr.responseJSON;
         console.log(errors);
 			}

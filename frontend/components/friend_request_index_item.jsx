@@ -9,14 +9,14 @@ const FriendRequestIndexItem = React.createClass({
     const friendship = { id: this.props.friend.id,
                           status: "accepted"
     };
-    FriendshipActions.updateFriendship(friendship);
+    FriendshipActions.updateFriendship(friendship, "receiver");
   },
 
   denyFriendship() {
     const friendship = { id: this.props.friend.id,
                           status: "denied"
     };
-    FriendshipActions.updateFriendship(friendship);
+    FriendshipActions.updateFriendship(friendship, "receiver");
   },
 
   render() {

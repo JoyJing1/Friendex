@@ -83,9 +83,9 @@ function _updateFriendship(friendship) {
     console.log(currentProfile);
     // debugger;
 
-    if (currentProfile.id === friendship.requestor_id) {
+    if (currentProfile.user_id === friendship.requestor_id) {
       _friendRequestsSent[friendship.id] = friendship;
-    } else if (currentProfile.id === friendship.receiver_id) {
+    } else if (currentProfile.user_id === friendship.receiver_id) {
       _friendRequestsReceived[friendship.id] = friendship;
     } else {
       console.log('PROBLEM: pending friendrequest but not related with current_user');

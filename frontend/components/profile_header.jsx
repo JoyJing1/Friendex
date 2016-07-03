@@ -56,7 +56,7 @@ const ProfileHeader = React.createClass({
     e.preventDefault(e);
 
     const friendship = { requestor_id: SessionStore.currentUser().id,
-                          receiver_id: ProfileStore.currentProfile().id,
+                          receiver_id: ProfileStore.currentProfile().user_id,
                           status: "pending"};
     FriendshipActions.createFriendship(friendship);
   },
@@ -64,26 +64,26 @@ const ProfileHeader = React.createClass({
   _acceptFriendship(e) {
     e.preventDefault(e);
 
-    const friendship = { requestor_id: SessionStore.currentUser().id,
-                          receiver_id: ProfileStore.currentProfile().id,
-                          status: "accepted"};
-    FriendshipActions.updateFriendship(friendship);
+    const friendship = { requestor_id: ProfileStore.currentProfile().user_id,
+                          receiver_id: SessionStore.currentUser().id,
+                          status: "accepted" };
+    FriendshipActions.updateFriendship(friendship, "requestor");
   },
 
   _rejectFriendship(e) {
     e.preventDefault(e);
 
-    const friendship = { requestor_id: SessionStore.currentUser().id,
-                          receiver_id: ProfileStore.currentProfile().id,
-                          status: "denied"};
-    FriendshipActions.updateFriendship(friendship);
+    const friendship = { requestor_id: ProfileStore.currentProfile().user_id,
+                          receiver_id: SessionStore.currentUser().id,
+                          status: "denied" };
+    FriendshipActions.updateFriendship(friendship, "requestor");
   },
 
   _cancelFriendRequest(e) {
     e.preventDefault(e);
 
     const friendship = { requestor_id: SessionStore.currentUser().id,
-                          receiver_id: ProfileStore.currentProfile().id};
+                          receiver_id: ProfileStore.currentProfile().user_id};
     FriendshipActions.removeFriendship(friendship);
   },
 
@@ -102,9 +102,9 @@ const ProfileHeader = React.createClass({
     hashHistory.replace(`users/${currUserId}/friends`);
   },
 
-  _toCurrUserProfile(id) {
-    const currUserId = SessionStore.currentUser().id;
-    hashHistory.replace(`users/${currUserId}`);
+  _toTimeline(id) {
+    const currProfileId = ProfileStore.currentProfile().id;
+    hashHistory.replace(`users/${currProfileId}/timeline`);
   },
 
   _currentlyFriendsButton() {
@@ -197,7 +197,7 @@ const ProfileHeader = React.createClass({
         </div>
 
         <div className="profile-header-nav">
-          <div className="redirect" onClick={this._toCurrUserProfile}>
+          <div className="redirect" onClick={this._toTimeline}>
             <img src={this.state.profile.profile_img}
               className="profile-img"/>
           </div>

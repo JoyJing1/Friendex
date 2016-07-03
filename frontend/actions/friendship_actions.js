@@ -12,9 +12,9 @@ const FriendshipActions = {
     FriendshipApiUtil.createFriendship(friendship, this.receiveSingleFriendship);
   },
 
-  updateFriendship(friendship) {
+  updateFriendship(friendship, page) {
     console.log("updateFriendship(friendship) in friendship_actions.js");
-    FriendshipApiUtil.updateFriendship(friendship, this.receiveSingleFriendship);
+    FriendshipApiUtil.updateFriendship(friendship, page, this.receiveSingleFriendship);
   },
 
   removeFriendship(friendship) {
