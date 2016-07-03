@@ -10,6 +10,7 @@ my_rand = Random.new(4928)
 User.destroy_all()
 Profile.destroy_all()
 Friendship.destroy_all()
+# Post.destroy_all()
 
 User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
@@ -37,11 +38,27 @@ Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted")
 Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
 Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
+20.times do
+  Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..8), body: Faker::Hacker.say_something_smart )
+  Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..8), body: Faker::StarWars.quote )
+  # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
+end
+
+# Faker::StarWars.quote
+
+#
+# Faker::ChuckNorris.fact
+# Faker::Avatar.image
+#
+# User.create!
+# Profile.create!()
 
 
-
-# (9..29).each |_| do
+# (9..30).each |i| do
 #   User.create(email: Faker::Internet.email, password: "password")
+#   Profile.create!(user_id: i,
+#     first_name:
+#     )
 # end
 
 # Facebook
@@ -127,6 +144,75 @@ Profile.create!(user_id: 8,
     background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
     current_city: "New York City, NY",
     workplace: "LinkedIn")
+
+backgrounds = [
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339505/backgrounds/Lakes.jpg", "http://res.cloudinary.com/joyjing1/image/upload/v1467339268/backgrounds/panorama-sali2000.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339250/backgrounds/_DSC1434.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339241/backgrounds/_DSC0320.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339181/backgrounds/4964-4967.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339155/backgrounds/20160229092748-1bb97924-xx.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339137/backgrounds/unionsquare_panorama_wideangle_306923_o.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339102/backgrounds/landscape-photography-argentina-landscape-lenticular-cloud-natural-landscape-panorama-patagonia-ultra-wide-angle-lens-landscape-1643236926.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467339046/backgrounds/ultra_wide_hougang_hdr_by_draken413o.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467338932/backgrounds/photo-1414694762283-acccc27bca85.jpg"]
+
+#Figure out why FactoryHelper not letting me specify male/female names
+# (9..20).each do |i|
+#   username = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
+#   User.create(email: Faker::Internet.email, password: "password", username: username)
+#   Profile.create!(user_id: i,
+#     first_name: username.split(' ').first,
+#     last_name: username.split(' ').last,
+#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
+#     gender: "female",
+#     workplace: Faker::Company.name,
+#     # school: Faker::Educator.university,
+#     current_city: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
+#     hometown: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
+#     profile_img: Faker::Avatar.image,
+#     background_img: backgrounds[my_rand.rand(0...backgrounds.length)] )
+# end
+
+# (21..30).each do |i|
+#   username = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
+#   User.create(email: Faker::Internet.email, password: "password", username: username)
+#   Profile.create!(user_id: i,
+#     first_name: username.split(' ').first,
+#     last_name: username.split(' ').last,
+#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
+#     gender: "male",
+#     workplace: Faker::Company.name,
+#     # school: Faker::Educator.university,
+#     current_city: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
+#     hometown: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
+#     profile_img: Faker::Avatar.image,
+#     background_img: backgrounds[my_rand.rand(0...backgrounds.length)] )
+# end
+#
+# 20.times do
+#   requestor_id = my_rand.rand(0..30)
+#   receiver_id = my_rand.rand(0..30)
+#   next if requestor_id == receiver_id
+#   Friendship.create!(requestor_id: requestor_id, receiver_id: receiver_id, status: "pending")
+# end
+
+# 20.times do
+#   requestor_id = my_rand.rand(0..30)
+#   receiver_id = my_rand.rand(0..30)
+#   prev_friendship = Friendship.where(requestor_id: requestor_id, receiver_id: receiver_id)
+#   prev_friendship_opp = Friendship.where(requestor_id: receiver_id, receiver_id: requestor_id)
+#
+#   if prev_friendship.empty? && prev_friendship_opp.empty?
+#     Friendship.create!(requestor_id: requestor_id, receiver_id: receiver_id, status: "accepted")
+#   end
+# end
+#
+# 20.times do
+#   Post.create!(author_id: my_rand.rand(0..30), receiver_id: my_rand.rand(0..30), body: Faker::Hacker.say_something_smart )
+#   Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::StarWars.quote )
+#   # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
+# end
 
 # (9..20).each |i| do
 #   Profile.create(user_id: i, first_name: FactoryHelper::Name.female_name,

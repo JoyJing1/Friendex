@@ -9,7 +9,20 @@ const Newsfeed = React.createClass({
   render() {
     return(
       <div className="newsfeed-container clearfix">
-        <h4>This is the Newsfeed</h4>
+
+        <aside className="newsfeed-left">
+          <h5>Left Sidebar</h5>
+        </aside>
+
+        <main>
+          <h4>This is the Newsfeed</h4>
+
+        </main>
+
+
+        <aside className="newsfeed-right">
+          <h5>Right Sidebar</h5>
+        </aside>
 
         {this.props.children}
       </div>
