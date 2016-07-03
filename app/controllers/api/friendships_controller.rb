@@ -75,6 +75,7 @@ class Api::FriendshipsController < ApplicationController
     @friendship = @friendships[0]
 
     if @friendships.delete_all #Can change to destroy if make sure there can only be one request per pairing
+
       render "api/friendships/show"
     else
       render {}
