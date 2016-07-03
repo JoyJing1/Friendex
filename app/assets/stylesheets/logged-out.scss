@@ -33,6 +33,12 @@ html, body {
   width: 170px;
   height: 34px;
   font-weight: bold;
+  position: relative;
+}
+
+.fd-logo a {
+  position: absolute;
+  top: 10px;
 }
 
 .login-form-box.clearfix {
@@ -59,12 +65,21 @@ input[type="password"], input[type="text"] {
   margin-bottom: 10px;
 }
 
-input[type="submit"] {
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="submit"], .demo {
   background: $blue-medium-dark;
   border: 1px solid $blue-border;
   padding: 0 13px;
   height: 35px;
   align-self: center;
+}
+
+.demo {
+  margin-left: 8px;
 }
 
 input[type="select"] {

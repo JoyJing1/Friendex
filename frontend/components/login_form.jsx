@@ -31,7 +31,7 @@ const LoginForm = React.createClass({
 
   redirectIfLoggedIn() {
     if (SessionStore.isUserLoggedIn()) {
-      this.context.router.push("/"); // Just send to newsfeed instead
+      this.context.router.push("/");
     }
   },
 
@@ -45,11 +45,6 @@ const LoginForm = React.createClass({
 
     console.log("handleSubmit(e) in login_form.jsx");
     SessionActions.logIn(formData);
-    // if (this.props.location.pathname === "/login") {
-    // } else {
-    //   console.log(this.props.location.pathname);
-    //   SessionActions.signUp(formData);
-    // }
 	},
 
   // Will need to update formatting
@@ -65,12 +60,13 @@ const LoginForm = React.createClass({
     return <ul>{ messages }</ul>;
   },
 
-  // formType() {
-  //   return this.props.location.pathname.slice(1);
-  // },
-
   update(property) {
     return (e) => this.setState( { [property]: e.target.value } );
+  },
+
+  loginGuest() {
+    this.setState( { email: "mark@facebook.com", password: "testtest" } );
+    this.handleSubmit();
   },
 
 	render() {
@@ -98,9 +94,15 @@ const LoginForm = React.createClass({
                 onChange={this.update("password")}/>
               </label>
 
-              <input type="submit" value="Log In"/>
+              <div className="login-buttons">
+                <input type="submit" value="Log In"/>
+                <button className="demo"
+                        onClick={this.loginGuest}>Guest Login
+                </button>
+              </div>
 
           </form>
+
         </nav>
 		  </header>
 		);

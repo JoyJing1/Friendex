@@ -57,6 +57,8 @@ const Header = React.createClass({
                   className="username-link">{currentUser.username}</Link>
         </div>
 
+        <Link to={"/"} className="home">Home</Link>
+
           <button onClick={this._logout}
                   className="button-logout">Log Out</button>
         </nav>
