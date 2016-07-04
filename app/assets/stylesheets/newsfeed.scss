@@ -31,7 +31,42 @@ img.post-arrow {
 }
 
 .two-friends p {
-  display: inline-block;
   margin: 0;
   padding: 0 6px;
+  text-align: center;
+}
+
+.post-friends-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-friends-info img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+  margin: 16px 16px 0 16px;
+}
+
+
+.post-friends-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  text-align: center;
+}
+
+.post-friends-text h5 {
+  display: inline-block;
+  color: $blue-medium-font;
+  margin: 0;
+  font-size: 16px;
+}
+
+.post-friends-text h6 {
+  display: inline-block;
+  color: $gray-font;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 13px;
 }

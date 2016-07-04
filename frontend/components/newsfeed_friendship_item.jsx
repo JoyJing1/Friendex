@@ -9,13 +9,13 @@ const NewsfeedFriendshipItem = React.createClass({
     return (
       <li>
         <div className="post-item-container">
-          <div className="post-author-info">
+          <div className="post-friends-info">
 
             <Link to={`/users/${this.props.friendship.friend_id}`}>
               <img src={this.props.friendship.friend_img}></img>
             </Link>
 
-            <div className="post-author-text">
+            <div className="post-friends-text">
               <div className="two-friends">
                 <Link to={`/users/${this.props.friendship.friend_id}`}>
                   <h5>{this.props.friendship.friend_name}</h5>
