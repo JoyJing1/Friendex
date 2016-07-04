@@ -39,7 +39,16 @@ button.add-photo-button {
   font-size: 12px;
   font-weight: bold;
   float: right;
-  margin: 2px 8px 5px 10px;
+  margin: -23px 8px 5px 10px;
+}
+
+.no-photos {
+  text-align: center;
+  margin: 20px auto;
+  background: white;
+  margin: 0;
+  padding: 20px 0;
+  border: 1px solid $gray-light-border;
 }
 
 .photo-list {
@@ -56,7 +65,7 @@ li.photo-clickable {
   background: $gray-light-border;
   border: 1px solid $gray-light-border;
   box-sizing: border-box;
-  margin: 5px 0 0 5px
+  margin: 5px 0 0 5px;
 }
 
 .photo-clickable img {

@@ -25,16 +25,28 @@ const UploadPhotosButton = React.createClass({
           console.log(error);
         }
       }
-  );
+    );
 
   },
 
-  render () {
+  _checkOwnProfile() {
+    // debugger;
+    if (this.props.ownProfile) {
+      return (
+        <button onClick={this.upload}
+                className="add-photo-button">Add Photos</button>
+      );
+    }
+  },
+
+  render() {
     return (
-      <button onClick={this.upload}
-              className="add-photo-button">Add Photos</button>
+      <div>
+        {this._checkOwnProfile()}
+      </div>
     );
   }
+
 });
 
 module.exports = UploadPhotosButton;

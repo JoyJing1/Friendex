@@ -35,7 +35,33 @@ const PhotosPage = React.createClass({
     });
   },
 
+  _checkImages() {
+    if (this.state.images.length === 0) {
+      return (
+        <ul className="no-photos">
+          No photos to display
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="photo-list clearfix">
+          {
+            this.state.images.map( image => {
+              return (
+                <li className="photo-clickable">
+                  <img src={image.url}></img>
+                </li>
+              );
+            })
+          }
+        </ul>
+      );
+    }
+  },
+
+
   render () {
+    const ownProfile = SessionStore.currentUser().id === parseInt(this.props.params.id);
     return (
       <div className="profile-photos-full">
 
@@ -44,21 +70,12 @@ const PhotosPage = React.createClass({
             className="photos-icon">
           </img>Photos
 
-          <UploadPhotosButton postImage={this.addImage} className="upload-photo"/>
+          <UploadPhotosButton postImage={this.addImage}
+                              className="upload-photo"
+                              ownProfile={ownProfile}/>
         </h3>
 
-          <ul className="photo-list clearfix">
-            {
-              this.state.images.map( image => {
-                return (
-                  <li className="photo-clickable">
-                    <img src={image.url}></img>
-                  </li>
-                );
-              })
-            }
-          </ul>
-
+        {this._checkImages()}
 
       </div>
     );
@@ -68,7 +85,17 @@ const PhotosPage = React.createClass({
 
 module.exports = PhotosPage;
 
-
+// <ul className="photo-list clearfix">
+//   {
+//     this.state.images.map( image => {
+//       return (
+//         <li className="photo-clickable">
+//           <img src={image.url}></img>
+//         </li>
+//       );
+//     })
+//   }
+// </ul>
 
 // {this.props.children}
 
