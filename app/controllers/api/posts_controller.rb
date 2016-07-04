@@ -29,6 +29,7 @@ class Api::PostsController < ApplicationController
     author_id = params[:author_id]
     @posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
                   .order(created_at: :desc)
+    render "api/posts/index"
   end
 
   def destroy

@@ -5,16 +5,15 @@ class Api::ImagesController < ApplicationController
     if @image.save
       render :show
     else
-
+      render json: @image.errors, status: 422
     end
   end
 
   def index
     cloud_name = ENV['CLOUD_NAME']
     upload_preset = Figaro.env.UPLOAD_PRESET
-    # debugger;
     @user = User.find(params[:id])
-    @images - @user.images
+    @images = @user.images
   end
 
 	private

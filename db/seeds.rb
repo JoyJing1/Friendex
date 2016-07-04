@@ -39,8 +39,8 @@ Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
 Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
 20.times do
-  Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..8), body: Faker::Hacker.say_something_smart )
-  Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..8), body: Faker::StarWars.quote )
+  Post.create!(author_id: my_rand.rand(1..8), receiver_id: my_rand.rand(1..8), body: Faker::Hacker.say_something_smart )
+  Post.create!(author_id: my_rand.rand(1..8), receiver_id: my_rand.rand(1..8), body: Faker::StarWars.quote )
   # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
 end
 
