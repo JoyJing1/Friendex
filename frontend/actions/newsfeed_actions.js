@@ -1,0 +1,27 @@
+"use strict";
+
+const AppDispatcher = require('../dispatcher/dispatcher');
+const NewsfeedConstants = require('../constants/newsfeed_constants');
+const NewsfeedApiUtil = require('../util/newsfeed_api_util');
+const ErrorActions = require('./error_actions');
+const hashHistory = require('react-router').hashHistory;
+
+const NewsfeedActions = {
+
+  fetchNewsfeed(id) {
+    console.log("fetchNewsfeed(id) in newsfeed_actions.js");
+    // debugger;
+    NewsfeedApiUtil.fetchNewsfeed(id, this.receiveNewsfeed);
+  },
+
+  receiveNewsfeed(newsfeed) {
+    // debugger;
+    AppDispatcher.dispatch({
+      actionType: NewsfeedConstants.UPDATE_NEWSFEED,
+      newsfeed: newsfeed
+    });
+  }
+
+};
+
+module.exports = NewsfeedActions;

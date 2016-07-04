@@ -4,6 +4,7 @@ const React = require('react');
 const Link = require('react-router').Link;
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
+const NewsfeedIndex = require('./newsfeed_index');
 
 const Newsfeed = React.createClass({
   render() {
@@ -14,9 +15,8 @@ const Newsfeed = React.createClass({
           <h5>Left Sidebar</h5>
         </aside>
 
-        <main>
-          <h4>This is the Newsfeed</h4>
-
+        <main className="newsfeed-main">
+          <NewsfeedIndex/>
         </main>
 
 

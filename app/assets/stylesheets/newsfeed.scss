@@ -1,0 +1,37 @@
+@import 'colors';
+
+.newsfeed-container {
+  display: flex;
+  justify-content: space-between;
+  width: 980px;
+  margin: 25px auto 0 auto;
+}
+
+.newsfeed-left {
+  width: 18%;
+  background: white;
+  border: 1px solid $gray-light-border;
+}
+
+.newsfeed-right {
+  width: 23%;
+  background: white;
+  border: 1px solid $gray-light-border;
+}
+
+.newsfeed-main {
+  width: 51%;
+}
+
+img.post-arrow {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: auto 6px;
+}
+
+.two-friends p {
+  display: inline-block;
+  margin: 0;
+  padding: 0 6px;
+}

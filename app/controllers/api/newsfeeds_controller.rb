@@ -9,7 +9,6 @@ class Api::NewsfeedsController < ApplicationController
 
     @posts = posts(ids)
     @friendships = friendships(ids)
-    # debugger;
     @newsfeed = @posts.concat(@friendships).sort do |e1, e2|
       e2.updated_at <=> e1.updated_at
     end
@@ -23,14 +22,16 @@ class Api::NewsfeedsController < ApplicationController
     Post.find_by_sql([<<-SQL, binds])
       SELECT
         'post' AS type,
+        p.id AS id,
+        p.id AS post_id,
         p.author_id,
         prof_author.first_name AS author_first_name,
         prof_author.last_name AS author_last_name,
-        prof_author.profile_img AS author_img,
+        prof_author.profile_img AS profile_img,
         p.receiver_id,
         prof_receiver.first_name AS receiver_first_name,
         prof_receiver.last_name AS receiver_last_name,
-        p.id AS post_id,
+        p.created_at,
         p.updated_at,
         p.body
       FROM posts p
@@ -47,6 +48,7 @@ class Api::NewsfeedsController < ApplicationController
     Friendship.find_by_sql([<<-SQL, binds])
       SELECT
         'friendship' AS type,
+        f.id AS id,
         f.id AS friendship_id,
         f.requestor_id AS friend_id,
         f.receiver_id AS new_friend_id,
@@ -55,6 +57,8 @@ class Api::NewsfeedsController < ApplicationController
         prof_requestor.profile_img AS friend_img,
         prof_receiver.first_name AS new_friend_first_name,
         prof_receiver.last_name AS new_friend_last_name,
+        prof_receiver.profile_img AS new_friend_img,
+        f.created_at,
         f.updated_at
       FROM friendships f
         JOIN profiles prof_requestor ON f.requestor_id = prof_requestor.user_id
@@ -66,6 +70,7 @@ class Api::NewsfeedsController < ApplicationController
 
       SELECT
         'friendship' AS type,
+        f.id AS id,
         f.id AS friendship_id,
         f.receiver_id AS friend_id,
         f.requestor_id AS new_friend_id,
@@ -74,6 +79,8 @@ class Api::NewsfeedsController < ApplicationController
         prof_receiver.profile_img AS friend_img,
         prof_requestor.first_name AS new_friend_first_name,
         prof_requestor.last_name AS new_friend_last_name,
+        prof_requestor.profile_img AS new_friend_img,
+        f.created_at,
         f.updated_at
       FROM friendships f
         JOIN profiles prof_receiver ON f.receiver_id = prof_receiver.user_id
@@ -83,12 +90,5 @@ class Api::NewsfeedsController < ApplicationController
 
     SQL
   end
-
-  #
-	# private
-  #
-	# def newsfeed_params
-	# 	params.require(:newsfeed).permit(:user_id)
-	# end
 
 end

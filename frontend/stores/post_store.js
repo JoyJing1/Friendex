@@ -64,10 +64,4 @@ PostStore.all = function() {
   return _posts.slice();
 };
 
-// Will need to write a method to pull all posts based on a profile_id
-// 1st function -- only posts to a receiver_id
-// 2nd function - all posts where user_id === author_id or receiver_id
-// Write 2 different functions
-// Write 3rd function combines the other two to get full list
-
 module.exports = PostStore;
