@@ -63,6 +63,14 @@ const NewsfeedLeft = React.createClass({
             </Link>
           </li>
 
+          <li>
+            <Link to={`/users/${this.state.profile.user_id}/photos`}>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467675714/icons/iconmonstr-picture-12-240.png"
+                    className="left-icon"></img>
+                  <h5>Photos</h5>
+            </Link>
+          </li>
+
         </ul>
 
       </aside>
