@@ -20,9 +20,13 @@
 
 .f-square-icon {
   height: 30px;
-  width: auto;
+  width: 30px;
   display: inline-block;
   margin: auto 50px;
+}
+
+.f-square-icon img {
+  height: 100%;
 }
 
 .header-user {

@@ -4,6 +4,24 @@ const FriendshipActions = require('../actions/friendship_actions');
 const FriendRequestIndexItem = require('./friend_request_index_item');
 
 const FriendRequestIndex = React.createClass({
+  _checkFriendRequests() {
+    if (this.props.friendRequestsReceived.length === 0) {
+      return (
+        <ul className="friend-request-body no-friend-requests">
+          No pending friend requests
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="friend-request-body">
+          {this.props.friendRequestsReceived.map( friend => {
+            return <FriendRequestIndexItem friend={friend} key={friend.id}/>;
+          })}
+        </ul>
+      );
+    }
+  },
+
   render() {
     console.log('rendering FriendRequestIndex');
     console.log(this.props.friendRequestsReceived);
@@ -15,11 +33,7 @@ const FriendRequestIndex = React.createClass({
             </img>Friend Requests
           </h3>
 
-          <ul className="friend-request-body">
-            {this.props.friendRequestsReceived.map( friend => {
-              return <FriendRequestIndexItem friend={friend} key={friend.id}/>;
-            })}
-          </ul>
+          {this._checkFriendRequests()}
 
           {this.props.children}
       </div>
