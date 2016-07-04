@@ -20,8 +20,6 @@ const ProfileAboutPage = require('./components/profile_about_page');
 const FriendsPage = require('./components/friends_page');
 const Newsfeed = require('./components/newsfeed');
 
-// Redirect to login page if user not logged in
-// Otherwise, send to profile page
 const _ensureLoggedIn = function( _ , replace) {
   if (!SessionStore.isUserLoggedIn()) {
     replace("login");
@@ -48,9 +46,6 @@ const appRouter = (
     </Route>
   </Router>
 );
-// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
-// <IndexRoute component={ ProfileTimeline } onEnter={_ensureLoggedIn}/>
-// <IndexRedirect to="/users/:id/timeline" component={ ProfileTimeline }/>
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
@@ -61,8 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("content");
   ReactDOM.render(appRouter, root);
 
-  // timeago plugin to render time ago in strings
-  // jQuery(document).ready(function() {
   jQuery("time.timeago").timeago();
-  // });
 });

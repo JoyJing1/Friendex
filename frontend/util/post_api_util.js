@@ -3,7 +3,8 @@
 const PostApiUtil = {
 	createPost(post, success, error) {
     console.log("createPost(post, success, error) in post_api_util.js");
-		$.ajax({
+
+    $.ajax({
 			url: `/api/posts`,
 			type: 'POST',
       data: { post: post },
@@ -22,6 +23,7 @@ const PostApiUtil = {
 
   updatePost(post, success, error) {
     console.log("updatePost(post, success, error) in post_api_util.js");
+
 		$.ajax({
 			url: `/api/posts/${post.id}`,
 			type: 'PATCH',
@@ -41,6 +43,7 @@ const PostApiUtil = {
 
   deletePost(id, success, error) {
     console.log("deletePost(id, success, error) in post_api_util.js");
+
 		$.ajax({
 			url: `/api/posts/${id}`,
 			type: 'DELETE',
@@ -59,6 +62,7 @@ const PostApiUtil = {
 
   fetchPost(id, success, error) {
     console.log("fetchPost(id, success, error) in post_api_util.js");
+
 		$.ajax({
 			url: `/api/posts/${id}`,
 			type: 'GET',
@@ -77,6 +81,7 @@ const PostApiUtil = {
 
   fetchManyPosts(ids, success, error) {
     console.log("fetchPosts(ids, success, error) in post_api_util.js");
+    
     $.ajax({
       url: `/api/posts/`,
       type: 'GET',

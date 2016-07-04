@@ -57,7 +57,7 @@ const NewPostForm = React.createClass({
   },
 
   _submitWithEnterKey(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       this.handleSubmit(e);
     }
   },

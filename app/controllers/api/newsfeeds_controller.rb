@@ -1,6 +1,6 @@
 class Api::NewsfeedsController < ApplicationController
   def show
-    user = User.find(params["id"]) #Must pass current_user in param
+    user = User.find(params["id"])
     ids = [ user.id ]
 
     user.friends.each do |friend|
@@ -87,7 +87,6 @@ class Api::NewsfeedsController < ApplicationController
         JOIN profiles prof_requestor ON f.requestor_id = prof_requestor.user_id
       WHERE f.receiver_id IN (:ids)
         AND f.status = 'accepted'
-
     SQL
   end
 

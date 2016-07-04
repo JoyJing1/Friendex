@@ -66,7 +66,6 @@ const LoginForm = React.createClass({
 
   loginGuest() {
     this.setState( { email: "mark@facebook.com", password: "testtest" }  );
-    // SessionActions.logIn( { email: "mark@facebook.com", password: "testtest" } );
   },
 
 	render() {

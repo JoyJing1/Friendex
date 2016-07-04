@@ -37,9 +37,9 @@ const FriendRequestIndexItem = React.createClass({
         <div className="friend-request-buttons">
 
           <button className="confirm"
-            onClick={this.acceptFriendship}>Confirm</button>
+                  onClick={this.acceptFriendship}>Confirm</button>
           <button className="delete-request"
-            onClick={this.denyFriendship}>Delete Request</button>
+                  onClick={this.denyFriendship}>Delete Request</button>
         </div>
 
       </div>

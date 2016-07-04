@@ -34,7 +34,6 @@ const NewsfeedFriendshipItem = React.createClass({
             </Link>
           </div>
 
-
           <p>{this.props.friendship.body}</p>
 
           <ul className="post-footer">

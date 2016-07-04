@@ -14,7 +14,6 @@ const ProfileActions = {
 
   fetchCurrentUserProfile() {
     console.log("fetchCurrentUserProfile(id) in profile_actions.js");
-    // console.log(currentUser);
     ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
   },
 

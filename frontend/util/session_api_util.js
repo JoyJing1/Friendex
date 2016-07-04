@@ -3,6 +3,7 @@
 const SessionApiUtil = {
 	logIn(user, success, error) {
     console.log("logIn(user, success, error) in session_api_util.js");
+
 		$.ajax({
 			url: '/api/session',
 			type: 'POST',
@@ -28,6 +29,7 @@ const SessionApiUtil = {
 
 	signUp(formData, successCallback, error) {
     console.log("signUp(user, success, error) in session_api_util.js");
+
 		$.ajax({
 			url: '/api/user',
 			type: 'POST',

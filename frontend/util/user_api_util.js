@@ -3,6 +3,7 @@
 const UserApiUtil = {
 	fetchUser(id, success, error) {
     console.log("fetchUser(id, success, error) in user_api_util.js");
+    
 		$.ajax({
 			url: `/api/users/${id}`,
 			type: 'GET',

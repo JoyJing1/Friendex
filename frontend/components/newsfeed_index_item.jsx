@@ -10,14 +10,12 @@ const NewsfeedIndexItem = React.createClass({
   post_item() {
     if (this.props.news.type === "post") {
       if (this.props.news.author_id === this.props.news.receiver_id) {
-        // If posting on own wall
         return (
           <div className="newsfeed-item news-post-self">
             <PostIndexItem post={this.props.news}/>
           </div>
         );
       } else {
-        // If posting on someone else's wall
         return (
           <div className="newsfeed-item news-post">
             <PostItemToFriend post={this.props.news}/>

@@ -10,12 +10,10 @@ const NewsfeedActions = {
 
   fetchNewsfeed(id) {
     console.log("fetchNewsfeed(id) in newsfeed_actions.js");
-    // debugger;
     NewsfeedApiUtil.fetchNewsfeed(id, this.receiveNewsfeed);
   },
 
   receiveNewsfeed(newsfeed) {
-    // debugger;
     AppDispatcher.dispatch({
       actionType: NewsfeedConstants.UPDATE_NEWSFEED,
       newsfeed: newsfeed
