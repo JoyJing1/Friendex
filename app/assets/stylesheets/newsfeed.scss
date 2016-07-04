@@ -9,14 +9,54 @@
 
 .newsfeed-left {
   width: 18%;
-  background: white;
-  border: 1px solid $gray-light-border;
+}
+
+.newsfeed-left li {
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
+.left-icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.newsfeed-left h5 {
+  display: inline-block;
+  margin: 0;
 }
 
 .newsfeed-right {
   width: 23%;
-  background: white;
+}
+
+.newsfeed-right-item {
+  width: 100%;
+  align-content: center;
+  background-color: white;
   border: 1px solid $gray-light-border;
+  padding: 12px 0;
+  font-size: 14px;
+  margin: 0 auto 25px auto;
+  text-align: center;
+}
+
+.newsfeed-right-item img {
+  height: auto;
+}
+
+.git-logo {
+  width: 30%;
+  margin: 10px auto;
+}
+
+.linkedin-logo {
+  width: 30%;
+  margin: 10px auto;
+  margin-bottom: 0;
 }
 
 .newsfeed-main {
