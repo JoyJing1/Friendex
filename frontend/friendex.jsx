@@ -14,11 +14,12 @@ const SessionActions = require('./actions/session_actions');
 // Components
 const App = require('./components/app');
 const LoginPage = require('./components/login_page');
+const Newsfeed = require('./components/newsfeed');
 const ProfileTimeline = require('./components/profile_timeline');
 const ProfileHeader = require('./components/profile_header');
 const ProfileAboutPage = require('./components/profile_about_page');
 const FriendsPage = require('./components/friends_page');
-const Newsfeed = require('./components/newsfeed');
+const PhotosPage = require('./components/photos_page');
 
 const _ensureLoggedIn = function( _ , replace) {
   if (!SessionStore.isUserLoggedIn()) {
@@ -42,6 +43,7 @@ const appRouter = (
         <Route path="timeline" component={ ProfileTimeline }/>
         <Route path="about" component={ ProfileAboutPage } onEnter={_ensureLoggedIn}/>
         <Route path="friends" component={ FriendsPage } onEnter={_ensureLoggedIn}/>
+        <Route path="photos" component={ PhotosPage } onEnter={_ensureLoggedIn}/>
       </Route>
     </Route>
   </Router>

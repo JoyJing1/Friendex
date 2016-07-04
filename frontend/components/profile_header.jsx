@@ -212,7 +212,7 @@ const ProfileHeader = React.createClass({
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>Timeline</Link>
             <Link to={`/users/${this.state.profile.user_id}/about`}>About</Link>
             <Link to={`/users/${this.state.profile.user_id}/friends`}>Friends</Link>
-            <Link to={`/users/${this.state.profile.user_id}`}>Photos</Link>
+            <Link to={`/users/${this.state.profile.user_id}/photos`}>Photos</Link>
           </nav>
         </div>
 
