@@ -32,8 +32,6 @@ const SessionActions = {
       (resp) => {
         SessionActions.receiveCurrentUser(resp);
         SessionActions._redirectToProfile(resp.id);
-        // ProfileActions.fetchCurrentUserProfile(resp.id);
-        // window.currentUser = SessionStore.currentUser();
       },
       ErrorActions.setErrors);
   },
@@ -42,7 +40,6 @@ const SessionActions = {
     SessionApiUtil.logOut((resp) => {
       SessionActions.removeCurrentUser();
       this._redirectToLogin();
-      // window.currentUser = {};
     });
   },
 

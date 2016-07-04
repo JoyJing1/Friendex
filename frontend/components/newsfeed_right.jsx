@@ -24,13 +24,10 @@ const Newsfeed = React.createClass({
             <img className="linkedin-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1467599657/icons/LinkedIn_IN_Icon_5inCMYK1.jpg"></img>
           </a>
         </div>
-        
+
       </aside>
     );
   }
 });
 
 module.exports = Newsfeed;
-
-
-  // <Link to="https://github.com/JoyJing1">

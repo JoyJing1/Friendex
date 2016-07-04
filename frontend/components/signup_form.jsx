@@ -38,7 +38,7 @@ const SignupForm = React.createClass({
 
   redirectIfLoggedIn() {
     if (SessionStore.isUserLoggedIn()) {
-      this.context.router.push("/"); // Just send to newsfeed instead
+      this.context.router.push("/");
     }
   },
 

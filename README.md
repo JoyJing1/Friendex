@@ -116,9 +116,9 @@ user interface (edited & destroyed are bonus).
   - [ ] list friend requests in header (bonus - later)
   - [x] `FriendRequestIndex`
   - [x] `FriendRequestIndexItem`
-- [ ] list friends in Profile-Friends tab
-  - [ ] `FriendIndex`
-  - [ ] `FriendIndexItem`
+- [x] list friends in Profile-Friends tab
+  - [x] `FriendIndex`
+  - [x] `FriendIndexItem`
 - Use CSS to style Friend Requests & current Friends
 
 
@@ -126,15 +126,16 @@ user interface (edited & destroyed are bonus).
 
 **objective:** Populate the newsfeed with posts by the user, on the user's profile, and by the user's friends
 
-- [ ] create Newsfeed components
-  - [ ] `NewsfeedContent` component
-    - [ ] `NewsfeedIndex` component
-      - [ ] `PostForm` component
-      - [ ] `PostIndexItem` component
-    - [ ] `NewsfeedLeftSidebar` component
-     - Static links
-    - [ ] `NewsfeedRightSidebar` component
-     - Static content (perhaps `FriendPicIndex`)
+- [x] create Newsfeed components
+  - [x] `NewsfeedIndex` component
+    - [x] `NewsfeedIndexItem` component
+    - [x] `NewPostForm` component
+    - [x] `PostIndexItem` component
+    - [x] `NewsfeedFriendshipItem` component
+  - [x] `NewsfeedLeft` component
+   - Static links
+  - [x] `NewsfeedRight` component
+   - Static content (to Git and LinkedIn)
 
 ### Phase 7: Final Cleanup & Polishing (0.5 day, W2 F 6pm)
 
@@ -145,14 +146,14 @@ user interface (edited & destroyed are bonus).
 - [ ] Add modals, transitions, and other styling flourishes.
 
 ### Bonus Features (TBD)
-- [ ] Likes
+- [ ] Pictures/albums
 - [ ] Comments on a post
+- [ ] Likes
 - [ ] Notifications
 - [ ] Nest notifications & friend requests in Header
 - [ ] Pagination / infinite scroll for Notes Index
 - [ ] Search - by username only
 - [ ] Messaging
-- [ ] Pictures/albums
 - [ ] Multiple sessions
 
 [phase-one]: docs/phases/phase1.md

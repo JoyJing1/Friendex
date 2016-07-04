@@ -12,7 +12,6 @@ const NewsfeedApiUtil = {
       success(resp) {
         console.log("successfully pulled newsfeed");
         console.log(resp);
-        // debugger;
         successCallback(resp);
       },
       error(xhr) {

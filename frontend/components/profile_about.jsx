@@ -4,9 +4,7 @@ const React = require('react');
 const Link = require('react-router').Link;
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
-// const ProfileTimelie = require('./profile_timelie');
 const ProfileConstants = require('../constants/profile_constants');
-// const ProfileActions = require('../actions/profile_actions');
 
 const ProfileAbout = React.createClass({
   _location() {

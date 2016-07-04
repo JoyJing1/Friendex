@@ -6,7 +6,6 @@ const ProfileStore = require('../stores/profile_store');
 const SessionStore = require('../stores/session_store');
 const SessionActions = require('../actions/session_actions');
 const ProfileActions = require('../actions/profile_actions');
-// const NewsfeedIndex = require('./newsfeed_index');
 
 const NewsfeedLeft = React.createClass({
   getInitialState() {

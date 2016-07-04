@@ -1,7 +1,6 @@
 "use strict";
 
 const React = require('react');
-// const Link = require('react-router').Link;
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
 const ProfileAbout = require('./profile_about');
