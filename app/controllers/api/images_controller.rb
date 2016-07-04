@@ -12,6 +12,7 @@ class Api::ImagesController < ApplicationController
   def index
     cloud_name = ENV['CLOUD_NAME']
     upload_preset = Figaro.env.UPLOAD_PRESET
+    # debugger;
     @user = User.find(params[:user_id])
     @images = @user.images.order(created_at: :desc)
   end

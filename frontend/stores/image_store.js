@@ -8,6 +8,7 @@ const ImageStore = new Store(AppDispatcher);
 
 ImageStore.__onDispatch = payload => {
   console.log("ImageStore.__onDispatch in image_store.js");
+  console.log(payload);
   switch(payload.actionType) {
     case ImageConstants.UPDATE_IMAGE:
       _updateImage(payload.image);

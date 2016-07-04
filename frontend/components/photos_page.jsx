@@ -6,8 +6,6 @@ const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
 const ImageStore = require('../stores/image_store');
 const ImageActions = require('../actions/image_actions');
-// const ProfilePhotos = require('./profile_photos');
-// const ProfileHeader = require('./profile_header');
 const UploadPhotosButton = require('./upload_photos_button');
 
 const PhotosPage = React.createClass({
@@ -16,52 +14,71 @@ const PhotosPage = React.createClass({
   },
 
   componentDidMount() {
-    // $.get("/api/images", function(images) {
-    //   this.setState({images: images});
-    // }.bind(this));
-
-    const currentProfileId = ProfileStore.currentProfile().user_id;
-    ImageActions.fetchManyImages(currentProfileId);
+    console.log("componentDidMount() in photos_page.js");
+    ImageActions.fetchManyImages(this.props.params.id);
     this.imageListener = ImageStore.addListener(this._onChange);
   },
 
   _onChange() {
+    console.log("_onChange() in photos_page.js");
     this.setState( { images: ImageStore.all() } );
+    console.log(this.state);
   },
 
   addImage(url) {
-    const currentProfileId = ProfileStore.currentProfile().user_id;
-    let img = { url: url, user_id: currentProfileId };
+    let img = { url: url, user_id: this.props.params.id };
 
     ImageActions.createImage(img, (resp) => {
       let images = this.state.images;
       images.unshift(resp);
       this.setState({ images: images });
     });
-    // $.ajax({
-    //   url: "/api/images",
-    //   method: "POST",
-    //   data: { image: img, id: currentProfileId },
-    //   success: function(image) {
-    //     let images = this.state.images;
-    //     images.push(image);
-    //     this.setState({ images: images });
-    //   }.bind(this)
-    // });
   },
 
   render () {
     return (
       <div className="profile-photos-full">
 
-        <h2>This is the Profile Photos Page</h2>
-        <UploadPhotosButton postImage={this.addImage}/>
+        <h3>
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467669448/icons/iconmonstr-picture-5-240.png"
+            className="photos-icon">
+          </img>Photos
+
+          <UploadPhotosButton postImage={this.addImage} className="upload-photo"/>
+        </h3>
+
+          <ul className="photo-list clearfix">
+            {
+              this.state.images.map( image => {
+                return (
+                  <li className="photo-clickable">
+                    <img src={image.url}></img>
+                  </li>
+                );
+              })
+            }
+          </ul>
 
 
-        {this.props.children}
       </div>
     );
   }
+
 });
 
 module.exports = PhotosPage;
+
+
+
+// {this.props.children}
+
+// {
+//   this.state.images.map( image => {
+//     return (
+//       <li className="photo-clickable">
+//         // <img src={image.url} alt="Photo Item">
+//         {image.url}
+//       </li>
+//     );
+//   })
+// }

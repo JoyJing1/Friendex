@@ -17,6 +17,7 @@
  *= require profile-main
  *= require profile-about
  *= require profile-posts
+ *= require profile-photos
  *= require friends
  *= require newsfeed
  */

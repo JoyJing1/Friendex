@@ -25,14 +25,14 @@ const UploadPhotosButton = React.createClass({
           console.log(error);
         }
       }
-    // ).bind(this);
   );
 
   },
 
   render () {
     return (
-      <button onClick={this.upload}>Add Photos</button>
+      <button onClick={this.upload}
+              className="add-photo-button">Add Photos</button>
     );
   }
 });
