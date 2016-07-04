@@ -2,6 +2,7 @@
 
 const React = require('react');
 const PropTypes = React.PropTypes;
+const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
 const ProfileActions = require('../actions/profile_actions');
 // const ProfilePhotos = require('./profile_photos');
@@ -20,12 +21,13 @@ const PhotosPage = React.createClass({
   },
 
   postImage(url) {
-    let img = { url: url };
+    const currentProfileId = ProfileStore.currentProfile().user_id;
+    let img = { url: url, user_id: currentProfileId };
 
     $.ajax({
-      url: "/apis/images",
+      url: "/api/images",
       method: "POST",
-      data: { image: img },
+      data: { image: img, id: currentProfileId },
       success: function(image) {
         let images = this.state.images;
         images.push(image);

@@ -52,3 +52,7 @@ jspm_packages
 
 **/bundle.js
 **/bundle.js.map
+
+# Ignore application configuration
+/config/application.yml
+/config/api_keys.yml
