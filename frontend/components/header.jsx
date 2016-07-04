@@ -48,7 +48,7 @@ const Header = React.createClass({
         <nav className="header-nav clearfix">
 
           <Link to={"/"} className="f-square-icon">
-            <img src= "https://res.cloudinary.com/joyjing1/image/upload/v1467255790/icons/f-logo-white.png"></img>
+            <img src= "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"></img>
           </Link>
 
           <div className="header-user redirect"

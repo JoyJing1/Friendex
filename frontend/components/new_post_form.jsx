@@ -73,10 +73,10 @@ const NewPostForm = React.createClass({
     return(
       <div className="new-post-form-container">
         <nav>
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467237872/icons/iconmonstr-pencil-14-240.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
             className="icon-status">
           </img>Status
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
             className="icon-photo">
           </img>Photo/Video
         </nav>

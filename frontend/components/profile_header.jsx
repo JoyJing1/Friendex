@@ -110,7 +110,7 @@ const ProfileHeader = React.createClass({
   _currentlyFriendsButton() {
     return(
       <button className="add-friend currently-friends" onClick={this._toCurrUserFriends}>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png">
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png">
         </img>
         Friends
       </button>
@@ -120,7 +120,7 @@ const ProfileHeader = React.createClass({
   _addFriendButton() {
     return(
       <button className="add-friend" onClick={this._sendFriendRequest}>
-        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png">
         </img>
         Add Friend
       </button>
@@ -130,7 +130,7 @@ const ProfileHeader = React.createClass({
   _cancelFriendRequestButton() {
     return(
       <button className="add-friend cancel-request" onClick={this._cancelFriendRequest}>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
         </img>
         Cancel Request
       </button>
@@ -140,7 +140,7 @@ const ProfileHeader = React.createClass({
   _acceptFriendRequest() {
     return(
       <button className="add-friend accept-request" onClick={this._acceptFriendship}>
-        <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467342419/icons/iconmonstr-user-8-240.png">
+        <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png">
         </img>
         Confirm Friendship
       </button>
@@ -150,7 +150,7 @@ const ProfileHeader = React.createClass({
   _rejectFriendRequest() {
     return(
       <button className="add-friend cancel-request" onClick={this._rejectFriendship}>
-        <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
+        <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png">
         </img>
         Delete Request
       </button>

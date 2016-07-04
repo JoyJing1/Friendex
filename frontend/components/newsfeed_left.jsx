@@ -49,7 +49,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/about`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467597686/icons/iconmonstr-pencil-14-240_2.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597686/icons/iconmonstr-pencil-14-240_2.png"
                     className="left-icon"></img>
                   <h5>Profile Page</h5>
             </Link>
@@ -57,7 +57,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467597860/icons/iconmonstr-user-1-240_2.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png"
                     className="left-icon"></img>
                   <h5>Timeline</h5>
             </Link>
