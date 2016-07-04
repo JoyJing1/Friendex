@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :posts, only: [:create, :update, :destroy, :index, :show]
     resource :newsfeed, only: [:show]
+    resources :images, only: [:create, :index]
   end
 
   root to: "static_pages#root"

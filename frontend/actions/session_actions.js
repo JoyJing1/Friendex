@@ -21,8 +21,12 @@ const SessionActions = {
       ErrorActions.setErrors);
   },
 
-  _redirectToProfile(id) {
-    hashHistory.push(`/users/${id}`);
+  // _redirectToProfile(id) {
+  //   hashHistory.push(`/users/${id}`);
+  // },
+
+  _redirectToTimeline() {
+    hashHistory.push(`/`);
   },
 
   logIn(formData){
@@ -31,7 +35,7 @@ const SessionActions = {
       formData,
       (resp) => {
         SessionActions.receiveCurrentUser(resp);
-        SessionActions._redirectToProfile(resp.id);
+        SessionActions._redirectToTimeline();
       },
       ErrorActions.setErrors);
   },

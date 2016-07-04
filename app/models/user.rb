@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 	validates :email, uniqueness: true
 	validates :password, length: {minimum: 6}, allow_nil: :true
   has_one :profile, inverse_of: :user
+  has_many :images
 
   has_many :posts_authored,
     class_name: :Post,
@@ -14,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :posts_received,
     class_name: :Post,
     foreign_key: :receiver_id
+
 
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
