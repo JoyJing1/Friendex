@@ -1,5 +1,6 @@
 const React = require('react');
 const SessionStore = require('../stores/session_store');
+const PostStore = require('../stores/post_store');
 const NewsfeedStore = require('../stores/newsfeed_store');
 const NewsfeedActions = require('../actions/newsfeed_actions');
 const NewsfeedIndexItem = require('./newsfeed_index_item');
@@ -15,17 +16,18 @@ const NewsfeedIndex = React.createClass({
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     this.newsfeedListener = NewsfeedStore.addListener(this._onChange);
-
-    // Listen to PostStore as well?
+    // this.postListener = PostStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
     const id = SessionStore.currentUser().id;
+    // debugger;
     NewsfeedActions.fetchNewsfeed(id);
   },
 
   componentWillUnmount() {
     this.newsfeedListener.remove();
+    // this.postListener.remove();
   },
 
   _onChange() {

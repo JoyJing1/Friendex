@@ -7,6 +7,7 @@ let _posts = [];
 const PostStore = new Store(AppDispatcher);
 
 PostStore.__onDispatch = payload => {
+  console.log("PostStore.__onDispatch in post_store.js");
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:
       _updatePost(payload.post);
@@ -24,6 +25,7 @@ PostStore.__onDispatch = payload => {
 };
 
 function _updatePost(post) {
+  console.log("_updatePost(post) in post_store.js");
   let newPost = true;
   for(let i = 0; i < _posts.length; i++) {
     if (_posts[i].id === post.id) {
@@ -34,6 +36,7 @@ function _updatePost(post) {
   if (newPost) {
     _posts.unshift(post);
   }
+  console.log(_posts);
 }
 
 function _removePost(post) {

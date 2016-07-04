@@ -39,6 +39,7 @@ const PostActions = {
   },
 
   receiveSinglePost(post) {
+    console.log("receiveSinglePost(post) in post_actions.js");
     AppDispatcher.dispatch({
       actionType: PostConstants.UPDATE_POST,
       post: post
