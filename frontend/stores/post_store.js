@@ -16,20 +16,26 @@ PostStore.__onDispatch = payload => {
       _updateItem(post);
       PostStore.__emitChange();
       break;
+
     case PostConstants.UPDATE_POSTS:
-      _posts = payload.posts;
-      PostStore.__emitChange();
+      if (payload.posts instanceof Array) {
+        _posts = payload.posts;
+        PostStore.__emitChange();
+      }
       break;
+
     case PostConstants.REMOVED_POST:
       _removeItem(payload.post);
       PostStore.__emitChange();
       break;
+
     case ImageConstants.UPDATE_IMAGE:
       let image = payload.image;
       image["type"] = "image";
       _updateItem(image);
       PostStore.__emitChange();
       break;
+
     case ImageConstants.REMOVED_IMAGE:
       _removeItem(payload.image);
       PostStore.__emitChange();

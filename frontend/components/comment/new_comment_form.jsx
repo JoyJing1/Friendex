@@ -15,26 +15,26 @@ const ErrorStore         = require('../../stores/error_store')
 
 const NewCommentForm = React.createClass({
   getInitialState() {
-    const currentUserProfile = SessionStore.currentUserProfile();
-    return { body: "", currentUserProfileImg: currentUserProfile.profile_img };
+    // const currentUserProfile = SessionStore.currentUserProfile();
+    return { body: "" };
   },
 
-  componentDidMount() {
-    this.sessionListener = SessionStore.addListener(this._onChange);
-  },
+  // componentDidMount() {
+  //   this.sessionListener = SessionStore.addListener(this._onChange);
+  // },
+  //
+  // componentWillUnmount() {
+  //   this.sessionListener.remove();
+  // },
+  //
+  // componentWillReceiveProps(newProps) {
+  //   ProfileActions.fetchCurrentUserProfile();
+  // },
 
-  componentWillUnmount() {
-    this.sessionListener.remove();
-  },
-
-  componentWillReceiveProps(newProps) {
-    ProfileActions.fetchCurrentUserProfile();
-  },
-
-  _onChange() {
-    const currentUserProfile = SessionStore.currentUserProfile();
-    this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
-  },
+  // _onChange() {
+  //   const currentUserProfile = SessionStore.currentUserProfile();
+  //   this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
+  // },
 
   // handleClickedTextComment(e) {
   //   document.getElementById("post-form-text").focus();
@@ -43,7 +43,7 @@ const NewCommentForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     let comment = { body: this.state.body,
-                    user_id: parseInt(SessionStore.currentUser().id) };
+                    user_id: this.props.currentUserProfile.id };
 
     // debugger;
 
@@ -85,7 +85,7 @@ const NewCommentForm = React.createClass({
         <form className="new-comment-form"
               onSubmit={this.handleSubmit}>
 
-            <img src={this.state.currentUserProfileImg}
+            <img src={this.props.currentUserProfile.profile_img}
               className="new-comment-profile-pic"></img>
 
             <input type="text"

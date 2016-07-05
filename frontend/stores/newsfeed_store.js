@@ -12,33 +12,34 @@ const NewsfeedStore = new Store(AppDispatcher);
 
 NewsfeedStore.__onDispatch = payload => {
   console.log("NewsfeedStore.__onDispatch");
-  // debugger;
 
   switch(payload.actionType) {
     case NewsfeedConstants.UPDATE_NEWSFEED:
       console.log("UPDATE_NEWSFEED in NewsfeedStore");
-      // debugger; // Only getting 2 friendship
       _updateNewsfeed(payload.newsfeed);
       NewsfeedStore.__emitChange();
       break;
+
     case PostConstants.UPDATE_POST:
       let post = payload.post;
       post["type"] = "post";
       _updateItem(post);
       NewsfeedStore.__emitChange();
       break;
+
     case PostConstants.REMOVED_POST:
       _removeItem(payload.post);
       NewsfeedStore.__emitChange();
       break;
+
     case ImageConstants.UPDATE_IMAGE:
       console.log("UPDATE_IMAGE in NewsfeedStore");
-      // debugger;
       let image = payload.image;
       image["type"] = "image";
       _updateItem(image);
       NewsfeedStore.__emitChange();
       break;
+
     case ImageConstants.REMOVED_IMAGE:
       _removeItem(payload.image);
       NewsfeedStore.__emitChange();
