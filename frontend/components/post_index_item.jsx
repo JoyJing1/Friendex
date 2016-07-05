@@ -19,10 +19,13 @@ const PostIndexItem = React.createClass({
 
   postBody() {
     if (this.props.post.type === "text") {
-      return <p>{this.props.post.body}</p>
+      return <p>{this.props.post.body}</p>;
+
     } else if (this.props.post.type === "photo") {
-      return (<img src={this.props.post.url}
-        className="post-photo"></img>);
+      return (
+        <img src={this.props.post.url}
+        className="post-photo"></img>
+      );
     }
   },
 

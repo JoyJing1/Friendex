@@ -6,6 +6,7 @@ const hashHistory = require('react-router').hashHistory;
 const ProfileActions = require('../actions/profile_actions');
 const ImageActions = require('../actions/image_actions');
 const PostActions = require('../actions/post_actions');
+const ImageStore = require('../stores/image_store');
 const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
 const ErrorStore = require('../stores/error_store');
@@ -68,6 +69,7 @@ const NewPostForm = React.createClass({
   _submitWithEnterKey(e) {
     if (e.keyCode === 13) {
       this.handleSubmit(e);
+      this.setState( {body: ""} );
     }
   },
 
@@ -88,6 +90,8 @@ const NewPostForm = React.createClass({
           for (let i = 0; i < images.length; i++) {
             that.addImage(images[i].url);
           }
+          that.setState( {body: ""});
+
         } else {
           console.log("Photo Upload failed in new_post_form.jsx");
           console.log(error);

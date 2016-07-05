@@ -30,15 +30,16 @@ class Api::PostsController < ApplicationController
     author_id = params[:author_id]
 
     if receiver_id || author_id
-      @posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      @posts.each { |el| el.type = "text" }
+      posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
+      posts.each { |el| el.type = "text" }
 
-      @images = Image.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      @images.each { |el| el.type = "photo" }
 
-      @posts.concat(@images).sort do |e1, e2|
-        e2.updated_at <=> e1.updated_at
-      end
+      images = Image.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
+      images.each { |el| el.type = "photo" }
+
+      @posts = posts.concat(images).sort do |e1, e2|
+            e2.updated_at <=> e1.updated_at
+          end
 
       render "api/posts/index"
     else

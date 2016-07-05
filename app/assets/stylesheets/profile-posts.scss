@@ -143,7 +143,7 @@ button.add-post:hover {
 }
 
 .post-photo {
-  width: 80%;
+  max-width: 80%;
   margin: 20px auto;
   border: 1px solid $gray-light-border;
 }

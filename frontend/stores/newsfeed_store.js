@@ -2,6 +2,7 @@ const AppDispatcher = require('../dispatcher/dispatcher.js');
 const Store = require('flux/utils').Store;
 const NewsfeedConstants = require('../constants/newsfeed_constants');
 const PostConstants = require('../constants/post_constants');
+const ImageConstants = require('../constants/image_constants');
 
 let _newsfeed = [];
 
@@ -14,11 +15,23 @@ NewsfeedStore.__onDispatch = payload => {
       NewsfeedStore.__emitChange();
       break;
     case PostConstants.UPDATE_POST:
-      _updatePost(payload.post);
+      let post = payload.post;
+      post["type"] = "text";
+      _updateItem(post);
       NewsfeedStore.__emitChange();
       break;
     case PostConstants.REMOVED_POST:
-      _removePost(payload.post);
+      _removeItem(payload.post);
+      NewsfeedStore.__emitChange();
+      break;
+    case ImageConstants.UPDATE_IMAGE:
+      let image = payload.image;
+      image["type"] = "photo";
+      _updateItem(payload.image);
+      NewsfeedStore.__emitChange();
+      break;
+    case ImageConstants.REMOVED_IMAGE:
+      _removeItem(payload.image);
       NewsfeedStore.__emitChange();
       break;
   }
@@ -28,28 +41,21 @@ function _updateNewsfeed(newsfeed) {
   _newsfeed = newsfeed;
 }
 
-function _updatePost(post) {
-  console.log("_updatePost(post) in newsfeed_store.js");
-  let newPost = true;
-  for(let i = 0; i < _newsfeed.length; i++) {
-    if (_newsfeed[i].type === "post" && _newsfeed[i].id === post.id) {
-      _newsfeed[i] = post;
-      newPost = false;
-    }
-  }
-  if (newPost) {
-    post["type"] = "post";
-    _newsfeed.unshift(post);
+function _updateItem(item) {
+  console.log("_updateItem(item) in image_store.js");
+  const idx = _newsfeed.indexOf(item);
+  console.log(`idx = ${idx}`);
+  if (idx < 0) {
+    _newsfeed.unshift(item);
+  } else {
+    _newsfeed[idx] = item;
   }
   console.log(_newsfeed);
 }
 
-function _removePost(post) {
-  for(let i = 0; i < _newsfeed.length; i++) {
-    if (_newsfeed[i].type === "post" && _newsfeed[i].id === post.id) {
-      _newsfeed = _newsfeed.slice(0, i).concat(_newsfeed.slice(i+1));
-    }
-  }
+function _removeItem(item) {
+  const idx = _newsfeed.indexOf(item);
+  _newsfeed.splice(idx, 1);
 }
 
 NewsfeedStore.find = function(type, id) {

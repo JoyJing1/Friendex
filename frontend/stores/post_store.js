@@ -1,6 +1,7 @@
 const AppDispatcher = require('../dispatcher/dispatcher.js');
 const Store = require('flux/utils').Store;
 const PostConstants = require('../constants/post_constants');
+const ImageConstants = require('../constants/image_constants');
 
 let _posts = [];
 
@@ -10,7 +11,9 @@ PostStore.__onDispatch = payload => {
   console.log("PostStore.__onDispatch in post_store.js");
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:
-      _updatePost(payload.post);
+      let post = payload.post;
+      post["type"] = "text";
+      _updateItem(post);
       PostStore.__emitChange();
       break;
     case PostConstants.UPDATE_POSTS:
@@ -18,33 +21,37 @@ PostStore.__onDispatch = payload => {
       PostStore.__emitChange();
       break;
     case PostConstants.REMOVED_POST:
-      _removePost(payload.post);
+      _removeItem(payload.post);
+      PostStore.__emitChange();
+      break;
+    case ImageConstants.UPDATE_IMAGE:
+      let image = payload.image;
+      image["type"] = "photo";
+      _updateItem(image);
+      PostStore.__emitChange();
+      break;
+    case ImageConstants.REMOVED_IMAGE:
+      _removeItem(payload.image);
       PostStore.__emitChange();
       break;
   }
 };
 
-function _updatePost(post) {
-  console.log("_updatePost(post) in post_store.js");
-  let newPost = true;
-  for(let i = 0; i < _posts.length; i++) {
-    if (_posts[i].id === post.id) {
-      _posts[i] = post;
-      newPost = false;
-    }
-  }
-  if (newPost) {
-    _posts.unshift(post);
+function _updateItem(item) {
+  console.log("_updateItem(item) in image_store.js");
+  const idx = _posts.indexOf(item);
+  console.log(`idx = ${idx}`);
+  if (idx < 0) {
+    _posts.unshift(item);
+  } else {
+    _posts[idx] = item;
   }
   console.log(_posts);
 }
 
-function _removePost(post) {
-  for(let i = 0; i < _posts.length; i++) {
-    if (_posts[i].id === post.id) {
-      _posts = _posts.slice(0, i).concat(_posts.slice(i+1));
-    }
-  }
+function _removeItem(item) {
+  const idx = _posts.indexOf(item);
+  _posts.splice(idx, 1);
 }
 
 PostStore.find = function(id) {
