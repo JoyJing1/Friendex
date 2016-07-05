@@ -71,6 +71,14 @@ const NewsfeedLeft = React.createClass({
             </Link>
           </li>
 
+          <li>
+            <Link to={`/users/${this.state.profile.user_id}/friends`}>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467691394/icons/iconmonstr-user-29-240_1.png"
+                    className="left-icon left-friends-icon"></img>
+                  <h5>Friends</h5>
+            </Link>
+          </li>
+
         </ul>
 
       </aside>
