@@ -17,6 +17,15 @@ class Api::ImagesController < ApplicationController
     @images = @user.images_received.order(created_at: :desc)
   end
 
+  def destroy
+    @image = Image.find(params[:id])
+    if @image.destroy
+      render "api/images/show"
+    else
+      render {}
+    end
+  end
+
 	private
 
 	def image_params

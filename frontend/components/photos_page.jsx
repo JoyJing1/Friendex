@@ -42,6 +42,12 @@ const PhotosPage = React.createClass({
     ImageActions.createImage(img);
   },
 
+  deletePhoto(e) {
+    e.preventDefault();
+    const photoId = parseInt(e.target.value);
+    ImageActions.deleteImage(photoId);
+  },
+
   _checkImages() {
     if (this.state.images.length === 0) {
       return (
@@ -55,8 +61,12 @@ const PhotosPage = React.createClass({
           {
             this.state.images.map( image => {
               return (
-                <li className="photo-clickable grow" key={image.id}>
+                <li className="photo-clickable grow"
+                    key={image.id}>
                   <img src={image.url}></img>
+                  <button onClick={this.deletePhoto}
+                          value={image.id}
+                          className="delete-photo">☓</button>
                 </li>
               );
             })

@@ -55,7 +55,6 @@ button.add-photo-button {
   background: white;
   border: 1px solid $gray-light-border;
   overflow: visible;
-
 }
 
 li.photo-clickable {
@@ -66,6 +65,7 @@ li.photo-clickable {
   border: 1px solid $gray-light-border;
   box-sizing: border-box;
   margin: 5px 0 0 5px;
+  position: relative;
 }
 
 .photo-clickable img {
@@ -81,4 +81,16 @@ li.photo-clickable {
 
 .grow:hover {
   transform: scale(1.1);
+  z-index: 1;
+}
+
+.grow:hover .delete-photo {
+  display: block;
+}
+
+.delete-photo {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 4px;
 }

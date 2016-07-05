@@ -39,8 +39,17 @@ function _updateImage(image) {
 
 
 function _removeImage(image) {
-  const imageIdx = _images.indexOf(image);
-  _images.splice(imageIdx, 1);
+  let imageIdx = -1;
+  _images.forEach( (img, i) => {
+    if (img.id === image.id) {
+      imageIdx = i;
+    }
+  });
+  
+  if (imageIdx >= 0) {
+    _images.splice(imageIdx, 1);
+    console.log("_removeImage(image) in image_store.js - had to remove from store explicitly");
+  }
 }
 
 ImageStore.find = function(id) {
