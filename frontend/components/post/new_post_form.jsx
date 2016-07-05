@@ -37,7 +37,6 @@ const NewPostForm = React.createClass({
   },
 
   _newPostPrompt() {
-    // console.log("_newPostPrompt() in new_post_form.jsx");
     const receiverId = this.props.profile.user_id;
 
     if (receiverId && receiverId === SessionStore.currentUser().id) {

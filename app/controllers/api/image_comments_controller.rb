@@ -4,7 +4,7 @@ class Api::ImageCommentsController < ApplicationController
     @image_comment = ImageComment.new(image_comment_params)
 
     if @image_comment.save
-      render "api/image_comments/show"
+      render "api/images/comment"
     else
       render json: @image_comment.errors, status: 422
     end
@@ -12,8 +12,9 @@ class Api::ImageCommentsController < ApplicationController
 
   def destroy
     @image_comment = ImageComment.find(params[:id])
+
     if @image_comment.destroy
-      render "api/images/show"
+      render "api/images/comment"
     else
       render {}
     end
