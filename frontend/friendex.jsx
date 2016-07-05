@@ -2,24 +2,24 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 // Router
-const ReactRouter = require('react-router');
-const Router = require('react-router').Router;
-const Route = require('react-router').Route;
-const IndexRoute = require('react-router').IndexRoute;
-const IndexRedirect = require('react-router').IndexRedirect;
 const hashHistory = require('react-router').hashHistory;
+const IndexRedirect = require('react-router').IndexRedirect;
+const IndexRoute = require('react-router').IndexRoute;
+const ReactRouter = require('react-router');
+const Route = require('react-router').Route;
+const Router = require('react-router').Router;
 //Authentication
-const SessionStore = require('./stores/session_store');
 const SessionActions = require('./actions/session_actions');
+const SessionStore = require('./stores/session_store');
 // Components
 const App = require('./components/app');
-const LoginPage = require('./components/login_page');
-const Newsfeed = require('./components/newsfeed');
-const ProfileTimeline = require('./components/profile_timeline');
-const ProfileHeader = require('./components/profile_header');
-const ProfileAboutPage = require('./components/profile_about_page');
-const FriendsPage = require('./components/friends_page');
-const PhotosPage = require('./components/photos_page');
+const FriendsPage = require('./components/friend/friends_page');
+const LoginPage = require('./components/login/login_page');
+const Newsfeed = require('./components/newsfeed/newsfeed');
+const PhotosPage = require('./components/photo/photos_page');
+const ProfileAboutPage = require('./components/profile/profile_about_page');
+const ProfileHeader = require('./components/profile/profile_header');
+const ProfileTimeline = require('./components/profile/profile_timeline');
 
 const _ensureLoggedIn = function( _ , replace) {
   if (!SessionStore.isUserLoggedIn()) {

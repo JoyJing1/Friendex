@@ -1,6 +1,8 @@
-const AppDispatcher = require('../dispatcher/dispatcher.js');
-const Store = require('flux/utils').Store;
-const ImageConstants = require('../constants/image_constants');
+"use strict";
+
+const AppDispatcher  = require('../dispatcher/dispatcher.js')
+    , ImageConstants = require('../constants/image_constants')
+    , Store          = require('flux/utils').Store;
 
 let _images = [];
 
@@ -27,7 +29,12 @@ ImageStore.__onDispatch = payload => {
 
 function _updateImage(image) {
   console.log("_updateImage(image) in image_store.js");
-  const imageIdx = _images.indexOf(image);
+  let imageIdx = -1;
+  _images.forEach( (img, i) => {
+    if (img.id === image.id) {
+      imageIdx = i;
+    }
+  });
 
   if (imageIdx < 0) {
     _images.unshift(image);
@@ -45,7 +52,7 @@ function _removeImage(image) {
       imageIdx = i;
     }
   });
-  
+
   if (imageIdx >= 0) {
     _images.splice(imageIdx, 1);
     console.log("_removeImage(image) in image_store.js - had to remove from store explicitly");

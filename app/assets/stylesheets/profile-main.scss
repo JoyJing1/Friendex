@@ -1,7 +1,6 @@
 @import 'colors';
 
 /* GENERAL DEFAULTS **************************/
-
 html, body {
   height: 100%;
   background-color: $gray-background-default;
@@ -14,7 +13,6 @@ html, body {
 }
 
 /* PROFILE HEADER **************************/
-
 .profile-nav {
   width: 100%;
   position: relative;
@@ -70,7 +68,6 @@ html, body {
   z-index: 15;
   text-shadow: -1px 0 $dark-gray,0 1px $dark-gray,1px 0 $dark-gray,0 -1px $dark-gray;
 }
-
 
 .friend-request-response-buttons {
   position: absolute;
@@ -148,7 +145,6 @@ html, body {
 }
 
 /* PROFILE CONTENT **************************/
-
 .profile-body {
   display: flex;
   justify-content: space-between;

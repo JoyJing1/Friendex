@@ -1,6 +1,6 @@
 json.extract!(
   friendship,
-
+  
   :type,
   :id, :friendship_id, :friend_id, :new_friend_id,
   :friend_first_name, :friend_last_name, :friend_img,

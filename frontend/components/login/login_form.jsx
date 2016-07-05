@@ -1,6 +1,6 @@
 "use strict";
 
-const ErrorStore = require('../stores/error_store')
+const ErrorStore = require('../../stores/error_store')
     , Link       = require('react-router').Link
     , React      = require('react');
 

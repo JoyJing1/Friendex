@@ -1,14 +1,15 @@
 "use strict";
 
-const AppDispatcher = require('../dispatcher/dispatcher.js');
-const Store = require('flux/utils').Store;
-const ProfileConstants = require('../constants/profile_constants');
-const SessionConstants = require('../constants/session_constants');
-const SessionStore = new Store(AppDispatcher);
+const AppDispatcher      = require('../dispatcher/dispatcher.js')
+      , ProfileConstants = require('../constants/profile_constants')
+      , SessionConstants = require('../constants/session_constants')
+      , Store            = require('flux/utils').Store;
 
 let _currentUser = {};
 let _currentUserHasBeenFetched = false;
 let _currentUserProfile = {};
+
+const SessionStore = new Store(AppDispatcher);
 
 const _login = function(currentUser) {
   console.log("_login in session_store.js");

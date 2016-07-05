@@ -1,8 +1,10 @@
-const AppDispatcher = require('../dispatcher/dispatcher.js');
-const Store = require('flux/utils').Store;
-const NewsfeedConstants = require('../constants/newsfeed_constants');
-const PostConstants = require('../constants/post_constants');
-const ImageConstants = require('../constants/image_constants');
+"use strict";
+
+const AppDispatcher     = require('../dispatcher/dispatcher.js')
+    , ImageConstants    = require('../constants/image_constants')
+    , NewsfeedConstants = require('../constants/newsfeed_constants')
+    , PostConstants     = require('../constants/post_constants')
+    , Store             = require('flux/utils').Store;
 
 let _newsfeed = [];
 

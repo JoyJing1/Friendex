@@ -1,13 +1,13 @@
 "use strict";
 
-const Store = require('flux/utils').Store;
-const AppDispatcher = require('../dispatcher/dispatcher');
-const ErrorConstants = require('../constants/error_constants');
-
-const ErrorStore = new Store(AppDispatcher);
+const AppDispatcher  = require('../dispatcher/dispatcher')
+    , ErrorConstants = require('../constants/error_constants')
+    , Store          = require('flux/utils').Store;
 
 let _errors = {};
 let _form = "";
+
+const ErrorStore = new Store(AppDispatcher);
 
 function setErrors(payload){
   _errors = payload.errors;

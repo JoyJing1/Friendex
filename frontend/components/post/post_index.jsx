@@ -1,3 +1,5 @@
+"use strict";
+
 const React = require('react');
 
 const ImageStore    = require('../../stores/image_store')

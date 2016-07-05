@@ -1,4 +1,5 @@
 class Api::NewsfeedsController < ApplicationController
+  
   def show
     user = User.find(params["id"])
     ids = [ user.id ]

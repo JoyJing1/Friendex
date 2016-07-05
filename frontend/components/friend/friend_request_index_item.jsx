@@ -1,3 +1,5 @@
+"use strict";
+
 const hashHistory = require('react-router').hashHistory
     , Link        = require('react-router').Link
     , React       = require('react');

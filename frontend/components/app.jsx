@@ -5,7 +5,6 @@ const React = require('react');
 const Header          = require('./header')
     , SessionStore    = require('../stores/session_store');
 
-
 const App = React.createClass({
   render () {
     if (SessionStore.isUserLoggedIn()) {

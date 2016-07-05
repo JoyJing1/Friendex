@@ -1,3 +1,5 @@
+"use strict";
+
 const Link  = require('react-router').Link
     , React = require('react');
 

@@ -1,7 +1,7 @@
-const AppDispatcher = require('../dispatcher/dispatcher.js');
-const Store = require('flux/utils').Store;
-const PostConstants = require('../constants/post_constants');
-const ImageConstants = require('../constants/image_constants');
+const AppDispatcher  = require('../dispatcher/dispatcher.js')
+    , ImageConstants = require('../constants/image_constants')
+    , PostConstants  = require('../constants/post_constants')
+    , Store          = require('flux/utils').Store;
 
 let _posts = [];
 
