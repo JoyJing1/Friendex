@@ -7,11 +7,10 @@ const ErrorActions = require('./error_actions');
 const hashHistory = require('react-router').hashHistory;
 
 const ImageActions = {
-  createImage(image, updateImagesList) {
+  createImage(image) {
     console.log("createImage(image) in image_actions.js");
     ImageApiUtil.createImage(image, (resp) => {
       this.receiveSingleImage(resp);
-      updateImagesList(resp);
     });
   },
 

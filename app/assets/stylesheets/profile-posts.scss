@@ -30,12 +30,20 @@
   height: 30px;
   width: 30px;
   margin: 10px;
-  margin-left: 25px;
 }
 
 .new-post-form {
   background: white;
   border: 1px solid $gray-light-border;
+}
+
+button.add-post {
+  vertical-align: middle;
+  padding-right: 15px;
+}
+
+button.add-post:hover {
+  background-color: $blue-light-background;
 }
 
 .new-post-body {

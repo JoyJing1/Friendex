@@ -46,7 +46,7 @@ const PhotosPage = React.createClass({
           {
             this.state.images.map( image => {
               return (
-                <li className="photo-clickable">
+                <li className="photo-clickable" key={image.id}>
                   <img src={image.url}></img>
                 </li>
               );

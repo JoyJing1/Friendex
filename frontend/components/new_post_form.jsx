@@ -4,10 +4,12 @@ const React = require('react');
 const Link = require('react-router').Link;
 const hashHistory = require('react-router').hashHistory;
 const ProfileActions = require('../actions/profile_actions');
+const ImageActions = require('../actions/image_actions');
 const PostActions = require('../actions/post_actions');
 const SessionStore = require('../stores/session_store');
 const ProfileStore = require('../stores/profile_store');
 const ErrorStore = require('../stores/error_store');
+const UploadPhotosButton = require('./upload_photos_button');
 
 const NewPostForm = React.createClass({
   getInitialState() {
@@ -46,8 +48,8 @@ const NewPostForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     const post = { body: this.state.body,
-                        author_id: parseInt(SessionStore.currentUser().id),
-                        receiver_id: parseInt(this.props.profile.id) };
+                    receiver_id: parseInt(this.props.profile.id),
+                    author_id: parseInt(SessionStore.currentUser().id) };
 
     PostActions.createPost(post, () => {this.setState( {body: ""} );} );
   },
@@ -67,18 +69,55 @@ const NewPostForm = React.createClass({
     hashHistory.push(`users/${currUserId}`);
   },
 
+  selectImage(e) {
+    e.preventDefault(e);
+    const that = this;
+
+    cloudinary.openUploadWidget(
+      window.CLOUDINARY_OPTIONS,
+      function(error, images) {
+        if (error === null) {
+          console.log("Photo Upload succeeded in new_post_form.jsx");
+          for (let i = 0; i < images.length; i++) {
+            that.addImage(images[i].url);
+          }
+        } else {
+          console.log("Photo Upload failed in new_post_form.jsx");
+          console.log(error);
+        }
+      }
+    );
+
+  },
+
+  addImage(url) {
+    let img = { url: url,
+                receiver_id: parseInt(this.props.profile.id),
+                author_id: parseInt(SessionStore.currentUser().id) };
+
+    ImageActions.createImage(img);
+  },
+
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
 
     return(
       <div className="new-post-form-container">
         <nav>
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
-            className="icon-status">
-          </img>Status
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
-            className="icon-photo">
-          </img>Photo/Video
+
+          <button className="add-post text-post">
+            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
+              className="icon-status">
+            </img>Status
+          </button>
+
+          <button className="add-post photo-post"
+                  onClick={this.selectImage}>
+            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
+              className="icon-photo">
+            </img>Photo/Video
+          </button>
+
         </nav>
 
         <form className="new-post-form"
