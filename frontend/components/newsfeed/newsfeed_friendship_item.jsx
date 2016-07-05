@@ -3,7 +3,9 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const PostActions  = require('../../actions/post_actions')
+const CommentIndex = require('../comment/comment_index')
+    , NewCommentForm = require('../comment/new_comment_form')
+    , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
 
 const NewsfeedFriendshipItem = React.createClass({
@@ -55,6 +57,13 @@ const NewsfeedFriendshipItem = React.createClass({
           </ul>
 
         </div>
+
+        <CommentIndex comments={this.props.friendship.comments}/>
+
+        <NewCommentForm item={this.props.friendship}
+            currentUserProfile={this.props.currentUserProfile}/>
+
+        {this.props.children}
 
       </li>
     );

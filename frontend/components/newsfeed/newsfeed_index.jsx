@@ -11,7 +11,8 @@ const NewsfeedActions   = require('../../actions/newsfeed_actions')
 
 const NewsfeedIndex = React.createClass({
   getInitialState() {
-    return { newsfeed: NewsfeedStore.all() };
+    return { newsfeed: NewsfeedStore.all(),
+              currentUserProfile: SessionStore.currentUserProfile() };
   },
 
   componentDidMount() {
@@ -19,6 +20,7 @@ const NewsfeedIndex = React.createClass({
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     this.newsfeedListener = NewsfeedStore.addListener(this._onChange);
+    // this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
@@ -28,10 +30,13 @@ const NewsfeedIndex = React.createClass({
 
   componentWillUnmount() {
     this.newsfeedListener.remove();
+    // this.sessionListener.remove();
   },
 
   _onChange() {
-    this.setState( { newsfeed: NewsfeedStore.all() } );
+    this.setState( { newsfeed: NewsfeedStore.all(),
+                    currentUserProfile: SessionStore.currentUserProfile() }
+                  );
     console.log("_onChange() in newsfeed_index.jsx");
     console.log(this.state);
   },
@@ -43,8 +48,13 @@ const NewsfeedIndex = React.createClass({
         <NewPostForm profile={profile}/>
 
         { this.state.newsfeed.map( news => {
-          return <NewsfeedIndexItem news={news} key={news.type+news.id}/>;
+          return (
+            <NewsfeedIndexItem news={news}
+              key={news.type+news.id}
+              currentUserProfile={this.state.currentUserProfile}/>
+          );
         })}
+
       </ul>
     );
   }

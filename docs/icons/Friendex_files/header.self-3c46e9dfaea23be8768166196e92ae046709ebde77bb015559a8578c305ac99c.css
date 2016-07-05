@@ -1,0 +1,79 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-main {
+  background-color: #3B5998;
+  height: 42px;
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  z-index: 100;
+  border-bottom: 1px solid #29487D;
+}
+
+/* line 14, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-nav {
+  margin: 0 auto;
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* line 21, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.f-square-icon {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin: auto 50px;
+}
+
+/* line 28, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.f-square-icon img {
+  height: 100%;
+}
+
+/* line 32, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-user {
+  height: 100%;
+  display: flex;
+  vertical-align: middle;
+}
+
+/* line 38, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-user-icon {
+  height: 30px;
+  width: auto;
+  border-radius: 3px;
+  margin: auto 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #29487D;
+}
+
+/* line 48, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.username-link {
+  color: white;
+  margin: auto;
+  font-weight: bold;
+}
+
+/* line 54, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.home {
+  color: white;
+  margin: auto 30px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* line 61, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+button.button-logout {
+  background-color: #4267B2;
+  border: 1px solid #29487D;
+  border-radius: 5px;
+  padding: 4 9px;
+  color: white;
+  text-align: center;
+  height: 27px;
+  width: 77px;
+  margin: auto 50px;
+  font-size: 14px;
+}

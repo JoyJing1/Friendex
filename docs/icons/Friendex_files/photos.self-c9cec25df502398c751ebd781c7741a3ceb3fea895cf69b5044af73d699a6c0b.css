@@ -1,0 +1,107 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.profile-photos-full {
+  width: 900px;
+  margin: 0 auto;
+}
+
+/* line 8, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.profile-photos-full h3 {
+  background-color: #F6F7F9;
+  padding: 16px 16px;
+  margin: 0 auto;
+  border-left: 1px solid #D4D5DC;
+  border-right: 1px solid #D4D5DC;
+  border-top: 1px solid #D4D5DC;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+/* line 19, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+img.photos-icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* line 26, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.upload-photo {
+  display: inline-block;
+}
+
+/* line 30, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+button.add-photo-button {
+  float: right;
+  background: #4267B2;
+  border: 1px solid #29487D;
+  padding: 3px 14px;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  float: right;
+  margin: -23px 8px 5px 10px;
+}
+
+/* line 45, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.no-photos {
+  text-align: center;
+  margin: 20px auto;
+  background: white;
+  margin: 0;
+  padding: 20px 0;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 54, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.photo-list {
+  background: white;
+  border: 1px solid #D4D5DC;
+  overflow: visible;
+}
+
+/* line 60, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+li.photo-clickable {
+  float: left;
+  width: 218.75px;
+  height: 218.75px;
+  background: #D4D5DC;
+  border: 1px solid #D4D5DC;
+  box-sizing: border-box;
+  margin: 5px 0 0 5px;
+  position: relative;
+}
+
+/* line 71, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.photo-clickable img {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  object-fit: cover;
+}
+
+/* line 78, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.grow {
+  transition: all .1s ease-in-out;
+}
+
+/* line 82, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.grow:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* line 87, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.grow:hover .delete-photo {
+  display: block;
+}
+
+/* line 91, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/photos.scss */
+.delete-photo {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 4px;
+}

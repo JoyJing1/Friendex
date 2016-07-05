@@ -1,4 +1,5 @@
 const AppDispatcher  = require('../dispatcher/dispatcher.js')
+    , CommentConstants = require('../constants/comment_constants')
     , ImageConstants = require('../constants/image_constants')
     , PostConstants  = require('../constants/post_constants')
     , Store          = require('flux/utils').Store;
@@ -40,8 +41,62 @@ PostStore.__onDispatch = payload => {
       _removeItem(payload.image);
       PostStore.__emitChange();
       break;
+
+    case CommentConstants.UPDATE_COMMENT:
+      console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
+      let comment = payload.comment;
+      _updateComment(comment);
+      PostStore.__emitChange();
+      break;
+
+    case CommentConstants.REMOVED_COMMENT:
+      console.log("CommentConstants.REMOVED_COMMENT in post_store.js");
+      _removeComment(payload.comment);
+      PostStore.__emitChange();
+      break;
   }
 };
+
+function _updateComment(comment) {
+  if (comment.image_id) {
+    const itemIdx = _findItem("image", comment.image_id);
+    _posts[itemIdx].comments.push(comment);
+
+  } else if (comment.post_id) {
+    const itemIdx = _findItem("post", comment.post_id);
+    _posts[itemIdx].comments.push(comment);
+  }
+}
+
+function _removeComment(comment) {
+  if (comment.image_id) {
+    const itemIdx = _findItem("image", comment.image_id);
+    let item = _posts[itemIdx];
+
+    const commentIdx = item.comments.indexOf(comment);
+
+    item.comments.splice(commentIdx, 1);
+    _updateItem(item);
+
+  } else if (comment.post_id) {
+    const itemIdx = _findItem("post", comment.post_id);
+    let item = _posts[itemIdx];
+    const commentIdx = item.comments.indexOf(comment);
+
+    item.comments.splice(commentIdx, 1);
+    _updateItem(item);
+  }
+}
+
+function _findItem(type, id) {
+  let idx = -1;
+  _posts.forEach( (item, i) => {
+    if (item.type === type && item.id === id) {
+      idx = i;
+    }
+  });
+  return idx;
+}
 
 function _updateItem(item) {
   console.log("_updateItem(item) in image_store.js");

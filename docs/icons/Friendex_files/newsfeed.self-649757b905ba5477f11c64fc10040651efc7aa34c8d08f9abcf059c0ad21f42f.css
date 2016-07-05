@@ -1,0 +1,134 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-container {
+  display: flex;
+  justify-content: space-between;
+  width: 980px;
+  margin: 25px auto 0 auto;
+}
+
+/* line 10, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-left {
+  width: 18%;
+}
+
+/* line 14, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-left li {
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
+/* line 19, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.left-icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* line 27, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.left-friends-icon {
+  height: 29px;
+  width: 29px;
+  padding: 1px;
+}
+
+/* line 33, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-left h5 {
+  display: inline-block;
+  margin: 0;
+}
+
+/* line 38, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-right {
+  width: 23%;
+}
+
+/* line 42, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-right-item {
+  width: 100%;
+  align-content: center;
+  background-color: white;
+  border: 1px solid #D4D5DC;
+  padding: 12px 0;
+  font-size: 14px;
+  margin: 0 auto 25px auto;
+  text-align: center;
+}
+
+/* line 53, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-right-item img {
+  height: auto;
+}
+
+/* line 57, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.git-logo {
+  width: 30%;
+  margin: 10px auto;
+}
+
+/* line 62, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.linkedin-logo {
+  width: 30%;
+  margin: 10px auto;
+  margin-bottom: 0;
+}
+
+/* line 68, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.newsfeed-main {
+  width: 51%;
+}
+
+/* line 72, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+img.post-arrow {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: auto 6px;
+}
+
+/* line 79, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.two-friends p {
+  margin: 0;
+  padding: 0 6px;
+  text-align: center;
+}
+
+/* line 85, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.post-friends-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* line 90, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.post-friends-info img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+  margin: 16px 16px 0 16px;
+}
+
+/* line 97, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.post-friends-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  text-align: center;
+}
+
+/* line 104, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.post-friends-text h5 {
+  display: inline-block;
+  color: #365899;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* line 111, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/newsfeed.scss */
+.post-friends-text h6 {
+  display: inline-block;
+  color: #90949C;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 13px;
+}

@@ -1,0 +1,56 @@
+/* line 7, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+li.comment-item {
+  vertical-align: middle;
+  background-color: #EDF0F5;
+  border-left: 1px solid #D4D5DC;
+  border-right: 1px solid #D4D5DC;
+  border-bottom: 1px solid #D4D5DC;
+}
+
+/* line 15, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+.comment-item img {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* line 20, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+div.comment-body {
+  display: inline-block;
+  font-size: 12px;
+  width: 86%;
+  margin: 7px 0;
+}
+
+/* line 27, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+.comment-body a {
+  display: inline-block;
+  color: #365899;
+  margin: 0;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* line 40, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+.new-comment-profile-pic, .comment-profile-pic {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+}
+
+/* line 47, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+form.new-comment-form {
+  vertical-align: middle;
+  background-color: #EDF0F5;
+  border-left: 1px solid #D4D5DC;
+  border-right: 1px solid #D4D5DC;
+  border-bottom: 1px solid #D4D5DC;
+}
+
+/* line 55, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/comments.scss */
+.new-comment-form input[type="text"] {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid #D4D5DC;
+  width: 86%;
+}

@@ -1,6 +1,7 @@
 "use strict";
 
 const AppDispatcher     = require('../dispatcher/dispatcher.js')
+    , CommentConstants = require('../constants/comment_constants')
     , ImageConstants    = require('../constants/image_constants')
     , NewsfeedConstants = require('../constants/newsfeed_constants')
     , PostConstants     = require('../constants/post_constants')
@@ -44,8 +45,76 @@ NewsfeedStore.__onDispatch = payload => {
       _removeItem(payload.image);
       NewsfeedStore.__emitChange();
       break;
+
+    case CommentConstants.UPDATE_COMMENT:
+      console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
+      let comment = payload.comment;
+      // comment["type"] = "comment";
+      _updateComment(comment);
+      // debugger;
+      NewsfeedStore.__emitChange();
+      break;
+
+    case CommentConstants.REMOVED_COMMENT:
+      console.log("CommentConstants.REMOVED_COMMENT in post_store.js");
+      _removeComment(payload.comment);
+      NewsfeedStore.__emitChange();
+      break;
   }
 };
+
+function _updateComment(comment) {
+  if (comment.image_id) {
+    const itemIdx = _findItem("image", comment.image_id);
+    _newsfeed[itemIdx].comments.push(comment);
+
+  } else if (comment.post_id) {
+    const itemIdx = _findItem("post", comment.post_id);
+    _newsfeed[itemIdx].comments.push(comment);
+
+  } else if (comment.friendship_id) {
+    const itemIdx = _findItem("friendship", comment.friendship_id);
+    _newsfeed[itemIdx].comments.push(comment);
+  }
+}
+
+function _removeComment(comment) {
+  if (comment.image_id) {
+    const itemIdx = _findItem("image", comment.image_id);
+    let item = _newsfeed[itemIdx];
+
+    const commentIdx = item.comments.indexOf(comment);
+
+    item.comments.splice(commentIdx, 1);
+    _updateItem(item);
+
+  } else if (comment.post_id) {
+    const itemIdx = _findItem("post", comment.post_id);
+    let item = _newsfeed[itemIdx];
+    const commentIdx = item.comments.indexOf(comment);
+
+    item.comments.splice(commentIdx, 1);
+    _updateItem(item);
+
+  } else if (comment.friendship_id) {
+    const itemIdx = _findItem("friendship", comment.friendship_id);
+    let item = _newsfeed[itemIdx];
+    const commentIdx = item.comments.indexOf(comment);
+
+    item.comments.splice(commentIdx, 1);
+    _updateItem(item);
+  }
+}
+
+function _findItem(type, id) {
+  let idx = -1;
+  _newsfeed.forEach( (item, i) => {
+    if (item.type === type && item.id === id) {
+      idx = i;
+    }
+  });
+  return idx;
+}
 
 function _updateNewsfeed(newsfeed) {
   _newsfeed = newsfeed;

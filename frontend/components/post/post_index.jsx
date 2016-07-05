@@ -37,7 +37,6 @@ const PostIndex = React.createClass({
   },
 
   _onChange() {
-    // const currentUserProfile = SessionStore.currentUserProfile();
     this.setState( { posts: PostStore.all(),
                     currentUserProfile: SessionStore.currentUserProfile() } );
     console.log("_onChange() in post_index.jsx");

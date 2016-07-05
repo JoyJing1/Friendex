@@ -16,13 +16,15 @@ const NewsfeedIndexItem = React.createClass({
       if (this.props.news.author_id === this.props.news.receiver_id) {
         return (
           <div className="newsfeed-item news-post-self">
-            <PostIndexItem post={this.props.news}/>
+            <PostIndexItem post={this.props.news}
+                currentUserProfile={this.props.currentUserProfile}/>
           </div>
         );
       } else {
         return (
           <div className="newsfeed-item news-post">
-            <PostItemToFriend post={this.props.news}/>
+            <PostItemToFriend post={this.props.news}
+                currentUserProfile={this.props.currentUserProfile}/>
           </div>
         );
       }
@@ -33,7 +35,8 @@ const NewsfeedIndexItem = React.createClass({
     if (this.props.news.type === "friendship") {
       return (
         <div className="newsfeed-item news-friendship">
-          <NewsfeedFriendshipItem friendship={this.props.news}/>
+          <NewsfeedFriendshipItem friendship={this.props.news}
+              currentUserProfile={this.props.currentUserProfile}/>
         </div>
       );
     }

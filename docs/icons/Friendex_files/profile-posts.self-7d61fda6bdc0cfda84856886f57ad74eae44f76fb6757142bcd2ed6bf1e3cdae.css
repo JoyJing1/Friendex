@@ -1,0 +1,219 @@
+/* NEW POST FORM **********************/
+/* line 8, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-form-container nav {
+  background-color: #F6F7F9;
+  border-top: 1px solid #D4D5DC;
+  border-left: 1px solid #D4D5DC;
+  border-right: 1px solid #D4D5DC;
+  display: flex;
+  align-items: center;
+}
+
+/* line 17, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.icon-status {
+  background-color: #4267B2;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  margin: 10px;
+  margin-left: 17px;
+  border-radius: 3px;
+}
+
+/* line 28, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.icon-photo {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+}
+
+/* line 35, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-form {
+  background: white;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 40, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+button.add-post {
+  vertical-align: middle;
+  padding-right: 15px;
+}
+
+/* line 45, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+button.add-post:hover {
+  background-color: #EDF0F5;
+}
+
+/* line 49, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-body {
+  position: relative;
+}
+
+/* line 53, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-profile-pic {
+  height: 75px;
+  width: 75px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+/* line 63, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-text-container {
+  min-height: 80px;
+  padding-top: 37px;
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 70, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-text-container textarea {
+  margin-left: 122px;
+  resize: none;
+}
+
+/* line 75, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-body input[type="text"] {
+  width: 60%;
+  margin: auto;
+}
+
+/* line 80, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-submit {
+  display: inline-block;
+  background: white;
+  width: 100%;
+  border-top: 1px solid #D4D5DC;
+}
+
+/* line 87, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.new-post-submit input[type="submit"] {
+  background: #4267B2;
+  border: 1px solid #29487D;
+  padding: 3px 14px;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  float: right;
+  margin: 7px 8px 5px 10px;
+}
+
+/* POST INDEX ITEMS **********************/
+/* line 102, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-item-container {
+  background: white;
+  margin: 25px 0 0 0;
+  position: relative;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 109, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-author-info {
+  display: flex;
+}
+
+/* line 113, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-author-info img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+  margin: 16px 16px 0 16px;
+}
+
+/* line 120, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-author-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 31px;
+}
+
+/* line 126, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-author-text h5 {
+  display: inline-block;
+  color: #365899;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* line 133, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-author-text h6 {
+  display: inline-block;
+  color: #90949C;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+/* line 141, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-item-container p {
+  padding: 16px;
+}
+
+/* line 145, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-photo {
+  max-width: 80%;
+  margin: 20px auto;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 151, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-footer:before {
+  content: "";
+  display: block;
+  width: 95%;
+  height: 1px;
+  background-color: #D4D5DC;
+  position: absolute;
+  left: 13px;
+}
+
+/* line 161, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-footer {
+  vertical-align: middle;
+  text-size: 12px;
+  text-align: middle;
+}
+
+/* line 167, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-footer img {
+  display: inline-block;
+  height: 20px;
+  width: auto;
+  padding-right: 5px;
+}
+
+/* line 174, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-footer-like {
+  margin-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 180, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.post-footer-comment {
+  margin-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 186, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/profile-posts.scss */
+.delete-post {
+  background-color: #F6F7F9;
+  color: #4B4F56;
+  border: 1px solid #D4D5DC;
+  padding: 3px 14px;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  float: right;
+  margin: 9px 8px 5px 10px;
+}
