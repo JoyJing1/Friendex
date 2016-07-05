@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704235041) do
+ActiveRecord::Schema.define(version: 20160705161306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendship_comments", force: :cascade do |t|
+    t.integer  "image_id",      null: false
+    t.integer  "friendship_id", null: false
+    t.string   "body",          null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "friendship_comments", ["friendship_id"], name: "index_friendship_comments_on_friendship_id", using: :btree
+  add_index "friendship_comments", ["image_id"], name: "index_friendship_comments_on_image_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "requestor_id",                     null: false
@@ -23,6 +34,17 @@ ActiveRecord::Schema.define(version: 20160704235041) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
+
+  create_table "image_comments", force: :cascade do |t|
+    t.integer  "image_id",   null: false
+    t.integer  "user_id",    null: false
+    t.string   "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "image_comments", ["image_id"], name: "index_image_comments_on_image_id", using: :btree
+  add_index "image_comments", ["user_id"], name: "index_image_comments_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "author_id",   null: false
@@ -35,6 +57,17 @@ ActiveRecord::Schema.define(version: 20160704235041) do
   add_index "images", ["author_id"], name: "index_images_on_author_id", using: :btree
   add_index "images", ["receiver_id"], name: "index_images_on_receiver_id", using: :btree
   add_index "images", ["url"], name: "index_images_on_url", using: :btree
+
+  create_table "post_comments", force: :cascade do |t|
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
+    t.string   "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id", using: :btree
+  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "author_id",   null: false
