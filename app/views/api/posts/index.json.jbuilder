@@ -1,7 +1,7 @@
 json.array!(@posts) do |item|
-  if item.type == "text"
+  if item.type == "post"
     json.partial!('post', post: item)
-  elsif item.type == "photo"
-    json.partial!('photo', photo: item)
+  elsif item.type == "image"
+    json.partial!('image', image: item)
   end
 end

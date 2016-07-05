@@ -38,7 +38,7 @@ const PostIndex = React.createClass({
       <ul>
         {this.state.posts.map( post => {
           return(
-            <PostIndexItem post={post} key={post.id}/>
+            <PostIndexItem post={post} key={`${post.type}${post.id}`}/>
           );
         })}
 

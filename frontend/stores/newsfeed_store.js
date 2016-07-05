@@ -9,6 +9,9 @@ let _newsfeed = [];
 const NewsfeedStore = new Store(AppDispatcher);
 
 NewsfeedStore.__onDispatch = payload => {
+  console.log("NewsfeedStore.__onDispatch");
+  // debugger;
+
   switch(payload.actionType) {
     case NewsfeedConstants.UPDATE_NEWSFEED:
       _updateNewsfeed(payload.newsfeed);
@@ -16,7 +19,7 @@ NewsfeedStore.__onDispatch = payload => {
       break;
     case PostConstants.UPDATE_POST:
       let post = payload.post;
-      post["type"] = "text";
+      post["type"] = "post";
       _updateItem(post);
       NewsfeedStore.__emitChange();
       break;
@@ -25,9 +28,11 @@ NewsfeedStore.__onDispatch = payload => {
       NewsfeedStore.__emitChange();
       break;
     case ImageConstants.UPDATE_IMAGE:
+      console.log("UPDATE_IMAGE in NewsfeedStore");
+      // debugger;
       let image = payload.image;
-      image["type"] = "photo";
-      _updateItem(payload.image);
+      image["type"] = "image";
+      _updateItem(image);
       NewsfeedStore.__emitChange();
       break;
     case ImageConstants.REMOVED_IMAGE:

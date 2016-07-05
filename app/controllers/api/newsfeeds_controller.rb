@@ -9,11 +9,40 @@ class Api::NewsfeedsController < ApplicationController
 
     @posts = posts(ids)
     @friendships = friendships(ids)
-    @newsfeed = @posts.concat(@friendships).sort do |e1, e2|
-      e2.updated_at <=> e1.updated_at
-    end
+    @images = images(ids)
+    @newsfeed = @posts.concat(@friendships)
+                      .concat(@images)
+                      .sort do |e1, e2|
+                        e2.updated_at <=> e1.updated_at
+                      end
 
     render "api/newsfeeds/show"
+  end
+
+  def images(ids)
+    binds = {ids: ids}
+
+    Image.find_by_sql([<<-SQL, binds])
+      SELECT
+        'image' AS type,
+        i.id AS id,
+        i.id AS image_id,
+        i.author_id,
+        prof_author.first_name AS author_first_name,
+        prof_author.last_name AS author_last_name,
+        prof_author.profile_img AS profile_img,
+        i.receiver_id,
+        prof_receiver.first_name AS receiver_first_name,
+        prof_receiver.last_name AS receiver_last_name,
+        i.created_at,
+        i.updated_at,
+        i.url
+      FROM images i
+        JOIN profiles prof_author ON i.author_id = prof_author.user_id
+        JOIN profiles prof_receiver ON i.receiver_id = prof_receiver.user_id
+      WHERE author_id IN (:ids)
+        OR receiver_id IN (:ids)
+    SQL
   end
 
   def posts(ids)

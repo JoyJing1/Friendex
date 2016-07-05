@@ -12,7 +12,7 @@ PostStore.__onDispatch = payload => {
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:
       let post = payload.post;
-      post["type"] = "text";
+      post["type"] = "post";
       _updateItem(post);
       PostStore.__emitChange();
       break;
@@ -26,7 +26,7 @@ PostStore.__onDispatch = payload => {
       break;
     case ImageConstants.UPDATE_IMAGE:
       let image = payload.image;
-      image["type"] = "photo";
+      image["type"] = "image";
       _updateItem(image);
       PostStore.__emitChange();
       break;

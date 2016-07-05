@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-  attr_accessor :type
+  # attr_accessor :type
 
 	def create
     @post = Post.new(post_params)
@@ -31,11 +31,11 @@ class Api::PostsController < ApplicationController
 
     if receiver_id || author_id
       posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      posts.each { |el| el.type = "text" }
+      posts.each { |el| el.type = "post" }
 
 
       images = Image.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      images.each { |el| el.type = "photo" }
+      images.each { |el| el.type = "image" }
 
       @posts = posts.concat(images).sort do |e1, e2|
             e2.updated_at <=> e1.updated_at
