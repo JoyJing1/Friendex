@@ -7,8 +7,8 @@ const hashHistory = require('react-router').hashHistory
 const ErrorStore         = require('../../stores/error_store')
     // , ImageActions       = require('../../actions/image_actions')
     // , ImageStore         = require('../../stores/image_store')
-    , CommentActions        = require('../../actions/post_actions')
-    // , ProfileActions     = require('../../actions/profile_actions')
+    , CommentActions        = require('../../actions/comment_actions')
+    , ProfileActions     = require('../../actions/profile_actions')
     // , ProfileStore       = require('../../stores/profile_store')
     , SessionStore       = require('../../stores/session_store');
     // , UploadPhotosButton = require('../photo/upload_photos_button');
@@ -45,16 +45,18 @@ const NewCommentForm = React.createClass({
     let comment = { body: this.state.body,
                     user_id: parseInt(SessionStore.currentUser().id) };
 
-    if (this.props.type === "post") {
-      comment.post_id = this.props.post.id;
+    // debugger;
 
-    } else if (this.props.type === "image") {
-      comment.image_id = this.props.post.id;
+    if (this.props.item.type === "post") {
+      comment.post_id = this.props.item.id;
 
-    } else if (this.props.type === "friendship") {
-      comment.friendship_id = this.props.friendship.id;
+    } else if (this.props.item.type === "image") {
+      comment.image_id = this.props.item.id;
+
+    } else if (this.props.item.type === "friendship") {
+      comment.friendship_id = this.props.item.id;
     }
-    CommentActions.createComment(post, () => {this.setState( {body: ""} );} );
+    CommentActions.createComment(comment, () => {this.setState( {body: ""} );} );
   },
 
   _updateComment(e) {

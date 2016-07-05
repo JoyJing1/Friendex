@@ -84,7 +84,7 @@ const PostIndexItem = React.createClass({
 
         </div>
 
-        <NewCommentForm/>
+        <NewCommentForm item={this.props.post}/>
 
         {this.props.children}
 

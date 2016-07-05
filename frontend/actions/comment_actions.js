@@ -52,7 +52,7 @@ const CommentActions = {
   receiveSingleComment(comment) {
     console.log("receiveSingleComment(comment) in comment_actions.js");
     AppDispatcher.dispatch({
-      actionType: CommentConstants.UPDATE_POST,
+      actionType: CommentConstants.UPDATE_COMMENT,
       comment: comment
     });
   },
@@ -61,7 +61,7 @@ const CommentActions = {
     console.log('in removedComment(comment) in comment_actions.js');
     console.log(comment);
     AppDispatcher.dispatch({
-      actionType: CommentConstants.REMOVED_POST,
+      actionType: CommentConstants.REMOVED_COMMENT,
       comment: comment
     });
   }
