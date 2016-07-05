@@ -142,6 +142,12 @@ button.add-post:hover {
   padding: 16px;
 }
 
+.post-photo {
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid $gray-light-border;
+}
+
 .post-footer:before {
   content: "";
   display: block;
