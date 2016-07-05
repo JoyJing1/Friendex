@@ -14,6 +14,8 @@ NewsfeedStore.__onDispatch = payload => {
 
   switch(payload.actionType) {
     case NewsfeedConstants.UPDATE_NEWSFEED:
+      console.log("UPDATE_NEWSFEED in NewsfeedStore");
+      // debugger; // Only getting 2 friendship
       _updateNewsfeed(payload.newsfeed);
       NewsfeedStore.__emitChange();
       break;

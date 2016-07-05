@@ -19,6 +19,14 @@ const PhotosPage = React.createClass({
     this.imageListener = ImageStore.addListener(this._onChange);
   },
 
+  componentWillUnmount() {
+    this.imageListener.remove();
+  },
+
+  componentWillReceiveProps(newProps) {
+    ImageActions.fetchManyImages(newProps.params.id);
+  },
+
   _onChange() {
     console.log("_onChange() in photos_page.js");
     this.setState( { images: ImageStore.all() } );

@@ -7,15 +7,21 @@ class Api::NewsfeedsController < ApplicationController
       ids.push(friend.id)
     end
 
-    @posts = posts(ids)
-    @friendships = friendships(ids)
-    @images = images(ids)
-    @newsfeed = @posts.concat(@friendships)
-                      .concat(@images)
+    posts = posts(ids)
+    posts.each { |item| item.type = "post" }
+
+    friendships = friendships(ids)
+    friendships.each { |item| item.type = "friendship" }
+
+    images = images(ids)
+    images.each { |item| item.type = "image" }
+
+    @newsfeed = posts.concat(friendships)
+                      .concat(images)
                       .sort do |e1, e2|
                         e2.updated_at <=> e1.updated_at
                       end
-
+    # debugger;
     render "api/newsfeeds/show"
   end
 

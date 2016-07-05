@@ -31,11 +31,11 @@ class Api::PostsController < ApplicationController
 
     if receiver_id || author_id
       posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      posts.each { |el| el.type = "post" }
+      posts.each { |item| item.type = "post" }
 
 
       images = Image.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-      images.each { |el| el.type = "image" }
+      images.each { |item| item.type = "image" }
 
       @posts = posts.concat(images).sort do |e1, e2|
             e2.updated_at <=> e1.updated_at
