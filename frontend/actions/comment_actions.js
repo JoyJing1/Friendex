@@ -16,7 +16,7 @@ const CommentActions = {
         resetNewCommentForm();
       });
     } else if (comment.image_id) {
-      CommentApiUtil.createImagComment(comment, (resp) => {
+      CommentApiUtil.createImageComment(comment, (resp) => {
         this.receiveSingleComment(resp);
         resetNewCommentForm();
       });

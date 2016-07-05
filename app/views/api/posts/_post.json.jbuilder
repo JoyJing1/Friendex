@@ -6,3 +6,9 @@ json.extract!(
 json.profile_img post.author_profile.profile_img
 
 json.author_name post.author.username
+
+json.comments do
+  json.array!(post.comments) do |post_comment|
+    json.partial! "api/posts/comment", post_comment: post_comment
+  end
+end
