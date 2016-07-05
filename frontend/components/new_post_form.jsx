@@ -35,7 +35,9 @@ const NewPostForm = React.createClass({
   },
 
   _newPostPrompt() {
+    console.log("_newPostPrompt() in new_post_form.jsx");
     const receiverId = this.props.profile.user_id;
+
     if (receiverId && receiverId === SessionStore.currentUser().id) {
       return `What's on your mind?`;
     } else if (receiverId && receiverId !== SessionStore.currentUser().id) {
@@ -43,6 +45,11 @@ const NewPostForm = React.createClass({
     } else {
       return "Write a new post!";
     }
+
+  },
+
+  handleClickedTextPost(e) {
+    document.getElementById("post-form-text").focus();
   },
 
   handleSubmit(e) {
@@ -105,7 +112,8 @@ const NewPostForm = React.createClass({
       <div className="new-post-form-container">
         <nav>
 
-          <button className="add-post text-post">
+          <button className="add-post text-post"
+                  onClick={this.handleClickedTextPost}>
             <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
               className="icon-status">
             </img>Status
@@ -132,6 +140,7 @@ const NewPostForm = React.createClass({
               <textarea rows={numRows}
                 cols="35" wrap="hard"
                 value={this.state.body}
+                id="post-form-text"
                 placeholder={this._newPostPrompt()}
                 onChange={this._updatePost}
                 onKeyDown={this._submitWithEnterKey}>
