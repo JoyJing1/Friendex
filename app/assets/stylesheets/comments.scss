@@ -5,10 +5,23 @@
 }
 
 .new-comment-profile-pic {
-  height: 40px;
-  width: 40px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+}
+
+form.new-comment-form {
+  vertical-align: middle;
+  background-color: $blue-light-background;
+  border-left: 1px solid $gray-light-border;
+  border-right: 1px solid $gray-light-border;
+  border-bottom: 1px solid $gray-light-border;
 }
 
 .new-comment-form input[type="text"] {
-
+  display: inline-block;
+  margin: 0;
+  border: 1px solid $gray-light-border;
+  width: 86%;
 }

@@ -4,6 +4,7 @@ const Link  = require('react-router').Link
     , React = require('react');
 
 const ImageActions  = require('../../actions/image_actions')
+    , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
 
@@ -82,6 +83,10 @@ const PostIndexItem = React.createClass({
           </ul>
 
         </div>
+
+        <NewCommentForm/>
+
+        {this.props.children}
 
       </li>
     );

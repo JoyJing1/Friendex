@@ -15,7 +15,8 @@ const ErrorStore         = require('../../stores/error_store')
 
 const NewCommentForm = React.createClass({
   getInitialState() {
-    return { body: "" };
+    const currentUserProfile = SessionStore.currentUserProfile();
+    return { body: "", currentUserProfileImg: currentUserProfile.profile_img };
   },
 
   componentDidMount() {
@@ -30,10 +31,10 @@ const NewCommentForm = React.createClass({
     ProfileActions.fetchCurrentUserProfile();
   },
 
-  // _onChange() {
-  //   const currentUserProfile = SessionStore.currentUserProfile();
-  //   this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
-  // },
+  _onChange() {
+    const currentUserProfile = SessionStore.currentUserProfile();
+    this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
+  },
 
   // handleClickedTextComment(e) {
   //   document.getElementById("post-form-text").focus();
@@ -79,11 +80,11 @@ const NewCommentForm = React.createClass({
     return(
       <div className="new-comment-form-container">
 
-        <img src={this.props.currentUserProfileImg}
-          className="new-comment-profile-pic"></img>
-
         <form className="new-comment-form"
               onSubmit={this.handleSubmit}>
+
+            <img src={this.state.currentUserProfileImg}
+              className="new-comment-profile-pic"></img>
 
             <input type="text"
                   value={this.state.body}
@@ -92,7 +93,7 @@ const NewCommentForm = React.createClass({
                   onKeyDown={this._submitWithEnterKey}>
             </input>
         </form>
-        
+
       </div>
     );
   }
