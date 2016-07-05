@@ -1,11 +1,11 @@
 const React = require('react');
 
-const NewsfeedActions   = require('../actions/newsfeed_actions')
+const NewsfeedActions   = require('../../actions/newsfeed_actions')
     , NewsfeedIndexItem = require('./newsfeed_index_item')
-    , NewsfeedStore     = require('../stores/newsfeed_store')
+    , NewsfeedStore     = require('../../stores/newsfeed_store')
     , NewPostForm       = require('./new_post_form')
-    , PostStore         = require('../stores/post_store')
-    , SessionStore      = require('../stores/session_store');
+    , PostStore         = require('../../stores/post_store')
+    , SessionStore      = require('../../stores/session_store');
 
 const NewsfeedIndex = React.createClass({
   getInitialState() {

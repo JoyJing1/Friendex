@@ -3,12 +3,12 @@
 const Link = require('react-router').Link
 , React    = require('react');
 
-const PostIndex      = require('./post_index')
+const PostIndex      = require('../post//post_index')
     , ProfileAbout   = require('./profile_about')
-    , ProfileActions = require('../actions/profile_actions')
+    , ProfileActions = require('../../actions/profile_actions')
     , ProfileHeader  = require('./profile_header')
-    , ProfileStore   = require('../stores/profile_store')
-    , NewPostForm    = require('./new_post_form');
+    , ProfileStore   = require('../../stores/profile_store')
+    , NewPostForm    = require('../post/new_post_form');
 
 const ProfileTimeline = React.createClass({
   getInitialState() {

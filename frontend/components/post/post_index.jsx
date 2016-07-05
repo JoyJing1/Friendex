@@ -1,9 +1,9 @@
 const React = require('react');
 
-const ImageStore    = require('../stores/image_store')
-    , PostActions   = require('../actions/post_actions')
+const ImageStore    = require('../../stores/image_store')
+    , PostActions   = require('../../actions/post_actions')
     , PostIndexItem = require('./post_index_item')
-    , PostStore     = require('../stores/post_store');
+    , PostStore     = require('../../stores/post_store');
 
 const PostIndex = React.createClass({
   getInitialState() {

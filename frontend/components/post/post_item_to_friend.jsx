@@ -1,8 +1,8 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const PostActions  = require('../actions/post_actions')
-    , SessionStore = require('../stores/session_store');
+const PostActions  = require('../../actions/post_actions')
+    , SessionStore = require('../../stores/session_store');
 
 const PostItemToFriend = React.createClass({
   _deletePost() {

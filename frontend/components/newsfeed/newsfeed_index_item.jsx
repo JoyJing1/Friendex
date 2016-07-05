@@ -1,11 +1,11 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const NewsfeedActions        = require('../actions/post_actions')
+const NewsfeedActions        = require('../../actions/post_actions')
     , NewsfeedFriendshipItem = require('./newsfeed_friendship_item')
-    , PostIndexItem          = require('./post_index_item')
-    , PostItemToFriend       = require('./post_item_to_friend')
-    , SessionStore           = require('../stores/session_store');
+    , PostIndexItem          = require('../post/post_index_item')
+    , PostItemToFriend       = require('../post/post_item_to_friend')
+    , SessionStore           = require('../../stores/session_store');
 
 const NewsfeedIndexItem = React.createClass({
 

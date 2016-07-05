@@ -4,12 +4,12 @@ const hashHistory = require('react-router').hashHistory
     , Link        = require('react-router').Link
     , React       = require('react');
 
-const FriendshipActions = require('../actions/friendship_actions')
-    , FriendshipStore   = require('../stores/friendship_store')
+const FriendshipActions = require('../../actions/friendship_actions')
+    , FriendshipStore   = require('../../stores/friendship_store')
     , ProfileAbout      = require('./profile_about')
-    , ProfileActions    = require('../actions/profile_actions')
-    , ProfileStore      = require('../stores/profile_store')
-    , SessionStore      = require('../stores/session_store');
+    , ProfileActions    = require('../../actions/profile_actions')
+    , ProfileStore      = require('../../stores/profile_store')
+    , SessionStore      = require('../../stores/session_store');
 
 const ProfileHeader = React.createClass({
   getInitialState() {

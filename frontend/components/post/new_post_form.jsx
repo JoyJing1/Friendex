@@ -4,14 +4,14 @@ const hashHistory = require('react-router').hashHistory
     , Link        = require('react-router').Link
     , React       = require('react');
 
-const ErrorStore         = require('../stores/error_store')
-    , ImageActions       = require('../actions/image_actions')
-    , ImageStore         = require('../stores/image_store')
-    , PostActions        = require('../actions/post_actions')
-    , ProfileActions     = require('../actions/profile_actions')
-    , ProfileStore       = require('../stores/profile_store')
-    , SessionStore       = require('../stores/session_store')
-    , UploadPhotosButton = require('./upload_photos_button');
+const ErrorStore         = require('../../stores/error_store')
+    , ImageActions       = require('../../actions/image_actions')
+    , ImageStore         = require('../../stores/image_store')
+    , PostActions        = require('../../actions/post_actions')
+    , ProfileActions     = require('../../actions/profile_actions')
+    , ProfileStore       = require('../../stores/profile_store')
+    , SessionStore       = require('../../stores/session_store')
+    , UploadPhotosButton = require('../photo/upload_photos_button');
 
 const NewPostForm = React.createClass({
   getInitialState() {

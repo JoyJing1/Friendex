@@ -3,9 +3,9 @@
 const React = require('react');
 
 const ProfileAbout   = require('./profile_about')
-    , ProfileActions = require('../actions/profile_actions')
+    , ProfileActions = require('../../actions/profile_actions')
     , ProfileHeader  = require('./profile_header')
-    , ProfileStore   = require('../stores/profile_store');
+    , ProfileStore   = require('../../stores/profile_store');
 
 const ProfileAboutPage = React.createClass({
   getInitialState() {

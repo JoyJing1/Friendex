@@ -3,9 +3,9 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const ProfileActions   = require('../actions/profile_actions')
-    , ProfileConstants = require('../constants/profile_constants')
-    , ProfileStore     = require('../stores/profile_store');
+const ProfileActions   = require('../../actions/profile_actions')
+    , ProfileConstants = require('../../constants/profile_constants')
+    , ProfileStore     = require('../../stores/profile_store');
 
 const ProfileAbout = React.createClass({
   _location() {

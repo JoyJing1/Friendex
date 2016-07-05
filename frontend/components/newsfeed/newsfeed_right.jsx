@@ -3,8 +3,8 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const SessionActions = require('../actions/session_actions')
-    , SessionStore   = require('../stores/session_store');
+const SessionActions = require('../../actions/session_actions')
+    , SessionStore   = require('../../stores/session_store');
 
 const Newsfeed = React.createClass({
   render() {

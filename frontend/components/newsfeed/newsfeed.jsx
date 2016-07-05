@@ -6,8 +6,8 @@ const Link = require('react-router').Link
 const NewsfeedIndex = require('./newsfeed_index')
     , NewsfeedLeft = require('./newsfeed_left')
     , NewsfeedRight = require('./newsfeed_right')
-    , SessionActions = require('../actions/session_actions')
-    , SessionStore = require('../stores/session_store');
+    , SessionActions = require('../../actions/session_actions')
+    , SessionStore = require('../../stores/session_store');
 
 const Newsfeed = React.createClass({
   render() {

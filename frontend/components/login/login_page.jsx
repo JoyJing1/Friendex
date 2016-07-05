@@ -4,8 +4,8 @@ const Link  = require('react-router').Link
     , React = require('react');
 
 const LoginForm      = require('./login_form')
-    , SessionActions = require('../actions/session_actions')
-    , SessionStore   = require('../stores/session_store')
+    , SessionActions = require('../../actions/session_actions')
+    , SessionStore   = require('../../stores/session_store')
     , SignupForm     = require('./signup_form');
 
 const LoginPage = React.createClass({

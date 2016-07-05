@@ -2,11 +2,11 @@
 
 const React = require('react');
 
-const ImageActions       = require('../actions/image_actions')
-    , ImageStore         = require('../stores/image_store')
-    , ProfileStore       = require('../stores/profile_store')
+const ImageActions       = require('../../actions/image_actions')
+    , ImageStore         = require('../../stores/image_store')
+    , ProfileStore       = require('../../stores/profile_store')
     , PropTypes          = React.PropTypes
-    , SessionStore       = require('../stores/session_store')
+    , SessionStore       = require('../../stores/session_store')
     , UploadPhotosButton = require('./upload_photos_button');
 
 const PhotosPage = React.createClass({

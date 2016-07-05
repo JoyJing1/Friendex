@@ -2,8 +2,8 @@ const hashHistory = require('react-router').hashHistory
     , Link        = require('react-router').Link
     , React       = require('react');
 
-const FriendshipActions = require('../actions/friendship_actions')
-    , FriendshipStore = require('../stores/friendship_store');
+const FriendshipActions = require('../../actions/friendship_actions')
+    , FriendshipStore = require('../../stores/friendship_store');
 
 const FriendRequestIndexItem = React.createClass({
   acceptFriendship() {

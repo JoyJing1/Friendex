@@ -4,11 +4,11 @@ const React = require('react');
 
 const FriendIndex         = require('./friend_index')
     , FriendRequestIndex  = require('./friend_request_index')
-    , FriendshipActions   = require('../actions/friendship_actions')
-    , FriendshipStore     = require('../stores/friendship_store')
-    , ProfileActions      = require('../actions/profile_actions')
-    , ProfileStore        = require('../stores/profile_store')
-    , SessionStore        = require('../stores/session_store');
+    , FriendshipActions   = require('../../actions/friendship_actions')
+    , FriendshipStore     = require('../../stores/friendship_store')
+    , ProfileActions      = require('../../actions/profile_actions')
+    , ProfileStore        = require('../../stores/profile_store')
+    , SessionStore        = require('../../stores/session_store');
 
 const FriendsPage = React.createClass({
   getInitialState() {

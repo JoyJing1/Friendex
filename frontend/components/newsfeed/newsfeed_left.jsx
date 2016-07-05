@@ -3,10 +3,10 @@
 const Link    = require('react-router').Link
       , React = require('react');
 
-const ProfileActions = require('../actions/profile_actions')
-    , ProfileStore   = require('../stores/profile_store')
-    , SessionActions = require('../actions/session_actions')
-    , SessionStore   = require('../stores/session_store');
+const ProfileActions = require('../../actions/profile_actions')
+    , ProfileStore   = require('../../stores/profile_store')
+    , SessionActions = require('../../actions/session_actions')
+    , SessionStore   = require('../../stores/session_store');
 
 const NewsfeedLeft = React.createClass({
   getInitialState() {

@@ -3,9 +3,9 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const ErrorStore     = require('../stores/error_store')
-    , SessionActions = require('../actions/session_actions')
-    , SessionStore   = require('../stores/session_store');
+const ErrorStore     = require('../../stores/error_store')
+    , SessionActions = require('../../actions/session_actions')
+    , SessionStore   = require('../../stores/session_store');
 
 const SignupForm = React.createClass({
 
