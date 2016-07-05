@@ -1,6 +1,6 @@
 json.extract!(
   post,
-  :id, :author_id, :receiver_id, :body, :created_at
+  :id, :type, :author_id, :receiver_id, :body, :created_at, :updated_at
 )
 
 json.profile_img post.author_profile.profile_img

@@ -1,4 +1,5 @@
 class Api::PostsController < ApplicationController
+  attr_accessor :type
 
 	def create
     @post = Post.new(post_params)
@@ -27,9 +28,22 @@ class Api::PostsController < ApplicationController
   def index
     receiver_id = params[:receiver_id]
     author_id = params[:author_id]
-    @posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
-                  .order(created_at: :desc)
-    render "api/posts/index"
+
+    if receiver_id || author_id
+      @posts = Post.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
+      @posts.each { |el| el.type = "text" }
+
+      @images = Image.where("receiver_id = ? OR author_id =  ?", receiver_id, author_id)
+      @images.each { |el| el.type = "photo" }
+
+      @posts.concat(@images).sort do |e1, e2|
+        e2.updated_at <=> e1.updated_at
+      end
+
+      render "api/posts/index"
+    else
+      render json: { errors: "no data yet" }
+    end
   end
 
   def destroy

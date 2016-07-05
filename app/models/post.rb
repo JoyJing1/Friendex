@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   validates :author_id, :receiver_id, :body, presence: true
+  attr_accessor :type
 
   belongs_to :author,
     foreign_key: :author_id,
