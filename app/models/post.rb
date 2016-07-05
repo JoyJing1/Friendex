@@ -14,4 +14,9 @@ class Post < ActiveRecord::Base
     through: :author,
     source: :profile
 
+  has_many :comments,
+    class_name: :PostComment,
+    foreign_key: :post_id,
+    primary_key: :id
+
 end

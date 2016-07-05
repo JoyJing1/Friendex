@@ -14,4 +14,9 @@ class Image < ActiveRecord::Base
     through: :author,
     source: :profile
 
+  has_many :comments,
+    class_name: :ImageComment,
+    foreign_key: :image_id,
+    primary_key: :id
+
 end

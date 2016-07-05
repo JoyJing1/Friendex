@@ -17,4 +17,9 @@ class Friendship < ActiveRecord::Base
     through: :receiver,
     source: :profile
 
+  has_many :comments,
+    class_name: :FriendshipComment,
+    foreign_key: :friendship_id,
+    primary_key: :id
+
 end

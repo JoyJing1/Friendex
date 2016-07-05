@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705161306) do
+ActiveRecord::Schema.define(version: 20160705163338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friendship_comments", force: :cascade do |t|
-    t.integer  "image_id",      null: false
     t.integer  "friendship_id", null: false
+    t.integer  "user_id",       null: false
     t.string   "body",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "friendship_comments", ["friendship_id"], name: "index_friendship_comments_on_friendship_id", using: :btree
-  add_index "friendship_comments", ["image_id"], name: "index_friendship_comments_on_image_id", using: :btree
+  add_index "friendship_comments", ["user_id"], name: "index_friendship_comments_on_user_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "requestor_id",                     null: false
