@@ -39,6 +39,35 @@ const ProfileHeader = React.createClass({
     this.friendshipListener.remove();
   },
 
+  updateProfileImg(e) {
+    e.preventDefault();
+    const currentUser = SessionStore.currentUser();
+    const currentProfile = ProfileStore.currentProfile();
+
+    if (currentUser.id === currentProfile.id) {
+      let that = this;
+
+      cloudinary.openUploadWidget(
+        window.CLOUDINARY_OPTIONS,
+        function(error, images) {
+          if (error === null) {
+            console.log("Upload succeeded in profile_header.jsx");
+            const profile = { profile_img: images[0].url,
+                            id: currentProfile.id};
+            ProfileActions.updateProfile(profile);
+
+          } else {
+            console.log("Upload failed in profile_header.jsx");
+            console.log(error);
+          }
+        }
+      );
+    } else {
+      hashHistory.push(`users/${currentProfile.id}/about`);
+    }
+
+  },
+
   _updateProfile() {
     const profile = ProfileStore.currentProfile();
     const friends = FriendshipStore.friends();

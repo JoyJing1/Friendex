@@ -12,6 +12,11 @@ const ProfileActions = {
     ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
   },
 
+  updateProfile(profile) {
+    console.log("updateProfile(profile) in profile_actions.jsx");
+    ProfileApiUtil.updateProfile(profile, this.receiveSingleProfile);
+  },
+
   fetchCurrentUserProfile() {
     console.log("fetchCurrentUserProfile(id) in profile_actions.js");
     ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);

@@ -18,22 +18,6 @@ const ImageApiUtil = {
         console.log(errors);
       }
     });
-    //
-    // $.ajax({
-		// 	url: `/api/images`,
-		// 	type: 'POST',
-    //   data: { image: image },
-		// 	success(resp) {
-    //     console.log("successfully created new image");
-    //     console.log(resp);
-    //     success(resp);
-    //   },
-		// 	error(xhr) {
-    //     console.log("failed to create a new image");
-		// 		const errors = xhr.responseJSON;
-    //     console.log(errors);
-		// 	}
-		// });
 	},
 
   deleteImage(id, success, error) {
