@@ -38,7 +38,9 @@ button {
 }
 
 button,
-input[type="submit"], .redirect {
+input[type="submit"],
+.redirect,
+.clickable {
   cursor: pointer;
 }
 

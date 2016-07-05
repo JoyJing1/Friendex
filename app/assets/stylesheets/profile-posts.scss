@@ -164,6 +164,15 @@ button.add-post:hover {
   text-align: middle;
 }
 
+.post-footer button {
+  padding: 0 15px;
+}
+
+.post-footer button:hover {
+  background: $gray-background-default;
+
+}
+
 .post-footer img {
   display: inline-block;
   height: 20px;
@@ -172,13 +181,13 @@ button.add-post:hover {
 }
 
 .post-footer-like {
-  margin-left: 16px;
+  // margin-left: 16px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .post-footer-comment {
-  margin-left: 25px;
+  // margin-left: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
 }

@@ -47,6 +47,10 @@ const PostIndexItem = React.createClass({
     }
   },
 
+  changeFocus() {
+    document.getElementById(`new-comment-${this.props.post.type}-${this.props.post.id}`).focus();
+  },
+
   render() {
     return (
       <li>
@@ -68,17 +72,17 @@ const PostIndexItem = React.createClass({
           {this.postBody()}
 
           <ul className="post-footer">
-            <a>
+            <button className="clickable">
               <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
                 className="post-footer-like">
               </img>Like
-            </a>
+            </button>
 
-            <a>
+            <button onClick={this.changeFocus} className="clickable">
               <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
                 className="post-footer-comment">
               </img>Comment
-            </a>
+            </button>
 
             {this.deleteButton()}
           </ul>
@@ -86,7 +90,7 @@ const PostIndexItem = React.createClass({
         </div>
 
         <CommentIndex comments={this.props.post.comments}/>
-        
+
         <NewCommentForm item={this.props.post}
             currentUserProfile={this.props.currentUserProfile}/>
 
