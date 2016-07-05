@@ -1,10 +1,11 @@
 "use strict";
 
 const React = require('react');
-const ProfileStore = require('../stores/profile_store');
-const ProfileActions = require('../actions/profile_actions');
-const ProfileAbout = require('./profile_about');
-const ProfileHeader = require('./profile_header');
+
+const ProfileAbout   = require('./profile_about')
+    , ProfileActions = require('../actions/profile_actions')
+    , ProfileHeader  = require('./profile_header')
+    , ProfileStore   = require('../stores/profile_store');
 
 const ProfileAboutPage = React.createClass({
   getInitialState() {

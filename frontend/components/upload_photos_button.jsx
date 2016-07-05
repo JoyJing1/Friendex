@@ -1,7 +1,7 @@
 "use strict";
 
-const React = require('react');
-const PropTypes = React.PropTypes;
+const PropTypes = React.PropTypes
+    , React     = require('react');
 
 const UploadPhotosButton = React.createClass({
   upload(e) {

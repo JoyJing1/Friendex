@@ -1,12 +1,13 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const SessionStore = require('../stores/session_store');
-const SessionActions = require('../actions/session_actions');
-const NewsfeedIndex = require('./newsfeed_index');
-const NewsfeedLeft = require('./newsfeed_left');
-const NewsfeedRight = require('./newsfeed_right');
+const Link = require('react-router').Link
+    , React = require('react');
+
+const NewsfeedIndex = require('./newsfeed_index')
+    , NewsfeedLeft = require('./newsfeed_left')
+    , NewsfeedRight = require('./newsfeed_right')
+    , SessionActions = require('../actions/session_actions')
+    , SessionStore = require('../stores/session_store');
 
 const Newsfeed = React.createClass({
   render() {

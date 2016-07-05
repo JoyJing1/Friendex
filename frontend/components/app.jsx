@@ -1,10 +1,10 @@
 "use strict";
 
 const React = require('react');
-const SessionStore = require('../stores/session_store');
-const ProfileActions = require('../actions/profile_actions');
 
-const Header = require('./header');
+const Header          = require('./header')
+    , SessionStore    = require('../stores/session_store');
+
 
 const App = React.createClass({
   render () {

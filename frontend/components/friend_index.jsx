@@ -1,7 +1,8 @@
 const React = require('react');
-const FriendshipStore = require('../stores/friendship_store');
-const FriendshipActions = require('../actions/friendship_actions');
-const FriendIndexItem = require('./friend_index_item');
+
+const FriendshipActions = require('../actions/friendship_actions')
+    , FriendIndexItem   = require('./friend_index_item')
+    , FriendshipStore   = require('../stores/friendship_store');
 
 const FriendIndex = React.createClass({
   render() {

@@ -1,11 +1,12 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const ProfileStore = require('../stores/profile_store');
-const SessionStore = require('../stores/session_store');
-const SessionActions = require('../actions/session_actions');
-const ProfileActions = require('../actions/profile_actions');
+const Link    = require('react-router').Link
+      , React = require('react');
+
+const ProfileActions = require('../actions/profile_actions')
+    , ProfileStore   = require('../stores/profile_store')
+    , SessionActions = require('../actions/session_actions')
+    , SessionStore   = require('../stores/session_store');
 
 const NewsfeedLeft = React.createClass({
   getInitialState() {

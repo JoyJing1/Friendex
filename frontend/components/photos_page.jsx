@@ -1,12 +1,13 @@
 "use strict";
 
 const React = require('react');
-const PropTypes = React.PropTypes;
-const SessionStore = require('../stores/session_store');
-const ProfileStore = require('../stores/profile_store');
-const ImageStore = require('../stores/image_store');
-const ImageActions = require('../actions/image_actions');
-const UploadPhotosButton = require('./upload_photos_button');
+
+const ImageActions       = require('../actions/image_actions')
+    , ImageStore         = require('../stores/image_store')
+    , ProfileStore       = require('../stores/profile_store')
+    , PropTypes          = React.PropTypes
+    , SessionStore       = require('../stores/session_store')
+    , UploadPhotosButton = require('./upload_photos_button');
 
 const PhotosPage = React.createClass({
   getInitialState() {
@@ -54,7 +55,7 @@ const PhotosPage = React.createClass({
           {
             this.state.images.map( image => {
               return (
-                <li className="photo-clickable" key={image.id}>
+                <li className="photo-clickable grow" key={image.id}>
                   <img src={image.url}></img>
                 </li>
               );

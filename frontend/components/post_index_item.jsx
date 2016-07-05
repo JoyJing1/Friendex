@@ -1,7 +1,8 @@
-const React = require('react');
-const Link = require('react-router').Link;
-const SessionStore = require('../stores/session_store');
-const PostActions = require('../actions/post_actions');
+const Link  = require('react-router').Link
+    , React = require('react');
+
+const PostActions  = require('../actions/post_actions')
+    , SessionStore = require('../stores/session_store');
 
 const PostIndexItem = React.createClass({
   _deletePost() {

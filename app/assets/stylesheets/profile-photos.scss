@@ -74,3 +74,11 @@ li.photo-clickable {
   margin: 0;
   object-fit: cover;
 }
+
+.grow {
+  transition: all .1s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
+}

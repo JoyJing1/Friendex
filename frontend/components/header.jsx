@@ -1,11 +1,12 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const hashHistory = require('react-router').hashHistory;
-const SessionStore = require('../stores/session_store');
-const SessionActions = require('../actions/session_actions');
-const ProfileActions = require('../actions/profile_actions');
+const hashHistory = require('react-router').hashHistory
+    , Link        = require('react-router').Link
+    , React       = require('react');
+
+const ProfileActions = require('../actions/profile_actions')
+    , SessionActions = require('../actions/session_actions')
+    , SessionStore   = require('../stores/session_store');
 
 const Header = React.createClass({
   getInitialState() {
@@ -57,9 +58,9 @@ const Header = React.createClass({
                   src={this.state.currentUserProfile.profile_img}></img>
             <Link to={`/users/${currentUser.id}`}
                   className="username-link">{currentUser.username}</Link>
-        </div>
+          </div>
 
-        <Link to={"/"} className="home">Home</Link>
+          <Link to={"/"} className="home">Home</Link>
 
           <button onClick={this._logout}
                   className="button-logout">Log Out</button>

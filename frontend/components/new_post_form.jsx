@@ -1,16 +1,17 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const hashHistory = require('react-router').hashHistory;
-const ProfileActions = require('../actions/profile_actions');
-const ImageActions = require('../actions/image_actions');
-const PostActions = require('../actions/post_actions');
-const ImageStore = require('../stores/image_store');
-const SessionStore = require('../stores/session_store');
-const ProfileStore = require('../stores/profile_store');
-const ErrorStore = require('../stores/error_store');
-const UploadPhotosButton = require('./upload_photos_button');
+const hashHistory = require('react-router').hashHistory
+    , Link        = require('react-router').Link
+    , React       = require('react');
+
+const ErrorStore         = require('../stores/error_store')
+    , ImageActions       = require('../actions/image_actions')
+    , ImageStore         = require('../stores/image_store')
+    , PostActions        = require('../actions/post_actions')
+    , ProfileActions     = require('../actions/profile_actions')
+    , ProfileStore       = require('../stores/profile_store')
+    , SessionStore       = require('../stores/session_store')
+    , UploadPhotosButton = require('./upload_photos_button');
 
 const NewPostForm = React.createClass({
   getInitialState() {

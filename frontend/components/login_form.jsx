@@ -1,10 +1,11 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const SessionActions = require('../actions/session_actions');
-const SessionStore = require('../stores/session_store');
-const ErrorStore = require('../stores/error_store');
+const ErrorStore = require('../stores/error_store')
+    , Link       = require('react-router').Link
+    , React      = require('react');
+
+const SessionActions = require('../actions/session_actions')
+    , SessionStore   = require('../stores/session_store');
 
 const LoginForm = React.createClass({
 
@@ -68,10 +69,10 @@ const LoginForm = React.createClass({
     this.setState( { email: "mark@facebook.com", password: "testtest" }  );
   },
 
-	render() {
+  render() {
 
-		return (
-		  <header className="logged-out-container">
+    return (
+      <header className="logged-out-container">
         <nav className="logged-out-header-nav clearfix">
           <h1 className="fd-logo">
             <a href="#">friendex</a>
@@ -79,33 +80,33 @@ const LoginForm = React.createClass({
 
           <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
-              <label for="email">Email
-              <input type="text"
-                value={this.state.email}
-                label="email"
-                onChange={this.update("email")}/>
-              </label>
+            <label for="email">Email
+            <input type="text"
+              value={this.state.email}
+              label="email"
+              onChange={this.update("email")}/>
+            </label>
 
-              <label for="password">Password
-              <input type="password"
-                value={this.state.password}
-                label="password"
-                onChange={this.update("password")}/>
-              </label>
+            <label for="password">Password
+            <input type="password"
+              value={this.state.password}
+              label="password"
+              onChange={this.update("password")}/>
+            </label>
 
-              <div className="login-buttons">
-                <input type="submit" value="Log In"/>
-                <button className="demo"
-                        onClick={this.loginGuest}>Guest Login
-                </button>
-              </div>
+            <div className="login-buttons">
+              <input type="submit" value="Log In"/>
+              <button className="demo"
+                      onClick={this.loginGuest}>Guest Login
+              </button>
+            </div>
 
           </form>
 
         </nav>
-		  </header>
-		);
-	}
+      </header>
+    );
+  }
 });
 
 module.exports = LoginForm;

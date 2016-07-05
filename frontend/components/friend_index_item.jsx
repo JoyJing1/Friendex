@@ -1,9 +1,10 @@
-const React = require('react');
-const Link = require('react-router').Link;
-const FriendshipActions = require('../actions/friendship_actions');
-const FriendshipStore = require('../stores/friendship_store');
-const SessionStore = require('../stores/session_store');
-const ProfileStore = require('../stores/profile_store');
+const Link  = require('react-router').Link
+    , React = require('react');
+
+const FriendshipActions = require('../actions/friendship_actions')
+    , FriendshipStore   = require('../stores/friendship_store')
+    , ProfileStore      = require('../stores/profile_store')
+    , SessionStore      = require('../stores/session_store');
 
 const FriendIndexItem = React.createClass({
   removeFriendship() {

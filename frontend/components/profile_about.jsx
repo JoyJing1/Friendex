@@ -1,10 +1,11 @@
 "use strict";
 
-const React = require('react');
-const Link = require('react-router').Link;
-const ProfileStore = require('../stores/profile_store');
-const ProfileActions = require('../actions/profile_actions');
-const ProfileConstants = require('../constants/profile_constants');
+const Link  = require('react-router').Link
+    , React = require('react');
+
+const ProfileActions   = require('../actions/profile_actions')
+    , ProfileConstants = require('../constants/profile_constants')
+    , ProfileStore     = require('../stores/profile_store');
 
 const ProfileAbout = React.createClass({
   _location() {
