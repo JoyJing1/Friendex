@@ -50,8 +50,17 @@ function _updateItem(item) {
 }
 
 function _removeItem(item) {
-  const idx = _posts.indexOf(item);
-  _posts.splice(idx, 1);
+  let idx = -1;
+  _posts.forEach( (post, i) => {
+    if (post.id === item.id) {
+      idx = i;
+    }
+  });
+
+  if (idx >= 0) {
+    _posts.splice(idx, 1);
+    console.log("_removeItem(item) in post_store.js - had to remove from store explicitly");
+  }
 }
 
 PostStore.find = function(id) {

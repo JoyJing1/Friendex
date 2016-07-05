@@ -1,7 +1,8 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const PostActions  = require('../actions/post_actions')
+const ImageActions  = require('../actions/image_actions')
+    , PostActions  = require('../actions/post_actions')
     , SessionStore = require('../stores/session_store');
 
 const PostIndexItem = React.createClass({
@@ -9,17 +10,28 @@ const PostIndexItem = React.createClass({
     PostActions.deletePost(this.props.post.id);
   },
 
+  _deleteImage() {
+    ImageActions.deleteImage(this.props.post.id);
+  },
+
   deleteButton() {
     if (this.props.post.author_id === SessionStore.currentUser().id || this.props.post.receiver_id === SessionStore.currentUser().id) {
-      return (
-        <button onClick={this._deletePost}
-                className="delete-post">Remove Post</button>
-      );
+      if (this.props.post.type === "post") {
+        return (
+          <button onClick={this._deletePost}
+            className="delete-post">Remove Post</button>
+        );
+      } else if (this.props.post.type === "image") {
+        return (
+          <button onClick={this._deleteImage}
+            className="delete-post">Remove Photo</button>
+        );
+      }
+
     }
   },
 
   postBody() {
-    // debugger;
     if (this.props.post.type === "post") {
       return <p>{this.props.post.body}</p>;
 
