@@ -60,11 +60,15 @@ PostStore.__onDispatch = payload => {
 function _updateComment(comment) {
   if (comment.image_id) {
     const itemIdx = _findItem("image", comment.image_id);
-    _posts[itemIdx].comments.push(comment);
+    if (itemIdx >= 0) {
+      _posts[itemIdx].comments.push(comment);
+    }
 
   } else if (comment.post_id) {
     const itemIdx = _findItem("post", comment.post_id);
-    _posts[itemIdx].comments.push(comment);
+    if (itemIdx >= 0) {
+      _posts[itemIdx].comments.push(comment);
+    }
   }
 }
 
@@ -75,16 +79,20 @@ function _removeComment(comment) {
 
     const commentIdx = item.comments.indexOf(comment);
 
-    item.comments.splice(commentIdx, 1);
-    _updateItem(item);
+    if (commentIdx >= 0) {
+      item.comments.splice(commentIdx, 1);
+      _updateItem(item);
+    }
 
   } else if (comment.post_id) {
     const itemIdx = _findItem("post", comment.post_id);
     let item = _posts[itemIdx];
     const commentIdx = item.comments.indexOf(comment);
 
-    item.comments.splice(commentIdx, 1);
-    _updateItem(item);
+    if (commentIdx >= 0) {
+      item.comments.splice(commentIdx, 1);
+      _updateItem(item);
+    }
   }
 }
 

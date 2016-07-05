@@ -23,7 +23,7 @@ const NewsfeedLeft = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    SessionActions.fetchcurrentUser();
+    SessionActions.fetchCurrentUser();
   },
 
   _update() {

@@ -48,6 +48,7 @@ NewsfeedStore.__onDispatch = payload => {
 
     case CommentConstants.UPDATE_COMMENT:
       console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
+      // debugger;
       let comment = payload.comment;
       // comment["type"] = "comment";
       _updateComment(comment);
@@ -66,15 +67,22 @@ NewsfeedStore.__onDispatch = payload => {
 function _updateComment(comment) {
   if (comment.image_id) {
     const itemIdx = _findItem("image", comment.image_id);
-    _newsfeed[itemIdx].comments.push(comment);
+
+    if (itemIdx >= 0) {
+      _newsfeed[itemIdx].comments.push(comment);
+    }
 
   } else if (comment.post_id) {
     const itemIdx = _findItem("post", comment.post_id);
-    _newsfeed[itemIdx].comments.push(comment);
+    if (itemIdx >= 0) {
+      _newsfeed[itemIdx].comments.push(comment);
+    }
 
   } else if (comment.friendship_id) {
     const itemIdx = _findItem("friendship", comment.friendship_id);
-    _newsfeed[itemIdx].comments.push(comment);
+    if (itemIdx >= 0) {
+      _newsfeed[itemIdx].comments.push(comment);
+    }
   }
 }
 
@@ -117,6 +125,7 @@ function _findItem(type, id) {
 }
 
 function _updateNewsfeed(newsfeed) {
+  // debugger;
   _newsfeed = newsfeed;
 }
 

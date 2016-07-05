@@ -25,6 +25,7 @@ const NewsfeedIndex = React.createClass({
 
   componentWillReceiveProps(newProps) {
     const id = SessionStore.currentUser().id;
+    // debugger;
     NewsfeedActions.fetchNewsfeed(id);
   },
 

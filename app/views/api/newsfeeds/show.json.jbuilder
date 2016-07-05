@@ -5,7 +5,7 @@ json.array!(@newsfeed) do |item|
 
   elsif item.type == "image"
     json.partial!('image', image: item)
-    
+
   elsif item.type == "friendship"
     json.partial!('friendship', friendship: item)
   end

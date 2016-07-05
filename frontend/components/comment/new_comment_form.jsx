@@ -7,45 +7,21 @@ const hashHistory = require('react-router').hashHistory
 const ErrorStore         = require('../../stores/error_store')
     // , ImageActions       = require('../../actions/image_actions')
     // , ImageStore         = require('../../stores/image_store')
-    , CommentActions        = require('../../actions/comment_actions')
-    , ProfileActions     = require('../../actions/profile_actions')
+    , CommentActions        = require('../../actions/comment_actions');
+    // , ProfileActions     = require('../../actions/profile_actions')
     // , ProfileStore       = require('../../stores/profile_store')
-    , SessionStore       = require('../../stores/session_store');
+    // , SessionStore       = require('../../stores/session_store');
     // , UploadPhotosButton = require('../photo/upload_photos_button');
 
 const NewCommentForm = React.createClass({
   getInitialState() {
-    // const currentUserProfile = SessionStore.currentUserProfile();
     return { body: "" };
   },
-
-  // componentDidMount() {
-  //   this.sessionListener = SessionStore.addListener(this._onChange);
-  // },
-  //
-  // componentWillUnmount() {
-  //   this.sessionListener.remove();
-  // },
-  //
-  // componentWillReceiveProps(newProps) {
-  //   ProfileActions.fetchCurrentUserProfile();
-  // },
-
-  // _onChange() {
-  //   const currentUserProfile = SessionStore.currentUserProfile();
-  //   this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
-  // },
-
-  // handleClickedTextComment(e) {
-  //   document.getElementById("post-form-text").focus();
-  // },
 
   handleSubmit(e) {
     e.preventDefault();
     let comment = { body: this.state.body,
                     user_id: this.props.currentUserProfile.id };
-
-    // debugger;
 
     if (this.props.item.type === "post") {
       comment.post_id = this.props.item.id;
@@ -69,12 +45,6 @@ const NewCommentForm = React.createClass({
       this.setState( {body: ""} );
     }
   },
-
-  // _toCurrUserProfile() {
-  //   const currUserId = SessionStore.currentUser().id;
-  //   hashHistory.push(`users/${currUserId}`);
-  // },
-
 
   render() {
 
