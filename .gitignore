@@ -55,4 +55,3 @@ jspm_packages
 
 # Ignore application configuration
 /config/application.yml
-/config/api_keys.yml
