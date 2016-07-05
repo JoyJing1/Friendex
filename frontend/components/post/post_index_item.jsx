@@ -3,7 +3,8 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const ImageActions  = require('../../actions/image_actions')
+const CommentIndex = require('../comment/comment_index')
+    , ImageActions  = require('../../actions/image_actions')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
@@ -84,8 +85,10 @@ const PostIndexItem = React.createClass({
 
         </div>
 
+        <CommentIndex comments={this.props.post.comments}/>
+        
         <NewCommentForm item={this.props.post}
-            currentUserProfileImg={this.props.currentUserProfileImg}/>
+            currentUserProfile={this.props.currentUserProfile}/>
 
         {this.props.children}
 

@@ -37,9 +37,9 @@ const PostIndex = React.createClass({
   },
 
   _onChange() {
-    const currentUserProfile = SessionStore.currentUserProfile();
+    // const currentUserProfile = SessionStore.currentUserProfile();
     this.setState( { posts: PostStore.all(),
-                    currentUserProfileImg: currentUserProfile.profile_img } );
+                    currentUserProfile: SessionStore.currentUserProfile() } );
     console.log("_onChange() in post_index.jsx");
     console.log(this.state);
   },
@@ -51,7 +51,7 @@ const PostIndex = React.createClass({
           return(
             <PostIndexItem post={post}
               key={`${post.type}${post.id}`}
-              currentUserProfileImg={this.state.currentUserProfileImg}/>
+              currentUserProfile={this.state.currentUserProfile}/>
           );
         })}
 

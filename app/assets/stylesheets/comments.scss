@@ -1,10 +1,43 @@
 @import 'colors';
 
+.comment-index-container {
+
+}
+
+li.comment-item {
+  vertical-align: middle;
+  background-color: $blue-light-background;
+  border-left: 1px solid $gray-light-border;
+  border-right: 1px solid $gray-light-border;
+  border-bottom: 1px solid $gray-light-border;
+}
+
+.comment-item img {
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.comment-body {
+  display: inline-block;
+  font-size: 12px;
+  width: 86%;
+  margin: 7px 0;
+}
+
+.comment-body a {
+  display: inline-block;
+  color: $blue-medium-font;
+  margin: 0;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+// NEW COMMENT FORM ///////////////////////////////////////////
 .new-comment-form-container{
 
 }
 
-.new-comment-profile-pic {
+.new-comment-profile-pic, .comment-profile-pic {
   display: inline-block;
   height: 30px;
   width: 30px;
