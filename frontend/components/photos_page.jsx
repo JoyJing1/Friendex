@@ -26,13 +26,11 @@ const PhotosPage = React.createClass({
   },
 
   addImage(url) {
-    let img = { url: url, user_id: this.props.params.id };
+    let img = { url: url,
+                receiver_id: this.props.params.id,
+                author_id: this.props.params.id };
 
-    ImageActions.createImage(img, (resp) => {
-      let images = this.state.images;
-      images.unshift(resp);
-      this.setState({ images: images });
-    });
+    ImageActions.createImage(img);
   },
 
   _checkImages() {

@@ -1,6 +1,6 @@
 json.extract!(
   image,
-  :id, :url, :user_id
+  :id, :url, :author_id, :receiver_id
 )
 
 json.age time_ago_in_words(image.created_at)

@@ -14,11 +14,6 @@ const ImageActions = {
       updateImagesList(resp);
     });
   },
-  //
-  // updateImage(image) {
-  //   console.log("updateImage(image) in image_actions.js");
-  //   ImageApiUtil.updateImage(image, this.receiveSingleImage);
-  // },
 
   deleteImage(id) {
     console.log("deleteImage(id) in image_actions.js");
@@ -36,7 +31,6 @@ const ImageActions = {
     console.log("fetchManyImages(userId) in image_actions.js");
     ImageApiUtil.fetchManyImages(userId, this.receiveManyImages);
   },
-  // },
 
   receiveSingleImage(image) {
     console.log("receiveSingleImage(image) in image_actions.js");

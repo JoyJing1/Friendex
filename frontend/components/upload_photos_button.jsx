@@ -30,7 +30,6 @@ const UploadPhotosButton = React.createClass({
   },
 
   _checkOwnProfile() {
-    // debugger;
     if (this.props.ownProfile) {
       return (
         <button onClick={this.upload}
