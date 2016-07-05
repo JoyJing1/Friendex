@@ -85,7 +85,7 @@ const PostIndexItem = React.createClass({
         </div>
 
         <NewCommentForm item={this.props.post}
-            currentUserProfile={this.props.currentUserProfile}/>
+            currentUserProfileImg={this.props.currentUserProfileImg}/>
 
         {this.props.children}
 

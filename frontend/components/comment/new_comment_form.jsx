@@ -85,7 +85,7 @@ const NewCommentForm = React.createClass({
         <form className="new-comment-form"
               onSubmit={this.handleSubmit}>
 
-            <img src={this.props.currentUserProfile.profile_img}
+            <img src={this.props.currentUserProfileImg}
               className="new-comment-profile-pic"></img>
 
             <input type="text"

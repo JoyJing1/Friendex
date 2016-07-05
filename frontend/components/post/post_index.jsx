@@ -11,9 +11,8 @@ const ImageStore    = require('../../stores/image_store')
 
 const PostIndex = React.createClass({
   getInitialState() {
-    const currentUserProfile = SessionStore.currentUserProfile();
     return { posts: PostStore.all(),
-              currentUserProfile: currentUserProfile };
+              currentUserProfile: SessionStore.currentUserProfile() };
   },
 
   componentDidMount() {
@@ -52,7 +51,7 @@ const PostIndex = React.createClass({
           return(
             <PostIndexItem post={post}
               key={`${post.type}${post.id}`}
-              currentUserProfile={this.state.currentUserProfile}/>
+              currentUserProfileImg={this.state.currentUserProfileImg}/>
           );
         })}
 
