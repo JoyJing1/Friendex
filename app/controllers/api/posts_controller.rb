@@ -1,5 +1,4 @@
 class Api::PostsController < ApplicationController
-  # attr_accessor :type
 
 	def create
     @post = Post.new(post_params)

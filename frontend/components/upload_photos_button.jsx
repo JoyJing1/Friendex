@@ -2,10 +2,6 @@
 
 const React = require('react');
 const PropTypes = React.PropTypes;
-// const ProfileStore = require('../stores/profile_store');
-// const ProfileActions = require('../actions/profile_actions');
-// const ProfilePhotos = require('./profile_photos');
-// const ProfileHeader = require('./profile_header');
 
 const UploadPhotosButton = React.createClass({
   upload(e) {

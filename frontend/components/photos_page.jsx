@@ -90,28 +90,3 @@ const PhotosPage = React.createClass({
 });
 
 module.exports = PhotosPage;
-
-// <ul className="photo-list clearfix">
-//   {
-//     this.state.images.map( image => {
-//       return (
-//         <li className="photo-clickable">
-//           <img src={image.url}></img>
-//         </li>
-//       );
-//     })
-//   }
-// </ul>
-
-// {this.props.children}
-
-// {
-//   this.state.images.map( image => {
-//     return (
-//       <li className="photo-clickable">
-//         // <img src={image.url} alt="Photo Item">
-//         {image.url}
-//       </li>
-//     );
-//   })
-// }

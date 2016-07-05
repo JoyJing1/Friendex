@@ -25,11 +25,10 @@ ImageStore.__onDispatch = payload => {
   }
 };
 
-
 function _updateImage(image) {
   console.log("_updateImage(image) in image_store.js");
   const imageIdx = _images.indexOf(image);
-  console.log(`imageIdx = ${imageIdx}`);
+
   if (imageIdx < 0) {
     _images.unshift(image);
   } else {

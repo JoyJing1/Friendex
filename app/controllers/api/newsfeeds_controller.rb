@@ -21,7 +21,6 @@ class Api::NewsfeedsController < ApplicationController
                       .sort do |e1, e2|
                         e2.updated_at <=> e1.updated_at
                       end
-    # debugger;
     render "api/newsfeeds/show"
   end
 
