@@ -17,6 +17,6 @@ end
 
 json.likes do
   json.array!(image.likes) do |image_like|
-    json.partial! "api/images/like", image_like: image_like
+    image_like.user_id
   end
 end

@@ -93,7 +93,10 @@ function _addLike(like) {
       if (_newsfeed[itemIdx].likes) {
         _newsfeed[itemIdx].likes[like.user_id] = like;
       } else {
+        // _newsfeed["likes"] = { `${like.user_id}`: like };
         debugger;
+        // console.log(_newsfeed["likes"]);
+
         // _newsfeed[itemIdx]["likes"] = { like.user_id: like };
       }
     }
@@ -103,11 +106,16 @@ function _addLike(like) {
 function _removeLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
-    delete _newsfeed[itemIdx].likes[like.user_id];
+    if (itemIdx >= 0) {
+      delete _newsfeed[itemIdx].likes[like.user_id];
+    }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
-    delete _newsfeed[itemIdx].likes[like.user_id];
+
+    if (itemIdx >= 0) {
+      delete _newsfeed[itemIdx].likes[like.user_id];
+    }
   }
 }
 

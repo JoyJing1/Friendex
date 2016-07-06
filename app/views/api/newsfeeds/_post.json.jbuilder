@@ -17,18 +17,7 @@ json.comments do
   end
 end
 
-# json.likes do
-#   json.array!(post.likes) do |post_like|
-#     json.partial! "api/posts/like", post_like: post_like
-#   end
-# end
-
 
 json.likes do
-  post.likes.each do |post_like|
-    json.set!(
-      post_like.user_id, {user_id: post_like.user_id, id: post_like.id, post_id: post_like.post_id}
-      # {json.partial!("api/posts/like", post_like: post_like)}
-    )
-  end
+  json.array!(post.likes)
 end

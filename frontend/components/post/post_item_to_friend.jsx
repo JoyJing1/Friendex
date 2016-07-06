@@ -19,11 +19,9 @@ const PostItemToFriend = React.createClass({
   },
 
   currentUserLikesPost(post) {
-    if (post.likes) {
-      return post.likes.hasOwnProperty(this.props.currentUserProfile.id);
-    } else {
-      return false;
-    }
+    return post.likes.some( like => {
+      return like.user_id === this.props.currentUserProfile.user_id;
+    });
   },
 
   _deletePost() {
@@ -55,46 +53,33 @@ const PostItemToFriend = React.createClass({
     document.getElementById(`new-comment-${this.props.post.type}-${this.props.post.id}`).focus();
   },
 
-
   setLiked(e) {
     console.log("setLiked() in post_index_item.jsx");
     e.preventDefault();
-    let ids = { user_id: this.props.currentUserProfile.id };
 
     if (this.props.post.type === "post") {
-      ids.post_id = this.props.post.id;
+      LikeActions.createLike({ post_id: this.props.post.id }, (resp) => {
+        this.setState( { liked: true });
+      });
+
     } else if (this.props.post.type === "image") {
-      ids.image_id = this.props.post.id;
+      LikeActions.createLike({ image_id: this.props.post.id }, (resp) => {
+        this.setState( { liked: true });
+      });
     }
-
-    LikeActions.createLike(ids, (resp) => {
-      this.setState( { liked: true });
-    });
-
   },
 
   setUnliked(e) {
     console.log("setUnliked() in post_index_item.jsx");
     e.preventDefault();
 
-    let ids = { user_id: this.props.currentUserProfile.id };
-
     if (this.props.post.type === "post") {
-
-      let like  = this.props.post.likes[this.props.currentUserProfile.id];
-      ids.post_id = like.post_id;
-      ids.id = like.id;
-
-      LikeActions.deleteLike(ids, (resp) => {
+      LikeActions.deleteLike({ post_id: this.props.post.id }, (resp) => {
         this.setState( { liked: false });
       });
 
     } else if (this.props.post.type === "image") {
-      let like = this.props.post.likes[this.props.currentUserProfile.id];
-      ids.image_id = like.image_id;
-      ids.id = like.id;
-
-      LikeActions.deleteLike(ids, (resp) => {
+      LikeActions.deleteLike({ image_id: this.props.post.id }, (resp) => {
         this.setState( { liked: false });
       });
     }
@@ -119,7 +104,6 @@ const PostItemToFriend = React.createClass({
       );
     }
   },
-
 
   render() {
     return (

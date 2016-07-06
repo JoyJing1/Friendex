@@ -2,13 +2,13 @@
 
 const LikeApiUtil = {
 
-	createPostLike(like, success, error) {
+	createPostLike(post_id, success, error) {
     console.log("createPostLike(like, success, error) in like_api_util.js");
 
     $.ajax({
-      url: `/api/posts/${like.post_id}/likes`,
+      url: `/api/likes`,
       method: "POST",
-      data: { post_like: like },
+      data: post_id,
       success(resp) {
         console.log("successfully created post_like in like_api_util.js");
         success(resp);
@@ -21,12 +21,13 @@ const LikeApiUtil = {
     });
 	},
 
-  deletePostLike(ids, success, error) {
+  deletePostLike(post_id, success, error) {
     console.log("deletePostLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/posts/${ids.post_id}/likes/${ids.id}`,
+			url: `/api/likes/${post_id.post_id}`,
 			type: 'DELETE',
+      data: post_id,
 			success(resp) {
         console.log("successfully deleted post_like");
         console.log(resp);
@@ -40,13 +41,14 @@ const LikeApiUtil = {
 		});
   },
 
-	createImageLike(like, success, error) {
-    console.log("createImageLike(like, success, error) in like_api_util.js");
+	createImageLike(image_id, success, error) {
+    console.log("createImageLike(image_id, success, error) in like_api_util.js");
+    // debugger;
 
     $.ajax({
-      url: `/api/images/${like.image_id}/likes`,
+      url: `/api/likes`,
       method: "POST",
-      data: { image_like: like },
+      data: image_id,
       success(resp) {
         console.log("successfully created image_like in like_api_util.js");
         console.log(resp);
@@ -60,12 +62,13 @@ const LikeApiUtil = {
     });
 	},
 
-  deleteImageLike(ids, success, error) {
+  deleteImageLike(image_id, success, error) {
     console.log("deleteImageLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/images/${ids.image_id}/likes/${ids.id}`,
+			url: `/api/likes/${image_id.image_id}`,
 			type: 'DELETE',
+      data: image_id,
 			success(resp) {
         console.log("successfully deleted image_like");
         console.log(resp);
@@ -79,13 +82,13 @@ const LikeApiUtil = {
 		});
   },
 
-	createFriendshipLike(like, success, error) {
+	createFriendshipLike(friendship_id, success, error) {
     console.log("createFriendshipLike(like, success, error) in like_api_util.js");
 
     $.ajax({
-      url: `/api/friendships/${like.friendship_id}/likes`,
+      url: `/api/likes`,
       method: "POST",
-      data: { friendship_like: like },
+      data: friendship_id,
       success(resp) {
         console.log("successfully created friendship_like in like_api_util.js");
         console.log(resp);
@@ -99,12 +102,13 @@ const LikeApiUtil = {
     });
 	},
 
-  deleteFriendshipLike(ids, success, error) {
+  deleteFriendshipLike(friendship_id, success, error) {
     console.log("deleteFriendshipLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/friendships/${ids.friendship_id}/likes/${ids.id}`,
+			url: `/api/likes/${friendship_id.friendship_id}`,
 			type: 'DELETE',
+      data: friendship_id,
 			success(resp) {
         console.log("successfully deleted friendship_like");
         console.log(resp);

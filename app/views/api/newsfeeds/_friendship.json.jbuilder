@@ -17,17 +17,6 @@ json.comments do
   end
 end
 
-# json.likes do
-#   json.array!(friendship.likes) do |friendship_like|
-#     json.partial! "api/friendships/like", friendship_like: friendship_like
-#   end
-# end
-
 json.likes do
-  friendship.likes.each do |friendship_like|
-    json.set!(
-      friendship_like.user_id, {user_id: friendship_like.user_id, id: friendship_like.id, friendship_id: friendship_like.friendship_id}
-      # {json.partial!("api/friendships/like", friendship_like: friendship_like)}
-    )
-  end
+  json.array!(friendship.likes)
 end

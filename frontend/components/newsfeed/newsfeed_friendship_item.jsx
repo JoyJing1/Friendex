@@ -19,11 +19,15 @@ const NewsfeedFriendshipItem = React.createClass({
   },
 
   currentUserLikesPost(friendship) {
-    if (friendship.likes) {
-      return friendship.likes.hasOwnProperty(this.props.currentUserProfile.id);
-    } else {
-      return false;
-    }
+    return friendship.likes.some( like => {
+      return like.user_id === this.props.currentUserProfile.user_id;
+    });
+
+    // if (friendship.likes) {
+    //   return friendship.likes.hasOwnProperty(this.props.currentUserProfile.id);
+    // } else {
+    //   return false;
+    // }
   },
 
   changeFocus() {
@@ -33,11 +37,16 @@ const NewsfeedFriendshipItem = React.createClass({
   setLiked(e) {
     console.log("setLiked() in post_index_item.jsx");
     e.preventDefault();
-    let ids = { user_id: this.props.currentUserProfile.id,
-                friendship_id: this.props.friendship.id };
-    LikeActions.createLike(ids, (resp) => {
+    // let ids = { user_id: this.props.currentUserProfile.id,
+    //             friendship_id: this.props.friendship.id };
+    // LikeActions.createLike(ids, (resp) => {
+    //   this.setState( { liked: true });
+    // });
+    LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
       this.setState( { liked: true });
     });
+
+
 
   },
 
@@ -45,16 +54,20 @@ const NewsfeedFriendshipItem = React.createClass({
     console.log("setUnliked() in friendship_index_item.jsx");
     e.preventDefault();
 
-    let ids = { user_id: this.props.currentUserProfile.id,
-                friendship_id: this.props.friendship.id };
-
-    let like  = this.props.friendship.likes[this.props.currentUserProfile.id];
-    ids.friendship_id = like.friendship_id;
-    ids.id = like.id;
-
-    LikeActions.deleteLike(ids, (resp) => {
+    LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {
       this.setState( { liked: false });
     });
+
+    // let ids = { user_id: this.props.currentUserProfile.id,
+    //             friendship_id: this.props.friendship.id };
+    //
+    // let like  = this.props.friendship.likes[this.props.currentUserProfile.id];
+    // ids.friendship_id = like.friendship_id;
+    // ids.id = like.id;
+    //
+    // LikeActions.deleteLike(ids, (resp) => {
+    //   this.setState( { liked: false });
+    // });
   },
 
   likeButton() {

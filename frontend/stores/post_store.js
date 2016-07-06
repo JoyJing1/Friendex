@@ -113,13 +113,16 @@ function _addLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
-      _posts[itemIdx].likes[like.user_id] = like;
+      _posts[itemIdx].likes.push(like.user_id)
+      // _posts[itemIdx].likes[like.user_id] = like;
     }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      _posts[itemIdx].likes[like.user_id] = like;
+      // Still need to check whether a like array is rendering
+      _posts[itemIdx].likes.push(like.user_id)
+      // _posts[itemIdx].likes[like.user_id] = like;
     }
   }
 }
@@ -128,13 +131,21 @@ function _removeLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
-      delete _posts[itemIdx].likes[like.user_id];
+
+      let likeIdx = _posts[itemIdx].likes.indexOf(like.user_id);
+      _posts[itemIdx].likes.splice(likeIdx, 1);
+
+      // delete _posts[itemIdx].likes[like.user_id];
     }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      delete _posts[itemIdx].likes[like.user_id];
+      // delete _posts[itemIdx].likes[like.user_id];
+
+      let likeIdx = _posts[itemIdx].likes.indexOf(like.user_id);
+      _posts[itemIdx].likes.splice(likeIdx, 1);
+
     }
   }
 }
