@@ -1,7 +1,7 @@
 class Api::CommentsController < ApplicationController
 
 	def create
-    # debugger;
+
     if params[:post_id]
       @post_comment = PostComment.new(post_comment_params)
 
@@ -28,7 +28,7 @@ class Api::CommentsController < ApplicationController
       else
         render json: @friendship_comment.errors, status: 422
       end
-      
+
     else
       render "Failed to create comment. No id provided for type of comment"
     end

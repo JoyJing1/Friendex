@@ -16,3 +16,9 @@ json.comments do
     json.partial! "api/posts/comment", post_comment: post_comment
   end
 end
+
+json.likes do
+  json.array!(post.likes) do |post_like|
+    json.partial! "api/posts/like", post_like: post_like
+  end
+end

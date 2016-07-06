@@ -19,4 +19,9 @@ class Image < ActiveRecord::Base
     foreign_key: :image_id,
     primary_key: :id
 
+  has_many :likes,
+    class_name: :ImageLike,
+    foreign_key: :image_id,
+    primary_key: :id
+
 end

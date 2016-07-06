@@ -22,4 +22,9 @@ class Friendship < ActiveRecord::Base
     foreign_key: :friendship_id,
     primary_key: :id
 
+  has_many :likes,
+    class_name: :FriendshipLike,
+    foreign_key: :friendship_id,
+    primary_key: :id
+
 end

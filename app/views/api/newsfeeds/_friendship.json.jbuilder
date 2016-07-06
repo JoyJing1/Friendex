@@ -16,3 +16,9 @@ json.comments do
     json.partial! "api/friendships/comment", friendship_comment: friendship_comment
   end
 end
+
+json.likes do
+  json.array!(friendship.likes) do |friendship_like|
+    json.partial! "api/friendships/like", friendship_like: friendship_like
+  end
+end

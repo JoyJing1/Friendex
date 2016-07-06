@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
     class_name: :Image,
     foreign_key: :receiver_id
 
+  has_many :post_comments
+  has_many :image_comments
+  has_many :friendship_comments
+
+  has_many :post_likes
+  has_many :image_likes
+  has_many :friendship_likes
+
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
 
