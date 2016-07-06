@@ -29,23 +29,44 @@ const NewsfeedFriendshipItem = React.createClass({
     document.getElementById(`new-comment-${this.props.friendship.type}-${this.props.friendship.id}`).focus();
   },
 
-  setLiked(e) {
-    console.log("setLiked() in post_index_item.jsx");
-    e.preventDefault();
+  // setLiked(e) {
+  //   console.log("setLiked() in post_index_item.jsx");
+  //   e.preventDefault();
+  //
+  //   LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
+  //     this.setState( { liked: true });
+  //   });
+  // },
+  //
+  // setUnliked(e) {
+  //   console.log("setUnliked() in friendship_index_item.jsx");
+  //   e.preventDefault();
+  //
+  //   LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {
+  //     this.setState( { liked: false });
+  //   });
+  // },
 
-    LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
-      this.setState( { liked: true });
-    });
-  },
 
-  setUnliked(e) {
-    console.log("setUnliked() in friendship_index_item.jsx");
-    e.preventDefault();
+    setLiked(e) {
+      console.log("setLiked() in newsfeed_friendship_item.jsx");
+      e.preventDefault();
 
-    LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {
-      this.setState( { liked: false });
-    });
-  },
+      LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
+        this.setState( { liked: true });
+      });
+    },
+
+    setUnliked(e) {
+      console.log("setUnliked() in newsfeed_friendship_item.jsx");
+      e.preventDefault();
+
+      LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {
+        this.setState( { liked: false });
+      });
+    },
+
+
 
   likeButton() {
     if (this.state.liked) {

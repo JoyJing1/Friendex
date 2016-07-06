@@ -92,6 +92,7 @@ const LikeApiUtil = {
       success(resp) {
         console.log("successfully created friendship_like in like_api_util.js");
         console.log(resp);
+        // debugger;
         success(resp);
       },
       error(xhr) {

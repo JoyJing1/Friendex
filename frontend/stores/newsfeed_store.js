@@ -86,7 +86,14 @@ function _addLike(like) {
     if (itemIdx >= 0) {
       _newsfeed[itemIdx].likes.push(like);
     }
+
+  } else if (like.friendship_id) {
+    const itemIdx = _findItem("friendship", like.friendship_id);
+    if (itemIdx >= 0) {
+      _newsfeed[itemIdx].likes.push(like);
+    }
   }
+
 }
 
 function _removeLike(like) {
@@ -103,9 +110,16 @@ function _removeLike(like) {
     if (itemIdx >= 0) {
       let likeIdx = _newsfeed[itemIdx].likes.indexOf(like.user_id);
       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
+    }
 
+  } else if (like.friendship_id) {
+    const itemIdx = _findItem("friendship", like.friendship_id);
+    if (itemIdx >= 0) {
+      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like.user_id);
+      _newsfeed[itemIdx].likes.splice(likeIdx, 1);
     }
   }
+
 }
 
 function _updateComment(comment) {

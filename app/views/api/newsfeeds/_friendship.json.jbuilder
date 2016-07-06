@@ -17,6 +17,7 @@ json.comments do
   end
 end
 
+# debugger;
 json.likes do
   json.array!(friendship.likes)
 end
