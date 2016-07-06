@@ -1,7 +1,7 @@
 "use strict";
 
 const LikeConstants = {
-  UPDATE_LIKE: "UPDATE_LIKE",
+  ADDED_LIKE: "ADDED_LIKE",
   REMOVED_LIKE: "REMOVED_LIKE"
 };
 

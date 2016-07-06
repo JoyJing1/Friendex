@@ -5,11 +5,28 @@ const Link  = require('react-router').Link
 
 const CommentIndex = require('../comment/comment_index')
     , ImageActions  = require('../../actions/image_actions')
+    , LikeActions  = require('../../actions/like_actions')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
 
 const PostIndexItem = React.createClass({
+  getInitialState() {
+    return { liked: this.currentUserLikesPost(this.props.post) };
+  },
+
+  componentWillReceiveProps(newProps) {
+    this.setState( { liked: this.currentUserLikesPost(newProps.post) } );
+  },
+
+  currentUserLikesPost(post) {
+    if (post.likes) {
+      return post.likes.hasOwnProperty(this.props.currentUserProfile.id);
+    } else {
+      return false;
+    }
+  },
+
   _deletePost() {
     PostActions.deletePost(this.props.post.id);
   },
@@ -47,8 +64,73 @@ const PostIndexItem = React.createClass({
     }
   },
 
-  changeFocus() {
+  changeFocus(e) {
+    e.preventDefault();
     document.getElementById(`new-comment-${this.props.post.type}-${this.props.post.id}`).focus();
+  },
+
+  setLiked(e) {
+    console.log("setLiked() in post_index_item.jsx");
+    e.preventDefault();
+    let ids = { user_id: this.props.currentUserProfile.id };
+
+    if (this.props.post.type === "post") {
+      ids.post_id = this.props.post.id;
+    } else if (this.props.post.type === "image") {
+      ids.image_id = this.props.post.id;
+    }
+
+    LikeActions.createLike(ids, (resp) => {
+      this.setState( { liked: true });
+    });
+
+  },
+
+  setUnliked(e) {
+    console.log("setUnliked() in post_index_item.jsx");
+    e.preventDefault();
+
+    let ids = { user_id: this.props.currentUserProfile.id };
+
+    if (this.props.post.type === "post") {
+
+      let like  = this.props.post.likes[this.props.currentUserProfile.id];
+      ids.post_id = like.post_id;
+      ids.id = like.id;
+
+      LikeActions.deleteLike(ids, (resp) => {
+        this.setState( { liked: false });
+      });
+
+    } else if (this.props.post.type === "image") {
+      let like = this.props.post.likes[this.props.currentUserProfile.id];
+      ids.image_id = like.image_id;
+      ids.id = like.id;
+
+      LikeActions.deleteLike(ids, (resp) => {
+        this.setState( { liked: false });
+      });
+    }
+  },
+
+  likeButton() {
+    if (this.state.liked) {
+      return (
+        <button onClick={this.setUnliked} className="clickable color-liked">
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
+            className="post-footer-like">
+          </img>Like
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={this.setLiked} className="clickable">
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
+            className="post-footer-like">
+          </img>Like
+        </button>
+      );
+    }
   },
 
   render() {
@@ -72,11 +154,8 @@ const PostIndexItem = React.createClass({
           {this.postBody()}
 
           <ul className="post-footer">
-            <button className="clickable">
-              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
-                className="post-footer-like">
-              </img>Like
-            </button>
+
+            {this.likeButton()}
 
             <button onClick={this.changeFocus} className="clickable">
               <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"

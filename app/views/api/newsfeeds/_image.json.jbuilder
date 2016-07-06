@@ -17,8 +17,36 @@ json.comments do
   end
 end
 
+# json.likes do
+#   json.array!(image.likes) do |image_like|
+#     json.partial! "api/images/like", image_like: image_like
+#   end
+# end
+
+# This code does not save anything to likes when there are none
+# This was the most working version of code
 json.likes do
-  json.array!(image.likes) do |image_like|
-    json.partial! "api/images/like", image_like: image_like
+  image.likes.each do |image_like|
+    json.set!(
+      image_like.user_id, {user_id: image_like.user_id, id: image_like.id, image_id: image_like.image_id}
+    )
   end
 end
+
+# json.likes do
+#   image.likes.each do |image_like|
+#     json.set(
+#       image_like.user_id, {user_id: image_like.user_id, id: image_like.id, image_id: image_like.image_id}
+#     )
+#   end
+# end
+
+# json.partial! "api/images/like", collection: image.likes, as :image_like
+
+# json.likes do
+#   # debugger;
+#   Hash[image.likes.map{ |image_likes| [:id, :user_id, :image_id] }]
+# end
+
+
+# json.likes Hash[image.likes.map{ |image_like| [ image_like.id, image_like.user_id, image_like.image_id ] }]

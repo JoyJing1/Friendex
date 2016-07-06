@@ -4,13 +4,77 @@ const Link  = require('react-router').Link
     , React = require('react');
 
 const CommentIndex = require('../comment/comment_index')
+    , LikeActions = require('../../actions/like_actions')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
 
 const NewsfeedFriendshipItem = React.createClass({
+  getInitialState() {
+    return { liked: this.currentUserLikesPost(this.props.friendship) };
+  },
+
+  componentWillReceiveProps(newProps) {
+    this.setState( { liked: this.currentUserLikesPost(newProps.friendship) } );
+  },
+
+  currentUserLikesPost(friendship) {
+    if (friendship.likes) {
+      return friendship.likes.hasOwnProperty(this.props.currentUserProfile.id);
+    } else {
+      return false;
+    }
+  },
+
   changeFocus() {
     document.getElementById(`new-comment-${this.props.friendship.type}-${this.props.friendship.id}`).focus();
+  },
+
+  setLiked(e) {
+    console.log("setLiked() in post_index_item.jsx");
+    e.preventDefault();
+    let ids = { user_id: this.props.currentUserProfile.id,
+                friendship_id: this.props.friendship.id };
+    LikeActions.createLike(ids, (resp) => {
+      this.setState( { liked: true });
+    });
+
+  },
+
+  setUnliked(e) {
+    console.log("setUnliked() in friendship_index_item.jsx");
+    e.preventDefault();
+
+    let ids = { user_id: this.props.currentUserProfile.id,
+                friendship_id: this.props.friendship.id };
+
+    let like  = this.props.friendship.likes[this.props.currentUserProfile.id];
+    ids.friendship_id = like.friendship_id;
+    ids.id = like.id;
+
+    LikeActions.deleteLike(ids, (resp) => {
+      this.setState( { liked: false });
+    });
+  },
+
+  likeButton() {
+    if (this.state.liked) {
+      return (
+        <button onClick={this.setUnliked} className="clickable color-liked">
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
+            className="post-footer-like">
+          </img>Like
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={this.setLiked} className="clickable">
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
+            className="post-footer-like">
+          </img>Like
+        </button>
+      );
+    }
   },
 
   render() {
@@ -45,11 +109,8 @@ const NewsfeedFriendshipItem = React.createClass({
           <p>{this.props.friendship.body}</p>
 
           <ul className="post-footer">
-            <button className="clickable">
-              <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
-                className="post-footer-like">
-              </img>Like
-            </button>
+
+            {this.likeButton()}
 
             <button onClick={this.changeFocus}>
               <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"

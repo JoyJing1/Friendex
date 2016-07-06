@@ -180,10 +180,14 @@ button.add-post:hover {
   padding-right: 5px;
 }
 
-.post-footer-like {
+img.post-footer-like {
   // margin-left: 16px;
-  padding-top: 10px;
+  padding-top: 6px;
   padding-bottom: 10px;
+}
+
+button.color-liked {
+  color: $blue-liked;
 }
 
 .post-footer-comment {

@@ -3,6 +3,7 @@
 const AppDispatcher     = require('../dispatcher/dispatcher.js')
     , CommentConstants = require('../constants/comment_constants')
     , ImageConstants    = require('../constants/image_constants')
+    , LikeConstants    = require('../constants/like_constants')
     , NewsfeedConstants = require('../constants/newsfeed_constants')
     , PostConstants     = require('../constants/post_constants')
     , Store             = require('flux/utils').Store;
@@ -48,11 +49,8 @@ NewsfeedStore.__onDispatch = payload => {
 
     case CommentConstants.UPDATE_COMMENT:
       console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
-      // debugger;
       let comment = payload.comment;
-      // comment["type"] = "comment";
       _updateComment(comment);
-      // debugger;
       NewsfeedStore.__emitChange();
       break;
 
@@ -61,8 +59,57 @@ NewsfeedStore.__onDispatch = payload => {
       _removeComment(payload.comment);
       NewsfeedStore.__emitChange();
       break;
+
+    case LikeConstants.ADDED_LIKE:
+      console.log("LikeConstants.ADDED_LIKE in post_store.js");
+      _addLike(payload.like);
+      NewsfeedStore.__emitChange();
+      break;
+
+    case LikeConstants.REMOVED_LIKE:
+      console.log("LikeConstants.REMOVED_LIKE in post_store.js");
+      _removeLike(payload.like);
+      NewsfeedStore.__emitChange();
+      break;
   }
 };
+
+function _addLike(like) {
+  if (like.image_id) {
+    const itemIdx = _findItem("image", like.image_id);
+    // debugger;
+    if (itemIdx >= 0) {
+      if (_newsfeed[itemIdx].likes) {
+        _newsfeed[itemIdx].likes[like.user_id] = like;
+      } else {
+        debugger;
+        // newsfeed[itemIdx]["likes"] = { like.user_id: like };
+      }
+    }
+
+  } else if (like.post_id) {
+    const itemIdx = _findItem("post", like.post_id);
+    if (itemIdx >= 0) {
+      if (_newsfeed[itemIdx].likes) {
+        _newsfeed[itemIdx].likes[like.user_id] = like;
+      } else {
+        debugger;
+        // _newsfeed[itemIdx]["likes"] = { like.user_id: like };
+      }
+    }
+  }
+}
+
+function _removeLike(like) {
+  if (like.image_id) {
+    const itemIdx = _findItem("image", like.image_id);
+    delete _newsfeed[itemIdx].likes[like.user_id];
+
+  } else if (like.post_id) {
+    const itemIdx = _findItem("post", like.post_id);
+    delete _newsfeed[itemIdx].likes[like.user_id];
+  }
+}
 
 function _updateComment(comment) {
   if (comment.image_id) {

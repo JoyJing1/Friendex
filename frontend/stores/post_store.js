@@ -1,6 +1,7 @@
 const AppDispatcher  = require('../dispatcher/dispatcher.js')
     , CommentConstants = require('../constants/comment_constants')
     , ImageConstants = require('../constants/image_constants')
+    , LikeConstants = require('../constants/like_constants')
     , PostConstants  = require('../constants/post_constants')
     , Store          = require('flux/utils').Store;
 
@@ -44,14 +45,26 @@ PostStore.__onDispatch = payload => {
 
     case CommentConstants.UPDATE_COMMENT:
       console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
-      let comment = payload.comment;
-      _updateComment(comment);
+      // let comment = payload.comment;
+      _updateComment(payload.comment);
       PostStore.__emitChange();
       break;
 
     case CommentConstants.REMOVED_COMMENT:
       console.log("CommentConstants.REMOVED_COMMENT in post_store.js");
       _removeComment(payload.comment);
+      PostStore.__emitChange();
+      break;
+
+    case LikeConstants.ADDED_LIKE:
+      console.log("LikeConstants.ADDED_LIKE in post_store.js");
+      _addLike(payload.like);
+      PostStore.__emitChange();
+      break;
+
+    case LikeConstants.REMOVED_LIKE:
+      console.log("LikeConstants.REMOVED_LIKE in post_store.js");
+      _removeLike(payload.like);
       PostStore.__emitChange();
       break;
   }
@@ -92,6 +105,36 @@ function _removeComment(comment) {
     if (commentIdx >= 0) {
       item.comments.splice(commentIdx, 1);
       _updateItem(item);
+    }
+  }
+}
+
+function _addLike(like) {
+  if (like.image_id) {
+    const itemIdx = _findItem("image", like.image_id);
+    if (itemIdx >= 0) {
+      _posts[itemIdx].likes[like.user_id] = like;
+    }
+
+  } else if (like.post_id) {
+    const itemIdx = _findItem("post", like.post_id);
+    if (itemIdx >= 0) {
+      _posts[itemIdx].likes[like.user_id] = like;
+    }
+  }
+}
+
+function _removeLike(like) {
+  if (like.image_id) {
+    const itemIdx = _findItem("image", like.image_id);
+    if (itemIdx >= 0) {
+      delete _posts[itemIdx].likes[like.user_id];
+    }
+
+  } else if (like.post_id) {
+    const itemIdx = _findItem("post", like.post_id);
+    if (itemIdx >= 0) {
+      delete _posts[itemIdx].likes[like.user_id];
     }
   }
 }

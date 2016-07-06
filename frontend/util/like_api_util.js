@@ -25,7 +25,7 @@ const LikeApiUtil = {
     console.log("deletePostLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/posts/${id.post_id}/likes/${id.id}`,
+			url: `/api/posts/${ids.post_id}/likes/${ids.id}`,
 			type: 'DELETE',
 			success(resp) {
         console.log("successfully deleted post_like");
@@ -64,7 +64,7 @@ const LikeApiUtil = {
     console.log("deleteImageLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/images/${id.image_id}/likes/${id.id}`,
+			url: `/api/images/${ids.image_id}/likes/${ids.id}`,
 			type: 'DELETE',
 			success(resp) {
         console.log("successfully deleted image_like");
@@ -103,7 +103,7 @@ const LikeApiUtil = {
     console.log("deleteFriendshipLike(id, success, error) in like_api_util.js");
 
 		$.ajax({
-			url: `/api/friendships/${id.friendship_id}/likes/${id.id}`,
+			url: `/api/friendships/${ids.friendship_id}/likes/${ids.id}`,
 			type: 'DELETE',
 			success(resp) {
         console.log("successfully deleted friendship_like");

@@ -5,13 +5,7 @@ const hashHistory = require('react-router').hashHistory
     , React       = require('react');
 
 const ErrorStore         = require('../../stores/error_store')
-    // , ImageActions       = require('../../actions/image_actions')
-    // , ImageStore         = require('../../stores/image_store')
     , CommentActions        = require('../../actions/comment_actions');
-    // , ProfileActions     = require('../../actions/profile_actions')
-    // , ProfileStore       = require('../../stores/profile_store')
-    // , SessionStore       = require('../../stores/session_store');
-    // , UploadPhotosButton = require('../photo/upload_photos_button');
 
 const NewCommentForm = React.createClass({
   getInitialState() {

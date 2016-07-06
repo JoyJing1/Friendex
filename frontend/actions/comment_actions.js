@@ -1,10 +1,10 @@
 "use strict";
 
-const AppDispatcher = require('../dispatcher/dispatcher');
-const CommentConstants = require('../constants/comment_constants');
-const CommentApiUtil = require('../util/comment_api_util');
-const ErrorActions = require('./error_actions');
-const hashHistory = require('react-router').hashHistory;
+// const hashHistory = require('react-router').hashHistory;
+const AppDispatcher    = require('../dispatcher/dispatcher')
+    , CommentConstants = require('../constants/comment_constants')
+    , CommentApiUtil   = require('../util/comment_api_util')
+    , ErrorActions     = require('./error_actions');
 
 const CommentActions = {
   createComment(comment, resetNewCommentForm) {
