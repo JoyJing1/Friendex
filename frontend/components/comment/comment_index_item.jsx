@@ -15,6 +15,11 @@ const CommentIndexItem = React.createClass({
           <Link to={`users/${this.props.comment.user_id}`}>{this.props.comment.author_name}</Link>
 
           {this.props.comment.body}
+
+          <h6 className="comment-time">
+            {$.timeago(this.props.comment.created_at)}
+          </h6>
+          
         </div>
       </li>
     );
