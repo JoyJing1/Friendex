@@ -5,6 +5,7 @@ const Link  = require('react-router').Link
 
 const CommentIndex = require('../comment/comment_index')
     , LikeActions  = require('../../actions/like_actions')
+    , LikeCount  = require('./like_count')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
@@ -74,16 +75,50 @@ const PostItemToFriend = React.createClass({
     e.preventDefault();
 
     if (this.props.post.type === "post") {
+
       LikeActions.deleteLike({ post_id: this.props.post.id }, (resp) => {
         this.setState( { liked: false });
       });
 
-    } else if (this.props.post.type === "image") {
+    } else if (this.props.post.type === "image")
+    {
       LikeActions.deleteLike({ image_id: this.props.post.id }, (resp) => {
         this.setState( { liked: false });
       });
     }
   },
+
+  // setLiked(e) {
+  //   console.log("setLiked() in post_index_item.jsx");
+  //   e.preventDefault();
+  //
+  //   if (this.props.post.type === "post") {
+  //     LikeActions.createLike({ post_id: this.props.post.id }, (resp) => {
+  //       this.setState( { liked: true });
+  //     });
+  //
+  //   } else if (this.props.post.type === "image") {
+  //     LikeActions.createLike({ image_id: this.props.post.id }, (resp) => {
+  //       this.setState( { liked: true });
+  //     });
+  //   }
+  // },
+  //
+  // setUnliked(e) {
+  //   console.log("setUnliked() in post_index_item.jsx");
+  //   e.preventDefault();
+  //
+  //   if (this.props.post.type === "post") {
+  //     LikeActions.deleteLike({ post_id: this.props.post.id }, (resp) => {
+  //       this.setState( { liked: false });
+  //     });
+  //
+  //   } else if (this.props.post.type === "image") {
+  //     LikeActions.deleteLike({ image_id: this.props.post.id }, (resp) => {
+  //       this.setState( { liked: false });
+  //     });
+  //   }
+  // },
 
   likeButton() {
     if (this.state.liked) {
@@ -133,6 +168,8 @@ const PostItemToFriend = React.createClass({
           {this.postBody()}
 
           <ul className="post-footer">
+
+            <LikeCount count={this.props.post.likes.length}/>
 
             {this.likeButton()}
 

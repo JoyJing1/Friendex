@@ -134,15 +134,11 @@ function _removeLike(like) {
 
       let likeIdx = _posts[itemIdx].likes.indexOf(like.user_id);
       _posts[itemIdx].likes.splice(likeIdx, 1);
-
-      // delete _posts[itemIdx].likes[like.user_id];
     }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      // delete _posts[itemIdx].likes[like.user_id];
-
       let likeIdx = _posts[itemIdx].likes.indexOf(like.user_id);
       _posts[itemIdx].likes.splice(likeIdx, 1);
 

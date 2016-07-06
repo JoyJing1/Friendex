@@ -64,3 +64,18 @@ form.new-comment-form {
   border: 1px solid $gray-light-border;
   width: 86%;
 }
+
+// LIKES /////////////////////////////////////////////////////////
+.like-count {
+  display: inline-block;
+  color: $blue-default;
+  vertical-align: middle;
+  padding-right: 6px;
+}
+
+.like-count img {
+  display: inline-block;
+  height: 22px;
+  width: auto;
+  padding: 6px 8px 10px 10px;
+}

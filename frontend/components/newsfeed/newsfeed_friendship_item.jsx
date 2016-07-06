@@ -5,6 +5,7 @@ const Link  = require('react-router').Link
 
 const CommentIndex = require('../comment/comment_index')
     , LikeActions = require('../../actions/like_actions')
+    , LikeCount  = require('../post/like_count')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
@@ -22,12 +23,6 @@ const NewsfeedFriendshipItem = React.createClass({
     return friendship.likes.some( like => {
       return like.user_id === this.props.currentUserProfile.user_id;
     });
-
-    // if (friendship.likes) {
-    //   return friendship.likes.hasOwnProperty(this.props.currentUserProfile.id);
-    // } else {
-    //   return false;
-    // }
   },
 
   changeFocus() {
@@ -37,17 +32,10 @@ const NewsfeedFriendshipItem = React.createClass({
   setLiked(e) {
     console.log("setLiked() in post_index_item.jsx");
     e.preventDefault();
-    // let ids = { user_id: this.props.currentUserProfile.id,
-    //             friendship_id: this.props.friendship.id };
-    // LikeActions.createLike(ids, (resp) => {
-    //   this.setState( { liked: true });
-    // });
+
     LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
       this.setState( { liked: true });
     });
-
-
-
   },
 
   setUnliked(e) {
@@ -57,17 +45,6 @@ const NewsfeedFriendshipItem = React.createClass({
     LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {
       this.setState( { liked: false });
     });
-
-    // let ids = { user_id: this.props.currentUserProfile.id,
-    //             friendship_id: this.props.friendship.id };
-    //
-    // let like  = this.props.friendship.likes[this.props.currentUserProfile.id];
-    // ids.friendship_id = like.friendship_id;
-    // ids.id = like.id;
-    //
-    // LikeActions.deleteLike(ids, (resp) => {
-    //   this.setState( { liked: false });
-    // });
   },
 
   likeButton() {
@@ -122,6 +99,8 @@ const NewsfeedFriendshipItem = React.createClass({
           <p>{this.props.friendship.body}</p>
 
           <ul className="post-footer">
+
+            <LikeCount count={this.props.friendship.likes.length}/>
 
             {this.likeButton()}
 

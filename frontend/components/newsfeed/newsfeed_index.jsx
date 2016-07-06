@@ -20,18 +20,15 @@ const NewsfeedIndex = React.createClass({
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     this.newsfeedListener = NewsfeedStore.addListener(this._onChange);
-    // this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
     const id = SessionStore.currentUser().id;
-    // debugger;
     NewsfeedActions.fetchNewsfeed(id);
   },
 
   componentWillUnmount() {
     this.newsfeedListener.remove();
-    // this.sessionListener.remove();
   },
 
   _onChange() {

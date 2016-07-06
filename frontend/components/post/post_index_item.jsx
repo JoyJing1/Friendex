@@ -6,6 +6,7 @@ const Link  = require('react-router').Link
 const CommentIndex = require('../comment/comment_index')
     , ImageActions  = require('../../actions/image_actions')
     , LikeActions  = require('../../actions/like_actions')
+    , LikeCount  = require('./like_count')
     , NewCommentForm = require('../comment/new_comment_form')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
@@ -142,6 +143,8 @@ const PostIndexItem = React.createClass({
 
           <ul className="post-footer">
 
+            <LikeCount count={this.props.post.likes.length}/>
+
             {this.likeButton()}
 
             <button onClick={this.changeFocus} className="clickable">
@@ -154,6 +157,7 @@ const PostIndexItem = React.createClass({
           </ul>
 
         </div>
+
 
         <CommentIndex comments={this.props.post.comments}/>
 
