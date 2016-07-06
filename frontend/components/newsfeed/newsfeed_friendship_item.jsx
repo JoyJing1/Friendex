@@ -9,6 +9,9 @@ const CommentIndex = require('../comment/comment_index')
     , SessionStore = require('../../stores/session_store');
 
 const NewsfeedFriendshipItem = React.createClass({
+  changeFocus() {
+    document.getElementById(`new-comment-${this.props.friendship.type}-${this.props.friendship.id}`).focus();
+  },
 
   render() {
     return (
@@ -42,17 +45,17 @@ const NewsfeedFriendshipItem = React.createClass({
           <p>{this.props.friendship.body}</p>
 
           <ul className="post-footer">
-            <a>
+            <button className="clickable">
               <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
                 className="post-footer-like">
               </img>Like
-            </a>
+            </button>
 
-            <a>
+            <button onClick={this.changeFocus}>
               <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
                 className="post-footer-comment">
               </img>Comment
-            </a>
+            </button>
 
           </ul>
 

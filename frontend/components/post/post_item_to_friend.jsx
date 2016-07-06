@@ -34,6 +34,10 @@ const PostItemToFriend = React.createClass({
     }
   },
 
+  changeFocus() {
+    document.getElementById(`new-comment-${this.props.post.type}-${this.props.post.id}`).focus();
+  },
+
   render() {
     return (
       <li>
@@ -62,17 +66,17 @@ const PostItemToFriend = React.createClass({
           {this.postBody()}
 
           <ul className="post-footer">
-            <a>
+            <button className="clickable">
               <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
                 className="post-footer-like">
               </img>Like
-            </a>
+            </button>
 
-            <a>
+            <button className="clickable" onClick={this.changeFocus}>
               <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
                 className="post-footer-comment">
               </img>Comment
-            </a>
+            </button>
 
             {this.deleteButton()}
           </ul>
