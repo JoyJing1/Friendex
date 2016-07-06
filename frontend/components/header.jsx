@@ -5,6 +5,7 @@ const hashHistory = require('react-router').hashHistory
     , React       = require('react');
 
 const ProfileActions = require('../actions/profile_actions')
+    , SearchBar = require('./search_bar')
     , SessionActions = require('../actions/session_actions')
     , SessionStore   = require('../stores/session_store');
 
@@ -51,6 +52,8 @@ const Header = React.createClass({
           <Link to={"/"} className="f-square-icon">
             <img src= "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"></img>
           </Link>
+
+          <SearchBar/>
 
           <div className="header-user redirect"
                 onClick={this._toCurrUserProfile}>

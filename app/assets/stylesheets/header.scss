@@ -29,6 +29,31 @@
   height: 100%;
 }
 
+aside.search-bar {
+  align-self: center;
+}
+
+.search-bar-head {
+  display: flex;
+  vertical-align: middle;
+  background-color: $gray-background-default;
+  border-radius: 3px;
+}
+
+.search-bar input[type="text"] {
+  display: inline-block;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.search-icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin: auto 15px;
+}
+
 .header-user {
   height: 100%;
   display: flex;
