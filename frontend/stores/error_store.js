@@ -1,8 +1,9 @@
 "use strict";
 
+const Store          = require('flux/utils').Store;
+
 const AppDispatcher  = require('../dispatcher/dispatcher')
-    , ErrorConstants = require('../constants/error_constants')
-    , Store          = require('flux/utils').Store;
+    , ErrorConstants = require('../constants/error_constants');
 
 let _errors = {};
 let _form = "";

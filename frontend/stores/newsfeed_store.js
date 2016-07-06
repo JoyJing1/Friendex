@@ -1,12 +1,13 @@
 "use strict";
 
+const Store             = require('flux/utils').Store;
+
 const AppDispatcher     = require('../dispatcher/dispatcher.js')
-    , CommentConstants = require('../constants/comment_constants')
+    , CommentConstants  = require('../constants/comment_constants')
     , ImageConstants    = require('../constants/image_constants')
-    , LikeConstants    = require('../constants/like_constants')
+    , LikeConstants     = require('../constants/like_constants')
     , NewsfeedConstants = require('../constants/newsfeed_constants')
-    , PostConstants     = require('../constants/post_constants')
-    , Store             = require('flux/utils').Store;
+    , PostConstants     = require('../constants/post_constants');
 
 let _newsfeed = [];
 

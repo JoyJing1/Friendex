@@ -8,28 +8,21 @@ Rails.application.routes.draw do
 
     resources :friendships, only: [:create, :update, :destroy, :index, :show] do
       resources :comments, only: [:create, :destroy]
-      # resources :likes, only: [:create, :destroy]
     end
 
     resource :newsfeed, only: [:show]
 
     resources :posts, only: [:create, :update, :destroy, :index, :show] do
       resources :comments, only: [:create, :destroy]
-      # resources :likes, only: [:create, :destroy]
     end
 
     resources :images, only: [:create, :destroy, :index] do
       resources :comments, only: [:create, :destroy]
-      # resources :likes, only: [:create, :destroy]
     end
 
 
     resources :likes, only: [:create, :destroy]
-    # resources :post_likes, only: [:create, :destroy]
-    # resources :image_likes, only: [:create, :destroy]
-    # resources :friendship_likes, only: [:create, :destroy]
-
-
+    resources :search, only: [:index]
   end
 
   root to: "static_pages#root"

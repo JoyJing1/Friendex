@@ -1,9 +1,10 @@
 "use strict";
 
+const Store              = require('flux/utils').Store;
+
 const AppDispatcher      = require('../dispatcher/dispatcher.js')
       , ProfileConstants = require('../constants/profile_constants')
-      , SessionConstants = require('../constants/session_constants')
-      , Store            = require('flux/utils').Store;
+      , SessionConstants = require('../constants/session_constants');
 
 let _currentUser = {};
 let _currentUserHasBeenFetched = false;

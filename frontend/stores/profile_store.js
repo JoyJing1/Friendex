@@ -1,6 +1,7 @@
+const Store            = require('flux/utils').Store;
+
 const AppDispatcher    = require('../dispatcher/dispatcher.js')
-    , ProfileConstants = require('../constants/profile_constants')
-    , Store            = require('flux/utils').Store;
+    , ProfileConstants = require('../constants/profile_constants');
 
 let _profile = {};
 

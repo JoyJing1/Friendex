@@ -1,8 +1,9 @@
 "use strict";
 
+const Store          = require('flux/utils').Store;
+
 const AppDispatcher  = require('../dispatcher/dispatcher.js')
-    , ImageConstants = require('../constants/image_constants')
-    , Store          = require('flux/utils').Store;
+    , ImageConstants = require('../constants/image_constants');
 
 let _images = [];
 

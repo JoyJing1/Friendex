@@ -1,39 +1,77 @@
-const React = require('react');
+const React = require('react')
+    // , Link        = require('react-router').Link
+    , hashHistory = require('react-router').hashHistory;
+
+const SearchActions = require('../actions/search_actions')
+    , SearchStore   = require('../stores/search_store');
 
 const SearchBar = React.createClass({
   getInitialState() {
-    return { initialName: "" };
+    return { query: "", matches: [] };
   },
 
-  filterNames(e) {
-    e.preventDefault();
-    this.setState({ initialName: e.target.value });
+  componentDidMount() {
+    console.log("componentDidMount in search_bar.jsx");
+    SearchActions.fetchMatches(this.state.query);
+    this.searchListener = SearchStore.addListener(this._onChange);
   },
 
-  clickedName(e) {
+  componentWillUnmount() {
+    this.searchListener.remove();
+  },
+
+  _onChange() {
+    this.setState( { matches: SearchStore.matches(this.state.query)});
+  },
+
+
+  filterUsers(e) {
     e.preventDefault();
-    this.setState({ initialName: e.target.id });
+    this.setState({ query: e.target.value });
+    SearchActions.fetchMatches(e.target.value);
+  },
+
+  clickedUser(e) {
+    e.preventDefault();
+    console.log("clickedUser(e) in search_bar.jsx");
+    console.log(e);
+    hashHistory.push(`/users/${e.target.value}`);
+    this.setState( { query: '' } );
+  },
+
+  searchResults() {
+    if (this.state.query !== "") {
+      return (
+        <ul className="search-results">
+          { this.state.matches.map ( user => {
+            return (
+              <li className="search-item"
+                  onClick={this.clickedUser}
+                  key={user.id}
+                  value={user.id}>
+                <img src={user.profile_img}></img>
+                {user.username}
+              </li>
+            );
+          })}
+        </ul>
+      );
+    }
   },
 
   render() {
-    // let matchingNames = this.props.names.filter(name => {
-    //     return( name.includes(this.state.initialName) );
-    // });
-
     return (
       <aside className="search-bar">
         <div className="search-bar-head">
           <input type="text"
-            onChange={this.filterNames}
-            value={this.state.initialName}></input>
+            onChange={this.filterUsers}
+            value={this.state.query}></input>
 
           <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_30/v1467837986/icons/iconmonstr-magnifier-2-240.png"
             className="search-icon"></img>
         </div>
 
-        <ul>
-
-        </ul>
+        {this.searchResults()}
 
       </aside>
     );
@@ -41,9 +79,3 @@ const SearchBar = React.createClass({
 });
 
 module.exports = SearchBar;
-//
-// {
-//   matchingNames.map(name => {
-//     return (<li key={name} id={name} onClick={this.clickedName}>{name}</li>);
-//   })
-// }

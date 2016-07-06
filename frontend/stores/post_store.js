@@ -1,9 +1,10 @@
-const AppDispatcher  = require('../dispatcher/dispatcher.js')
+const Store            = require('flux/utils').Store;
+
+const AppDispatcher    = require('../dispatcher/dispatcher.js')
     , CommentConstants = require('../constants/comment_constants')
-    , ImageConstants = require('../constants/image_constants')
-    , LikeConstants = require('../constants/like_constants')
-    , PostConstants  = require('../constants/post_constants')
-    , Store          = require('flux/utils').Store;
+    , ImageConstants   = require('../constants/image_constants')
+    , LikeConstants    = require('../constants/like_constants')
+    , PostConstants    = require('../constants/post_constants');
 
 let _posts = [];
 
@@ -113,16 +114,13 @@ function _addLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
-      _posts[itemIdx].likes.push(like)
-      // _posts[itemIdx].likes[like.user_id] = like;
+      _posts[itemIdx].likes.push(like);
     }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      // Still need to check whether a like array is rendering
-      _posts[itemIdx].likes.push(like)
-      // _posts[itemIdx].likes[like.user_id] = like;
+      _posts[itemIdx].likes.push(like);
     }
   }
 }

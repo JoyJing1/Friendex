@@ -29,8 +29,11 @@
   height: 100%;
 }
 
+// SEARCH BAR /////////////////////////////////////
+
 aside.search-bar {
   align-self: center;
+  position: relative;
 }
 
 .search-bar-head {
@@ -53,6 +56,31 @@ aside.search-bar {
   display: inline-block;
   margin: auto 15px;
 }
+
+ul.search-results {
+  position: absolute;
+  z-index: 100;
+  border: 1px solid $gray-border;
+}
+
+li.search-item {
+  background-color: white;
+  width: 212px;
+  vertical-align: middle;
+}
+
+li.search-item:hover {
+  background-color: $blue-background-highlight;
+}
+
+li.search-item img {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+}
+
+// CURRENT USER ///////////////////////////////////////
 
 .header-user {
   height: 100%;

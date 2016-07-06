@@ -1,10 +1,11 @@
 "use strict";
 
+const Store               = require('flux/utils').Store;
+
 const AppDispatcher       = require('../dispatcher/dispatcher.js')
     , FriendshipConstants = require('../constants/friendship_constants')
     , ProfileStore        = require('./profile_store')
-    , SessionStore        = require('./session_store')
-    , Store               = require('flux/utils').Store;
+    , SessionStore        = require('./session_store');
 
 let _friends = {};
 let _friendRequestsReceived = {};
