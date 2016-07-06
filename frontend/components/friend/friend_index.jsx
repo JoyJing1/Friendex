@@ -7,6 +7,24 @@ const FriendshipActions = require('../../actions/friendship_actions')
     , FriendshipStore   = require('../../stores/friendship_store');
 
 const FriendIndex = React.createClass({
+  _checkFriends() {
+    if (this.props.friends.length === 0) {
+      return (
+        <ul className="friend-body no-friends">
+          No friends to show
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="friend-body">
+          {this.props.friends.map( friend => {
+            return <FriendIndexItem friend={friend} key={friend.id}/>;
+          })}
+        </ul>
+      );
+    }
+  },
+
   render() {
     console.log('rendering FriendIndex');
     console.log(this.props.friends);
@@ -18,11 +36,7 @@ const FriendIndex = React.createClass({
             </img>Friends
           </h3>
 
-          <ul className="friend-body">
-            {this.props.friends.map( friend => {
-              return <FriendIndexItem friend={friend} key={friend.id}/>;
-            })}
-          </ul>
+          {this._checkFriends()}
 
           {this.props.children}
       </div>

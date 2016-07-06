@@ -26,6 +26,7 @@ html, body {
   overflow: hidden;
   margin: 0 auto;
   position: relative;
+  background-color: $dark-gray;
   border-left: 1px solid $gray-light-border;
   border-right: 1px solid $gray-light-border;
 }
@@ -36,7 +37,7 @@ html, body {
   width: 100%;
   margin: 0 auto;
   display: inline-block;
-  background-color: $dark-gray;
+  // background-color: $dark-gray;
 }
 
 .profile-header-nav {
