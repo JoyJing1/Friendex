@@ -38,7 +38,7 @@ const PostItemToFriend = React.createClass({
   },
 
   postBody() {
-    if (this.props.post.type === "text") {
+    if (this.props.post.type === "post") {
       return <p>{this.props.post.body}</p>;
 
     } else if (this.props.post.type === "image") {
