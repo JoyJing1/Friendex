@@ -113,7 +113,7 @@ function _addLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
-      _posts[itemIdx].likes.push(like.user_id)
+      _posts[itemIdx].likes.push(like)
       // _posts[itemIdx].likes[like.user_id] = like;
     }
 
@@ -121,7 +121,7 @@ function _addLike(like) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
       // Still need to check whether a like array is rendering
-      _posts[itemIdx].likes.push(like.user_id)
+      _posts[itemIdx].likes.push(like)
       // _posts[itemIdx].likes[like.user_id] = like;
     }
   }

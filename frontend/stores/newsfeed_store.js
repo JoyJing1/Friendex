@@ -79,27 +79,34 @@ function _addLike(like) {
     const itemIdx = _findItem("image", like.image_id);
     // debugger;
     if (itemIdx >= 0) {
-      if (_newsfeed[itemIdx].likes) {
-        _newsfeed[itemIdx].likes[like.user_id] = like;
-      } else {
-        debugger;
-        // newsfeed[itemIdx]["likes"] = { like.user_id: like };
-      }
+      _newsfeed[itemIdx].likes.push(like);
     }
+
+
+    //
+    //   if (_newsfeed[itemIdx].likes) {
+    //     _newsfeed[itemIdx].likes[like.user_id] = like;
+    //   } else {
+    //     debugger;
+    //     // newsfeed[itemIdx]["likes"] = { like.user_id: like };
+    //   }
+    // }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      if (_newsfeed[itemIdx].likes) {
-        _newsfeed[itemIdx].likes[like.user_id] = like;
-      } else {
-        // _newsfeed["likes"] = { `${like.user_id}`: like };
-        debugger;
-        // console.log(_newsfeed["likes"]);
-
-        // _newsfeed[itemIdx]["likes"] = { like.user_id: like };
-      }
+      _newsfeed[itemIdx].likes.push(like);
     }
+      // if (_newsfeed[itemIdx].likes) {
+      //   _newsfeed[itemIdx].likes[like.user_id] = like;
+      // } else {
+      //   // _newsfeed["likes"] = { `${like.user_id}`: like };
+      //   // debugger;
+      //   // console.log(_newsfeed["likes"]);
+      //
+      //   // _newsfeed[itemIdx]["likes"] = { like.user_id: like };
+      // }
+    // }
   }
 }
 

@@ -16,3 +16,11 @@ end
 json.likes do
   json.array!(post.likes)
 end
+
+
+# json.likes do
+#   json.array!(post.likes) do |post_like|
+#     json.extract!(post_like, :id, :post_id, :user_id)
+#     json.username post_like.user.username
+#   end
+# end
