@@ -37,7 +37,7 @@ SessionStore.__onDispatch = payload => {
       SessionStore.__emitChange();
       break;
     case ProfileConstants.UPDATE_CURRENT_USER_PROFILE:
-      console.log('SessionStore.__onDispatch() for UPDATE_CURRENT_USER_PROFILE');
+      // console.log('SessionStore.__onDispatch() for UPDATE_CURRENT_USER_PROFILE');
       _currentUserProfile = payload.profile;
       SessionStore.__emitChange();
       break;

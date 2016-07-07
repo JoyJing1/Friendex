@@ -16,13 +16,13 @@ const FriendshipStore = new Store(AppDispatcher);
 FriendshipStore.__onDispatch = payload => {
   switch(payload.actionType) {
     case FriendshipConstants.UPDATE_FRIENDSHIP:
-      console.log('UPDATE_FRIENDSHIP in friendship_store.js');
+      // console.log('UPDATE_FRIENDSHIP in friendship_store.js');
       _updateFriendship(payload.friendship);
       FriendshipStore.__emitChange();
       break;
     case FriendshipConstants.UPDATE_FRIENDSHIPS:
-      console.log('UPDATE_FRIENDSHIPS in friendship_store.js');
-      console.log(payload);
+      // console.log('UPDATE_FRIENDSHIPS in friendship_store.js');
+      // console.log(payload);
       _resetFriendships(payload);
       FriendshipStore.__emitChange();
       break;
@@ -34,8 +34,8 @@ function _resetFriendships(payload) {
   _friendRequestsReceived = {};
   _friendRequestsSent = {};
 
-  console.log("_resetFriendship(payload) in friendship_store.js");
-  console.log(payload);
+  // console.log("_resetFriendship(payload) in friendship_store.js");
+  // console.log(payload);
 
   payload.friends.forEach( friend => {
     _friends[friend.id] = friend;
@@ -49,32 +49,32 @@ function _resetFriendships(payload) {
     _friendRequestsSent[friend.id] = friend;
   });
 
-  console.log('saved friend_request payload to store');
-  console.log(_friends);
-  console.log(_friendRequestsReceived);
-  console.log(_friendRequestsSent);
+  // console.log('saved friend_request payload to store');
+  // console.log(_friends);
+  // console.log(_friendRequestsReceived);
+  // console.log(_friendRequestsSent);
 }
 
 function _updateFriendship(friendship) {
-  console.log("_updateFriendship in friendship_store.js");
-  console.log(friendship);
+  // console.log("_updateFriendship in friendship_store.js");
+  // console.log(friendship);
 
   if (friendship.status === "accepted") {
-    console.log("trying to update friendship status to 'accepted' from friendship_store.js");
+    // console.log("trying to update friendship status to 'accepted' from friendship_store.js");
     _friends[friendship.id] = friendship;
 
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "denied") {
-    console.log("trying to update friendship status to 'denied' from friendship_store.js");
+    // console.log("trying to update friendship status to 'denied' from friendship_store.js");
 
     delete _friends[friendship.id];
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "pending") {
-    console.log("trying to update friendship status to 'pending' from friendship_store.js");
+    // console.log("trying to update friendship status to 'pending' from friendship_store.js");
     const currentProfile = ProfileStore.currentProfile();
 
     if (currentProfile.user_id === friendship.requestor_id) {
@@ -100,8 +100,8 @@ FriendshipStore.find = function(id) {
 };
 
 FriendshipStore.friends = function() {
-  console.log('pulling FriendshipStore.friends in friendship_store.js');
-  console.log(_friends);
+  // console.log('pulling FriendshipStore.friends in friendship_store.js');
+  // console.log(_friends);
   let friends = [];
 
   for (let id in _friends) {
@@ -113,8 +113,8 @@ FriendshipStore.friends = function() {
 };
 
 FriendshipStore.friendRequestsReceived = function() {
-  console.log('pulling FriendshipStore.friendRequestsReceived in friendship_store.js');
-  console.log(_friendRequestsReceived);
+  // console.log('pulling FriendshipStore.friendRequestsReceived in friendship_store.js');
+  // console.log(_friendRequestsReceived);
   let friendRequestsReceived = [];
 
   for (let id in _friendRequestsReceived) {
@@ -126,8 +126,8 @@ FriendshipStore.friendRequestsReceived = function() {
 };
 
 FriendshipStore.friendRequestsSent = function() {
-  console.log('pulling FriendshipStore.friendRequestsSent in friendship_store.js');
-  console.log(_friendRequestsSent);
+  // console.log('pulling FriendshipStore.friendRequestsSent in friendship_store.js');
+  // console.log(_friendRequestsSent);
   let friendRequestsSent = [];
 
   for (let id in _friendRequestsSent) {

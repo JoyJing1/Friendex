@@ -22,7 +22,7 @@ const ProfileApiUtil = {
 
 	updateProfile(profile, success, error) {
     console.log("updateProfile(id, success, error) in profile_api_util.js");
-    console.log(id);
+    console.log(profile);
 
 		$.ajax({
 			url: `/api/profiles/${profile.id}`,

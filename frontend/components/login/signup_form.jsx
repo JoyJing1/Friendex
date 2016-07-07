@@ -7,6 +7,10 @@ const ErrorStore     = require('../../stores/error_store')
     , SessionActions = require('../../actions/session_actions')
     , SessionStore   = require('../../stores/session_store');
 
+const BootstrapValidator = require('bootstrap-validator');
+
+// debugger;
+
 const SignupForm = React.createClass({
 
 	contextTypes: {
@@ -72,9 +76,9 @@ const SignupForm = React.createClass({
 		};
     const profileDataFull = this._setDefaultProfilePic(profileData);
 
-    console.log(userData);
-    console.log(profileData);
-    console.log("handleSubmit(e) in signup_form.jsx");
+    // console.log(userData);
+    // console.log(profileData);
+    // console.log("handleSubmit(e) in signup_form.jsx");
     SessionActions.signUp({user: userData, profile: profileDataFull});
 	},
 
@@ -117,7 +121,10 @@ const SignupForm = React.createClass({
           <h2>It's free and always will be</h2>
         </div>
 
-        <form className="signup-form-box" onSubmit={this.handleSubmit}>
+        <form className="signup-form-box"
+              onSubmit={this.handleSubmit}
+              role="form"
+              data-toggle="validator">
 
           <div className="new-user-name clearfix">
             { this.fieldErrors("firstName") }
@@ -138,14 +145,16 @@ const SignupForm = React.createClass({
           </div>
 
           { this.fieldErrors("email1") }
-          <input type="text"
-                  value={this.state.email1}
-                  label="email1"
-                  placeholder="Email"
-                  onChange={this.update("email1")}/>
+
+          <input type="email"
+            value={this.state.email1}
+            label="email1"
+            placeholder="Email"
+            onChange={this.update("email1")}/>
+
 
           { this.fieldErrors("email2") }
-          <input type="text"
+          <input type="email"
                   value={this.state.email2}
                   label="email2"
                   placeholder="Re-enter email"
@@ -216,6 +225,7 @@ const SignupForm = React.createClass({
           <p>By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
 
           <input type="submit" value="Sign Up" id="signup-button"/>
+
 
         </form>
 		  </div>

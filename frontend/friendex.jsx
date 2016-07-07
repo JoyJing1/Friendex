@@ -11,6 +11,9 @@ const Router = require('react-router').Router;
 //Authentication
 const SessionActions = require('./actions/session_actions');
 const SessionStore = require('./stores/session_store');
+
+
+
 // Components
 const App = require('./components/app');
 const FriendsPage = require('./components/friend/friends_page');
@@ -63,4 +66,5 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(appRouter, root);
 
   jQuery("time.timeago").timeago();
+
 });

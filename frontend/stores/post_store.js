@@ -16,7 +16,7 @@ PostStore.__onDispatch = payload => {
 
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:
-      console.log("PostConstants.UPDATE_POST in post_store.js");
+      // console.log("PostConstants.UPDATE_POST in post_store.js");
       let post = payload.post;
       post["type"] = "post";
       _updateItem(post);
@@ -24,7 +24,7 @@ PostStore.__onDispatch = payload => {
       break;
 
     case PostConstants.UPDATE_POSTS:
-      console.log("PostConstants.UPDATE_POST in post_store.js");
+      // console.log("PostConstants.UPDATE_POST in post_store.js");
       if (payload.posts instanceof Array) {
         _posts = payload.posts;
         PostStore.__emitChange();
@@ -32,7 +32,7 @@ PostStore.__onDispatch = payload => {
       break;
 
     case PostConstants.REMOVED_POST:
-      console.log("PostConstants.REMOVED_POST in post_store.js");
+      // console.log("PostConstants.REMOVED_POST in post_store.js");
       _removeItem(payload.post);
       PostStore.__emitChange();
       break;
@@ -50,25 +50,25 @@ PostStore.__onDispatch = payload => {
       break;
 
     case CommentConstants.UPDATE_COMMENT:
-      console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
+      // console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
       _updateComment(payload.comment);
       PostStore.__emitChange();
       break;
 
     case CommentConstants.REMOVED_COMMENT:
-      console.log("CommentConstants.REMOVED_COMMENT in post_store.js");
+      // console.log("CommentConstants.REMOVED_COMMENT in post_store.js");
       _removeComment(payload.comment);
       PostStore.__emitChange();
       break;
 
     case LikeConstants.ADDED_LIKE:
-      console.log("LikeConstants.ADDED_LIKE in post_store.js");
+      // console.log("LikeConstants.ADDED_LIKE in post_store.js");
       _addLike(payload.like);
       PostStore.__emitChange();
       break;
 
     case LikeConstants.REMOVED_LIKE:
-      console.log("LikeConstants.REMOVED_LIKE in post_store.js");
+      // console.log("LikeConstants.REMOVED_LIKE in post_store.js");
       _removeLike(payload.like);
       PostStore.__emitChange();
       break;
@@ -169,9 +169,9 @@ function _findItem(type, id) {
 }
 
 function _updateItem(item) {
-  console.log("_updateItem(item) in image_store.js");
+  // console.log("_updateItem(item) in image_store.js");
   const idx = _posts.indexOf(item);
-  console.log(`idx = ${idx}`);
+  // console.log(`idx = ${idx}`);
   if (idx < 0) {
     _posts.unshift(item);
   } else {
@@ -190,7 +190,7 @@ function _removeItem(item) {
 
   if (idx >= 0) {
     _posts.splice(idx, 1);
-    console.log("_removeItem(item) in post_store.js - had to remove from store explicitly");
+    // console.log("_removeItem(item) in post_store.js - had to remove from store explicitly");
   }
 }
 

@@ -58,6 +58,35 @@ const ProfileHeader = React.createClass({
     hashHistory.replace(`users/${this.state.profile.user_id}/timeline`);
   },
 
+  uploadProfileImg(e) {
+    e.preventDefault(e);
+    let that = this;
+
+    cloudinary.openUploadWidget(
+      window.CLOUDINARY_OPTIONS,
+      function(error, images) {
+        if (error === null) {
+          console.log("Upload succeeded in upload_photos_button.jsx");
+          for (let i = 0; i < images.length; i++) {
+            // that.props.postImage(images[i].url);
+            let currentProfile = ProfileStore.currentProfile();
+            currentProfile['profile_img'] = images[i].url;
+            // let profile = { profile_img: images[i].url, profile_id: ProfileStore.currentProfile.}
+            // debugger;
+            ProfileActions.updateProfile(currentProfile);
+          }
+        } else {
+          console.log("Upload failed in uploa_photos_button.jsx");
+          // console.log(error);
+        }
+      }
+    );
+
+  },
+
+
+
+
   render() {
     return(
       <header className="profile-nav clearfix">
@@ -66,7 +95,7 @@ const ProfileHeader = React.createClass({
         </div>
 
         <div className="profile-header-nav">
-          <div className="redirect" onClick={this._toTimeline}>
+          <div className="redirect profile-img-container" onClick={this.uploadProfileImg}>
             <img src={this.state.profile.profile_img}
               className="profile-img"/>
           </div>
