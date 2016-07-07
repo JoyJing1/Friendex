@@ -20,6 +20,7 @@ const NewsfeedIndex = React.createClass({
     console.log("componentDidMount() in newsfeed_index.jsx");
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
+    ProfileActions.fetchCurrentUserProfile();
     this.newsfeedListener = NewsfeedStore.addListener(this._onChange);
     this.sessionListener = SessionStore.addListener(this._onChange);
   },
