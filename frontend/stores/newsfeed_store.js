@@ -149,7 +149,6 @@ function _removeLike(like) {
       _updateItem(item);
 
     }
-
   }
 }
 
