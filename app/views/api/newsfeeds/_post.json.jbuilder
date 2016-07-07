@@ -21,3 +21,14 @@ end
 json.likes do
   json.array!(post.likes)
 end
+
+#
+# json.likes do |like|
+#   # if post.likes
+#     # post.likes douserna
+#     user_id = like.user_id
+#     json.user_id partial: "api/posts/like", post_like: like
+#   # else
+#   #   json.array! []
+#   # end
+# end

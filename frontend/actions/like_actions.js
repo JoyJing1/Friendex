@@ -9,9 +9,8 @@ const AppDispatcher = require('../dispatcher/dispatcher')
 
 const LikeActions = {
   createLike(like, toggleLikeState) {
-    // debugger;
     console.log("createLike(like) in like_actions.js");
-
+    // debugger;
     if (like.post_id) {
       LikeApiUtil.createPostLike(like, (resp) => {
         this.receiveSingleLike(resp);

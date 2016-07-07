@@ -5,4 +5,4 @@ json.extract!(
   :created_at
 )
 
-json.liker_name post_like.user.username
+# json.liker_name post_like.user.username

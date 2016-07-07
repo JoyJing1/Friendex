@@ -4,7 +4,6 @@ const NewsfeedApiUtil = {
 
   fetchNewsfeed(id, successCallback) {
     console.log("fetchNewsfeed(id, success, error) in newsfeed_api_util.js");
-
     $.ajax({
       url: `/api/newsfeed`,
       type: 'GET',
@@ -12,6 +11,7 @@ const NewsfeedApiUtil = {
       success(resp) {
         console.log("successfully pulled newsfeed");
         console.log(resp);
+        // debugger;
         successCallback(resp);
       },
       error(xhr) {

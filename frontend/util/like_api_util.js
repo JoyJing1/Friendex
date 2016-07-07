@@ -4,7 +4,7 @@ const LikeApiUtil = {
 
 	createPostLike(post_id, success, error) {
     console.log("createPostLike(like, success, error) in like_api_util.js");
-
+    // debugger;
     $.ajax({
       url: `/api/likes`,
       method: "POST",
@@ -23,6 +23,7 @@ const LikeApiUtil = {
 
   deletePostLike(post_id, success, error) {
     console.log("deletePostLike(id, success, error) in like_api_util.js");
+    // debugger;
 
 		$.ajax({
 			url: `/api/likes/${post_id.post_id}`,

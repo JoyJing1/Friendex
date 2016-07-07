@@ -1,5 +1,4 @@
 const React = require('react')
-    // , Link        = require('react-router').Link
     , hashHistory = require('react-router').hashHistory;
 
 const SearchActions = require('../actions/search_actions')
@@ -24,7 +23,6 @@ const SearchBar = React.createClass({
     this.setState( { matches: SearchStore.matches(this.state.query)});
   },
 
-
   filterUsers(e) {
     e.preventDefault();
     this.setState({ query: e.target.value });
@@ -43,16 +41,18 @@ const SearchBar = React.createClass({
     if (this.state.query !== "") {
       return (
         <ul className="search-results">
-          { this.state.matches.map ( user => {
-            return (
-              <li className="search-item"
+          { this.state.matches.map ( (user, i) => {
+            if (i <= 12) {
+              return (
+                <li className="search-item"
                   onClick={this.clickedUser}
                   key={user.id}
                   value={user.id}>
-                <img src={user.profile_img}></img>
-                {user.username}
-              </li>
-            );
+                  <img src={user.profile_img}></img>
+                  {user.username}
+                </li>
+              );
+            }
           })}
         </ul>
       );

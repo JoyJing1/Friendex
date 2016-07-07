@@ -62,13 +62,13 @@ NewsfeedStore.__onDispatch = payload => {
       break;
 
     case LikeConstants.ADDED_LIKE:
-      console.log("LikeConstants.ADDED_LIKE in post_store.js");
+      console.log("LikeConstants.ADDED_LIKE in newsfeed_store.js");
       _addLike(payload.like);
       NewsfeedStore.__emitChange();
       break;
 
     case LikeConstants.REMOVED_LIKE:
-      console.log("LikeConstants.REMOVED_LIKE in post_store.js");
+      console.log("LikeConstants.REMOVED_LIKE in newsfeed_store.js");
       _removeLike(payload.like);
       NewsfeedStore.__emitChange();
       break;
@@ -76,20 +76,29 @@ NewsfeedStore.__onDispatch = payload => {
 };
 
 function _addLike(like) {
+  // debugger;
+  let itemIdx = -1;
   if (like.image_id) {
-    const itemIdx = _findItem("image", like.image_id);
+    itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
       _newsfeed[itemIdx].likes.push(like);
     }
 
   } else if (like.post_id) {
-    const itemIdx = _findItem("post", like.post_id);
+    // Not assigning itemIdx properly
+    itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
+      // debugger;
+
+      // COMMENT BACK IN!!!!!!
       _newsfeed[itemIdx].likes.push(like);
+      console.log("_addLike(like) in newsfeed_store.jsx");
+      // debugger;
+      console.log(_newsfeed[itemIdx].likes);
     }
 
   } else if (like.friendship_id) {
-    const itemIdx = _findItem("friendship", like.friendship_id);
+    itemIdx = _findItem("friendship", like.friendship_id);
     if (itemIdx >= 0) {
       _newsfeed[itemIdx].likes.push(like);
     }
@@ -98,25 +107,32 @@ function _addLike(like) {
 }
 
 function _removeLike(like) {
+  // debugger;
+  let itemIdx = -1;
   if (like.image_id) {
-    const itemIdx = _findItem("image", like.image_id);
+    itemIdx = _findItem("image", like.image_id);
     if (itemIdx >= 0) {
-
-      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like.user_id);
+      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
     }
 
   } else if (like.post_id) {
-    const itemIdx = _findItem("post", like.post_id);
+    itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
-      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like.user_id);
+      let likeIdx = -1;
+      _newsfeed[itemIdx].likes.forEach( (el, i) => {
+        if (like.id === el.id) {
+          likeIdx = i;
+        }
+      });
+      // let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
     }
 
   } else if (like.friendship_id) {
-    const itemIdx = _findItem("friendship", like.friendship_id);
+    itemIdx = _findItem("friendship", like.friendship_id);
     if (itemIdx >= 0) {
-      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like.user_id);
+      let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
     }
   }

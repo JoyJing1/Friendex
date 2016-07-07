@@ -32,11 +32,14 @@ const NewsfeedIndex = React.createClass({
   },
 
   _onChange() {
+    // debugger;
     this.setState( { newsfeed: NewsfeedStore.all(),
                     currentUserProfile: SessionStore.currentUserProfile() }
                   );
     console.log("_onChange() in newsfeed_index.jsx");
+    // debugger;
     console.log(this.state);
+    // At this point of Flux cycl, has only 1 like
   },
 
   render() {

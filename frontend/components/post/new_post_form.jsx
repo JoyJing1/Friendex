@@ -28,7 +28,7 @@ const NewPostForm = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    ProfileActions.fetchCurrentUserProfile();
+    // ProfileActions.fetchCurrentUserProfile();
   },
 
   _onChange() {
