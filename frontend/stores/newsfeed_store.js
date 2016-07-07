@@ -14,12 +14,7 @@ let _newsfeed = [];
 const NewsfeedStore = new Store(AppDispatcher);
 
 NewsfeedStore.__onDispatch = payload => {
-  console.log("NewsfeedStore.__onDispatch");
-  console.log(_newsfeed);
-  console.log("payload in newsfeed_store.js");
-  console.log(payload);
-  // debugger;
-
+  console.log("NewsfeedStore.__onDispatch in newsfeed_store");
   switch(payload.actionType) {
     case NewsfeedConstants.UPDATE_NEWSFEED:
       console.log("UPDATE_NEWSFEED in NewsfeedStore");
@@ -37,7 +32,7 @@ NewsfeedStore.__onDispatch = payload => {
 
     case PostConstants.REMOVED_POST:
       console.log("PostConstants.REMOVED_POST in newsfeed_store.js");
-      _removeItem(payload.post);
+      _removeItem(payload.post, "post");
       NewsfeedStore.__emitChange();
       break;
 
@@ -51,7 +46,7 @@ NewsfeedStore.__onDispatch = payload => {
 
     case ImageConstants.REMOVED_IMAGE:
       console.log("REMOVED_IMAGE in NewsfeedStore");
-      _removeItem(payload.image);
+      _removeItem(payload.image, "image");
       NewsfeedStore.__emitChange();
       break;
 
@@ -82,99 +77,6 @@ NewsfeedStore.__onDispatch = payload => {
       break;
   }
 };
-//
-// function _addLike(like) {
-//   console.log("top of _addLike(like) in newsfeed_store.jsx");
-//   console.log(_newsfeed);
-//   // debugger;
-//   let itemIdx = -1;
-//   if (like.image_id) {
-//     itemIdx = _findItem("image", like.image_id);
-//     if (itemIdx >= 0) {
-//       _newsfeed[itemIdx].likes.push(like);
-//     }
-//
-//   } else if (like.post_id) {
-//     // Not assigning itemIdx properly
-//     itemIdx = _findItem("post", like.post_id);
-//     if (itemIdx >= 0) {
-//       // debugger;
-//
-//       // COMMENT BACK IN!!!!!!
-//
-//       console.log(`itemIdx = ${itemIdx}`);
-//       console.log("num_likes before pushing like onto _newsfeed");
-//       console.log(_newsfeed[itemIdx].likes);
-//       console.log("full _newsfeed before pushing");
-//       console.log(_newsfeed);
-//
-//       // debugger;
-//       _newsfeed[itemIdx].likes.push(like);
-//       console.log("num_likes after pushing like onto _newsfeed");
-//
-//       // console.log("before imp_likes");
-//       // // console.log(_newsfeed[itemIdx].likes)
-//       // let imp_likes = _newsfeed[itemIdx].likes;
-//       // console.log("after setting imp_likes");
-//       //
-//       //
-//       // console.log(_newsfeed[itemIdx].likes);
-//       // imp_likes.push(like);
-//       // console.log("after imp_likes.push(like)");
-//       //
-//       // console.log(_newsfeed[itemIdx].likes);
-//       //
-//       //
-//       // console.log("num_likes AFTER pushing, _addLike(like) in newsfeed_store.jsx");
-//       // debugger;
-//       console.log(_newsfeed[itemIdx].likes);
-//       console.log("full _newsfeed in newsfeed_store.jsx");
-//       console.log(_newsfeed);
-//     }
-//
-//   } else if (like.friendship_id) {
-//     itemIdx = _findItem("friendship", like.friendship_id);
-//     if (itemIdx >= 0) {
-//       _newsfeed[itemIdx].likes.push(like);
-//     }
-//   }
-//
-// }
-//
-// function _removeLike(like) {
-//   // debugger;
-//   console.log("_removeLike(like) in newsfeed_store.js");
-//   console.log(_newsfeed);
-//   let itemIdx = -1;
-//   if (like.image_id) {
-//     itemIdx = _findItem("image", like.image_id);
-//     if (itemIdx >= 0) {
-//       let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
-//       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
-//     }
-//
-//   } else if (like.post_id) {
-//     itemIdx = _findItem("post", like.post_id);
-//     if (itemIdx >= 0) {
-//       let likeIdx = -1;
-//       _newsfeed[itemIdx].likes.forEach( (el, i) => {
-//         if (like.id === el.id) {
-//           likeIdx = i;
-//         }
-//       });
-//       // let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
-//       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
-//     }
-//
-//   } else if (like.friendship_id) {
-//     itemIdx = _findItem("friendship", like.friendship_id);
-//     if (itemIdx >= 0) {
-//       let likeIdx = _newsfeed[itemIdx].likes.indexOf(like);
-//       _newsfeed[itemIdx].likes.splice(likeIdx, 1);
-//     }
-//   }
-//
-// }
 
 function _updateLike(like) {
   if (like.image_id) {
@@ -211,7 +113,6 @@ function _likeIdx(likes, target) {
 function _removeLike(like) {
   console.log("in _removeLike(like) in newsfeed_store.jsx");
   console.log(like);
-  // debugger;
 
   let itemIdx = -1;
   let likeIdx = -1;
@@ -228,14 +129,10 @@ function _removeLike(like) {
       _updateItem(item);
     }
 
-    // likeIdx = item.likes.indexOf(like);
-
-
   } else if (like.post_id) {
     itemIdx = _findItem("post", like.post_id);
     if (itemIdx >= 0) {
       item = _newsfeed[itemIdx];
-      // likeIdx = item.likes.indexOf(like);
       likeIdx = _likeIdx(item.likes, like);
 
       item.likes.splice(likeIdx, 1);
@@ -246,7 +143,6 @@ function _removeLike(like) {
     itemIdx = _findItem("friendship", like.friendship_id);
     if (itemIdx >= 0) {
       item = _newsfeed[itemIdx];
-      // likeIdx = item.likes.indexOf(like);
       likeIdx = _likeIdx(item.likes, like);
 
       item.likes.splice(likeIdx, 1);
@@ -319,7 +215,6 @@ function _findItem(type, id) {
 }
 
 function _updateNewsfeed(newsfeed) {
-  // debugger;
   console.log("_updateNewsfeed in newsfeed_store.js");
   _newsfeed = newsfeed;
 }
@@ -336,9 +231,18 @@ function _updateItem(item) {
   console.log(_newsfeed);
 }
 
-function _removeItem(item) {
-  const idx = _newsfeed.indexOf(item);
-  _newsfeed.splice(idx, 1);
+function _removeItem(item, type) {
+  let idx = -1;
+  _newsfeed.forEach( (post, i) => {
+    if (post.id === item.id && post.type === type) {
+      idx = i;
+    }
+  });
+
+  if (idx >= 0) {
+    _newsfeed.splice(idx, 1);
+    console.log("_removeItem(item) in post_store.js - had to remove from store explicitly");
+  }
 }
 
 NewsfeedStore.find = function(type, id) {

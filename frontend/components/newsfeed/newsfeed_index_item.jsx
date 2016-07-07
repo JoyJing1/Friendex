@@ -17,7 +17,7 @@ const NewsfeedIndexItem = React.createClass({
       if (this.props.news.author_id === this.props.news.receiver_id) {
         return (
           <div className="newsfeed-item news-post-self">
-            <NewsfeedPostItem post={this.props.news}
+            <PostIndexItem post={this.props.news}
                 currentUserProfile={this.props.currentUserProfile}/>
           </div>
         );

@@ -16,7 +16,6 @@ SearchStore.__onDispatch = payload => {
   switch(payload.actionType) {
     case SearchConstants.UPDATE_SEARCH_RESULTS:
       resetMatches(payload.matches);
-      // debugger;
       SearchStore.__emitChange();
       break;
   }

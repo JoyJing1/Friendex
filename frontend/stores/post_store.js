@@ -51,7 +51,6 @@ PostStore.__onDispatch = payload => {
 
     case CommentConstants.UPDATE_COMMENT:
       console.log("CommentConstants.UPDATE_COMMENT in post_store.js");
-      // let comment = payload.comment;
       _updateComment(payload.comment);
       PostStore.__emitChange();
       break;

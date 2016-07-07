@@ -5,7 +5,7 @@ const hashHistory = require('react-router').hashHistory
     , React       = require('react');
 
 const ErrorStore         = require('../../stores/error_store')
-    , CommentActions        = require('../../actions/comment_actions');
+    , CommentActions     = require('../../actions/comment_actions');
 
 const NewCommentForm = React.createClass({
   getInitialState() {
