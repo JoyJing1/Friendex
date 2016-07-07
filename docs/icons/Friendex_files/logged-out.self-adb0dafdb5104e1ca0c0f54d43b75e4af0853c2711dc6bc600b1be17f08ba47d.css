@@ -1,0 +1,205 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+html, body {
+  height: 100%;
+  background-color: #E9EBEE;
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+}
+
+/* line 9, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+#content {
+  height: 100%;
+}
+
+/* line 13, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+div.app-container {
+  height: 100%;
+}
+
+/* line 17, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.logged-out-page {
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  background-color: #EDF0F5;
+  padding-bottom: 35px;
+  height: 100%;
+}
+
+/* line 24, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.logged-out-header {
+  color: white;
+}
+
+/* line 28, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.logged-out-container {
+  background-color: #3B5998;
+  padding: 10px;
+}
+
+/* line 33, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.logged-out-header-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* line 38, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.fd-logo {
+  display: inline-block;
+  font-size: 36px;
+  letter-spacing: 1px;
+  width: 170px;
+  height: 34px;
+  font-weight: bold;
+  position: relative;
+}
+
+/* line 48, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.fd-logo a {
+  position: absolute;
+  top: 10px;
+}
+
+/* line 53, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.login-form-box.clearfix {
+  display: flex;
+}
+
+/* line 57, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.login-form-box {
+  float: right;
+}
+
+/* line 61, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+label {
+  margin-right: 22px;
+}
+
+/* line 65, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.login-form-box > input {
+  background-color: white;
+}
+
+/* line 69, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+input[type="password"], input[type="text"], input[type="email"] {
+  display: block;
+  background: white;
+  color: black;
+  padding: 4px 5px;
+  margin-bottom: 10px;
+}
+
+/* line 77, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* line 82, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+input[type="submit"], .demo {
+  background: #4267B2;
+  border: 1px solid #29487D;
+  padding: 0 13px;
+  height: 35px;
+  align-self: center;
+}
+
+/* line 90, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.demo {
+  margin-left: 8px;
+}
+
+/* line 94, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+input[type="select"] {
+  font-size: 18px;
+}
+
+/* line 98, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.logged-out-body {
+  margin: 0 auto;
+}
+
+/* line 102, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 15px 0;
+}
+
+/* line 109, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form-header > h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+/* line 115, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form-header > h2 {
+  font-size: 19px;
+  margin: 10px;
+}
+
+/* line 120, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form-box {
+  width: 350px;
+}
+
+/* line 124, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form-box > input {
+  padding: 8px 10px;
+  border: 1px solid #BDC7D8;
+  border-radius: 5px;
+  width: 94%;
+  font-size: 18px;
+}
+
+/* line 132, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.new-user-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* line 137, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.new-user-name > input {
+  padding: 8px 10px;
+  border: 1px solid #BDC7D8;
+  width: 50%;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+/* line 145, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+#new-last-name {
+  margin-left: 10px;
+}
+
+/* line 149, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+#signup-button {
+  width: 25%;
+  height: auto;
+  margin: 10px 0;
+  background: #609D4D;
+  color: white;
+  text-align: center;
+}
+
+/* line 158, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-form {
+  float: right;
+}
+
+/* line 162, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-left {
+  float: left;
+  width: 30%;
+  height: 100px;
+}
+
+/* line 168, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+form > p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+/* line 177, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/logged-out.scss */
+.signup-gender {
+  margin: 13px 0;
+}

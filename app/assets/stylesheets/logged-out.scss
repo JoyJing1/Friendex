@@ -58,6 +58,10 @@ div.app-container {
   float: right;
 }
 
+.login-buttons input[type="submit"] {
+  margin-bottom: -5px;
+}
+
 label {
   margin-right: 22px
 }
@@ -72,6 +76,11 @@ input[type="password"], input[type="text"], input[type="email"] {
   color: black;
   padding: 4px 5px;
   margin-bottom: 10px;
+
+}
+input[type="password"]:focus, input[type="text"]:focus, input[type="email"]:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .login-buttons {
@@ -132,6 +141,7 @@ input[type="select"] {
 .new-user-name {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .new-user-name > input {
@@ -176,4 +186,14 @@ form > p {
 
 .signup-gender {
   margin: 13px 0;
+}
+
+#success {
+  box-shadow: 0 0 5px #3C763D;
+  border: 1px solid #3C763D;
+}
+
+#error {
+  box-shadow: 0 0 5px #A94442;
+  border: 1px solid #A94442;
 }

@@ -7,9 +7,14 @@ const ErrorStore     = require('../../stores/error_store')
     , SessionActions = require('../../actions/session_actions')
     , SessionStore   = require('../../stores/session_store');
 
-const BootstrapValidator = require('bootstrap-validator');
-
-// debugger;
+// const BootstrapValidator = require('bootstrap-validator');
+const Bootstrap = require('react-bootstrap');
+const Form = require('react-bootstrap').Form;
+const FormGroup = require('react-bootstrap').FormGroup;
+const FormControl = require('react-bootstrap').FormControl;
+const DropdownButton = require('react-bootstrap').DropdownButton;
+const MenuItem = require('react-bootstrap').MenuItem;
+const BootstrapSelect = require('react-bootstrap-select');
 
 const SignupForm = React.createClass({
 
@@ -99,6 +104,47 @@ const SignupForm = React.createClass({
     return (e) => this.setState( { [property]: e.target.value } );
   },
 
+  properEmail(mail) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    if (this.state.email1.match(emailRegex)) {
+      return "success";
+    } else if (!this.state.email1) {
+      return null;
+    } else {
+      return "error";
+    }
+  },
+
+  emailsMatch() {
+    if (this.state.email2 && this.state.email1 === this.state.email2) {
+      return "success";
+    } else if (!this.state.email2) {
+      return null;
+    } else {
+      return "error";
+    }
+  },
+
+  passwordLongEnough() {
+    if (this.state.password.length >= 6) {
+      return "success";
+    } else if (this.state.password.length === 0) {
+      return null;
+    } else {
+      return "error";
+    }
+  },
+
+  birthdayProvided() {
+    if (this.state.birthMonth > 0 && this.state.birthDay > 0 && this.state.birthYear > 0) {
+      return "success";
+    } else if (this.state.birthMonth === "" && this.state.birthDay === "" && this.state.birthYear === "") {
+      return null;
+    } else {
+      return "error";
+    }
+  },
+
 	render() {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -127,48 +173,43 @@ const SignupForm = React.createClass({
               data-toggle="validator">
 
           <div className="new-user-name clearfix">
-            { this.fieldErrors("firstName") }
             <input type="text"
-                    value={this.state.firstName}
-                    label="firstName"
-                    id="new-first-name"
-                    placeholder="First name"
-                    onChange={this.update("firstName")}/>
+              value={this.state.firstName}
+              label="firstName"
+              id="new-first-name"
+              placeholder="First name"
+              onChange={this.update("firstName")}/>
 
-            { this.fieldErrors("lastName") }
-                  <input type="text"
-                    value={this.state.lastName}
-                    label="lastName"
-                    id="new-last-name"
-                    placeholder="Last name"
-                    onChange={this.update("lastName")}/>
+            <input type="text"
+              value={this.state.lastName}
+              label="lastName"
+              id="new-last-name"
+              placeholder="Last name"
+              onChange={this.update("lastName")}/>
           </div>
 
-          { this.fieldErrors("email1") }
-
-          <input type="email"
+          <input id={this.properEmail()}
+            type="email"
             value={this.state.email1}
             label="email1"
             placeholder="Email"
             onChange={this.update("email1")}/>
 
-
-          { this.fieldErrors("email2") }
-          <input type="email"
-                  value={this.state.email2}
-                  label="email2"
-                  placeholder="Re-enter email"
+          <input id={this.emailsMatch()}
+            type="email"
+            value={this.state.email2}
+            label="email2"
+            placeholder="Re-enter email"
                   onChange={this.update("email2")}/>
 
-          { this.fieldErrors("password") }
-          <input type="password"
-                  value={this.state.password}
-                  label="password"
-                  placeholder="New password"
-                  onChange={this.update("password")}/>
+          <input id={this.passwordLongEnough()}
+            type="password"
+            value={this.state.password}
+            label="password"
+            placeholder="New password"
+            onChange={this.update("password")}/>
 
           <div className="signup-birthday">
-            { this.fieldErrors("birthMonth") }
             <select className="birthday-month" defaultValue={0}
               onChange={this.update("birthMonth")}>
               <option value={0} disabled>Month</option>
@@ -177,7 +218,6 @@ const SignupForm = React.createClass({
               } )}
             </select>
 
-            { this.fieldErrors("birthDay") }
             <select className="birthday-day" defaultValue={0}
               onChange={this.update("birthDay")}>
               <option value={0} disabled>Day</option>
@@ -186,7 +226,6 @@ const SignupForm = React.createClass({
               }) }
             </select>
 
-            { this.fieldErrors("birthYear") }
             <select className="birthday-year" defaultValue={0}
               onChange={this.update("birthYear")}>
               <option value={0} disabled>Year</option>
@@ -197,7 +236,6 @@ const SignupForm = React.createClass({
           </div>
 
           <div className="signup-gender">
-            { this.fieldErrors("gender") }
             <label for="f">
             <input type="radio"
                     name="gender"
@@ -233,4 +271,154 @@ const SignupForm = React.createClass({
 	}
 });
 
+		// return (
+		//   <div className="signup-form-container clearfix">
+    //     <div className="signup-form-header clearfix">
+    //       <h1>Sign Up</h1>
+    //       <h2>It's free and always will be</h2>
+    //     </div>
+    //
+    //     <form className="signup-form-box"
+    //           onSubmit={this.handleSubmit}
+    //           role="form"
+    //           data-toggle="validator">
+    //
+    //
+    //     <div className="new-user-name clearfix">
+    //       <FormGroup>
+    //         <FormControl type="text"
+    //           value={this.state.firstName}
+    //           label="firstName"
+    //           id="new-first-name"
+    //           onChange={this.update("firstName")}
+    //           placeholder="First name"/>
+    //       </FormGroup>
+    //
+    //       <FormGroup>
+    //         <FormControl type="text"
+    //           value={this.state.lastName}
+    //           label="lastName"
+    //           id="new-last-name"
+    //           onChange={this.update("lastName")}
+    //           placeholder="Last name"/>
+    //       </FormGroup>
+    //     </div>
+    //
+    //       <FormGroup validationState={this.properEmail(this.state.email1)}>
+    //         <FormControl type="email"
+    //           value={this.state.email1}
+    //           label="email1"
+    //           placeholder="Email"
+    //           onChange={this.update("email1")}/>
+    //       </FormGroup>
+    //
+    //       <FormGroup validationState={this.emailsMatch()}>
+    //         <FormControl type="email"
+    //           value={this.state.email2}
+    //           label="email2"
+    //           placeholder="Re-enter email"
+    //           onChange={this.update("email2")}/>
+    //       </FormGroup>
+    //
+    //       <FormGroup validationState={this.passwordLongEnough()}>
+    //         <FormControl type="password"
+    //           value={this.state.password}
+    //           label="password"
+    //           placeholder="New password"
+    //           onChange={this.update("password")}/>
+    //       </FormGroup>
+    //
+    //
+    //
+    //
+    //       <div className="signup-birthday">
+    //
+    //         <select className="birthday-month" defaultValue={0}
+    //           onChange={this.update("birthMonth")}>
+    //           <option value={0} disabled>Month</option>
+    //           { months.map( (month, i) => {
+    //             return <option value={i+1} key={i+1} >{month}</option>;
+    //             } )}
+    //         </select>
+    //
+    //         <select className="birthday-day" defaultValue={0}
+    //           onChange={this.update("birthDay")}>
+    //           <option value={0} disabled>Day</option>
+    //           { days.map(i => {
+    //             return <option value={i} key={i}>{i}</option>;
+    //             }) }
+    //         </select>
+    //
+    //         <select className="birthday-year" defaultValue={0}
+    //           onChange={this.update("birthYear")}>
+    //           <option value={0} disabled>Year</option>
+    //           { years.map(i => {
+    //             return <option value={i} key={i}>{i}</option>;
+    //             }) }
+    //         </select>
+    //
+    //   </div>
+    //
+    //
+    //
+    //
+    //       <div className="signup-gender">
+    //         { this.fieldErrors("gender") }
+    //         <label for="f">
+    //         <input type="radio"
+    //                 name="gender"
+    //                 value="female"
+    //                 key="f"
+    //                 onChange={this.update("gender")}/> Female
+    //         </label>
+    //         <label for="m">
+    //         <input type="radio"
+    //                 name="gender"
+    //                 value="male"
+    //                 key="m"
+    //                 className="gender-male"
+    //                 onChange={this.update("gender")}/> Male
+    //         </label>
+    //         <label for="o">
+    //         <input type="radio"
+    //                 name="gender"
+    //                 value="other"
+    //                 key="o"
+    //                 onChange={this.update("gender")}/> Other
+    //         </label>
+    //       </div>
+    //
+    //       <p>By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
+    //
+    //       <input type="submit" value="Sign Up" id="signup-button"/>
+    //
+    //
+    //     </form>
+		//   </div>
+		// );
+// 	}
+// });
+
 module.exports = SignupForm;
+
+
+
+
+          // <BootstrapSelect>
+          //   { months.map( (month, i) => {
+          //     return <option value={i+1} key={i+1} >{month}</option>;
+          //   } )}
+          // </BootstrapSelect>
+          //
+          //
+          //
+          //
+          // <DropdownButton bsStyle="default"
+          //     onChange={this.update("birthMonth")}
+          //     className="birthday-month"
+          //     title="Month"
+          //     id={`dropdown-basic`}>
+          //   { months.map( (month, i) => {
+          //     return <MenuItem eventKey={i} value={i+1} key={i+1}>{month}</MenuItem>;
+          //   } )}
+          // </DropdownButton>

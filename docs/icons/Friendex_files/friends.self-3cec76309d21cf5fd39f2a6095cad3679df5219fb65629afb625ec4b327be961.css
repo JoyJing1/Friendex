@@ -1,0 +1,112 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-container, .friend-container {
+  width: 900px;
+  background: white;
+  margin: 0 auto;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 10, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-item:not(:last-child):after, .friend-item:not(:last-child):after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 1px;
+  background-color: #D4D5DC;
+  margin: 0 0 0 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 21, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-container h3, .friend-container h3 {
+  background-color: #F6F7F9;
+  padding: 16px 16px;
+  margin: 0 auto;
+  border-bottom: 1px solid #D4D5DC;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  vertical-align: middle;
+}
+
+/* line 31, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+img.friend-request-icon {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* line 38, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-body, .friend-body {
+  background-color: white;
+}
+
+/* line 42, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.no-friend-requests, .no-friends {
+  text-align: center;
+  margin: 20px auto;
+}
+
+/* line 48, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-item, .friend-item {
+  position: relative;
+  padding: 20px;
+}
+/* line 52, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-item h4, .friend-item h4 {
+  display: inline-block;
+  color: #365899;
+  margin: 0;
+  font-size: 16px;
+  padding: 30px;
+  position: absolute;
+}
+/* line 61, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-item img, .friend-item img {
+  height: 77px;
+  width: auto;
+  display: inline-block;
+}
+
+/* line 68, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-buttons, .friend-buttons {
+  display: inline-block;
+  float: right;
+  margin-top: 8px;
+}
+/* line 73, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-buttons button, .friend-request-buttons input[type="submit"], .friend-buttons button, .friend-buttons input[type="submit"] {
+  cursor: pointer;
+  padding: 5px 10px;
+  float: right;
+  border-radius: 3px;
+  margin: 0 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+/* line 83, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-buttons button.confirm, .friend-buttons button.confirm {
+  background-color: #4267B2;
+  color: white;
+  border: 1px solid #29487D;
+}
+/* line 89, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-request-buttons button.delete-request, .friend-request-buttons button.remove-friend, .friend-buttons button.delete-request, .friend-buttons button.remove-friend {
+  background-color: #F6F7F9;
+  color: #4B4F56;
+  border: 1px solid #D4D5DC;
+}
+
+/* line 98, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+img.friend-icon {
+  height: 35px;
+  width: 35px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* line 105, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/friends.scss */
+.friend-container {
+  margin-top: 27px;
+}

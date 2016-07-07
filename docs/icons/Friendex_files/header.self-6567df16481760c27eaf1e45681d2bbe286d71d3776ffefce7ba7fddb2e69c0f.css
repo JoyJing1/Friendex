@@ -1,0 +1,136 @@
+/* line 3, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-main {
+  background-color: #3B5998;
+  height: 42px;
+  font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  z-index: 100;
+  border-bottom: 1px solid #29487D;
+}
+
+/* line 14, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-nav {
+  margin: 0 auto;
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* line 21, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.f-square-icon {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin: auto 50px;
+}
+
+/* line 28, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.f-square-icon img {
+  height: 100%;
+}
+
+/* line 34, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+aside.search-bar {
+  align-self: center;
+  position: relative;
+}
+
+/* line 39, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.search-bar-head {
+  display: flex;
+  vertical-align: middle;
+  background-color: #E9EBEE;
+  border-radius: 3px;
+}
+
+/* line 46, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.search-bar input[type="text"] {
+  display: inline-block;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+/* line 53, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.search-icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin: auto 15px;
+}
+
+/* line 60, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+ul.search-results {
+  position: absolute;
+  z-index: 100;
+  border: 1px solid #BDC7D8;
+}
+
+/* line 66, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+li.search-item {
+  background-color: white;
+  width: 212px;
+  vertical-align: middle;
+}
+
+/* line 72, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+li.search-item:hover {
+  background-color: #ECF0F7;
+}
+
+/* line 76, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+li.search-item img {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+}
+
+/* line 85, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-user {
+  height: 100%;
+  display: flex;
+  vertical-align: middle;
+}
+
+/* line 91, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.header-user-icon {
+  height: 30px;
+  width: auto;
+  border-radius: 3px;
+  margin: auto 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #29487D;
+}
+
+/* line 101, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.username-link {
+  color: white;
+  margin: auto;
+  font-weight: bold;
+}
+
+/* line 107, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+.home {
+  color: white;
+  margin: auto 30px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* line 114, /Users/joy/AA_CodePractice/AppAcademy/Projects/FinalProject/Friendex/app/assets/stylesheets/header.scss */
+button.button-logout {
+  background-color: #4267B2;
+  border: 1px solid #29487D;
+  border-radius: 5px;
+  padding: 4 9px;
+  color: white;
+  text-align: center;
+  height: 27px;
+  width: 77px;
+  margin: auto 50px;
+  font-size: 14px;
+}
