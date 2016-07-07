@@ -18,14 +18,14 @@ const PostIndexItem = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps(newProps) in post_index_item.jsx");
-    console.log(newProps);
+    // console.log("componentWillReceiveProps(newProps) in post_index_item.jsx");
+    // console.log(newProps);
     // debugger;
     // NewsfeedActions.fetchNewsfeed(id);
     // debugger;
     // debugger; // When updating, passing one like
     this.setState( { liked: this.currentUserLikesPost(newProps.post) } );
-    console.log("new state after this.setState() in componentWillreceiveProps in post_index_item.jsx");
+    // console.log("new state after this.setState() in componentWillreceiveProps in post_index_item.jsx");
   },
 
   // componentWillUpdate(newProps, newState) {
@@ -34,7 +34,7 @@ const PostIndexItem = React.createClass({
 
   currentUserLikesPost(post) {
     // debugger;
-    console.log("currentUserLikesPost(post) in post_index_item.jsx");
+    // console.log("currentUserLikesPost(post) in post_index_item.jsx");
     return post.likes.some( like => {
       return like.user_id === this.props.currentUserProfile.user_id;
     });
@@ -82,42 +82,6 @@ const PostIndexItem = React.createClass({
     document.getElementById(`new-comment-${this.props.post.type}-${this.props.post.id}`).focus();
   },
 
-  // setLiked(e) {
-  //   console.log("setLiked() in post_index_item.jsx");
-  //   // debugger;
-  //   e.preventDefault();
-  //
-  //   if (this.props.post.type === "post") {
-  //     console.log("calling LikeActions.createLike() in post_index_item.jsx");
-  //     LikeActions.createLike({ post_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: true });
-  //       console.log("just ran this.setState( {liked: true}) in callback for LikeActions.createLike, in post_index_item.jsx");
-  //     });
-  //
-  //   } else if (this.props.post.type === "image") {
-  //     LikeActions.createLike({ image_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: true });
-  //     });
-  //   }
-  // },
-  //
-  // setUnliked(e) {
-  //   console.log("setUnliked() in post_index_item.jsx");
-  //   // debugger;
-  //   e.preventDefault();
-  //
-  //   if (this.props.post.type === "post") {
-  //     LikeActions.deleteLike({ post_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: false });
-  //     });
-  //
-  //   } else if (this.props.post.type === "image") {
-  //     LikeActions.deleteLike({ image_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: false });
-  //     });
-  //   }
-  // },
-
   handleLiking(e) {
     console.log("handleLiking(e) in post_index_item.jsx");
 
@@ -140,9 +104,8 @@ const PostIndexItem = React.createClass({
 
   },
 
-
   likeButton() {
-    console.log(`in likeButton() in post_index_item.jsx, current state.liked = ${this.state.liked}`);
+    // console.log(`in likeButton() in post_index_item.jsx, current state.liked = ${this.state.liked}`);
     if (this.state.liked) {
       return (
         <button onClick={this.handleLiking} className="clickable color-liked">
@@ -163,7 +126,7 @@ const PostIndexItem = React.createClass({
   },
 
   render() {
-    console.log("render() in post_index_item.jsx");
+    // console.log("render() in post_index_item.jsx");
     return (
       <li>
         <div className="post-item-container">

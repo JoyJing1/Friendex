@@ -30,6 +30,7 @@ const Header = React.createClass({
 
   _logout() {
     SessionActions.logOut();
+    // hashHistory.push('/login');
   },
 
   _currentUserProfile() {

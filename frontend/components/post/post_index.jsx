@@ -25,8 +25,10 @@ const PostIndex = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
+    console.log("componentWillreceiveProps(newProps) in post_index.jsx");
     const ids = { receiver_id: newProps.profile.user_id };
-    console.log(ids);
+    // console.log(ids);
+
     PostActions.fetchManyPosts(ids);
     ProfileActions.fetchCurrentUserProfile();
   },
@@ -44,6 +46,7 @@ const PostIndex = React.createClass({
   },
 
   render() {
+    console.log("render() in post_index.jsx");
     return (
       <ul>
         {this.state.posts.map( post => {

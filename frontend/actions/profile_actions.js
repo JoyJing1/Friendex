@@ -5,6 +5,7 @@ const ProfileConstants = require('../constants/profile_constants');
 const ProfileApiUtil = require('../util/profile_api_util');
 const ErrorActions = require('./error_actions');
 const hashHistory = require('react-router').hashHistory;
+const SessionStore = require('../stores/session_store');
 
 const ProfileActions = {
   fetchSingleProfile(id) {
@@ -19,6 +20,7 @@ const ProfileActions = {
 
   fetchCurrentUserProfile() {
     console.log("fetchCurrentUserProfile(id) in profile_actions.js");
+    let currentUser = SessionStore.currentUser();
     ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
   },
 

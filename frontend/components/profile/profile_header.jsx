@@ -30,10 +30,10 @@ const ProfileHeader = React.createClass({
     console.log("componentDidMount() in profile_header.jsx");
     const id = parseInt(this.props.params.id);
     ProfileActions.fetchSingleProfile(id);
-    this.profileListener = ProfileStore.addListener(this._updateProfile);
+    this.profileListener = ProfileStore.addListener(this._onChange);
 
     FriendshipActions.fetchAllFriends(id);
-    this.friendshipListener = FriendshipStore.addListener(this._updateProfile);
+    this.friendshipListener = FriendshipStore.addListener(this._onChange);
 
     this.sessionListener = SessionStore.addListener(this._onChange);
   },
@@ -44,14 +44,14 @@ const ProfileHeader = React.createClass({
     this.sessionListener.remove();
   },
 
-  _updateProfile() {
+  _onChange() {
     this.setState({ profile: ProfileStore.currentProfile(),
                     currentUser: SessionStore.currentUser(),
                     friends: FriendshipStore.friends(),
                     friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
                     friendRequestsSent: FriendshipStore.friendRequestsSent() });
 
-    console.log("_updateProfile() in profile_header.jsx");
+    console.log("_onChange() in profile_header.jsx");
   },
 
   _toTimeline(id) {
@@ -93,6 +93,7 @@ const ProfileHeader = React.createClass({
       </header>
     );
   }
+
 });
 
 module.exports = ProfileHeader;

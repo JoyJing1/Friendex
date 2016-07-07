@@ -24,8 +24,8 @@ const FriendRequestIndexItem = React.createClass({
 
   render() {
     const friend = this.props.friend;
-    console.log('rendering friend_request_index_item');
-    console.log(friend);
+    // console.log('rendering friend_request_index_item');
+    // console.log(friend);
 
     return (
       <div className="friend-request-item clearfix">

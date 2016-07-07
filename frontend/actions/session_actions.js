@@ -6,6 +6,8 @@ const SessionApiUtil = require('../util/session_api_util');
 const ErrorActions = require('./error_actions');
 const hashHistory = require('react-router').hashHistory;
 const ProfileActions = require('./profile_actions');
+const SessionStore = require('../stores/session_store');
+
 
 const SessionActions = {
 
@@ -21,12 +23,21 @@ const SessionActions = {
       ErrorActions.setErrors);
   },
 
+  _redirectToNewsfeed() {
+    hashHistory.push(`/`);
+  },
+
+  _redirectToLogin() {
+    console.log("_redirectToLogin in session_actions.js");
+    hashHistory.push(`/login`);
+  },
+
   _redirectToProfile(id) {
     hashHistory.push(`/users/${id}`);
   },
 
-  _redirectToNewsfeed() {
-    hashHistory.push(`/`);
+  _redirectToTimeline() {
+    hashHistory.push(`/users/${SessionStore.currentUser().id}`);
   },
 
   logIn(formData){
@@ -35,20 +46,17 @@ const SessionActions = {
       formData,
       (resp) => {
         SessionActions.receiveCurrentUser(resp);
-        SessionActions._redirectToTimeline();
+        // SessionActions._redirectToTimeline();
       },
       ErrorActions.setErrors);
   },
 
   logOut() {
     SessionApiUtil.logOut((resp) => {
+      console.log("in success callback of SessionApiUtil.logOut in session_actions.js");
       SessionActions.removeCurrentUser();
       this._redirectToLogin();
     });
-  },
-
-  _redirectToLogin() {
-    hashHistory.push(`login`);
   },
 
   fetchCurrentUser(complete){

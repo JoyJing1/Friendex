@@ -33,8 +33,8 @@ const FriendIndexItem = React.createClass({
 
   render() {
     const friend = this.props.friend;
-    console.log('rendering friend_index_item');
-    console.log(friend);
+    // console.log('rendering friend_index_item');
+    // console.log(friend);
 
     return (
       <div className="friend-item clearfix">
