@@ -5,6 +5,7 @@ const Link  = require('react-router').Link
 
 const NewsfeedActions        = require('../../actions/post_actions')
     , NewsfeedFriendshipItem = require('./newsfeed_friendship_item')
+    , NewsfeedPostItem       = require('./newsfeed_post_item')
     , PostIndexItem          = require('../post/post_index_item')
     , PostItemToFriend       = require('../post/post_item_to_friend')
     , SessionStore           = require('../../stores/session_store');
@@ -16,7 +17,7 @@ const NewsfeedIndexItem = React.createClass({
       if (this.props.news.author_id === this.props.news.receiver_id) {
         return (
           <div className="newsfeed-item news-post-self">
-            <PostIndexItem post={this.props.news}
+            <NewsfeedPostItem post={this.props.news}
                 currentUserProfile={this.props.currentUserProfile}/>
           </div>
         );
@@ -43,6 +44,7 @@ const NewsfeedIndexItem = React.createClass({
   },
 
   render() {
+    console.log("render() in newsfeed_index_item.jsx");
     return (
       <div className="newfeed-index-item">
         {this.friendship_item()}

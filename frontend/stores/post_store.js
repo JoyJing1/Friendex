@@ -12,8 +12,11 @@ const PostStore = new Store(AppDispatcher);
 
 PostStore.__onDispatch = payload => {
   console.log("PostStore.__onDispatch in post_store.js");
+  console.log(_posts);
+
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:
+      console.log("PostConstants.UPDATE_POST in post_store.js");
       let post = payload.post;
       post["type"] = "post";
       _updateItem(post);
@@ -21,6 +24,7 @@ PostStore.__onDispatch = payload => {
       break;
 
     case PostConstants.UPDATE_POSTS:
+      console.log("PostConstants.UPDATE_POST in post_store.js");
       if (payload.posts instanceof Array) {
         _posts = payload.posts;
         PostStore.__emitChange();
@@ -28,6 +32,7 @@ PostStore.__onDispatch = payload => {
       break;
 
     case PostConstants.REMOVED_POST:
+      console.log("PostConstants.REMOVED_POST in post_store.js");
       _removeItem(payload.post);
       PostStore.__emitChange();
       break;
@@ -113,13 +118,13 @@ function _removeComment(comment) {
 function _addLike(like) {
   if (like.image_id) {
     const itemIdx = _findItem("image", like.image_id);
-    if (itemIdx >= 0) {
+    if (itemIdx >= 0 && _likeIdx(_posts[itemIdx].likes, like) < 0) {
       _posts[itemIdx].likes.push(like);
     }
 
   } else if (like.post_id) {
     const itemIdx = _findItem("post", like.post_id);
-    if (itemIdx >= 0) {
+    if (itemIdx >= 0 && _likeIdx(_posts[itemIdx].likes, like) < 0) {
       _posts[itemIdx].likes.push(like);
     }
   }
@@ -142,6 +147,16 @@ function _removeLike(like) {
 
     }
   }
+}
+
+function _likeIdx(likes, target) {
+  let idx = -1;
+  likes.forEach( (el, i) => {
+    if (el.id === target.id) {
+      idx = i;
+    }
+  });
+  return idx;
 }
 
 function _findItem(type, id) {

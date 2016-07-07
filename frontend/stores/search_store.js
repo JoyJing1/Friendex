@@ -31,7 +31,6 @@ function resetMatches(matches) {
 }
 
 SearchStore.matches = function() {
-  // debugger;
   return _matches.slice();
 };
 

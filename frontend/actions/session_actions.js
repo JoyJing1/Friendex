@@ -16,16 +16,16 @@ const SessionActions = {
       (resp) => {
         console.log("inside succesCallback of signUp, in session_actions.js");
         SessionActions.receiveCurrentUser(resp);
-        SessionActions._redirectToProfile(resp.id);
+        SessionActions._redirectToNewsfeed(resp.id);
       },
       ErrorActions.setErrors);
   },
 
-  // _redirectToProfile(id) {
-  //   hashHistory.push(`/users/${id}`);
-  // },
+  _redirectToProfile(id) {
+    hashHistory.push(`/users/${id}`);
+  },
 
-  _redirectToTimeline() {
+  _redirectToNewsfeed() {
     hashHistory.push(`/`);
   },
 

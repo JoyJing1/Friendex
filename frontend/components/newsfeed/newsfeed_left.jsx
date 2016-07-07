@@ -14,7 +14,7 @@ const NewsfeedLeft = React.createClass({
   },
 
   componentDidMount() {
-    ProfileActions.fetchCurrentUserProfile();
+    // ProfileActions.fetchCurrentUserProfile();
     this.sessionListener = SessionStore.addListener(this._update);
   },
 
@@ -23,7 +23,7 @@ const NewsfeedLeft = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    SessionActions.fetchCurrentUser();
+    // SessionActions.fetchCurrentUser();
   },
 
   _update() {

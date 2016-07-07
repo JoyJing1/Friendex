@@ -21,6 +21,10 @@ const ProfileAboutPage = require('./components/profile/profile_about_page');
 const ProfileHeader = require('./components/profile/profile_header');
 const ProfileTimeline = require('./components/profile/profile_timeline');
 
+// Test/access NewsfeedStore from window;
+window.NewsfeedStore = require("./stores/newsfeed_store");
+
+
 const _ensureLoggedIn = function( _ , replace) {
   if (!SessionStore.isUserLoggedIn()) {
     replace("login");

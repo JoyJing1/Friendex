@@ -6,13 +6,13 @@ const Link  = require('react-router').Link
 const CommentIndex = require('../comment/comment_index')
     , ImageActions  = require('../../actions/image_actions')
     , LikeActions  = require('../../actions/like_actions')
-    , LikeCount  = require('./like_count')
+    , LikeCount  = require('../post/like_count')
     , NewCommentForm = require('../comment/new_comment_form')
     , NewsfeedActions   = require('../../actions/newsfeed_actions')
     , PostActions  = require('../../actions/post_actions')
     , SessionStore = require('../../stores/session_store');
 
-const PostIndexItem = React.createClass({
+const NewsfeedPostItem = React.createClass({
   getInitialState() {
     return { liked: this.currentUserLikesPost(this.props.post) };
   },
@@ -213,4 +213,4 @@ const PostIndexItem = React.createClass({
   }
 });
 
-module.exports = PostIndexItem;
+module.exports = NewsfeedPostItem;

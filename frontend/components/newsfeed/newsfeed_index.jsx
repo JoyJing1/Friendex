@@ -20,29 +20,41 @@ const NewsfeedIndex = React.createClass({
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     this.newsfeedListener = NewsfeedStore.addListener(this._onChange);
+    this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
+    console.log("componentWillReceiveProps(newProps) in newsfeed_index.jsx");
+    console.log(newProps);
     const id = SessionStore.currentUser().id;
+    // debugger;
     NewsfeedActions.fetchNewsfeed(id);
+    ProfileActions.fetchCurrentUserProfile();
   },
 
   componentWillUnmount() {
     this.newsfeedListener.remove();
+    this.sessionListener.remove();
   },
 
   _onChange() {
     // debugger;
+    console.log("_onChange() in newsfeed_index.jsx");
+    console.log("original state:");
+    console.log(this.state);
+    console.log("current state in NewsfeedStore.all():");
+    console.log(NewsfeedStore.all());
     this.setState( { newsfeed: NewsfeedStore.all(),
                     currentUserProfile: SessionStore.currentUserProfile() }
                   );
-    console.log("_onChange() in newsfeed_index.jsx");
     // debugger;
+    console.log("After setState() in _onChange() in newsfeed_index.jsx:");
     console.log(this.state);
     // At this point of Flux cycl, has only 1 like
   },
 
   render() {
+    console.log("rendering newsfeed_index.jsx");
     const profile = {id: SessionStore.currentUser().id};
     return (
       <ul>
