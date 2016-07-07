@@ -2,10 +2,23 @@
 
 const ErrorStore = require('../../stores/error_store')
     , Link       = require('react-router').Link
+    , Modal      = require('react-modal')
     , React      = require('react');
 
 const SessionActions = require('../../actions/session_actions')
-    , SessionStore   = require('../../stores/session_store');
+    , SessionStore   = require('../../stores/session_store')
+    , SignupForm     = require('./signup_form');
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '45%',
+    right                 : '45%',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 const LoginForm = React.createClass({
 
@@ -16,7 +29,8 @@ const LoginForm = React.createClass({
   getInitialState() {
     return {
       email: "",
-      password: ""
+      password: "",
+      modalIsOpen: false
     };
   },
 
@@ -24,6 +38,10 @@ const LoginForm = React.createClass({
     this.errorListener = ErrorStore.addListener(this.forceUpdate.bind(this));
     this.sessionListener = SessionStore.addListener(this.redirectIfLoggedIn);
   },
+
+  componentWillMount() {
+    Modal.setAppElement('body');
+   },
 
   componentWillUnmount() {
     this.errorListener.remove();
@@ -45,8 +63,22 @@ const LoginForm = React.createClass({
 		};
 
     console.log("handleSubmit(e) in login_form.jsx");
-    SessionActions.logIn(formData);
+    SessionActions.logIn(formData, this.openModal);
 	},
+
+  openModal: function() {
+    this.setState({modalIsOpen: true});
+  },
+
+  // afterOpenModal: function() {
+  //   // references are now sync'd and can be accessed.
+  //   // this.refs.subtitle.style.color = '#f00';
+  //   this.refs.subtitle.style.color = '#365899';
+  // },
+
+  closeModal: function() {
+    this.setState({modalIsOpen: false});
+  },
 
   // Will need to update formatting
   fieldErrors(field) {
@@ -104,6 +136,23 @@ const LoginForm = React.createClass({
             </div>
 
           </form>
+
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            style={customStyles} >
+
+            <button onClick={this.closeModal} className="close-modal">X</button>
+            <h2 ref="subtitle" className="modal-text">The email and password combination you entered does not match an account. Sign up for an account!</h2>
+
+            <div className="signup-form-modal">
+              <SignupForm/>
+            </div>
+
+
+
+
+          </Modal>
 
         </nav>
       </header>

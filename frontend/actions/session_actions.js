@@ -40,7 +40,7 @@ const SessionActions = {
     hashHistory.push(`/users/${SessionStore.currentUser().id}`);
   },
 
-  logIn(formData){
+  logIn(formData, openModal){
     console.log("logIn(formData) in session_actions.js");
     SessionApiUtil.logIn(
       formData,
@@ -48,7 +48,10 @@ const SessionActions = {
         SessionActions.receiveCurrentUser(resp);
         // SessionActions._redirectToTimeline();
       },
-      ErrorActions.setErrors);
+      (resp) => {
+        ErrorActions.setErrors;
+        openModal();
+      });
   },
 
   logOut() {

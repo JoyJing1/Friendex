@@ -36,6 +36,7 @@
     "react-bootstrap": "^0.29.5",
     "react-bootstrap-select": "^0.14.0",
     "react-dom": "^0.14.8",
+    "react-modal": "^1.4.0",
     "react-router": "^2.5.1",
     "webpack": "^1.13.1"
   }

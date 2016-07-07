@@ -19,7 +19,10 @@ const LoginPage = React.createClass({
 
           <div className="logged-out-body">
             <aside className="signup-left"/>
-            <SignupForm className="signup=form"/>
+
+            <aside className="signup-right">
+              <SignupForm className="signup=form"/>
+            </aside>
           </div>
 
           {this.props.children}

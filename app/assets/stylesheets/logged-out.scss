@@ -78,6 +78,7 @@ input[type="password"], input[type="text"], input[type="email"] {
   margin-bottom: 10px;
 
 }
+
 input[type="password"]:focus, input[type="text"]:focus, input[type="email"]:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   border: 1px solid rgba(81, 203, 238, 1);
@@ -104,15 +105,32 @@ input[type="select"] {
   font-size: 18px;
 }
 
+#login-email:focus, #login-password:focus {
+  border: none;
+}
+
 .logged-out-body {
   margin: 0 auto;
+  width: 1080px;
+  // display: flex;
+}
+
+.signup-left {
+  float: left;
+  width: 50%;
+}
+
+.signup-right {
+  float: right;
+  width: 533px;
+  margin-top: 15px;
 }
 
 .signup-form-container {
   display: flex;
   flex-direction: column;
-  width: 400px;
-  margin: 15px 0;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .signup-form-header > h1 {
@@ -196,4 +214,18 @@ form > p {
 #error {
   box-shadow: 0 0 5px #A94442;
   border: 1px solid #A94442;
+}
+
+// FAILED LOGIN MODAL ///////////////////////////////
+
+button.close-modal {
+  float: right;
+}
+
+.modal-text {
+  color: $blue-liked;
+  font-weight: bold;
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
 }
