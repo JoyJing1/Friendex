@@ -24,10 +24,10 @@ const FriendsPage = React.createClass({
     console.log(id);
 
     ProfileActions.fetchSingleProfile(id);
-    this.profileListener = ProfileStore.addListener(this._updateFriends);
+    this.profileListener = ProfileStore.addListener(this._onChange);
 
     FriendshipActions.fetchAllFriends(id);
-    this.friendListener = FriendshipStore.addListener(this._updateFriends);
+    this.friendListener = FriendshipStore.addListener(this._onChange);
   },
 
   componentWillUnmount() {
@@ -35,24 +35,18 @@ const FriendsPage = React.createClass({
     this.friendListener.remove();
   },
 
-  componentWillReceiveProps(newProps) {
-    FriendshipActions.fetchAllFriends(newProps.profile.user_id);
-  },
-
-  _updateFriends() {
-    console.log("_updateFriends() in FriendsPage");
+  _onChange() {
+    console.log("_onChange() in FriendsPage");
+    // FriendshipActions.fetchAllFriends(this.props.params.id);
     const friends = FriendshipStore.friends();
     const friendRequestsReceived = FriendshipStore.friendRequestsReceived();
     const friendRequestsSent = FriendshipStore.friendRequestsSent();
 
-    this.setState({ friends: friends,
-      friendRequestsReceived: friendRequestsReceived,
-      friendRequestsSent: friendRequestsSent
-    });
-    console.log('after this.setState() in friends_page.jsx. New state below:');
-    console.log(friends);
-    console.log(friendRequestsReceived);
-    console.log(friendRequestsSent);
+    this.setState({ profile: ProfileStore.currentProfile(),
+              friends: FriendshipStore.friends(),
+              friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+              friendRequestsSent: FriendshipStore.friendRequestsSent()
+              });
   },
 
   _friendRequestIndex() {

@@ -22,7 +22,7 @@ const ProfileHeader = require('./components/profile/profile_header');
 const ProfileTimeline = require('./components/profile/profile_timeline');
 
 // Test/access NewsfeedStore from window;
-window.NewsfeedStore = require("./stores/newsfeed_store");
+// window.NewsfeedStore = require("./stores/newsfeed_store");
 
 
 const _ensureLoggedIn = function( _ , replace) {

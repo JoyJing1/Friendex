@@ -6,8 +6,6 @@ const hashHistory = require('react-router').hashHistory
 
 const FriendshipActions = require('../../actions/friendship_actions')
     , FriendshipStore   = require('../../stores/friendship_store');
-    // , ProfileStore      = require('../../stores/profile_store')
-    // , SessionStore      = require('../../stores/session_store');
 
 const ProfileFriendButton = React.createClass({
 
@@ -47,7 +45,6 @@ const ProfileFriendButton = React.createClass({
   },
 
   _toCurrUserFriends(id) {
-    // const currUserId = this.props.currentUser.id;
     hashHistory.replace(`users/${this.props.currentUser.id}/friends`);
   },
 
