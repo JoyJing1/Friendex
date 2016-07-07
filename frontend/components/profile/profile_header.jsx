@@ -15,6 +15,7 @@ const FriendshipActions = require('../../actions/friendship_actions')
 const ProfileHeader = React.createClass({
   getInitialState() {
     return { profile: ProfileStore.currentProfile(),
+              currentUser: SessionStore.currentUser(),
               friends: FriendshipStore.friends(),
               friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
               friendRequestsSent: FriendshipStore.friendRequestsSent() };
@@ -33,11 +34,14 @@ const ProfileHeader = React.createClass({
 
     FriendshipActions.fetchAllFriends(id);
     this.friendshipListener = FriendshipStore.addListener(this._updateProfile);
+
+    this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillUnmount() {
     this.profileListener.remove();
     this.friendshipListener.remove();
+    this.sessionListener.remove();
   },
 
   // updateProfileImg(e) {
@@ -70,15 +74,22 @@ const ProfileHeader = React.createClass({
   // },
 
   _updateProfile() {
-    const profile = ProfileStore.currentProfile();
-    const friends = FriendshipStore.friends();
-    const friendRequestsReceived = FriendshipStore.friendRequestsReceived();
-    const friendRequestsSent = FriendshipStore.friendRequestsSent();
+    // const profile = ProfileStore.currentProfile();
+    // const friends = FriendshipStore.friends();
+    // const friendRequestsReceived = FriendshipStore.friendRequestsReceived();
+    // const friendRequestsSent = FriendshipStore.friendRequestsSent();
+    //
+    // this.setState({ profile: profile,
+    //                 currentUser: SessionStore.currentUser(),
+    //                 friends: friends,
+    //                 friendRequestsReceived: friendRequestsReceived,
+    //                 friendRequestsSent: friendRequestsSent });
 
-    this.setState({ profile: profile,
-                    friends: friends,
-                    friendRequestsReceived: friendRequestsReceived,
-                    friendRequestsSent: friendRequestsSent });
+    this.setState({ profile: ProfileStore.currentProfile(),
+                    currentUser: SessionStore.currentUser(),
+                    friends: FriendshipStore.friends(),
+                    friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
+                    friendRequestsSent: FriendshipStore.friendRequestsSent() });
 
     console.log("_updateProfile() in profile_header.jsx");
   },
@@ -128,14 +139,14 @@ const ProfileHeader = React.createClass({
   //     return included;
   // },
 
-  _toCurrUserFriends(id) {
-    const currUserId = SessionStore.currentUser().id;
-    hashHistory.replace(`users/${currUserId}/friends`);
-  },
+  // _toCurrUserFriends(id) {
+  //   const currUserId = SessionStore.currentUser().id;
+  //   hashHistory.replace(`users/${currUserId}/friends`);
+  // },
 
   _toTimeline(id) {
-    const currProfileId = ProfileStore.currentProfile().id;
-    hashHistory.replace(`users/${currProfileId}/timeline`);
+    // const currProfileId = ProfileStore.currentProfile().id;
+    hashHistory.replace(`users/${this.state.profile.user_id}/timeline`);
   },
   //
   // _currentlyFriendsButton() {
@@ -239,7 +250,8 @@ const ProfileHeader = React.createClass({
             <ProfileFriendButton friends={this.state.friends}
               friendRequestsReceived={this.state.friendRequestsReceived}
               friendRequestsSent={this.state.friendRequestsSent}
-              profile={this.state.profile}/>
+              profile={this.state.profile}
+              currentUser={this.state.currentUser}/>
           </div>
 
           <nav className="profile-tabs">
