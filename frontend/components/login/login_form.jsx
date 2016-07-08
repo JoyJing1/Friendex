@@ -106,10 +106,10 @@ const LoginForm = React.createClass({
     return (
       <header className="logged-out-container">
         <nav className="logged-out-header-nav clearfix">
+
           <h1 className="fd-logo">
             <a href="#">friendex</a>
           </h1>
-
           <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
             <label for="email">Email

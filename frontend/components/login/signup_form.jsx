@@ -260,8 +260,6 @@ const SignupForm = React.createClass({
             </label>
           </div>
 
-          <p>By clicking Sign Up, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.</p>
-
           <input type="submit" value="Sign Up" id="signup-button"/>
 
 
