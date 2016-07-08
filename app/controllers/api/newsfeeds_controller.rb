@@ -120,6 +120,7 @@ class Api::NewsfeedsController < ApplicationController
         JOIN profiles prof_requestor ON f.requestor_id = prof_requestor.user_id
       WHERE f.receiver_id IN (:ids)
         AND f.status = 'accepted'
+        AND f.requestor_id NOT IN (:ids)
     SQL
   end
 
