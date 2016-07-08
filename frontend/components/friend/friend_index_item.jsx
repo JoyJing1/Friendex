@@ -38,7 +38,7 @@ const FriendIndexItem = React.createClass({
 
         <Link to={`/users/${friend.friend_id}`}>
           <div className="friend-img-container">
-            <img src={friend.profile_img.replace('upload', 'upload/c_scale,w_300')} alt="friend"></img>
+            <img src={friend.profile_img.replace('upload', 'upload/c_scale,w_150')} alt="friend"></img>
           </div>
 
           <h4>

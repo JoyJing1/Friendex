@@ -13,11 +13,16 @@ Friendex is a full-stack web application inspired by Facebook.  It utilizes Ruby
 Friendex is a single-page app; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app.
 
 ### User Profiles & About Page
+Each `User` has a unique `Profile` which holds all of the personal information about the user that is displayed in their `ProfileAbout` React component. The `ProfileAbout` component is displayed both on the `ProfileTimeline` as well as the `ProfileAboutPage`.
 
+Only `email` (which is used as each user's unique identifier), `password_digest`, and `username` (for ease of displaying the `User`'s display name) are stored in the `users` table. All additional information is stored in the `profiles` table, which holds a `user_id` foreign key that points to the `users` table.
 
 ### Friending & Friendships
+Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`]. The `ProfileFriendButton` which is displayed in the `ProfileHeader` determines what text to display and what action to perform when clicked, based on the current status of the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`, clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship, and "Cancel Request" removes the `Friendship` from the database.
 
 ### Posts
+
+
 
 ### Photos
 

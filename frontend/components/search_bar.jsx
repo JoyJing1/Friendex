@@ -47,7 +47,7 @@ const SearchBar = React.createClass({
                   onClick={this.clickedUser}
                   key={user.id}
                   value={user.id}>
-                  <img src={user.profile_img.replace('upload', 'upload/c_scale,w_100')}></img>
+                  <img src={user.profile_img.replace('upload', 'upload/c_scale,w_50')}></img>
                   {user.username}
                 </li>
               );

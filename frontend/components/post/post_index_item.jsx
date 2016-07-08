@@ -118,7 +118,7 @@ const PostIndexItem = React.createClass({
 
             <div className="user-profile-img-container clearfix">
               <Link to={`/users/${this.props.post.author_id}`}>
-                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_300')}></img>
+                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_150')}></img>
               </Link>
             </div>
 
