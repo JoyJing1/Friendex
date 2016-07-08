@@ -9,6 +9,7 @@ const hashHistory = require('react-router').hashHistory;
 const NewsfeedActions = {
 
   fetchNewsfeed(id) {
+    // debugger;
     console.log("fetchNewsfeed(id) in newsfeed_actions.js");
     NewsfeedApiUtil.fetchNewsfeed(id, this.receiveNewsfeed);
   },

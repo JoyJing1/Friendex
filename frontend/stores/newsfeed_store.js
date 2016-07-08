@@ -2,12 +2,15 @@
 
 const Store             = require('flux/utils').Store;
 
-const AppDispatcher     = require('../dispatcher/dispatcher.js')
-    , CommentConstants  = require('../constants/comment_constants')
-    , ImageConstants    = require('../constants/image_constants')
-    , LikeConstants     = require('../constants/like_constants')
-    , NewsfeedConstants = require('../constants/newsfeed_constants')
-    , PostConstants     = require('../constants/post_constants');
+const AppDispatcher       = require('../dispatcher/dispatcher.js')
+    , CommentConstants    = require('../constants/comment_constants')
+    , FriendshipConstants = require('../constants/friendship_constants')
+    , ImageConstants      = require('../constants/image_constants')
+    , LikeConstants       = require('../constants/like_constants')
+    , NewsfeedActions     = require('../actions/newsfeed_actions')
+    , NewsfeedConstants   = require('../constants/newsfeed_constants')
+    , PostConstants       = require('../constants/post_constants')
+    , SessionStore        = require('../stores/session_store');
 
 let _newsfeed = [];
 
@@ -74,6 +77,14 @@ NewsfeedStore.__onDispatch = payload => {
       console.log("LikeConstants.REMOVED_LIKE in newsfeed_store.js");
       _removeLike(payload.like);
       NewsfeedStore.__emitChange();
+      break;
+
+    case FriendshipConstants.UPDATE_FRIENDSHIP:
+      console.log("FriendshipConstants.UPDATE_FRIENDSHIP in newsfeed_store.js");
+        const currentUser = SessionStore.currentUser();
+        NewsfeedActions.fetchNewsfeed(currentUser.id);
+      // _removeLike(payload.like);
+      // NewsfeedStore.__emitChange();
       break;
   }
 };

@@ -1,11 +1,11 @@
 class Api::NewsfeedsController < ApplicationController
-  
+
   def show
     user = User.find(params["id"])
     ids = [ user.id ]
 
     user.friends.each do |friend|
-      ids.push(friend.id)
+      ids.push(friend.friend_id)
     end
 
     posts = posts(ids)
@@ -47,7 +47,6 @@ class Api::NewsfeedsController < ApplicationController
         JOIN profiles prof_author ON i.author_id = prof_author.user_id
         JOIN profiles prof_receiver ON i.receiver_id = prof_receiver.user_id
       WHERE author_id IN (:ids)
-        OR receiver_id IN (:ids)
     SQL
   end
 
@@ -73,7 +72,6 @@ class Api::NewsfeedsController < ApplicationController
         JOIN profiles prof_author ON p.author_id = prof_author.user_id
         JOIN profiles prof_receiver ON p.receiver_id = prof_receiver.user_id
       WHERE author_id IN (:ids)
-        OR receiver_id IN (:ids)
     SQL
   end
 

@@ -65,7 +65,6 @@ class User < ActiveRecord::Base
       JOIN profiles p ON p.user_id = f.receiver_id
       WHERE f.requestor_id = :id
         AND f.status = 'accepted'
-
     SQL
   end
 

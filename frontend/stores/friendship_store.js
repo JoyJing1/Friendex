@@ -22,7 +22,6 @@ FriendshipStore.__onDispatch = payload => {
       break;
     case FriendshipConstants.UPDATE_FRIENDSHIPS:
       // console.log('UPDATE_FRIENDSHIPS in friendship_store.js');
-      // console.log(payload);
       _resetFriendships(payload);
       FriendshipStore.__emitChange();
       break;
@@ -33,9 +32,6 @@ function _resetFriendships(payload) {
   _friends = {};
   _friendRequestsReceived = {};
   _friendRequestsSent = {};
-
-  // console.log("_resetFriendship(payload) in friendship_store.js");
-  // console.log(payload);
 
   payload.friends.forEach( friend => {
     _friends[friend.id] = friend;
@@ -56,25 +52,21 @@ function _resetFriendships(payload) {
 }
 
 function _updateFriendship(friendship) {
-  // console.log("_updateFriendship in friendship_store.js");
-  // console.log(friendship);
 
   if (friendship.status === "accepted") {
-    // console.log("trying to update friendship status to 'accepted' from friendship_store.js");
     _friends[friendship.id] = friendship;
 
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "denied") {
-    // console.log("trying to update friendship status to 'denied' from friendship_store.js");
 
     delete _friends[friendship.id];
     delete _friendRequestsReceived[friendship.id];
     delete _friendRequestsSent[friendship.id];
 
   } else if (friendship.status === "pending") {
-    // console.log("trying to update friendship status to 'pending' from friendship_store.js");
+
     const currentProfile = ProfileStore.currentProfile();
 
     if (currentProfile.user_id === friendship.requestor_id) {
