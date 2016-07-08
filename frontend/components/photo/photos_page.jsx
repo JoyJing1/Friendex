@@ -45,12 +45,6 @@ const PhotosPage = React.createClass({
     ImageActions.createImage(img);
   },
 
-  // deletePhoto(e) {
-  //   e.preventDefault();
-  //   const photoId = parseInt(e.target.value);
-  //   ImageActions.deleteImage(photoId);
-  // },
-
   _checkImages() {
     if (this.state.images.length === 0) {
       return (

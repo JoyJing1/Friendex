@@ -44,6 +44,8 @@ const Header = React.createClass({
     hashHistory.push(`users/${currUserId}`);
   },
 
+
+// "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"
   render() {
     const currentUser = SessionStore.currentUser();
 
@@ -53,7 +55,7 @@ const Header = React.createClass({
 
           <aside className="header-left">
             <Link to={"/"} className="f-square-icon">
-              <img src= "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"></img>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467995683/icons/Facebook-48.png"></img>
             </Link>
 
             <SearchBar/>
