@@ -94,7 +94,7 @@ const LoginForm = React.createClass({
 
           <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
-            <label for="email">Email
+            <label htmlFor="email">Email
             <input type="email"
               value={this.state.email}
               label="email"
@@ -102,7 +102,7 @@ const LoginForm = React.createClass({
               onChange={this.update("email")}/>
             </label>
 
-            <label for="password">Password
+            <label htmlFor="password">Password
             <input type="password"
               value={this.state.password}
               label="password"
