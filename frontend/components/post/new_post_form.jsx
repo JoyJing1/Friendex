@@ -27,10 +27,6 @@ const NewPostForm = React.createClass({
     this.sessionListener.remove();
   },
 
-  componentWillReceiveProps(newProps) {
-    // ProfileActions.fetchCurrentUserProfile();
-  },
-
   _onChange() {
     const currentUserProfile = SessionStore.currentUserProfile();
     this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );

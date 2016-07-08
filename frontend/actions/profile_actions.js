@@ -11,7 +11,6 @@ const ProfileActions = {
   fetchSingleProfile(id) {
     console.log("fetchSingleProfile(id) in profile_actions.js");
     console.log(id);
-    // debugger;
     ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
   },
 
@@ -24,7 +23,6 @@ const ProfileActions = {
     console.log("fetchCurrentUserProfile(id) in profile_actions.js");
     let currentUser = SessionStore.currentUser();
     if (currentUser) {
-      // debugger;
       ProfileApiUtil.fetchProfile(currentUser.profile_id, this.receiveCurrentUserProfile);
     }
   },
