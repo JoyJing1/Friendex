@@ -46,12 +46,18 @@ aside.search-bar {
   border-radius: 3px;
 }
 
+
 .search-bar input[type="text"] {
   display: inline-block;
   margin-bottom: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   width: 325px;
+}
+
+.search-bar input[type="text"]:focus {
+  border: none;
+  box-shadow: none;
 }
 
 .search-icon {
@@ -69,7 +75,7 @@ ul.search-results {
 
 li.search-item {
   background-color: white;
-  width: 212px;
+  width: 383px;
   vertical-align: middle;
 }
 
