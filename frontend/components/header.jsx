@@ -47,6 +47,11 @@ const Header = React.createClass({
   render() {
     const currentUser = SessionStore.currentUser();
 
+    let profileImg = "";
+    if (this.state.currentUserProfile.profile_img) {
+      profileImg = this.state.currentUserProfile.profile_img.replace("upload", "upload/c_scale,h_40")
+    }
+
     return(
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">
@@ -64,7 +69,7 @@ const Header = React.createClass({
             <div className="header-user redirect"
               onClick={this._toCurrUserProfile}>
               <div className="header-user-icon">
-                <img src={this.state.currentUserProfile.profile_img}
+                <img src={profileImg}
                   alt="profile-img"/>
               </div>
 

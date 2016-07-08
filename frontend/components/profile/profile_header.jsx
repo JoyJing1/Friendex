@@ -137,7 +137,7 @@ const ProfileHeader = React.createClass({
   render() {
     let profileImg = "";
     if (this.state.profile.profile_img) {
-      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_150');
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }
     return(
       <header className="profile-nav clearfix">

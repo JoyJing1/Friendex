@@ -26,7 +26,9 @@ const SearchBar = React.createClass({
   filterUsers(e) {
     e.preventDefault();
     this.setState({ query: e.target.value });
-    SearchActions.fetchMatches(e.target.value);
+    if (e.target.value.length > 0) {
+      SearchActions.fetchMatches(e.target.value);
+    }
   },
 
   clickedUser(e) {

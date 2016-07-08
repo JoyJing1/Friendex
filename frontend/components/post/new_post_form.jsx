@@ -109,7 +109,7 @@ const NewPostForm = React.createClass({
     const numRows = Math.floor(this.state.body.length / 18);
     let profileImg = "";
     if (this.state.currentUserProfileImg) {
-      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,h_150');
+      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,h_100');
     }
 
     return(

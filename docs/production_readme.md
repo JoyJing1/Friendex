@@ -21,7 +21,7 @@ Only `email` (which is used as each user's unique identifier), `password_digest`
 Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`]. The `ProfileFriendButton` which is displayed in the `ProfileHeader` determines what text to display and what action to perform when clicked, based on the current status of the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`, clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship, and "Cancel Request" removes the `Friendship` from the database.
 
 ### Posts
-
+A
 
 
 ### Photos
