@@ -46,8 +46,10 @@ const SignupForm = React.createClass({
   _setDefaultProfilePic(profileData) {
     if (this.state.gender === "female") {
       profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214764/profiles/profile_default_woman.jpg";
+
     } else if (this.state.gender === "male") {
       profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214758/profiles/123.jpg";
+
     } else {
       profileData["profile_img"] = "https://res.cloudinary.com/joyjing1/image/upload/v1467214732/profiles/no-profile-image.jpg";
     }
@@ -211,14 +213,14 @@ const SignupForm = React.createClass({
           </div>
 
           <div className="signup-gender">
-            <label for="f">
+            <label htmlFor="f">
             <input type="radio"
                     name="gender"
                     value="female"
                     key="f"
                     onChange={this.update("gender")}/> Female
             </label>
-            <label for="m">
+            <label htmlFor="m">
             <input type="radio"
                     name="gender"
                     value="male"
@@ -226,7 +228,7 @@ const SignupForm = React.createClass({
                     className="gender-male"
                     onChange={this.update("gender")}/> Male
             </label>
-            <label for="o">
+            <label htmlFor="o">
             <input type="radio"
                     name="gender"
                     value="other"
