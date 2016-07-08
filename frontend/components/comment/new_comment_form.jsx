@@ -42,6 +42,10 @@ const NewCommentForm = React.createClass({
 
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
+    let profileImg = "";
+    if (this.props.currentUserProfile.profile_img) {
+      profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,w_300');
+    }
 
     return(
       <div className="new-comment-form-container">
@@ -50,7 +54,7 @@ const NewCommentForm = React.createClass({
               onSubmit={this.handleSubmit}>
 
           <div className="comment-profile-icon">
-            <img src={this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,w_300')}></img>
+            <img src={profileImg}></img>
           </div>
 
             <input type="text"
