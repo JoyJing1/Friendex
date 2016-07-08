@@ -66,7 +66,7 @@ const LoginForm = React.createClass({
     SessionActions.logIn(formData, this.openModal);
 	},
 
-  openModal: function() {
+  openModal() {
     this.setState({modalIsOpen: true});
   },
 
@@ -76,7 +76,7 @@ const LoginForm = React.createClass({
   //   this.refs.subtitle.style.color = '#365899';
   // },
 
-  closeModal: function() {
+  closeModal() {
     this.setState({modalIsOpen: false});
   },
 
@@ -143,7 +143,7 @@ const LoginForm = React.createClass({
             onAfterOpen={this.afterOpenModal}
             style={customStyles} >
 
-            <button onClick={this.closeModal} className="close-modal">X</button>
+            <button onClick={this.closeModal} className="close-modal">☓</button>
             <h2 ref="subtitle" className="modal-text">The email and password combination you entered does not match an account. Sign up for an account!</h2>
 
             <div className="signup-form-modal">

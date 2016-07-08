@@ -4,6 +4,7 @@ const React = require('react');
 
 const ImageActions       = require('../../actions/image_actions')
     , ImageStore         = require('../../stores/image_store')
+    , PhotoItem          = require('./photo_item')
     , ProfileStore       = require('../../stores/profile_store')
     , PropTypes          = React.PropTypes
     , SessionStore       = require('../../stores/session_store')
@@ -11,7 +12,8 @@ const ImageActions       = require('../../actions/image_actions')
 
 const PhotosPage = React.createClass({
   getInitialState() {
-    return { images: [] };
+    return { images: [],
+              ownProfile: SessionStore.currentUser().id === parseInt(this.props.params.id) };
   },
 
   componentDidMount() {
@@ -30,7 +32,8 @@ const PhotosPage = React.createClass({
 
   _onChange() {
     console.log("_onChange() in photos_page.js");
-    this.setState( { images: ImageStore.all() } );
+    this.setState( { images: ImageStore.all(),
+                      ownProfile: SessionStore.currentUser().id === parseInt(this.props.params.id) } );
     console.log(this.state);
   },
 
@@ -55,7 +58,7 @@ const PhotosPage = React.createClass({
           No photos to display
         </ul>
       );
-    } else {
+    } else if (this.state.ownProfile) {
       return (
         <ul className="photo-list clearfix">
           {
@@ -64,11 +67,21 @@ const PhotosPage = React.createClass({
                 <li className="photo-clickable grow"
                     key={image.id}>
                   <img src={image.url}></img>
-                  <button onClick={this.deletePhoto}
-                          value={image.id}
-                          className="delete-photo">☓</button>
+                    <button onClick={this.deletePhoto}
+                      value={image.id}
+                      className="delete-photo">☓</button>
                 </li>
               );
+            })
+          }
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="photo-list clearfix">
+          {
+            this.state.images.map( image => {
+              return <PhotoItem image={image} key={image.id}/> ;
             })
           }
         </ul>
@@ -77,19 +90,23 @@ const PhotosPage = React.createClass({
   },
 
 
+  // <li className="photo-clickable grow"
+  //     key={image.id}>
+  //   <img src={image.url}></img>
+  // </li>
+
   render () {
-    const ownProfile = SessionStore.currentUser().id === parseInt(this.props.params.id);
     return (
       <div className="profile-photos-full">
 
         <h3>
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467669448/icons/iconmonstr-picture-5-240.png"
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_40/v1467669448/icons/iconmonstr-picture-5-240.png"
             className="photos-icon">
           </img>Photos
 
           <UploadPhotosButton postImage={this.addImage}
                               className="upload-photo"
-                              ownProfile={ownProfile}/>
+                              ownProfile={this.state.ownProfile}/>
         </h3>
 
         {this._checkImages()}

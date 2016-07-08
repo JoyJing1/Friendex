@@ -68,10 +68,17 @@ li.photo-clickable {
   position: relative;
 }
 
+li.photo-clickable button {
+  height: 100%;
+  width: 100%;
+  // margin: 0;
+  object-fit: cover;
+}
+
 .photo-clickable img {
   height: 100%;
   width: 100%;
-  margin: 0;
+  // margin: 0;
   object-fit: cover;
 }
 
@@ -94,3 +101,66 @@ li.photo-clickable {
   top: 0;
   right: 4px;
 }
+
+button.close-modal-photo {
+  // float: right;
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+.modal-backdrop {
+  opacity:0.5 !important;
+  color: black;
+}
+
+.ReactModal__Overlay {
+  z-index: 1000; /* Must be greater than #side-dragbar:z-index */
+  background-color: black;
+}
+
+.ReactModal__Overlay {
+  -webkit-perspective: 600;
+  perspective: 600;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.ReactModal__Content {
+  -webkit-transform: scale(0.5) rotateX(-30deg);
+  transform: scale(0.5) rotateX(-30deg);
+}
+
+.ReactModal__Content--after-open {
+  -webkit-transform: scale(1) rotateX(0deg);
+  transform: scale(1) rotateX(0deg);
+  transition: all 150ms ease-in;
+  background-color: black;
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content--before-close {
+  -webkit-transform: scale(0.5) rotateX(30deg);
+  transform: scale(0.5) rotateX(30deg);
+  transition: all 150ms ease-in;
+}
+
+
+//
+// .photo-modal {
+//   // z-index: 100;
+//   // top: 50%;
+//   // left: 45%;
+//   // right: 45%;
+//   // bottom: auto;
+//   // margin-right: -50%;
+//   // transform: translate(-50%, -50%);
+// }
