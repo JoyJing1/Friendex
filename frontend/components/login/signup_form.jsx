@@ -243,7 +243,7 @@ const SignupForm = React.createClass({
 
           <input type="submit"
                 value="Sign Up"
-                className={`signup-button form-complete-${this.formComplete()}`}
+                className='signup-button'
                 disabled={!this.formComplete()}/>
 
         </form>
@@ -253,6 +253,3 @@ const SignupForm = React.createClass({
 });
 
 module.exports = SignupForm;
-
-
-// id="signup-button"

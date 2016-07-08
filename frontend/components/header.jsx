@@ -44,8 +44,6 @@ const Header = React.createClass({
     hashHistory.push(`users/${currUserId}`);
   },
 
-
-// "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"
   render() {
     const currentUser = SessionStore.currentUser();
 

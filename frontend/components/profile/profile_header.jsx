@@ -29,12 +29,12 @@ const ProfileHeader = React.createClass({
   componentDidMount() {
     // console.log("componentDidMount() in profile_header.jsx");
     const id = parseInt(this.props.params.id);
-    ProfileActions.fetchSingleProfile(id);
+    if (id) {
+      ProfileActions.fetchSingleProfile(id);
+      FriendshipActions.fetchAllFriends(id);
+    }
     this.profileListener = ProfileStore.addListener(this._onChange);
-
-    FriendshipActions.fetchAllFriends(id);
     this.friendshipListener = FriendshipStore.addListener(this._onChange);
-
     this.sessionListener = SessionStore.addListener(this._onChange);
   },
 

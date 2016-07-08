@@ -28,7 +28,7 @@ const NewsfeedLeft = React.createClass({
 
   _update() {
     this.setState({ profile: SessionStore.currentUserProfile() });
-    console.log("_update() in newsfeed_left.jsx");
+    // console.log("_update() in newsfeed_left.jsx");
   },
 
   render() {

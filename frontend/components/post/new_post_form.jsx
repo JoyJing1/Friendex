@@ -86,15 +86,15 @@ const NewPostForm = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, images) {
         if (error === null) {
-          console.log("Photo Upload succeeded in new_post_form.jsx");
+          // console.log("Photo Upload succeeded in new_post_form.jsx");
           for (let i = 0; i < images.length; i++) {
             that.addImage(images[i].url);
           }
           that.setState( {body: ""});
 
         } else {
-          console.log("Photo Upload failed in new_post_form.jsx");
-          console.log(error);
+          // console.log("Photo Upload failed in new_post_form.jsx");
+          // console.log(error);
         }
       }
     );
@@ -111,6 +111,10 @@ const NewPostForm = React.createClass({
 
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
+    let profileImg = "";
+    if (this.state.currentUserProfileImg) {
+      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,w_300');
+    }
 
     return(
       <div className="new-post-form-container">
@@ -139,7 +143,7 @@ const NewPostForm = React.createClass({
             <div className="new-post-profile-pic">
               <Link className="redirect"
                     to={`users/${this._toCurrUserProfile.user_id}`}>
-                <img src={this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,w_300')}></img>
+                <img src={profileImg}></img>
               </Link>
             </div>
 
