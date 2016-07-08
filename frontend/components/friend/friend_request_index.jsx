@@ -26,9 +26,6 @@ const FriendRequestIndex = React.createClass({
   },
 
   render() {
-    // console.log('rendering FriendRequestIndex');
-    // console.log(this.props.friendRequestsReceived);
-
     return (
       <div className="friend-request-container">
           <h3>

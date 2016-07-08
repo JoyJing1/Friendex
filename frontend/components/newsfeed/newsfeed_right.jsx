@@ -14,7 +14,7 @@ const Newsfeed = React.createClass({
         <div className="newsfeed-right-item">
           <a href="https://github.com/JoyJing1">
             Check out the Developer
-            <img className="git-logo" src="http://res.cloudinary.com/joyjing1/image/upload/v1467598347/icons/iconmonstr-github-1-240.png"></img>
+            <img className="git-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1467598347/icons/iconmonstr-github-1-240.png"></img>
             joyjing1
           </a>
         </div>

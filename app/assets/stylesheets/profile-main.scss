@@ -29,16 +29,22 @@ html, body {
   background-color: $dark-gray;
   border-left: 1px solid $gray-light-border;
   border-right: 1px solid $gray-light-border;
-}
 
-.background-img {
-  border-right: 1px solid $gray-light-border;
-  position: absolute;
-  width: 100%;
-  margin: 0 auto;
-  display: inline-block;
-  // background-color: $dark-gray;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
+//
+// .background-img {
+//   border-right: 1px solid $gray-light-border;
+//   position: absolute;
+//   width: 100%;
+//   margin: 0 auto;
+//   display: inline-block;
+//   // background-color: $dark-gray;
+// }
 
 .profile-header-nav {
   width: 900px;
@@ -58,13 +64,20 @@ html, body {
   border-radius: 2px;
   box-shadow: 1px 1px $gray-shadow;
   z-index: 10;
+
+  img {
+    height: 100%;
+    width: 100%;
+    // margin: 0;
+    object-fit: cover;
+  }
 }
 
-.profile-img {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  object-fit: cover;
+// .profile-img {
+//   height: 100%;
+//   width: 100%;
+//   margin: 0;
+//   object-fit: cover;
 
   // display: block;
   // position: absolute;
@@ -77,7 +90,7 @@ html, body {
   // border-radius: 2px;
   // box-shadow: 1px 1px $gray-shadow;
   // z-index: 10;
-}
+// }
 
 .profile-nav h1 {
   position: absolute;

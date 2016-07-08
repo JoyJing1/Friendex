@@ -44,8 +44,17 @@ const Header = React.createClass({
     hashHistory.push(`users/${currUserId}`);
   },
 
+  // render() {
+  //   return <h1>Empty Header</h1>
+  // }
+
   render() {
     const currentUser = window.currentUser;
+    // let profileImg="";
+    // if (this.state.currentUserProfile.profile_img) {
+    //   profileImg = this.state.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,w_100');
+    // }
+
     return(
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">
@@ -58,8 +67,11 @@ const Header = React.createClass({
 
           <div className="header-user redirect"
                 onClick={this._toCurrUserProfile}>
-            <img className="header-user-icon"
-                  src={this.state.currentUserProfile.profile_img}></img>
+            <div className="header-user-icon">
+              <img src={this.state.currentUserProfile.profile_img}
+                    alt="profile-img"/>
+            </div>
+
             <Link to={`/users/${currentUser.id}`}
                   className="username-link">{currentUser.username}</Link>
           </div>

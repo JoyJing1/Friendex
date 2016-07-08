@@ -12,6 +12,12 @@ li.comment-item {
   border-bottom: 1px solid $gray-light-border;
 }
 
+.profile-comment-icon {
+  display: inline-block;
+  vertical-align: top;
+
+}
+
 .comment-item img {
   display: inline-block;
   vertical-align: top;
@@ -43,12 +49,19 @@ h6.comment-time {
 
 }
 
-.new-comment-profile-pic, .comment-profile-pic {
+div.comment-profile-icon {
   display: inline-block;
   height: 30px;
   width: 30px;
   margin: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
+
 
 form.new-comment-form {
   vertical-align: middle;

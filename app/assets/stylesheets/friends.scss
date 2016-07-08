@@ -58,10 +58,16 @@ img.friend-request-icon {
     position: absolute;
   }
 
-  img {
+  .friend-img-container {
     height: 77px;
     width: 77px;
     display: inline-block;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 

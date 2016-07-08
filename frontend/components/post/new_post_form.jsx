@@ -139,7 +139,7 @@ const NewPostForm = React.createClass({
             <div className="new-post-profile-pic">
               <Link className="redirect"
                     to={this._toCurrUserProfile}>
-                <img src={this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,w_200')}></img>
+                <img src={this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,w_300')}></img>
               </Link>
             </div>
 

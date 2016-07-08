@@ -88,38 +88,6 @@ const PostItemToFriend = React.createClass({
     }
   },
 
-  // setLiked(e) {
-  //   console.log("setLiked() in post_index_item.jsx");
-  //   e.preventDefault();
-  //
-  //   if (this.props.post.type === "post") {
-  //     LikeActions.createLike({ post_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: true });
-  //     });
-  //
-  //   } else if (this.props.post.type === "image") {
-  //     LikeActions.createLike({ image_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: true });
-  //     });
-  //   }
-  // },
-  //
-  // setUnliked(e) {
-  //   console.log("setUnliked() in post_index_item.jsx");
-  //   e.preventDefault();
-  //
-  //   if (this.props.post.type === "post") {
-  //     LikeActions.deleteLike({ post_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: false });
-  //     });
-  //
-  //   } else if (this.props.post.type === "image") {
-  //     LikeActions.deleteLike({ image_id: this.props.post.id }, (resp) => {
-  //       this.setState( { liked: false });
-  //     });
-  //   }
-  // },
-
   likeButton() {
     if (this.state.liked) {
       return (
@@ -148,7 +116,7 @@ const PostItemToFriend = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.post.author_id}`}>
-                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_200')}></img>
+                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_300')}></img>
               </Link>
             </div>
 

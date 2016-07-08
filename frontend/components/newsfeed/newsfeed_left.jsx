@@ -35,6 +35,10 @@ const NewsfeedLeft = React.createClass({
   render() {
     const currentUser = SessionStore.currentUser();
     const currentUserProfile = SessionStore.currentUserProfile();
+    let profileImg = "";
+    if ( this.state.profile.profile_img) {
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,w_100');
+    }
 
     return(
       <aside className="newsfeed-left">
@@ -42,7 +46,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}`}>
-              <img src={this.state.profile.profile_img}
+              <img src={profileImg}
                     className="left-icon"></img>
                   <h5>{this.state.profile.first_name} {this.state.profile.last_name}</h5>
             </Link>

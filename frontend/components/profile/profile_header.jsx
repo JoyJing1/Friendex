@@ -55,7 +55,7 @@ const ProfileHeader = React.createClass({
   },
 
   _toTimeline(id) {
-    hashHistory.replace(`users/${this.state.profile.user_id}/timeline`);
+    hashHistory.push(`users/${this.state.profile.user_id}/timeline`);
   },
 
   uploadProfileImg(e) {
@@ -77,7 +77,6 @@ const ProfileHeader = React.createClass({
           }
         } else {
           console.log("Upload failed in uploa_photos_button.jsx");
-          // console.log(error);
         }
       }
     );
@@ -88,16 +87,20 @@ const ProfileHeader = React.createClass({
 
 
   render() {
+    // let profileImg = "";
+    // if (this.state.profile.profile_img) {
+    //   profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,w_450');
+    // }
+    //
     return(
       <header className="profile-nav clearfix">
         <div className="background-container clearfix">
-          <img src={this.state.profile.background_img} className="background-img"/>
+          <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
         </div>
 
         <div className="profile-header-nav">
           <div className="redirect profile-img-container" onClick={this.uploadProfileImg}>
-            <img src={this.state.profile.profile_img}
-              className="profile-img"/>
+            <img src={this.state.profile.profile_img} alt="profile-img"/>
           </div>
 
           <h1>{this.state.profile.username}</h1>

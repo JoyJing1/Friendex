@@ -75,7 +75,7 @@ const NewsfeedFriendshipItem = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.friendship.friend_id}`}>
-                <img src={this.props.friendship.friend_img.replace('upload','upload/c_scale,w_75')}></img>
+                <img src={this.props.friendship.friend_img.replace('upload','upload/c_scale,w_300')} alt='friend'></img>
               </Link>
             </div>
 
@@ -95,7 +95,7 @@ const NewsfeedFriendshipItem = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.friendship.new_friend_id}`}>
-                <img src={this.props.friendship.new_friend_img}></img>
+                <img src={this.props.friendship.new_friend_img.replace('upload', 'upload/c_scale,w_300')} alt="new-friend"></img>
               </Link>
             </div>
 

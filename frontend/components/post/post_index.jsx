@@ -27,7 +27,6 @@ const PostIndex = React.createClass({
   componentWillReceiveProps(newProps) {
     console.log("componentWillreceiveProps(newProps) in post_index.jsx");
     const ids = { receiver_id: newProps.profile.user_id };
-    // console.log(ids);
 
     PostActions.fetchManyPosts(ids);
     ProfileActions.fetchCurrentUserProfile();

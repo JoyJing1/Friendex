@@ -33,14 +33,15 @@ const FriendIndexItem = React.createClass({
 
   render() {
     const friend = this.props.friend;
-    // console.log('rendering friend_index_item');
-    // console.log(friend);
 
     return (
       <div className="friend-item clearfix">
 
         <Link to={`/users/${friend.friend_id}`}>
-          <img src={friend.profile_img}></img>
+          <div className="friend-img-container">
+            <img src={friend.profile_img.replace('upload', 'upload/c_scale,w_300')} alt="friend"></img>
+          </div>
+
           <h4>
             {friend.first_name} {friend.last_name}
           </h4>
