@@ -78,7 +78,6 @@ li.photo-clickable button {
 .photo-clickable img {
   height: 100%;
   width: 100%;
-  // margin: 0;
   object-fit: cover;
 }
 
@@ -103,7 +102,6 @@ li.photo-clickable button {
 }
 
 button.close-modal-photo {
-  // float: right;
   position: absolute;
   top: 0;
   right: 5px;
@@ -115,7 +113,7 @@ button.close-modal-photo {
 }
 
 .ReactModal__Overlay {
-  z-index: 1000; /* Must be greater than #side-dragbar:z-index */
+  z-index: 1000;
   background-color: black;
 }
 
@@ -125,8 +123,8 @@ button.close-modal-photo {
   opacity: 0;
 }
 
-.modal-photo {
-  opacity: 1;
+img.modal-photo {
+  border-radius: 3px
 }
 
 .ReactModal__Overlay--after-open {
@@ -145,8 +143,6 @@ button.close-modal-photo {
   transition: all 150ms ease-in;
   background-color: black;
   opacity: 1;
-  // background-color: black;
-  // border: none;
 }
 
 .ReactModal__Overlay--before-close {
@@ -158,15 +154,3 @@ button.close-modal-photo {
   transform: scale(0.5) rotateX(30deg);
   transition: all 150ms ease-in;
 }
-
-
-//
-// .photo-modal {
-//   // z-index: 100;
-//   // top: 50%;
-//   // left: 45%;
-//   // right: 45%;
-//   // bottom: auto;
-//   // margin-right: -50%;
-//   // transform: translate(-50%, -50%);
-// }

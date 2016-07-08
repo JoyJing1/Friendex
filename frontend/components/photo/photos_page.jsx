@@ -58,42 +58,22 @@ const PhotosPage = React.createClass({
           No photos to display
         </ul>
       );
-    } else if (this.state.ownProfile) {
-      return (
-        <ul className="photo-list clearfix">
-          {
-            this.state.images.map( image => {
-              return (
-                <li className="photo-clickable grow"
-                    key={image.id}>
-                  <img src={image.url}></img>
-                    <button onClick={this.deletePhoto}
-                      value={image.id}
-                      className="delete-photo">☓</button>
-                </li>
-              );
-            })
-          }
-        </ul>
-      );
     } else {
       return (
         <ul className="photo-list clearfix">
           {
             this.state.images.map( image => {
-              return <PhotoItem image={image} key={image.id}/> ;
+              return (
+                <PhotoItem image={image}
+                    ownProfile={this.state.ownProfile}
+                    key={image.id}/>
+              );
             })
           }
         </ul>
       );
     }
   },
-
-
-  // <li className="photo-clickable grow"
-  //     key={image.id}>
-  //   <img src={image.url}></img>
-  // </li>
 
   render () {
     return (

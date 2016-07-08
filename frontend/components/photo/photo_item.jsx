@@ -3,7 +3,6 @@
 const Modal = require('react-modal')
     , React = require('react');
 
-
 const customStyles = {
   overlay : {
    position          : 'fixed',
@@ -25,8 +24,6 @@ const customStyles = {
   }
 };
 
-
-
 const PhotoItem = React.createClass({
   getInitialState() {
     return { modalIsOpen: false };
@@ -46,27 +43,24 @@ const PhotoItem = React.createClass({
     this.setState({modalIsOpen: false});
   },
 
-  handleClick() {
-    console.log('in handleClick() in PhotoItem');
-    // openModal();
+  deleteButton() {
+    if (this.props.ownProfile) {
+      return(
+        <a onClick={this.deletePhoto}
+          value={this.props.image.id}
+          className="delete-photo">☓</a>
+      )
+    }
   },
-
-  // <button onClick={this.openModal}>
-  //       </button>
-  //
-  // <button onClick={this.deletePhoto}
-  //   value={this.props.image.id}
-  //   className="delete-photo">☓</button>
-
 
 
   render() {
-    console.log('rendered a PhotoItem');
-
     return (
       <li className="photo-clickable grow"
           key={this.props.image.id}>
         <button onClick={this.openModal}>
+
+          {this.deleteButton()}
 
           <img src={this.props.image.url}></img>
 
@@ -78,18 +72,14 @@ const PhotoItem = React.createClass({
             onRequestClose={this.closeModal}
             style={customStyles} >
 
-            <button onClick={this.closeModal} className="close-modal-photo">☓</button>
-
             <img src={this.props.image.url} alt="photo" className="modal-photo"/>
 
           </Modal>
 
         </button>
-
       </li>
     );
   }
 });
-
 
 module.exports = PhotoItem;
