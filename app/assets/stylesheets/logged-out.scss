@@ -135,7 +135,7 @@ input[type="select"] {
 .signup-form-container {
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -204,8 +204,12 @@ form > p {
   margin-top: 10px;
 }
 
-.signup-birthday {
-
+.signup-birthday select {
+  font-size: 16px;
+  height: 30px;
+  width: 78px;
+  border: 1px solid #bdc7d8;
+  /* border-color: rgb(166, 166, 166); */
 }
 
 .signup-gender {
