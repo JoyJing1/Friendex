@@ -60,23 +60,29 @@ const ProfileHeader = React.createClass({
 
   uploadProfileImg(e) {
     e.preventDefault(e);
-    let that = this;
 
-    cloudinary.openUploadWidget(
-      window.CLOUDINARY_OPTIONS,
-      function(error, images) {
-        if (error === null) {
-          console.log("Upload succeeded in upload_photos_button.jsx");
-          for (let i = 0; i < images.length; i++) {
-            let currentProfile = ProfileStore.currentProfile();
-            currentProfile['profile_img'] = images[i].url;
-            ProfileActions.updateProfile(currentProfile);
+    if (this.state.currentUser.id === this.state.profile.user_id) {
+      let that = this;
+
+      cloudinary.openUploadWidget(
+        window.CLOUDINARY_OPTIONS,
+        function(error, images) {
+          if (error === null) {
+            console.log("Upload succeeded in upload_photos_button.jsx");
+            for (let i = 0; i < images.length; i++) {
+              let currentProfile = ProfileStore.currentProfile();
+              currentProfile['profile_img'] = images[i].url;
+              ProfileActions.updateProfile(currentProfile);
+            }
+          } else {
+            console.log("Upload failed in uploa_photos_button.jsx");
           }
-        } else {
-          console.log("Upload failed in uploa_photos_button.jsx");
         }
-      }
-    );
+      );
+
+    } else {
+      hashHistory.push(`users/${this.state.profile.user_id}/about`);
+    }
 
   },
 
