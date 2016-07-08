@@ -11,8 +11,7 @@ const customStyles = {
    left              : 0,
    right             : 0,
    bottom            : 0,
-   backgroundColor   : "#000000",
-   opacity           : 0.9
+   backgroundColor   : "rgba(0, 0, 0, 0.9)"
  },
   content : {
     top                   : '50%',
@@ -20,7 +19,9 @@ const customStyles = {
     right                 : '45%',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    background            : "000000",
+    border                : "none"
   }
 };
 
@@ -74,11 +75,12 @@ const PhotoItem = React.createClass({
             onAfterOpen={this.afterOpenModal}
             shouldCloseOnOverlayClick={true}
             onBackdropClick={this.closeModal}
+            onRequestClose={this.closeModal}
             style={customStyles} >
 
             <button onClick={this.closeModal} className="close-modal-photo">☓</button>
 
-            <img src={this.props.image.url} alt="photo"/>
+            <img src={this.props.image.url} alt="photo" className="modal-photo"/>
 
           </Modal>
 

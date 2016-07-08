@@ -125,6 +125,10 @@ button.close-modal-photo {
   opacity: 0;
 }
 
+.modal-photo {
+  opacity: 1;
+}
+
 .ReactModal__Overlay--after-open {
   opacity: 1;
   transition: opacity 150ms ease-out;
@@ -141,6 +145,8 @@ button.close-modal-photo {
   transition: all 150ms ease-in;
   background-color: black;
   opacity: 1;
+  // background-color: black;
+  // border: none;
 }
 
 .ReactModal__Overlay--before-close {
