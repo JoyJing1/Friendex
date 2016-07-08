@@ -41,7 +41,6 @@ const NewCommentForm = React.createClass({
   },
 
   render() {
-
     const numRows = Math.floor(this.state.body.length / 18);
 
     return(

@@ -8,27 +8,27 @@ const hashHistory = require('react-router').hashHistory;
 
 const FriendshipActions = {
   createFriendship(friendship) {
-    console.log("createFriendship(friendship) in friendship_actions.js");
+    // console.log("createFriendship(friendship) in friendship_actions.js");
     FriendshipApiUtil.createFriendship(friendship, this.receiveSingleFriendship);
   },
 
   updateFriendship(friendship, page) {
-    console.log("updateFriendship(friendship) in friendship_actions.js");
+    // console.log("updateFriendship(friendship) in friendship_actions.js");
     FriendshipApiUtil.updateFriendship(friendship, page, this.receiveSingleFriendship);
   },
 
   removeFriendship(friendship) {
-    console.log("removeFriendship(friendship) in friendship_actions.js");
+    // console.log("removeFriendship(friendship) in friendship_actions.js");
     FriendshipApiUtil.deleteFriendship(friendship, this.receiveSingleFriendship);
   },
 
   fetchSingleFriendship(id) {
-    console.log("fetchSingleFriendship(id) in friendship_actions.js");
+    // console.log("fetchSingleFriendship(id) in friendship_actions.js");
     FriendshipApiUtil.fetchFriendship(id, this.receiveSingleFriendship);
   },
 
   fetchAllFriends(id) {
-    console.log("fetchAllFriends(id) in friendship_actions.js");
+    // console.log("fetchAllFriends(id) in friendship_actions.js");
     FriendshipApiUtil.fetchManyFriendships(id, this.receiveManyFriendships);
   },
 

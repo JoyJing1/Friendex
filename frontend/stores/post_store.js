@@ -11,8 +11,7 @@ let _posts = [];
 const PostStore = new Store(AppDispatcher);
 
 PostStore.__onDispatch = payload => {
-  console.log("PostStore.__onDispatch in post_store.js");
-  console.log(_posts);
+  // console.log("PostStore.__onDispatch in post_store.js");
 
   switch(payload.actionType) {
     case PostConstants.UPDATE_POST:

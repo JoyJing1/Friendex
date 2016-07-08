@@ -17,7 +17,7 @@ const PhotosPage = React.createClass({
   },
 
   componentDidMount() {
-    console.log("componentDidMount() in photos_page.js");
+    // console.log("componentDidMount() in photos_page.js");
     ImageActions.fetchManyImages(this.props.params.id);
     this.imageListener = ImageStore.addListener(this._onChange);
   },
@@ -31,7 +31,7 @@ const PhotosPage = React.createClass({
   },
 
   _onChange() {
-    console.log("_onChange() in photos_page.js");
+    // console.log("_onChange() in photos_page.js");
     this.setState( { images: ImageStore.all(),
                       ownProfile: SessionStore.currentUser().id === parseInt(this.props.params.id) } );
     console.log(this.state);

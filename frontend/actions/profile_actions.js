@@ -9,23 +9,23 @@ const SessionStore = require('../stores/session_store');
 
 const ProfileActions = {
   fetchSingleProfile(id) {
-    console.log("fetchSingleProfile(id) in profile_actions.js");
+    // console.log("fetchSingleProfile(id) in profile_actions.js");
     ProfileApiUtil.fetchProfile(id, this.receiveSingleProfile);
   },
 
   updateProfile(profile) {
-    console.log("updateProfile(profile) in profile_actions.jsx");
+    // console.log("updateProfile(profile) in profile_actions.jsx");
     ProfileApiUtil.updateProfile(profile, this.receiveSingleProfile);
   },
 
   fetchCurrentUserProfile() {
-    console.log("fetchCurrentUserProfile(id) in profile_actions.js");
+    // console.log("fetchCurrentUserProfile(id) in profile_actions.js");
     let currentUser = SessionStore.currentUser();
     ProfileApiUtil.fetchProfile(currentUser.id, this.receiveCurrentUserProfile);
   },
 
   receiveSingleProfile(profile) {
-    console.log('receiveSingleProfile(profile) in profile_actions.js');
+    // console.log('receiveSingleProfile(profile) in profile_actions.js');
     AppDispatcher.dispatch({
       actionType: ProfileConstants.UPDATE_PROFILE,
       profile: profile
@@ -33,7 +33,7 @@ const ProfileActions = {
   },
 
   receiveCurrentUserProfile(profile) {
-    console.log('receiveCurrentUserProfile(profile) in profile_actions.js');
+    // console.log('receiveCurrentUserProfile(profile) in profile_actions.js');
     AppDispatcher.dispatch({
       actionType: ProfileConstants.UPDATE_CURRENT_USER_PROFILE,
       profile: profile

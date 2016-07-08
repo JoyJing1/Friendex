@@ -17,7 +17,7 @@ const NewsfeedIndex = React.createClass({
   },
 
   componentDidMount() {
-    console.log("componentDidMount() in newsfeed_index.jsx");
+    // console.log("componentDidMount() in newsfeed_index.jsx");
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     ProfileActions.fetchCurrentUserProfile();
@@ -26,7 +26,7 @@ const NewsfeedIndex = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps(newProps) in newsfeed_index.jsx");
+    // console.log("componentWillReceiveProps(newProps) in newsfeed_index.jsx");
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     ProfileActions.fetchCurrentUserProfile();
@@ -38,15 +38,13 @@ const NewsfeedIndex = React.createClass({
   },
 
   _onChange() {
-    console.log("_onChange() in newsfeed_index.jsx");
-
+    // console.log("_onChange() in newsfeed_index.jsx");
     this.setState( { newsfeed: NewsfeedStore.all(),
                     currentUserProfile: SessionStore.currentUserProfile() }
                   );
   },
 
   render() {
-    console.log("rendering newsfeed_index.jsx");
     const profile = {id: SessionStore.currentUser().id};
     return (
       <ul>

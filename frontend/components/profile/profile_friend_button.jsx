@@ -115,22 +115,22 @@ const ProfileFriendButton = React.createClass({
 
   render() {
     const currentUserId = this.props.currentUser.id;
-    console.log("friendshipButton() in profile_header.jsx");
+    // console.log("friendshipButton() in profile_header.jsx");
 
     if (currentUserId === this.props.profile.user_id) {
-      console.log("Visiting own page, do NOT show friend button");
+      // console.log("Visiting own page, do NOT show friend button");
       return <div></div>;
 
     } else if (this._checkConnection(currentUserId, this.props.friends)) {
-      console.log('Currently friends, do not show button');
+      // console.log('Currently friends, do not show button');
       return this._currentlyFriendsButton();
 
     } else if (this._checkConnection(currentUserId, this.props.friendRequestsReceived)) {
-      console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
+      // console.log("Current user has sent a friend request, button should say CANCEL REQUEST");
       return this._cancelFriendRequestButton();
 
     } else if (this._checkConnection(currentUserId, this.props.friendRequestsSent)) {
-      console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
+      // console.log("Current user has a request from profile, should show ACCEPT FRIEND REQUEST and DENY FRIEND REQUEST buttons");
       return (
         <div className='friend-request-accept-reject'>
           {this._acceptFriendRequest()}
@@ -139,7 +139,7 @@ const ProfileFriendButton = React.createClass({
       );
 
     } else {
-      console.log("Pair not connected, show ADD FRIEND button");
+      // console.log("Pair not connected, show ADD FRIEND button");
       return this._addFriendButton();
     }
 

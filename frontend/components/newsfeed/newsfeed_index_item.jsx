@@ -44,7 +44,6 @@ const NewsfeedIndexItem = React.createClass({
   },
 
   render() {
-    console.log("render() in newsfeed_index_item.jsx");
     return (
       <div className="newfeed-index-item">
         {this.friendship_item()}

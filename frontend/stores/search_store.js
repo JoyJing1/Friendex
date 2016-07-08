@@ -8,7 +8,7 @@ let _matches = [];
 const SearchStore = new Store(AppDispatcher);
 
 const _setSearch = function(matches) {
-  console.log("set _search = search in search_store.js");
+  // console.log("set _search = search in search_store.js");
   _matches = matches;
 };
 
@@ -24,8 +24,8 @@ SearchStore.__onDispatch = payload => {
 function resetMatches(matches) {
   if (matches) {
     _matches = matches;
-    console.log('resetMatches(matches) in search_store');
-    console.log(matches);
+    // console.log('resetMatches(matches) in search_store');
+    // console.log(matches);
   }
 }
 

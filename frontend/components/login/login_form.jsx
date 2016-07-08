@@ -62,7 +62,7 @@ const LoginForm = React.createClass({
 			password: this.state.password
 		};
 
-    console.log("handleSubmit(e) in login_form.jsx");
+    // console.log("handleSubmit(e) in login_form.jsx");
     SessionActions.logIn(formData, this.openModal);
 	},
 
@@ -70,27 +70,8 @@ const LoginForm = React.createClass({
     this.setState({modalIsOpen: true});
   },
 
-  // afterOpenModal: function() {
-  //   // references are now sync'd and can be accessed.
-  //   // this.refs.subtitle.style.color = '#f00';
-  //   this.refs.subtitle.style.color = '#365899';
-  // },
-
   closeModal() {
     this.setState({modalIsOpen: false});
-  },
-
-  // Will need to update formatting
-  fieldErrors(field) {
-    const errors = ErrorStore.formErrors(this.formType());
-
-    if (!errors[field]) { return; }
-
-    const messages = errors[field].map( (errorMsg, i) => {
-      return <li key={ i }>{ errorMsg }</li>;
-    });
-
-    return <ul>{ messages }</ul>;
   },
 
   update(property) {
@@ -149,9 +130,6 @@ const LoginForm = React.createClass({
             <div className="signup-form-modal">
               <SignupForm/>
             </div>
-
-
-
 
           </Modal>
 

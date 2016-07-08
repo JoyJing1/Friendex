@@ -1,38 +1,35 @@
 "use strict";
 
-const AppDispatcher = require('../dispatcher/dispatcher');
-const ImageConstants = require('../constants/image_constants');
-const ImageApiUtil = require('../util/image_api_util');
-const ErrorActions = require('./error_actions');
 const hashHistory = require('react-router').hashHistory;
+
+const AppDispatcher = require('../dispatcher/dispatcher')
+    , ErrorActions = require('./error_actions')
+    , ImageApiUtil = require('../util/image_api_util')
+    , ImageConstants = require('../constants/image_constants');
 
 const ImageActions = {
   createImage(image) {
-    console.log("createImage(image) in image_actions.js");
+    // console.log("createImage(image) in image_actions.js");
     ImageApiUtil.createImage(image, (resp) => {
       this.receiveSingleImage(resp);
     });
   },
 
   deleteImage(id) {
-    console.log("deleteImage(id) in image_actions.js");
+    // console.log("deleteImage(id) in image_actions.js");
     ImageApiUtil.deleteImage(id, (resp) => {
       ImageActions.removedImage(resp);
-      console.log("Image successfully deleted");
+      // console.log("Image successfully deleted");
     });
   },
-  //
-  // fetchSingleImage(id) {
-  //   console.log("fetchSingleImage(id) in image_actions.js");
-  //   ImageApiUtil.fetchImage(id, this.receiveSingleImage);
 
   fetchManyImages(userId) {
-    console.log("fetchManyImages(userId) in image_actions.js");
+    // console.log("fetchManyImages(userId) in image_actions.js");
     ImageApiUtil.fetchManyImages(userId, this.receiveManyImages);
   },
 
   receiveSingleImage(image) {
-    console.log("receiveSingleImage(image) in image_actions.js");
+    // console.log("receiveSingleImage(image) in image_actions.js");
     AppDispatcher.dispatch({
       actionType: ImageConstants.UPDATE_IMAGE,
       image: image
@@ -47,8 +44,7 @@ const ImageActions = {
   },
 
   removedImage(image) {
-    console.log('in removedImage(image) in image_actions.js');
-    console.log(image);
+    // console.log('in removedImage(image) in image_actions.js');
     AppDispatcher.dispatch({
       actionType: ImageConstants.REMOVED_IMAGE,
       image: image

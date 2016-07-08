@@ -30,7 +30,7 @@ const NewsfeedFriendshipItem = React.createClass({
   },
 
   setLiked(e) {
-    console.log("setLiked() in newsfeed_friendship_item.jsx");
+    // console.log("setLiked() in newsfeed_friendship_item.jsx");
     e.preventDefault();
 
     LikeActions.createLike({ friendship_id: this.props.friendship.id }, (resp) => {
@@ -39,7 +39,7 @@ const NewsfeedFriendshipItem = React.createClass({
   },
 
   setUnliked(e) {
-    console.log("setUnliked() in newsfeed_friendship_item.jsx");
+    // console.log("setUnliked() in newsfeed_friendship_item.jsx");
     e.preventDefault();
 
     LikeActions.deleteLike({ friendship_id: this.props.friendship.id }, (resp) => {

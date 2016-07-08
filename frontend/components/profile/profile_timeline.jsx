@@ -26,8 +26,7 @@ const ProfileTimeline = React.createClass({
 
   _updateProfile(profile) {
     this.setState({ profile: ProfileStore.currentProfile() });
-    console.log("_updateProfile(profile) in profile.jsx");
-    console.log(this.state);
+    // console.log("_updateProfile(profile) in profile.jsx");
   },
 
   render () {

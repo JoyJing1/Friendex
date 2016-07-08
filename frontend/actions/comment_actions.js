@@ -8,7 +8,7 @@ const AppDispatcher    = require('../dispatcher/dispatcher')
 
 const CommentActions = {
   createComment(comment, resetNewCommentForm) {
-    console.log("createComment(comment) in comment_actions.js");
+    // console.log("createComment(comment) in comment_actions.js");
 
     if (comment.post_id) {
       CommentApiUtil.createPostComment(comment, (resp) => {
@@ -29,28 +29,28 @@ const CommentActions = {
   },
 
   deleteComment(ids) {
-    console.log("deleteComment(id) in comment_actions.js");
+    // console.log("deleteComment(id) in comment_actions.js");
 
     if (ids.post_id) {
       CommentApiUtil.deletePostComment(ids, (resp) => {
         CommentActions.removedComment(resp);
-        console.log("PostComment successfully deleted");
+        // console.log("PostComment successfully deleted");
       });
     } else if (ids.image_id) {
       CommentApiUtil.deleteImageComment(ids, (resp) => {
         CommentActions.removedComment(resp);
-        console.log("ImageComment successfully deleted");
+        // console.log("ImageComment successfully deleted");
       });
     } else if (ids.friendship_id) {
       CommentApiUtil.deleteFriendshipComment(ids, (resp) => {
         CommentActions.removedComment(resp);
-        console.log("FriendshipComment successfully deleted");
+        // console.log("FriendshipComment successfully deleted");
       });
     }
   },
 
   receiveSingleComment(comment) {
-    console.log("receiveSingleComment(comment) in comment_actions.js");
+    // console.log("receiveSingleComment(comment) in comment_actions.js");
     AppDispatcher.dispatch({
       actionType: CommentConstants.UPDATE_COMMENT,
       comment: comment
@@ -58,8 +58,8 @@ const CommentActions = {
   },
 
   removedComment(comment) {
-    console.log('in removedComment(comment) in comment_actions.js');
-    console.log(comment);
+    // console.log('in removedComment(comment) in comment_actions.js');
+    // console.log(comment);
     AppDispatcher.dispatch({
       actionType: CommentConstants.REMOVED_COMMENT,
       comment: comment

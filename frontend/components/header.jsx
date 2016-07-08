@@ -15,7 +15,7 @@ const Header = React.createClass({
   },
 
   componentDidMount() {
-    console.log("componentDidMount in header.jsx");
+    // console.log("componentDidMount in header.jsx");
     ProfileActions.fetchCurrentUserProfile();
     this.sessionListener = SessionStore.addListener(this._onChange);
   },
@@ -34,8 +34,8 @@ const Header = React.createClass({
   },
 
   _currentUserProfile() {
-    console.log("_currentUserProfile() in header.jsx");
-    console.log(SessionStore.currentUserProfile());
+    // console.log("_currentUserProfile() in header.jsx");
+    // console.log(SessionStore.currentUserProfile());
     return SessionStore.currentUserProfile();
   },
 

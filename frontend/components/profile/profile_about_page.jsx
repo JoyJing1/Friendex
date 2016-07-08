@@ -14,8 +14,7 @@ const ProfileAboutPage = React.createClass({
 
   componentDidMount() {
     const id = parseInt(this.props.params.id);
-    console.log("componentDidMount() in profile_about_page.jsx");
-    console.log(id);
+    // console.log("componentDidMount() in profile_about_page.jsx");
 
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._updateProfile);
@@ -31,8 +30,7 @@ const ProfileAboutPage = React.createClass({
 
   _updateProfile(profile) {
     this.setState({ profile: ProfileStore.currentProfile() });
-    console.log("_updateProfile(profile) in profile.jsx");
-    console.log(this.state);
+    // console.log("_updateProfile(profile) in profile.jsx");
   },
 
   render () {

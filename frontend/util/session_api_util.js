@@ -2,7 +2,7 @@
 
 const SessionApiUtil = {
 	logIn(user, success, error) {
-    console.log("logIn(user, success, error) in session_api_util.js");
+    // console.log("logIn(user, success, error) in session_api_util.js");
 
 		$.ajax({
 			url: '/api/session',
@@ -22,13 +22,13 @@ const SessionApiUtil = {
 			method: 'DELETE',
 			success,
 			error: function () {
-			  console.log("Logout error in SessionApiUtil#logout");
+			  // console.log("Logout error in SessionApiUtil#logout");
 			}
 		});
 	},
 
 	signUp(formData, successCallback, error) {
-    console.log("signUp(user, success, error) in session_api_util.js");
+    // console.log("signUp(user, success, error) in session_api_util.js");
 
 		$.ajax({
 			url: '/api/user',
@@ -51,7 +51,7 @@ const SessionApiUtil = {
 			method: 'GET',
 			success,
 			error: function (xhr) {
-			  console.log("Error in SessionApiUtil#fetchCurrentUser");
+			  // console.log("Error in SessionApiUtil#fetchCurrentUser");
 			},
       complete: function(){
 				complete();

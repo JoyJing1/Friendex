@@ -9,14 +9,12 @@ const hashHistory = require('react-router').hashHistory;
 const NewsfeedActions = {
 
   fetchNewsfeed(id) {
-    // debugger;
-    console.log("fetchNewsfeed(id) in newsfeed_actions.js");
+    // console.log("fetchNewsfeed(id) in newsfeed_actions.js");
     NewsfeedApiUtil.fetchNewsfeed(id, this.receiveNewsfeed);
   },
 
   receiveNewsfeed(newsfeed) {
-    console.log("receiveNewsfeed(newsfeed) in newsfeed_actions.jsx");
-    console.log(newsfeed);
+    // console.log("receiveNewsfeed(newsfeed) in newsfeed_actions.jsx");
 
     AppDispatcher.dispatch({
       actionType: NewsfeedConstants.UPDATE_NEWSFEED,

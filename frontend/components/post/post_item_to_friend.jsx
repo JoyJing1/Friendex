@@ -55,7 +55,7 @@ const PostItemToFriend = React.createClass({
   },
 
   setLiked(e) {
-    console.log("setLiked() in post_index_item.jsx");
+    // console.log("setLiked() in post_index_item.jsx");
     e.preventDefault();
 
     if (this.props.post.type === "post") {
@@ -71,7 +71,7 @@ const PostItemToFriend = React.createClass({
   },
 
   setUnliked(e) {
-    console.log("setUnliked() in post_index_item.jsx");
+    // console.log("setUnliked() in post_index_item.jsx");
     e.preventDefault();
 
     if (this.props.post.type === "post") {

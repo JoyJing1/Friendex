@@ -10,8 +10,7 @@ let _images = [];
 const ImageStore = new Store(AppDispatcher);
 
 ImageStore.__onDispatch = payload => {
-  console.log("ImageStore.__onDispatch in image_store.js");
-  console.log(payload);
+  // console.log("ImageStore.__onDispatch in image_store.js");
   switch(payload.actionType) {
     case ImageConstants.UPDATE_IMAGE:
       _updateImage(payload.image);
@@ -29,7 +28,7 @@ ImageStore.__onDispatch = payload => {
 };
 
 function _updateImage(image) {
-  console.log("_updateImage(image) in image_store.js");
+  // console.log("_updateImage(image) in image_store.js");
   let imageIdx = -1;
   _images.forEach( (img, i) => {
     if (img.id === image.id) {
@@ -42,7 +41,7 @@ function _updateImage(image) {
   } else {
     _images[imageIdx] = image;
   }
-  console.log(_images);
+  // console.log(_images);
 }
 
 
@@ -56,7 +55,7 @@ function _removeImage(image) {
 
   if (imageIdx >= 0) {
     _images.splice(imageIdx, 1);
-    console.log("_removeImage(image) in image_store.js - had to remove from store explicitly");
+    // console.log("_removeImage(image) in image_store.js - had to remove from store explicitly");
   }
 }
 

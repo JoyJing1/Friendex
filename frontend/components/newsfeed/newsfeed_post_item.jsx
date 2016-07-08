@@ -18,12 +18,12 @@ const NewsfeedPostItem = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps(newProps) in post_index_item.jsx");
+    // console.log("componentWillReceiveProps(newProps) in post_index_item.jsx");
     this.setState( { liked: this.currentUserLikesPost(newProps.post) } );
   },
 
   currentUserLikesPost(post) {
-    console.log("currentUserLikesPost(post) in post_index_item.jsx");
+    // console.log("currentUserLikesPost(post) in post_index_item.jsx");
     return post.likes.some( like => {
       return like.user_id === this.props.currentUserProfile.user_id;
     });
@@ -72,8 +72,7 @@ const NewsfeedPostItem = React.createClass({
   },
 
   handleLiking(e) {
-    console.log("handleLiking(e) in post_index_item.jsx");
-
+    // console.log("handleLiking(e) in post_index_item.jsx");
     let currLike = this.state.liked;
 
     if (currLike) {
@@ -94,7 +93,7 @@ const NewsfeedPostItem = React.createClass({
   },
 
   likeButton() {
-    console.log(`in likeButton() in post_index_item.jsx, current state.liked = ${this.state.liked}`);
+    // console.log(`in likeButton() in post_index_item.jsx, current state.liked = ${this.state.liked}`);
     if (this.state.liked) {
       return (
         <button onClick={this.handleLiking} className="clickable color-liked">
@@ -115,7 +114,6 @@ const NewsfeedPostItem = React.createClass({
   },
 
   render() {
-    console.log("render() in post_index_item.jsx");
     return (
       <li>
         <div className="post-item-container">
@@ -151,7 +149,6 @@ const NewsfeedPostItem = React.createClass({
           </ul>
 
         </div>
-
 
         <CommentIndex comments={this.props.post.comments}/>
 

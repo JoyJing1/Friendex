@@ -28,6 +28,7 @@ const LoginPage = React.createClass({
           {this.props.children}
         </div>
       );
+      
     } else {
       return(
         <div>Logged in but trying to access login_page</div>

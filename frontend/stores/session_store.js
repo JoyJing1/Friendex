@@ -13,14 +13,14 @@ let _currentUserProfile = {};
 const SessionStore = new Store(AppDispatcher);
 
 const _login = function(currentUser) {
-  console.log("_login in session_store.js");
+  // console.log("_login in session_store.js");
   _currentUser = currentUser;
   _currentUserHasBeenFetched = true;
   window.currentUser = currentUser;
 };
 
 const _logout = function() {
-  console.log("_logout in session_store.js");
+  // console.log("_logout in session_store.js");
   _currentUser = {};
   _currentUserHasBeenFetched = true;
   window.currentUser = {};
@@ -37,7 +37,6 @@ SessionStore.__onDispatch = payload => {
       SessionStore.__emitChange();
       break;
     case ProfileConstants.UPDATE_CURRENT_USER_PROFILE:
-      // console.log('SessionStore.__onDispatch() for UPDATE_CURRENT_USER_PROFILE');
       _currentUserProfile = payload.profile;
       SessionStore.__emitChange();
       break;

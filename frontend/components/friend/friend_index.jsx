@@ -26,9 +26,6 @@ const FriendIndex = React.createClass({
   },
 
   render() {
-    // console.log('rendering FriendIndex');
-    // console.log(this.props.friends);
-
     return (
       <div className="friend-container">
           <h3>

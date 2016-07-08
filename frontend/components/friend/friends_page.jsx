@@ -20,8 +20,7 @@ const FriendsPage = React.createClass({
 
   componentDidMount() {
     const id = parseInt(this.props.params.id);
-    console.log("componentDidMount() in friends_page.jsx");
-    console.log(id);
+    // console.log("componentDidMount() in friends_page.jsx");
 
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._onChange);
@@ -36,7 +35,7 @@ const FriendsPage = React.createClass({
   },
 
   _onChange() {
-    console.log("_onChange() in FriendsPage");
+    // console.log("_onChange() in FriendsPage");
     // FriendshipActions.fetchAllFriends(this.props.params.id);
     const friends = FriendshipStore.friends();
     const friendRequestsReceived = FriendshipStore.friendRequestsReceived();
@@ -60,8 +59,6 @@ const FriendsPage = React.createClass({
   },
 
   render() {
-    console.log('render() in friends_page.jsx');
-    console.log(this.state);
     return (
       <ul>
         {this._friendRequestIndex()}

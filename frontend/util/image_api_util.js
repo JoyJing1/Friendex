@@ -2,39 +2,39 @@
 
 const ImageApiUtil = {
 	createImage(image, success, error) {
-    console.log("createImage(image, success, error) in image_api_util.js");
+    // console.log("createImage(image, success, error) in image_api_util.js");
 
     $.ajax({
       url: "/api/images",
       method: "POST",
       data: { image: image, id: image.user_id },
       success(resp) {
-        console.log("successfully created image in image_api_util.js");
+        // console.log("successfully created image in image_api_util.js");
         success(resp);
       },
       error(xhr) {
-        console.log("failed to create image in image_api_util.js");
+        // console.log("failed to create image in image_api_util.js");
         const errors = xhr.responseJSON;
-        console.log(errors);
+        // console.log(errors);
       }
     });
 	},
 
   deleteImage(id, success, error) {
-    console.log("deleteImage(id, success, error) in image_api_util.js");
+    // console.log("deleteImage(id, success, error) in image_api_util.js");
 
 		$.ajax({
 			url: `/api/images/${id}`,
 			type: 'DELETE',
 			success(resp) {
-        console.log("successfully deleted image");
-        console.log(resp);
+        // console.log("successfully deleted image");
+        // console.log(resp);
         success(resp);
       },
 			error(xhr) {
-        console.log("failed to delete image");
+        // console.log("failed to delete image");
 				const errors = xhr.responseJSON;
-        console.log(errors);
+        // console.log(errors);
 			}
 		});
   },

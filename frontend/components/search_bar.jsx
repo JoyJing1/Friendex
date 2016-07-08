@@ -10,7 +10,7 @@ const SearchBar = React.createClass({
   },
 
   componentDidMount() {
-    console.log("componentDidMount in search_bar.jsx");
+    // console.log("componentDidMount in search_bar.jsx");
     SearchActions.fetchMatches(this.state.query);
     this.searchListener = SearchStore.addListener(this._onChange);
   },
@@ -31,8 +31,7 @@ const SearchBar = React.createClass({
 
   clickedUser(e) {
     e.preventDefault();
-    console.log("clickedUser(e) in search_bar.jsx");
-    console.log(e);
+    // console.log("clickedUser(e) in search_bar.jsx");
     hashHistory.push(`/users/${e.target.value}`);
     this.setState( { query: '' } );
   },

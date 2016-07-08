@@ -3,14 +3,14 @@
 const Link  = require('react-router').Link
     , React = require('react');
 
-const CommentIndex = require('../comment/comment_index')
-    , ImageActions  = require('../../actions/image_actions')
-    , LikeActions  = require('../../actions/like_actions')
-    , LikeCount  = require('./like_count')
-    , NewCommentForm = require('../comment/new_comment_form')
-    , NewsfeedActions   = require('../../actions/newsfeed_actions')
-    , PostActions  = require('../../actions/post_actions')
-    , SessionStore = require('../../stores/session_store');
+const CommentIndex    = require('../comment/comment_index')
+    , ImageActions    = require('../../actions/image_actions')
+    , LikeActions     = require('../../actions/like_actions')
+    , LikeCount       = require('./like_count')
+    , NewCommentForm  = require('../comment/new_comment_form')
+    , NewsfeedActions = require('../../actions/newsfeed_actions')
+    , PostActions     = require('../../actions/post_actions')
+    , SessionStore    = require('../../stores/session_store');
 
 const PostIndexItem = React.createClass({
   getInitialState() {
@@ -70,8 +70,7 @@ const PostIndexItem = React.createClass({
   },
 
   handleLiking(e) {
-    console.log("handleLiking(e) in post_index_item.jsx");
-
+    // console.log("handleLiking(e) in post_index_item.jsx");
     let currLike = this.state.liked;
 
     if (currLike) {
@@ -149,7 +148,6 @@ const PostIndexItem = React.createClass({
           </ul>
 
         </div>
-
 
         <CommentIndex comments={this.props.post.comments}/>
 

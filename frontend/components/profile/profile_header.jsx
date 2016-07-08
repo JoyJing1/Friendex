@@ -27,7 +27,7 @@ const ProfileHeader = React.createClass({
   },
 
   componentDidMount() {
-    console.log("componentDidMount() in profile_header.jsx");
+    // console.log("componentDidMount() in profile_header.jsx");
     const id = parseInt(this.props.params.id);
     ProfileActions.fetchSingleProfile(id);
     this.profileListener = ProfileStore.addListener(this._onChange);
@@ -51,13 +51,12 @@ const ProfileHeader = React.createClass({
                     friendRequestsReceived: FriendshipStore.friendRequestsReceived(),
                     friendRequestsSent: FriendshipStore.friendRequestsSent() });
 
-    console.log("_onChange() in profile_header.jsx");
+    // console.log("_onChange() in profile_header.jsx");
   },
 
   _toTimeline(id) {
     hashHistory.push(`users/${this.state.profile.user_id}/timeline`);
   },
-
 
   uploadBackgroundImg(e) {
     e.preventDefault(e);
@@ -69,21 +68,20 @@ const ProfileHeader = React.createClass({
         window.CLOUDINARY_OPTIONS,
         function(error, images) {
           if (error === null) {
-            console.log("Upload succeeded in upload_photos_button.jsx");
+            // console.log("Upload succeeded in upload_photos_button.jsx");
             for (let i = 0; i < images.length; i++) {
               let currentProfile = ProfileStore.currentProfile();
               currentProfile['background_img'] = images[i].url;
               ProfileActions.updateProfile(currentProfile);
             }
           } else {
-            console.log("Upload failed in uploa_photos_button.jsx");
+            // console.log("Upload failed in upload_photos_button.jsx");
           }
         }
       );
     }
 
   },
-
 
   uploadProfileImg(e) {
     e.preventDefault(e);
@@ -95,14 +93,14 @@ const ProfileHeader = React.createClass({
         window.CLOUDINARY_OPTIONS,
         function(error, images) {
           if (error === null) {
-            console.log("Upload succeeded in upload_photos_button.jsx");
+            // console.log("Upload succeeded in upload_photos_button.jsx");
             for (let i = 0; i < images.length; i++) {
               let currentProfile = ProfileStore.currentProfile();
               currentProfile['profile_img'] = images[i].url;
               ProfileActions.updateProfile(currentProfile);
             }
           } else {
-            console.log("Upload failed in uploa_photos_button.jsx");
+            // console.log("Upload failed in uploa_photos_button.jsx");
           }
         }
       );
@@ -130,11 +128,6 @@ const ProfileHeader = React.createClass({
       );
     }
   },
-  //
-  // <div className="background-container clearfix">
-  //   <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
-  // </div>
-
 
   render() {
     return(

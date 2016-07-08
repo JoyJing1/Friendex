@@ -74,10 +74,10 @@ function _updateFriendship(friendship) {
     } else if (currentProfile.user_id === friendship.receiver_id) {
       _friendRequestsReceived[friendship.id] = friendship;
     } else {
-      console.log('PROBLEM: pending friendrequest but not related with current_user');
+      // console.log('PROBLEM: pending friendrequest but not related with current_user');
     }
   } else {
-    console.log('PROBLEM: friendship status is not accepted, denied, or pending');
+    // console.log('PROBLEM: friendship status is not accepted, denied, or pending');
   }
 }
 

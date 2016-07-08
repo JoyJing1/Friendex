@@ -12,7 +12,7 @@ const UploadPhotosButton = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, images) {
         if (error === null) {
-          console.log("Upload succeeded in upload_photos_button.jsx");
+          // console.log("Upload succeeded in upload_photos_button.jsx");
           for (let i = 0; i < images.length; i++) {
             that.props.postImage(images[i].url);
           }

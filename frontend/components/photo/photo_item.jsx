@@ -34,12 +34,12 @@ const PhotoItem = React.createClass({
    },
 
   openModal() {
-    console.log('openModal() in PhotoItem');
+    // console.log('openModal() in PhotoItem');
     this.setState({modalIsOpen: true});
   },
 
   closeModal() {
-    console.log('closeModal() in PhotoItem');
+    // console.log('closeModal() in PhotoItem');
     this.setState({modalIsOpen: false});
   },
 
@@ -49,7 +49,7 @@ const PhotoItem = React.createClass({
         <a onClick={this.deletePhoto}
           value={this.props.image.id}
           className="delete-photo">☓</a>
-      )
+      );
     }
   },
 
