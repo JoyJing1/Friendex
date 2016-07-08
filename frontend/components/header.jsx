@@ -59,7 +59,6 @@ const Header = React.createClass({
             <SearchBar/>
           </aside>
 
-
           <aside className="header-right">
 
             <div className="header-user redirect"
