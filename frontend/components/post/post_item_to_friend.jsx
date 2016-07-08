@@ -125,7 +125,7 @@ const PostItemToFriend = React.createClass({
       return (
         <button onClick={this.setUnliked} className="clickable color-liked">
           <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
-            className="post-footer-like">
+            className="post-footer-like" alt="like">
           </img>Like
         </button>
       );
@@ -133,7 +133,7 @@ const PostItemToFriend = React.createClass({
       return (
         <button onClick={this.setLiked} className="clickable">
           <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
-            className="post-footer-like">
+            className="post-footer-like" alt="like">
           </img>Like
         </button>
       );
@@ -146,16 +146,18 @@ const PostItemToFriend = React.createClass({
         <div className="post-item-container">
           <div className="post-author-info">
 
-            <Link to={`/users/${this.props.post.author_id}`}>
-              <img src={this.props.post.profile_img}></img>
-            </Link>
+            <div className="user-profile-img-container">
+              <Link to={`/users/${this.props.post.author_id}`}>
+                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_200')}></img>
+              </Link>
+            </div>
 
             <div className="post-author-text">
               <div className="two-authors">
                 <Link to={`/users/${this.props.post.author_id}`}>
                   <h5>{this.props.post.author_name}</h5>
                 </Link>
-                <img className="post-arrow" src="http://res.cloudinary.com/joyjing1/image/upload/v1467588331/icons/iconmonstr-arrow-37-240.png"></img>
+                <img className="post-arrow" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467588331/icons/iconmonstr-arrow-37-240.png" alt="arrow"></img>
                 <Link to={`/users/${this.props.post.receiver_id}`}>
                   <h5>{this.props.post.receiver_name}</h5>
                 </Link>
@@ -174,8 +176,8 @@ const PostItemToFriend = React.createClass({
             {this.likeButton()}
 
             <button className="clickable" onClick={this.changeFocus}>
-              <img src="https://res.cloudinary.com/joyjing1/image/upload/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
-                className="post-footer-comment">
+              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
+                className="post-footer-comment" alt="comment">
               </img>Comment
             </button>
 

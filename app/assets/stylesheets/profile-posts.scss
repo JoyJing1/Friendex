@@ -60,6 +60,12 @@ button.add-post:hover {
   left: 16px;
 }
 
+.new-post-profile-pic img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .new-post-text-container {
   min-height: 80px;
   padding-top: 37px;
@@ -110,12 +116,29 @@ button.add-post:hover {
   display: flex;
 }
 
-.post-author-info img {
-  height: 77px;
-  width: auto;
+div.user-profile-img-container {
+  height: 75px;
+  width: 75px;
   display: inline-block;
   margin: 16px 16px 0 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, .1);
 }
+
+.user-profile-img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  // overflow: hidden;
+}
+
+
+// .post-author-info img {
+//   height: 77px;
+//   width: auto;
+//   display: inline-block;
+//   margin: 16px 16px 0 16px;
+// }
 
 .post-author-text {
   display: flex;

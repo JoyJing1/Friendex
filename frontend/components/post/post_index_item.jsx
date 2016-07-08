@@ -18,23 +18,10 @@ const PostIndexItem = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    // console.log("componentWillReceiveProps(newProps) in post_index_item.jsx");
-    // console.log(newProps);
-    // debugger;
-    // NewsfeedActions.fetchNewsfeed(id);
-    // debugger;
-    // debugger; // When updating, passing one like
     this.setState( { liked: this.currentUserLikesPost(newProps.post) } );
-    // console.log("new state after this.setState() in componentWillreceiveProps in post_index_item.jsx");
   },
 
-  // componentWillUpdate(newProps, newState) {
-  //   this.setState( { liked: this.currentUserLikesPost(newProps.post) } );
-  // },
-
   currentUserLikesPost(post) {
-    // debugger;
-    // console.log("currentUserLikesPost(post) in post_index_item.jsx");
     return post.likes.some( like => {
       return like.user_id === this.props.currentUserProfile.user_id;
     });
@@ -105,7 +92,6 @@ const PostIndexItem = React.createClass({
   },
 
   likeButton() {
-    // console.log(`in likeButton() in post_index_item.jsx, current state.liked = ${this.state.liked}`);
     if (this.state.liked) {
       return (
         <button onClick={this.handleLiking} className="clickable color-liked">
@@ -126,15 +112,16 @@ const PostIndexItem = React.createClass({
   },
 
   render() {
-    // console.log("render() in post_index_item.jsx");
     return (
       <li>
         <div className="post-item-container">
           <div className="post-author-info">
 
-            <Link to={`/users/${this.props.post.author_id}`}>
-              <img src={this.props.post.profile_img}></img>
-            </Link>
+            <div className="user-profile-img-container clearfix">
+              <Link to={`/users/${this.props.post.author_id}`}>
+                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,w_200')}></img>
+              </Link>
+            </div>
 
             <div className="post-author-text">
               <Link to={`/users/${this.props.post.author_id}`}>

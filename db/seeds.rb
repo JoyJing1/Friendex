@@ -109,7 +109,7 @@ Profile.create!(user_id: 5,
     last_name: "Page",
     birthday: "1973-03-26",
     gender: "male",
-    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/c_crop,h_675,w_675,x_350/v1467157122/profiles/LarryPage1.jpg",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467941834/profiles/photo.jpg",
     background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339155/backgrounds/20160229092748-1bb97924-xx.jpg",
     current_city: "Mountain View, CA",
     workplace: "Google")

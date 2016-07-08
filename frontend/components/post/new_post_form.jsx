@@ -119,14 +119,14 @@ const NewPostForm = React.createClass({
           <button className="add-post text-post"
                   onClick={this.handleClickedTextPost}>
             <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
-              className="icon-status">
+              className="icon-status" alt="status">
             </img>Status
           </button>
 
           <button className="add-post photo-post"
                   onClick={this.selectImage}>
             <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
-              className="icon-photo">
+              className="icon-photo" alt="photo">
             </img>Photo/Video
           </button>
 
@@ -136,8 +136,11 @@ const NewPostForm = React.createClass({
               onSubmit={this.handleSubmit}>
           <div className="new-post-body clearfix">
 
-            <div className="redirect" onClick={this._toCurrUserProfile}>
-              <img src={this.state.currentUserProfileImg} className="new-post-profile-pic"></img>
+            <div className="new-post-profile-pic">
+              <Link className="redirect"
+                    to={this._toCurrUserProfile}>
+                <img src={this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,w_200')}></img>
+              </Link>
             </div>
 
             <div className="new-post-text-container">

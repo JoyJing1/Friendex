@@ -110,6 +110,7 @@ const LoginForm = React.createClass({
           <h1 className="fd-logo">
             <a href="#">friendex</a>
           </h1>
+
           <form className="login-form-box clearfix" onSubmit={this.handleSubmit}>
 
             <label for="email">Email
