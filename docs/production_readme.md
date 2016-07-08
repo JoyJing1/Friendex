@@ -10,19 +10,7 @@ Friendex is a full-stack web application inspired by Facebook.  It utilizes Ruby
 
 ### Single-Page App
 
-Friendex is a single-page app; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app by making an API call to `SessionsController#get_user`.
-
-```ruby
-class Api::SessionsController < ApplicationController
-    def get_user
-      if current_user
-        render :current_user
-      else
-        render json: errors.full_messages
-      end
-    end
- end
-  ```
+Friendex is a single-page app; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app.
 
 ### User Profiles & About Page
 
