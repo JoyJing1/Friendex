@@ -58,6 +58,33 @@ const ProfileHeader = React.createClass({
     hashHistory.push(`users/${this.state.profile.user_id}/timeline`);
   },
 
+
+  uploadBackgroundImg(e) {
+    e.preventDefault(e);
+
+    if (this.state.currentUser.id === this.state.profile.user_id) {
+      let that = this;
+
+      cloudinary.openUploadWidget(
+        window.CLOUDINARY_OPTIONS,
+        function(error, images) {
+          if (error === null) {
+            console.log("Upload succeeded in upload_photos_button.jsx");
+            for (let i = 0; i < images.length; i++) {
+              let currentProfile = ProfileStore.currentProfile();
+              currentProfile['background_img'] = images[i].url;
+              ProfileActions.updateProfile(currentProfile);
+            }
+          } else {
+            console.log("Upload failed in uploa_photos_button.jsx");
+          }
+        }
+      );
+    }
+
+  },
+
+
   uploadProfileImg(e) {
     e.preventDefault(e);
 
@@ -86,13 +113,34 @@ const ProfileHeader = React.createClass({
 
   },
 
+  backgroundImg() {
+    if (this.state.currentUser.id === this.state.profile.user_id) {
+      return (
+        <a className="redirect" onClick={this.uploadBackgroundImg}>
+          <div className="background-container clearfix">
+            <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
+          </div>
+        </a>
+      );
+    } else {
+      return (
+        <div className="background-container clearfix">
+          <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
+        </div>
+      );
+    }
+  },
+  //
+  // <div className="background-container clearfix">
+  //   <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
+  // </div>
+
 
   render() {
     return(
       <header className="profile-nav clearfix">
-        <div className="background-container clearfix">
-          <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
-        </div>
+
+        {this.backgroundImg()}
 
         <div className="profile-header-nav">
           <div className="redirect profile-img-container" onClick={this.uploadProfileImg}>

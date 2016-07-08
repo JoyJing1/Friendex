@@ -237,7 +237,6 @@ const SignupForm = React.createClass({
 
           <input type="submit" value="Sign Up" id="signup-button"/>
 
-
         </form>
 		  </div>
 		);
