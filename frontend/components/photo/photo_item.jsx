@@ -3,6 +3,8 @@
 const Modal = require('react-modal')
     , React = require('react');
 
+const ImageActions = require('../../actions/image_actions');
+
 const customStyles = {
   overlay : {
    position          : 'fixed',
@@ -43,24 +45,27 @@ const PhotoItem = React.createClass({
     this.setState({modalIsOpen: false});
   },
 
+  deletePhoto(e) {
+    e.preventDefault();
+    const photoId = parseInt(e.target.value);
+    ImageActions.deleteImage(photoId);
+  },
+
   deleteButton() {
     if (this.props.ownProfile) {
       return(
-        <a onClick={this.deletePhoto}
+        <button onClick={this.deletePhoto}
           value={this.props.image.id}
-          className="delete-photo">☓</a>
+          className="delete-photo">Remove Photo</button>
       );
     }
   },
-
 
   render() {
     return (
       <li className="photo-clickable grow"
           key={this.props.image.id}>
         <button onClick={this.openModal}>
-
-          {this.deleteButton()}
 
           <img src={this.props.image.url}></img>
 
@@ -71,6 +76,8 @@ const PhotoItem = React.createClass({
             onBackdropClick={this.closeModal}
             onRequestClose={this.closeModal}
             style={customStyles} >
+
+            {this.deleteButton()}
 
             <img src={this.props.image.url} alt="photo" className="modal-photo"/>
 

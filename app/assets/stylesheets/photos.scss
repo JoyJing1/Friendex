@@ -95,10 +95,12 @@ li.photo-clickable button {
 }
 
 .delete-photo {
-  display: none;
   position: absolute;
-  top: 0;
-  right: 4px;
+  z-index: 1005;
+  font-size: 14px;
+  color: white;
+  bottom: 0px;
+  left: 21px;
 }
 
 button.close-modal-photo {
