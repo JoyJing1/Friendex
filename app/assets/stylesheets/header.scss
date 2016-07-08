@@ -4,8 +4,6 @@
   background-color: $blue-default;
   height: 42px;
   font-family: "Lucida Grande", "Tahoma", 'Freight Sans Bold', helvetica, arial, sans-serif !important;
-  display: flex;
-  justify-content: space-around;
   vertical-align: middle;
   z-index: 100;
   border-bottom: 1px solid $blue-border;
@@ -14,24 +12,29 @@
 .header-nav {
   margin: 0 auto;
   width: 900px;
-  display: flex;
-  justify-content: space-around;
+}
+
+.header-left {
+  float: left;
 }
 
 .f-square-icon {
+  float: left;
   height: 30px;
   width: 30px;
-  display: inline-block;
-  margin: auto 50px;
-}
+  margin-right: 10px;
 
-.f-square-icon img {
-  height: 100%;
+  img {
+    height: 100%;
+    margin-top: 6px;
+  }
 }
 
 // SEARCH BAR /////////////////////////////////////
 
 aside.search-bar {
+  margin: 8px 0;
+  float: left;
   align-self: center;
   position: relative;
 }
@@ -48,6 +51,7 @@ aside.search-bar {
   margin-bottom: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  width: 325px;
 }
 
 .search-icon {
@@ -82,6 +86,15 @@ li.search-item img {
 
 // CURRENT USER ///////////////////////////////////////
 
+.header-right {
+  float: right;
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  align-items: center;
+  width: 320px;
+}
+
 .header-user {
   height: 100%;
   display: flex;
@@ -106,13 +119,12 @@ li.search-item img {
 
 .username-link {
   color: white;
-  margin: auto;
   font-weight: bold;
+  margin: 12px 0;
 }
 
 .home {
   color: white;
-  margin: auto 30px;
   font-weight: bold;
   vertical-align: middle;
 }
@@ -126,7 +138,5 @@ button.button-logout {
   text-align: center;
   height: 27px;
   width: 77px;
-  margin: auto 50px;
   font-size: 14px;
-
 }

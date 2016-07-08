@@ -44,42 +44,41 @@ const Header = React.createClass({
     hashHistory.push(`users/${currUserId}`);
   },
 
-  // render() {
-  //   return <h1>Empty Header</h1>
-  // }
-
   render() {
-    const currentUser = window.currentUser;
-    // let profileImg="";
-    // if (this.state.currentUserProfile.profile_img) {
-    //   profileImg = this.state.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,w_100');
-    // }
+    const currentUser = SessionStore.currentUser();
 
     return(
       <div className="header-main clearfix">
         <nav className="header-nav clearfix">
 
-          <Link to={"/"} className="f-square-icon">
-            <img src= "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"></img>
-          </Link>
+          <aside className="header-left">
+            <Link to={"/"} className="f-square-icon">
+              <img src= "http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png"></img>
+            </Link>
 
-          <SearchBar/>
+            <SearchBar/>
+          </aside>
 
-          <div className="header-user redirect"
-                onClick={this._toCurrUserProfile}>
-            <div className="header-user-icon">
-              <img src={this.state.currentUserProfile.profile_img}
-                    alt="profile-img"/>
+
+          <aside className="header-right">
+
+            <div className="header-user redirect"
+              onClick={this._toCurrUserProfile}>
+              <div className="header-user-icon">
+                <img src={this.state.currentUserProfile.profile_img}
+                  alt="profile-img"/>
+              </div>
+
+              <Link to={`/users/${currentUser.id}`}
+                className="username-link">{currentUser.username}</Link>
             </div>
 
-            <Link to={`/users/${currentUser.id}`}
-                  className="username-link">{currentUser.username}</Link>
-          </div>
+            <Link to={"/"} className="home">Home</Link>
 
-          <Link to={"/"} className="home">Home</Link>
+            <button onClick={this._logout}
+              className="button-logout">Log Out</button>
+          </aside>
 
-          <button onClick={this._logout}
-                  className="button-logout">Log Out</button>
         </nav>
 
         {this.props.children}
