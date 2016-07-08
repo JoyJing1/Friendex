@@ -14,7 +14,7 @@ const Newsfeed = React.createClass({
     return(
       <div className="newsfeed-container clearfix">
 
-        <NewsfeedLeft />
+        <NewsfeedLeft/>
 
         <main className="newsfeed-main">
           <NewsfeedIndex/>

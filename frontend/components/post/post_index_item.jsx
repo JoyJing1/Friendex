@@ -58,7 +58,7 @@ const PostIndexItem = React.createClass({
 
     } else if (this.props.post.type === "image") {
       return (
-        <img src={this.props.post.url}
+        <img src={this.props.post.url.replace('upload', 'upload/c_scale,w_450')}
         className="post-photo"></img>
       );
     }

@@ -112,11 +112,16 @@ const ProfileHeader = React.createClass({
   },
 
   backgroundImg() {
+    let backgroundUrl = "";
+    if (this.state.profile.background_img) {
+      backgroundUrl = this.state.profile.background_img.replace('upload', 'upload/c_scale,w_900');
+    }
+
     if (this.state.currentUser.id === this.state.profile.user_id) {
       return (
         <a className="redirect" onClick={this.uploadBackgroundImg}>
           <div className="background-container clearfix">
-            <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
+            <img src={backgroundUrl} className="background-img" alt="background-img"/>
           </div>
         </a>
       );
@@ -130,6 +135,10 @@ const ProfileHeader = React.createClass({
   },
 
   render() {
+    let profileImg = "";
+    if (this.state.profile.profile_img) {
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_150');
+    }
     return(
       <header className="profile-nav clearfix">
 
@@ -137,7 +146,7 @@ const ProfileHeader = React.createClass({
 
         <div className="profile-header-nav">
           <div className="redirect profile-img-container" onClick={this.uploadProfileImg}>
-            <img src={this.state.profile.profile_img} alt="profile-img"/>
+            <img src={profileImg} alt="profile-img"/>
           </div>
 
           <h1>{this.state.profile.username}</h1>

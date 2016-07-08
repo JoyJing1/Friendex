@@ -36,7 +36,7 @@ const NewsfeedLeft = React.createClass({
     const currentUserProfile = SessionStore.currentUserProfile();
     let profileImg = "";
     if ( this.state.profile.profile_img) {
-      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,w_100');
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,w_50');
     }
 
     return(

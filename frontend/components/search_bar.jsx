@@ -11,7 +11,7 @@ const SearchBar = React.createClass({
 
   componentDidMount() {
     // console.log("componentDidMount in search_bar.jsx");
-    SearchActions.fetchMatches(this.state.query);
+    // SearchActions.fetchMatches(this.state.query);
     this.searchListener = SearchStore.addListener(this._onChange);
   },
 
