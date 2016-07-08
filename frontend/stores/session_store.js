@@ -37,6 +37,7 @@ SessionStore.__onDispatch = payload => {
       SessionStore.__emitChange();
       break;
     case ProfileConstants.UPDATE_CURRENT_USER_PROFILE:
+      console.log('ProfileConstants.UPDATE_CURRENT_USER_PROFILE in session_store.js');
       _currentUserProfile = payload.profile;
       SessionStore.__emitChange();
       break;
@@ -48,6 +49,7 @@ SessionStore.currentUser = function() {
 };
 
 SessionStore.currentUserProfile = function() {
+  console.log('SessionStore.currentUserProfile in session_store.js');
   return Object.assign({}, _currentUserProfile);
 };
 

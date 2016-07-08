@@ -3,4 +3,5 @@ json.extract!(
   :id, :username
 )
 
+# debugger;
 json.profile_img user.profile.profile_img

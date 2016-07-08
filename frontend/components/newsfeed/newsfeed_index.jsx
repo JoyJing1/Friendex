@@ -45,7 +45,9 @@ const NewsfeedIndex = React.createClass({
   },
 
   render() {
-    // const profile = {id: SessionStore.currentUser().id};
+    // Should be current_user becaues coming from newsfeed
+    const profile = {user_id: SessionStore.currentUser().id};
+    // const profile = ProfileActions.fetchSingleProfile();
     return (
       <ul>
         <NewPostForm profile={this.state.currentUserProfile}/>

@@ -63,6 +63,7 @@ const SessionActions = {
   },
 
   fetchCurrentUser(complete){
+    console.log('fetchCurrentUser(complete) in session_actions.js');
     SessionApiUtil.fetchCurrentUser(
       SessionActions.receiveCurrentUser, complete);
   },
