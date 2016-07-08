@@ -34,14 +34,15 @@ div.app-container {
 }
 
 .logged-out-header-nav {
-  display: flex;
-  justify-content: space-around;
-  width: 1080px;
+  // display: flex;
+  // justify-content: space-between;
+  width: 980px;
   margin: 0 auto;
 }
 
 .fd-logo {
   display: inline-block;
+  float: left;
   font-size: 36px;
   letter-spacing: 1px;
   width: 170px;
@@ -51,14 +52,13 @@ div.app-container {
 }
 
 .fd-logo a {
-  // position: absolute;
-  // top: 10px;
   float: left;
   margin-top: 9px;
 }
 
 .login-form-box.clearfix {
   display: flex;
+  float: right;
 }
 
 .login-form-box {
@@ -84,7 +84,6 @@ input[type="password"], input[type="text"], input[type="email"] {
   color: black;
   padding: 4px 5px;
   margin-bottom: 10px;
-
 }
 
 input[type="password"]:focus, input[type="text"]:focus, input[type="email"]:focus {
@@ -120,38 +119,75 @@ input[type="select"] {
 
 // SIGNUP-LEFT ///////////////////////////////////////////////
 
-.signup-left h1 {
+.logged-out-body {
+  margin: 15px auto;
+  width: 980px;
+}
 
+.signup-left {
+  float: left;
+  width: 52%;
+}
+
+h1.signed-out-header {
+  padding: 42px 0 24px;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 36px;
 }
 
 ul.logged-out-left {
 
 }
 
+ul.logged-out-left li {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
+.logged-out-left img {
+  display: inline-block;
+  width: 50px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.login-bold {
+  font-family: 'Freight Sans Bold', helvetica, arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  color: #333;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.login-normal {
+  margin-left: 10px;
+  color: #666;
+  font-size: 15px;
+  line-height: 20px;
+}
+
 
 // SIGN UP FORM /////////////////////////////////////////////////
 
-.logged-out-body {
-  margin: 0 auto;
-  width: 1080px;
-  // display: flex;
-}
 
-.signup-left {
-  float: left;
-  width: 50%;
-}
+
+
 
 .signup-right {
   float: right;
-  width: 533px;
-  margin-top: 15px;
+  // width: 533px;
+  width: 400px;
+  // margin-top: 15px;
 }
 
 .signup-form-container {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -167,7 +203,7 @@ ul.logged-out-left {
 }
 
 .signup-form-box {
-  width: 350px;
+  width: 400px;
 }
 
 .signup-form-box > input {
@@ -207,12 +243,6 @@ ul.logged-out-left {
 
 .signup-form {
   float: right
-}
-
-.signup-left {
-  float: left;
-  width: 30%;
-  height: 100px;
 }
 
 form > p {
