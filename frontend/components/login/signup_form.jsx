@@ -27,6 +27,10 @@ const SignupForm = React.createClass({
     };
   },
 
+  formComplete() {
+    return Boolean(this.properEmail() && this.emailsMatch() && this.passwordLongEnough() && this.state.birthMonth && this.state.birthDay && this.state.birthYear && this.state.gender);
+  },
+
   componentDidMount() {
     this.errorListener = ErrorStore.addListener(this.forceUpdate.bind(this));
     this.sessionListener = SessionStore.addListener(this.redirectIfLoggedIn);
@@ -81,7 +85,7 @@ const SignupForm = React.createClass({
     return (e) => this.setState( { [property]: e.target.value } );
   },
 
-  properEmail(mail) {
+  properEmail() {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     if (this.state.email1.match(emailRegex)) {
       return "success";
@@ -237,7 +241,10 @@ const SignupForm = React.createClass({
             </label>
           </div>
 
-          <input type="submit" value="Sign Up" id="signup-button"/>
+          <input type="submit"
+                value="Sign Up"
+                className={`signup-button form-complete-${this.formComplete()}`}
+                disabled={!this.formComplete()}/>
 
         </form>
 		  </div>
@@ -246,3 +253,6 @@ const SignupForm = React.createClass({
 });
 
 module.exports = SignupForm;
+
+
+// id="signup-button"

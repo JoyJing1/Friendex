@@ -56,7 +56,7 @@ const NewPostForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     const post = { body: this.state.body,
-                    receiver_id: parseInt(this.props.profile.id),
+                    receiver_id: parseInt(this.props.profile.user_id),
                     author_id: parseInt(SessionStore.currentUser().id) };
 
     PostActions.createPost(post, () => {this.setState( {body: ""} );} );
@@ -103,7 +103,7 @@ const NewPostForm = React.createClass({
 
   addImage(url) {
     let img = { url: url,
-                receiver_id: parseInt(this.props.profile.id),
+                receiver_id: parseInt(this.props.profile.user_id),
                 author_id: parseInt(SessionStore.currentUser().id) };
 
     ImageActions.createImage(img);

@@ -15,7 +15,7 @@ const NewCommentForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     let comment = { body: this.state.body,
-                    user_id: this.props.currentUserProfile.id };
+                    user_id: this.props.currentUserProfile.user_id };
 
     if (this.props.item.type === "post") {
       comment.post_id = this.props.item.id;

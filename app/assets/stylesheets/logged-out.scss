@@ -173,10 +173,6 @@ ul.logged-out-left li {
 
 // SIGN UP FORM /////////////////////////////////////////////////
 
-
-
-
-
 .signup-right {
   float: right;
   // width: 533px;
@@ -232,7 +228,7 @@ ul.logged-out-left li {
   margin-left: 10px;
 }
 
-#signup-button {
+input[type='submit'].signup-button {
   width: 25%;
   height: auto;
   margin: 10px 0;
@@ -260,6 +256,21 @@ form > p {
 .signup-gender {
   margin: 13px 0;
 }
+
+input[type="submit"].form-complete-true {
+  // box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  // border: 1px solid rgba(81, 203, 238, 1);
+  // background-color: #4267B2;
+}
+
+input[type="submit"].form-complete-false {
+
+}
+
+input[type="submit"]:hover {
+  opacity: 0.9;
+}
+
 
 #success {
   box-shadow: 0 0 5px #3C763D;

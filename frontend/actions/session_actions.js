@@ -12,11 +12,11 @@ const AppDispatcher    = require('../dispatcher/dispatcher')
 const SessionActions = {
 
   signUp(userData){
-    // console.log("signUp(userData) in session_actions.js");
+    console.log("signUp(userData) in session_actions.js");
     SessionApiUtil.signUp(
       userData,
       (resp) => {
-        // console.log("inside succesCallback of signUp, in session_actions.js");
+        console.log("inside succesCallback of signUp, in session_actions.js");
         SessionActions.receiveCurrentUser(resp);
         SessionActions._redirectToNewsfeed(resp.id);
       },
@@ -28,7 +28,7 @@ const SessionActions = {
   },
 
   _redirectToLogin() {
-    // console.log("_redirectToLogin in session_actions.js");
+    console.log("_redirectToLogin in session_actions.js");
     hashHistory.push(`/login`);
   },
 
@@ -41,7 +41,7 @@ const SessionActions = {
   },
 
   logIn(formData, openModal){
-    // console.log("logIn(formData) in session_actions.js");
+    console.log("logIn(formData) in session_actions.js");
     SessionApiUtil.logIn(
       formData,
       (resp) => {
@@ -56,7 +56,7 @@ const SessionActions = {
 
   logOut() {
     SessionApiUtil.logOut((resp) => {
-      // console.log("in success callback of SessionApiUtil.logOut in session_actions.js");
+      console.log("in success callback of SessionApiUtil.logOut in session_actions.js");
       SessionActions.removeCurrentUser();
       this._redirectToLogin();
     });
@@ -68,7 +68,7 @@ const SessionActions = {
   },
 
   receiveCurrentUser(currentUser) {
-    // console.log("receiveCurrentUser(currentUser) in session_actions.js");
+    console.log("receiveCurrentUser(currentUser) in session_actions.js");
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOGIN,
       currentUser: currentUser
