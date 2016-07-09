@@ -1,165 +1,151 @@
 # Friendex
 
-[Heroku link] [heroku] **Note:** This will be a link to my production site
+[Friendex live][heroku]
 
-[heroku]: https://friendex.herokuapp.com/
+[heroku]: http://www.friendex.site
 
-## Minimum Viable Product
+Friendex is a full-stack web application inspired by Facebook.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
-Friendex is a web application inspired by Facebook that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+## Features & Implementation
 
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] A production README, replacing this README
-- [ ] Profiles
-  - [ ] Smooth, bug-free navigation
-  - [ ] Seed data for demo user so that example profile has the following:
-    - [ ] Timeline/Posts
-    - [ ] About
-    - [ ] Friends
-    - [ ] profile_img
-    - [ ] background_img
-  - [ ] Visually looks like Facebook's profile page
-- [ ] Friending
-  - [ ] Users can make friend requests
-  - [ ] Users can receive friend requests
-  - [ ] Users can accept friend requests
-  - [ ] Users can see a list of their friends
-  - [ ] Demo user will have enough seed data to have a pre-existing list of friends
-  - [ ] Lists of friends on profile will look clean & professional
-- [ ] Posting
-  - [ ] Users can post on their friends' walls (on friend's profile page)
-  - [ ] Users can post on their own wall (on newsfeed page)
-  - [ ] Users can see posts made on their walls
-  - [ ] Users can see posts made on friends' walls
-  - [ ] Seed data on demo user's account so that profile posts are not empty
-  - [ ] Profile posts look similar to Facebook posts
-- [ ] News Feed
-  - [ ] Users can see posts in their newsfeed
-  - [ ] Seed data on demo user's account so that newsfeed is not empty
-  - [ ] Newsfeed looks similar to Facebook newsfeed
+### Single-Page App
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+Friendex is a single-page app; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app.
 
-[views]: docs/views.md
-[components]: docs/components.md
-[flux-cycles]: docs/flux-cycles.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+Components were developed modularly for ease of use and re-use (ex: the same `NewPostForm` is used when viewing the current user's Newsfeed as well as another user's Timeline). The app was developed in a SCRUM-like manner, with Potentially Shippable Increments (PSI) of the app at the completion of each feature.
 
-## Implementation Timeline
+<img src="./screenshots/login-page.png"/ width=400 margin="0 auto">
 
-### Phase 1: Backend setup and Front End User Authentication (1.5 days, W1 Wed 12pm)
+### User Profiles & About Page
+Each `User` has a unique `Profile` which holds all of the personal information about the user that is displayed in their `ProfileAbout` React component. The `ProfileAbout` component is displayed both on the `ProfileTimeline` as well as the `ProfileAboutPage`.
 
-**Objective:** Functioning rails project with Authentication
+<img src="./screenshots/friend-timeline.png"/ width=400>
 
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] blank landing page after signin
-- [x] Heroku set up for project
-- [x] Basic styling for new user & new session forms
+Only `email` (which is used as each user's unique identifier), `password_digest`, and `username` (for ease of displaying the `User`'s display name) are stored in the `users` table. All additional information is stored in the `profiles` table, which holds a `user_id` foreign key that points to the `users` table.
 
-### Phase 2: Profile Model, API, and basic APIUtil (1.5 days, W1 Th 6pm)
+<img src="./screenshots/profile-about.png"/ width=400>
 
-**Objective:** Profiles can be created, read, edited and destroyed through
-the API.
+### Friending & Friendships
+Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` has a `requestor_id` and a `receiver_id` and tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`. The `ProfileFriendButton`, which is displayed in the `ProfileHeader`, determines what text to display and what action to perform when clicked, based on the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`. Clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship. The "Cancel Request" button removes the `Friendship` from the database.
 
-- [x] create `Profile` model
-- [x] seed the database with a small amount of test data
-- [x] CRUD API for profiles (`ProfilesController`)
-- [x] jBuilder views for profiles
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
-- [x] setup Cloudinary to host `profile_img`s and `background_img`s
+<img src="./screenshots/friends.png"/ width=400>
 
-### Phase 3: Flux Architecture and Router (1 day, W1 Fri 6pm)
+### Posts
+Users' main method of interacting with their friends is through `Post`s. Each `Post` React component holds an `author_id`, `receiver_id` (this tracks whose profile the post was written on. Newsfeed posts are recorded as a user posting on their own page), and the `body` of the post. On a user's `ProfileTimeline`, all `Post`s where they were the receiver are displayed in descending chronological order (from most recent to oldest posts). The `ProfileTimeline` also includes a `NewPostForm` above the `PostIndex` for users to write a new `Post`. The prompt text in the `NewPostForm` is generated dynamically depending on where the current user is viewing the form (from their Newsfeed, Timeline, or someone else's Timeline).
 
-**Objective:** Profiles can be created and read
-user interface (edited & destroyed are bonus).
+Users can delete posts by clicking a "Remove Post" button that is displayed in the bottom-right corner of the `PostIndexItem`. This button is only displayed when the current user is either the author or the receiver of the post.
 
-- [x] setup the flux loop with skeleton files
-- [x] setup React Router
-- implement each profile component, building out the flux loop as needed.
-  - [x] `ProfileAbout`
-  - [ ] `ProfileEditForm` (bonus)
-- [ ] save Profiles to the DB when the form loses focus or is left idle
-  after editing. (bonus)
+### Images / Photos
+Users can upload `Image`s to share with their friends. Users can either upload them to their own profiles via the `PhotosPage` on their profile, or via an image `Post` on a friend's Timeline (or their own Newsfeed). All `Image`s that a user has uploaded are displayed in the `PhotosPage` via `PhotoItem`s.
 
-### Phase 4: Posts (1.5 day, W2 Tues 12pm)
+<img src="./screenshots/profile-photos.png"/ width=400>
 
-  **Objective:** Users can make posts. Users can post on their own wall or on a friend's wall
+Each `PhotoItem` generate a modal when clicked on. In the modal view, if the currentUser was the one who uploaded the image, a `Remove Photo` button is provided to delete the photo from the database.
 
-  - [x] create `Post` model
-  - build out API, Flux loop, and components for:
-  - [x] fetching posts for a profile
-  - [x] adding posts to a profile
-  - [x] deleting posts from a profile
-  - [x] Style new elements
+<img src="./screenshots/photo-modal.png"/ width=400>
 
-### Phase 5: Friendships (1.5 day, W2 Wed 6pm)
+Images are hosted on Cloudinary and `Image`s hold very similar information to `Post`s. They have an `author_id`, `receiver_id`, and `url` for where the image is stored on Cloudinary.
 
-**Objective:** Users can send & receive Friend Requests (create & destroy `Friendship`s). Users who have received a friend request can accept or deny (update status of `Friendship`). Users profile page should display all of user's friends.
+Because of the similar structure between `Post`s and `Image`s, they are both rendered in the `PostItemIndex` and `NewsfeedIndex` as `PostIndexItem`s. The `PostIndexItem` React component handles the logic for how to display a text post versus an image post using a `type` parameter.
 
-- [x] create `Friendship` model
-- build out API, Flux loop, and components for:
-  - [x] `Friendship`s CRUD
-  - [x] fetching all friends via Friendships table
-- [x] list friend requests in Profile-Friends tab
-  - [ ] list friend requests in header (bonus - later)
-  - [x] `FriendRequestIndex`
-  - [x] `FriendRequestIndexItem`
-- [x] list friends in Profile-Friends tab
-  - [x] `FriendIndex`
-  - [x] `FriendIndexItem`
-- Use CSS to style Friend Requests & current Friends
+### Newsfeed
+The `NewsfeedStore` is very simmilar to the `PostStore`, but tracks all new `Friendship`s as well as `Post`s (both text and image posts) where the current user or any of their friends are involved. The `NewsfeedStore` listens to `dispatches` involving posts, images, friendships, comments, likes, and the newsfeed.
+
+<img src="./screenshots/newsfeed-items.png" width=400>
+
+On the backend, the `Newsfeed Controller` pulls all relevant posts, images, and friendships, and returns them in a chronologically sorted array. An array data structure was chosen because Newsfeed items should always be displayed in chronological order, and individual items can be updated via primary key ids. The following Ruby code pulls relevant Newsfeed items (posts, friendships, and images are custom-made methods that pull items based on a list of `user_id`s):
+
+```ruby
+class Api::NewsfeedsController < ApplicationController
+
+  def show
+    user = User.find(params["id"])
+    ids = [ user.id ]
+
+    user.friends.each do |friend|
+      ids.push(friend.friend_id)
+    end
+
+    posts = posts(ids)
+    posts.each { |item| item.type = "post" }
+
+    friendships = friendships(ids)
+    friendships.each { |item| item.type = "friendship" }
+
+    images = images(ids)
+    images.each { |item| item.type = "image" }
+
+    @newsfeed = posts.concat(friendships)
+                      .concat(images)
+                      .sort do |e1, e2|
+                        e2.updated_at <=> e1.updated_at
+                      end
+    render "api/newsfeeds/show"
+  end
+
+end
+```
+
+The Newsfeed view also incldues a `NewPostForm` for the current user to post from their current activities.
+
+<img src="./screenshots/newsfeed-1.png" width=400>
+
+### Comments
+Comments are stored in three separate tables for `PostComment`s, `ImageComment`s, and `FriendshipComment`s. Each comment tracks its relevant `post_id`, `image_id`, or `friendship_id` as well as the `user_id` of its author and the `body` of the comment. Rather than having a separate `CommentStore` to track comments, each `Post`, `Image`, and `Friendship` tracks its own list of `comments` in a chronologically sorted array. When a new `Comment` is made, both the `PostStore` and `NewsfeedStore` listen for the dispatch, and update their version of the post, image, or friendship accordingly.
+
+Thus, when a comment is made from the `ProfileTimeline` tab, it will also appear on the `Newsfeed`. Currently, users are not able to delete comments they have made. So be careful what you comment on!!
+
+<img src="./screenshots/post-comments.png" width=400>
+
+Future improvements would involve refactoring the current Comments code to store all of the comments in one `comments` table and set up polymorphic associations between the `posts`, `images`, and `friendships` tables. Another improvement would involve adding a "Remove Comment" button that would appear for the author of the comment, the author and recipient of the post/image, and both participants in the friendship.
+
+### Likes
+Similar to comments, `Like`s are currently stored in three separate tables: `post_likes`, `image_likes`, and `friendship_likes`. They have a single foreign key (`post_id`, `image_id`, or `friendship_id`) pointing to their relevant item as well as the `user_id` of the user who liked the item. This table is a join table that tracks the boolean relationship between an item and a user. If a row is present, the user likes the item, otherwise they do not.
+
+The `PostStore` and `NewsfeedStore` also listen to the `LikeActions` dispatches to update their relevant items appropriately.
+
+At the bottom of each `PostIndexItem`, the number of `likes` a post has are displayed. The `LikeButton` also toggles to blue when the current user likes an item.
+
+### Search
+Users are able to search for more friends using the `SearchBar` React component in the `Header`. The `SearchBar` calls a `SearchAction` that executes a simple Active Record query to pull all users whose usernames match the query string.
+
+```ruby
+class Api::SearchController < ApplicationController
+
+  def index
+    query = params[:query]
+    @users = User.where("username LIKE '%#{query}%' OR username LIKE '%#{query.downcase}%' OR username LIKE '%#{query.capitalize!}'")
+
+    render "api/search/index"
+  end
+
+end
+```
+
+Clicking on a search result will bring you to that user's `ProfileAbout` tab, where the current user can then click around to see the user's photos, about page, and current friends. From the user's profile, the current user can send them a friend request using the "Add Friend" button.
+
+<img src="./screenshots/searchbar.png" width=400>
+
+A future improvement on the `SearchBar` feature would be to also pull query results by location/hometown/current_city/workplace or other profile details.
 
 
-### Phase 6: Newsfeed (1.5 days, W2 Fri 12pm)
+## Future Directions for the Project
+In addition to the features already implemented, I plan to continue improving this project. The next steps for Friendex are outlined below.
 
-**objective:** Populate the newsfeed with posts by the user, on the user's profile, and by the user's friends
+### Infinite Scroll
+As the number of users, activity, and content increases, it will become unwieldy to pull all relevant events each time a component is rendered. I will implement infinite scrolling by passing back the `updated_at` datetime of the last object in the `NewsfeedStore` and `PostStore` as a parameter to determine what additional posts to pull. Ruby will pull the next `n` relevant posts based on the timestamp and add them to the `NewsfeedStore` and `PostStore`.
 
-- [x] create Newsfeed components
-  - [x] `NewsfeedIndex` component
-    - [x] `NewsfeedIndexItem` component
-    - [x] `NewPostForm` component
-    - [x] `PostIndexItem` component
-    - [x] `NewsfeedFriendshipItem` component
-  - [x] `NewsfeedLeft` component
-   - Static links
-  - [x] `NewsfeedRight` component
-   - Static content (to Git and LinkedIn)
+### Push Notifications
+When a friend performs an action that would be added to a user's `NewsfeedStore` or `PostStore`, the action will be pushed to the current user, and added to their `NewsfeedStore` and `PostStore`. Each user will have to listen to all of their friends' channels, and every time an action is made (new post/comment/like/image) by a friend, the event will be published to that friend's channel.
 
-### Phase 7: Final Cleanup & Polishing (0.5 day, W2 F 6pm)
+### Notifications
+Once push notifications are implemented, I will add a `NotificationsIndex` to the top-right of the `Header`, which will display a count of the unread notifications, as well as a list of current `NewsfeedIndexItems` (ie the events that caused the notifications).
 
-**objective:** Make the site feel cohesive and awesome.
+### Find Friends
+Finding and connecting with friends when a user first makes a new account is crucial for them to value and utilize the social networking platform. To help new users find friends who currently have an account, I will implement a `FindFriendIndex` component to be displayed in the `NewsfeedLeft` sidebar, under the list of links. This will display a list of 8-12 other users with their profile images (and potentially their names) in a `FindFriendIndexItem` that will redirect to that user's profile page.
 
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
+### Friends List on Timeline
+I will add a modified `FriendIndex` to the `profile-left` aside in the `ProfileTimeline` component. This will display a shortened list of the profile user's Friends (8-12) so that other users visiting their page can more easily find connections without having to go to the profile's About tab.
 
-### Bonus Features (TBD)
-- [ ] Pictures/albums
-- [ ] Comments on a post
-- [ ] Likes
-- [ ] Notifications
-- [ ] Nest notifications & friend requests in Header
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Search - by username only
-- [ ] Messaging
-- [ ] Multiple sessions
-
-[phase-one]: docs/phases/phase1.md
-[phase-two-three]: docs/phases/phase2-3.md
-[phase-four]: CSS
-[phase-five]: docs/phases/phase5.md
-[phase-six]: docs/phases/phase6.md
-[phase-seven]: docs/phases/phase7.md
-[phase-eight]: docs/phases/phase8.md
+### About Edit Form
+New users can currently update their `profile_img` and `background_img` by clicking on their current images, and uploading a new photo. I will add a link in the `ProfileAbout` component to render a `ProfileAboutEdit` form that will enable users to edit & update their current account information. They will be able to add additional personal information (`workplace`, `current_city`, `hometown`, `relationship`) which will be rendered in the `ProfileAbout` component.
