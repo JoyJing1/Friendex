@@ -18,17 +18,58 @@ Each `User` has a unique `Profile` which holds all of the personal information a
 Only `email` (which is used as each user's unique identifier), `password_digest`, and `username` (for ease of displaying the `User`'s display name) are stored in the `users` table. All additional information is stored in the `profiles` table, which holds a `user_id` foreign key that points to the `users` table.
 
 ### Friending & Friendships
-Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`]. The `ProfileFriendButton` which is displayed in the `ProfileHeader` determines what text to display and what action to perform when clicked, based on the current status of the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`, clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship, and "Cancel Request" removes the `Friendship` from the database.
+Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` has a `requestor_id` and a `receiver_id` and tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`. The `ProfileFriendButton`, which is displayed in the `ProfileHeader`, determines what text to display and what action to perform when clicked, based on the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`. Clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship. The "Cancel Request" button removes the `Friendship` from the database.
 
 ### Posts
-A
+Users' main method of interacting with their friends is through `Post`s. Each `Post` React component holds an `author_id`, `receiver_id` (this tracks whose profile the post was written on. Newsfeed posts are recorded as a user posting on their own page), and the `body` of the post. On a user's `ProfileTimeline`, all `Post`s where they were the receiver are displayed in descending chronological order (from most recent to oldest posts). The `ProfileTimeline` also includes a `NewPostForm` above the `PostIndex` for users to write a new `Post`.
 
+Users can delete posts by clicking a "Remove Post" button that is displayed in the bottom-right corner of the `PostIndexItem`. This button is only displayed when the current user is either the author or the receiver of the post.
 
-### Photos
+### Images / Photos
+Users can upload `Image`s to share with their friends. Users can either upload them to their own profiles via the `PhotosPage` on their profile, or via an image `Post` on a friend's Timeline (or their own Newsfeed). All `Image`s that a user has uploaded are displayed in the `PhotosPage` via `PhotoItem`s, which generate a modal when clicked on. In the modal view, if the currentUser was the one who uploaded the image, a `Remove Photo` button is provided to delete the photo from the database.
+
+Images are hosted on Cloudinary and `Image`s hold very similar information to `Post`s. They have an `author_id`, `receiver_id`, and `url` for where the image is stored on Cloudinary.
+
+Because of the similar structure between `Post`s and `Image`s, they are both rendered in the `PostItemIndex` and `NewsfeedIndex` as `PostIndexItem`s. The `PostIndexItem` React component handles the logic for how to display a text post versus an image post using a `type` parameter.
 
 ### Newsfeed
+The `NewsfeedStore` is very simmilar to the `PostStore`, but tracks all new `Friendship`s as well as `Post`s (both text and image posts) where the current user or any of their friends are involved. The `NewsfeedStore` listens to `dispatches` involving posts, images, friendships, comments, likes, and the newsfeed. On the backend, the `Newsfeed Controller` pulls all relevant posts, images, and friendships, and returns them in a chronologically sorted array. An array data structure was chosen because Newsfeed items should always be displayed in chronological order, and individual items can be updated via primary key ids.
+
+```ruby
+class Api::NewsfeedsController < ApplicationController
+
+  def show
+    user = User.find(params["id"])
+    ids = [ user.id ]
+
+    user.friends.each do |friend|
+      ids.push(friend.friend_id)
+    end
+
+    posts = posts(ids)
+    posts.each { |item| item.type = "post" }
+
+    friendships = friendships(ids)
+    friendships.each { |item| item.type = "friendship" }
+
+    images = images(ids)
+    images.each { |item| item.type = "image" }
+
+    @newsfeed = posts.concat(friendships)
+                      .concat(images)
+                      .sort do |e1, e2|
+                        e2.updated_at <=> e1.updated_at
+                      end
+    render "api/newsfeeds/show"
+  end
+
+end
+```
 
 ### Comments
+The `Comment`s table
+
+
 
 ### Likes
 
