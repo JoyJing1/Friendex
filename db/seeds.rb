@@ -5,12 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require_relative 'seed_imgs'
+
 my_rand = Random.new(4928)
 
 User.destroy_all()
 Profile.destroy_all()
 Friendship.destroy_all()
-# Post.destroy_all()
+Post.destroy_all()
 
 User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
@@ -43,23 +46,6 @@ Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
   Post.create!(author_id: my_rand.rand(1..8), receiver_id: my_rand.rand(1..8), body: Faker::StarWars.quote )
   # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
 end
-
-# Faker::StarWars.quote
-
-#
-# Faker::ChuckNorris.fact
-# Faker::Avatar.image
-#
-# User.create!
-# Profile.create!()
-
-
-# (9..30).each |i| do
-#   User.create(email: Faker::Internet.email, password: "password")
-#   Profile.create!(user_id: i,
-#     first_name:
-#     )
-# end
 
 # Facebook
 Profile.create!(user_id: 1,
@@ -153,17 +139,61 @@ Profile.create!(user_id: 8,
     current_city: "New York City, NY",
     workplace: "LinkedIn")
 
-backgrounds = [
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339505/backgrounds/Lakes.jpg", "https://res.cloudinary.com/joyjing1/image/upload/v1467339268/backgrounds/panorama-sali2000.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339250/backgrounds/_DSC1434.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339241/backgrounds/_DSC0320.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339181/backgrounds/4964-4967.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339155/backgrounds/20160229092748-1bb97924-xx.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339137/backgrounds/unionsquare_panorama_wideangle_306923_o.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339102/backgrounds/landscape-photography-argentina-landscape-lenticular-cloud-natural-landscape-panorama-patagonia-ultra-wide-angle-lens-landscape-1643236926.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467339046/backgrounds/ultra_wide_hougang_hdr_by_draken413o.jpg",
-  "https://res.cloudinary.com/joyjing1/image/upload/v1467338932/backgrounds/photo-1414694762283-acccc27bca85.jpg"]
+SCUBA.each do |url|
+  Image.create!(
+    author_id: 1,
+    receiver_id: 1,
+    url: url)
+end
+
+
+# WOMEN
+# MEN
+# BACKGROUNDS
+# PENGUINS
+# SCUBA
+# BEACH
+# SURFING
+# SNOW
+# BIRDS
+# PIGS
+# DOGS - many
+# CATS - many
+# RABBITS
+# CAPYBARA - many
+# OTTERS - many
+# FAMILIES - many
+
+
+
+
+
+  # Faker::StarWars.quote
+
+  #
+  # Faker::ChuckNorris.fact
+  # Faker::Avatar.image
+  #
+  # User.create!
+  # Profile.create!()
+
+
+  # (9..30).each |i| do
+  #   User.create(email: Faker::Internet.email, password: "password")
+  #   Profile.create!(user_id: i,
+  #     first_name:
+  #     )
+  # end
+
+  # FactoryHelper::Address.city
+  # FactoryHelper::Address.state_abbr
+  # FactoryHelper::Company.name
+  # FactoryHelper::Date.between(2.days.ago, Date.today)
+  # FactoryHelper::Internet.free_email('Nancy')
+  # FactoryHelper::Name.first_name
+  # FactoryHelper::Name.last_name
+
+
 
 #Figure out why FactoryHelper not letting me specify male/female names
 # (9..20).each do |i|
