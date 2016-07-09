@@ -2,7 +2,7 @@
 
 [Friendex live][heroku]
 
-[heroku]: www.friendex.site
+[heroku]: http://www.friendex.site
 
 Friendex is a full-stack web application inspired by Facebook.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
@@ -14,34 +14,21 @@ Friendex is a single-page app; all content is delivered on one static page.  The
 
 Components were developed modularly for ease of use and re-use (ex: the same `NewPostForm` is used when viewing the current user's Newsfeed as well as another user's Timeline). The app was developed in a SCRUM-like manner, with Potentially Shippable Increments (PSI) of the app at the completion of each feature.
 
-<!-- ![login-page]
-[login-page]: (./screenshots/login-page.png | width=100) -->
 <img src="./screenshots/login-page.png"/ width=400 margin="0 auto">
-
-<!-- ![](./screenshots/login-page.png =400x) -->
 
 ### User Profiles & About Page
 Each `User` has a unique `Profile` which holds all of the personal information about the user that is displayed in their `ProfileAbout` React component. The `ProfileAbout` component is displayed both on the `ProfileTimeline` as well as the `ProfileAboutPage`.
 
-
 <img src="./screenshots/friend-timeline.png"/ width=400>
-<!-- ![friend-timeline] -->
-<!-- [friend-timeline]: ./screenshots/friend-timeline.png -->
 
 Only `email` (which is used as each user's unique identifier), `password_digest`, and `username` (for ease of displaying the `User`'s display name) are stored in the `users` table. All additional information is stored in the `profiles` table, which holds a `user_id` foreign key that points to the `users` table.
 
 <img src="./screenshots/profile-about.png"/ width=400>
 
-<!-- ![profile-about] -->
-<!-- [profile-about]: ./screenshots/profile-about.png -->
-
 ### Friending & Friendships
 Each `User` can send and receive Friend Requests, which are stored as `Friendship`s on the backend. The `Friendship` has a `requestor_id` and a `receiver_id` and tracks the current `status` of the `Friendship` as  `pending`, `accepted`, or `denied`. The `ProfileFriendButton`, which is displayed in the `ProfileHeader`, determines what text to display and what action to perform when clicked, based on the `currentUser` and `currentProfile`'s friendship status. Clicking "Add Friend" sends an API `POST` request to create a `Friendship`. Clicking "Accept Friend Request" or "Remove Friend Request" updates the status of the friendship. The "Cancel Request" button removes the `Friendship` from the database.
 
 <img src="./screenshots/friends.png"/ width=400>
-
-<!-- ![friends]
-[friends]: ./screenshots/friends.png -->
 
 ### Posts
 Users' main method of interacting with their friends is through `Post`s. Each `Post` React component holds an `author_id`, `receiver_id` (this tracks whose profile the post was written on. Newsfeed posts are recorded as a user posting on their own page), and the `body` of the post. On a user's `ProfileTimeline`, all `Post`s where they were the receiver are displayed in descending chronological order (from most recent to oldest posts). The `ProfileTimeline` also includes a `NewPostForm` above the `PostIndex` for users to write a new `Post`. The prompt text in the `NewPostForm` is generated dynamically depending on where the current user is viewing the form (from their Newsfeed, Timeline, or someone else's Timeline).
@@ -53,15 +40,9 @@ Users can upload `Image`s to share with their friends. Users can either upload t
 
 <img src="./screenshots/profile-photos.png"/ width=400>
 
-<!-- ![profile-photos]
-[profile-photos]: ./screenshots/profile-photos.png -->
-
 Each `PhotoItem` generate a modal when clicked on. In the modal view, if the currentUser was the one who uploaded the image, a `Remove Photo` button is provided to delete the photo from the database.
 
 <img src="./screenshots/photo-modal.png"/ width=400>
-
-<!-- ![photo-modal]
-[photo-modal]: ./screenshots/photo-modal.png -->
 
 Images are hosted on Cloudinary and `Image`s hold very similar information to `Post`s. They have an `author_id`, `receiver_id`, and `url` for where the image is stored on Cloudinary.
 
@@ -71,9 +52,6 @@ Because of the similar structure between `Post`s and `Image`s, they are both ren
 The `NewsfeedStore` is very simmilar to the `PostStore`, but tracks all new `Friendship`s as well as `Post`s (both text and image posts) where the current user or any of their friends are involved. The `NewsfeedStore` listens to `dispatches` involving posts, images, friendships, comments, likes, and the newsfeed.
 
 <img src="./screenshots/newsfeed-items.png" width=400>
-
-<!-- ![newsfeed-items]
-[newsfeed-items]: ./screenshots/newsfeed-items.png -->
 
 On the backend, the `Newsfeed Controller` pulls all relevant posts, images, and friendships, and returns them in a chronologically sorted array. An array data structure was chosen because Newsfeed items should always be displayed in chronological order, and individual items can be updated via primary key ids. The following Ruby code pulls relevant Newsfeed items (posts, friendships, and images are custom-made methods that pull items based on a list of `user_id`s):
 
@@ -112,18 +90,12 @@ The Newsfeed view also incldues a `NewPostForm` for the current user to post fro
 
 <img src="./screenshots/newsfeed-1.png" width=400>
 
-<!-- ![newsfeed-1]
-[newsfeed-1]: ./screenshots/newsfeed-1.png -->
-
 ### Comments
 Comments are stored in three separate tables for `PostComment`s, `ImageComment`s, and `FriendshipComment`s. Each comment tracks its relevant `post_id`, `image_id`, or `friendship_id` as well as the `user_id` of its author and the `body` of the comment. Rather than having a separate `CommentStore` to track comments, each `Post`, `Image`, and `Friendship` tracks its own list of `comments` in a chronologically sorted array. When a new `Comment` is made, both the `PostStore` and `NewsfeedStore` listen for the dispatch, and update their version of the post, image, or friendship accordingly.
 
 Thus, when a comment is made from the `ProfileTimeline` tab, it will also appear on the `Newsfeed`. Currently, users are not able to delete comments they have made. So be careful what you comment on!!
 
 <img src="./screenshots/post-comments.png" width=400>
-
-<!-- ![post-comments]
-[post-comments]: ./screenshots/post-comments.png -->
 
 Future improvements would involve refactoring the current Comments code to store all of the comments in one `comments` table and set up polymorphic associations between the `posts`, `images`, and `friendships` tables. Another improvement would involve adding a "Remove Comment" button that would appear for the author of the comment, the author and recipient of the post/image, and both participants in the friendship.
 
@@ -153,9 +125,6 @@ end
 Clicking on a search result will bring you to that user's `ProfileAbout` tab, where the current user can then click around to see the user's photos, about page, and current friends. From the user's profile, the current user can send them a friend request using the "Add Friend" button.
 
 <img src="./screenshots/searchbar.png" width=400>
-
-<!-- ![searchbar]
-[searchbar]: ./screenshots/searchbar.png -->
 
 A future improvement on the `SearchBar` feature would be to also pull query results by location/hometown/current_city/workplace or other profile details.
 
