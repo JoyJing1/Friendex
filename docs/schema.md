@@ -22,8 +22,8 @@ relationship    | string    |
 column name       | data type | details
 ------------------|-----------|-----------------------
 id                | integer   | not null, primary key
-friender_id       | integer   | not null, foreign key (references users), indexed
-friendee_id       | integer   | not null, foreign key (references users), indexed
+requestor_id       | integer   | not null, foreign key (references users), indexed
+receiver_id       | integer   | not null, foreign key (references users), indexed
 status            | string    | not null
 
 ## posts
