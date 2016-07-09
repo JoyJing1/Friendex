@@ -1,4 +1,4 @@
-# FresherNote
+# Friendex
 
 [Friendex live][heroku]
 
@@ -11,6 +11,8 @@ Friendex is a full-stack web application inspired by Facebook.  It utilizes Ruby
 ### Single-Page App
 
 Friendex is a single-page app; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app.
+
+Components were developed modularly for ease of use and re-use (ex: the same `NewPostForm` is used when viewing the current user's Newsfeed as well as another user's Timeline). The app was developed in a SCRUM-like manner, with Potentially Shippable Increments (PSI) of the app at the completion of each feature.
 
 ### User Profiles & About Page
 Each `User` has a unique `Profile` which holds all of the personal information about the user that is displayed in their `ProfileAbout` React component. The `ProfileAbout` component is displayed both on the `ProfileTimeline` as well as the `ProfileAboutPage`.
@@ -67,13 +69,38 @@ end
 ```
 
 ### Comments
-The `Comment`s table
+Comments are stored in three separate tables for `PostComment`s, `ImageComment`s, and `FriendshipComment`s. Each comment tracks its relevant `post_id`, `image_id`, or `friendship_id` as well as the `user_id` of its author and the `body` of the comment. Rather than having a separate `CommentStore` to track comments, each `Post`, `Image`, and `Friendship` tracks its own list of `comments` in a chronologically sorted array. When a new `Comment` is made, both the `PostStore` and `NewsfeedStore` listen for the dispatch, and update their version of the post, image, or friendship accordingly.
 
+Thus, when a comment is made from the `ProfileTimeline` tab, it will also appear on the `Newsfeed`. Currently, users are not able to delete comments they have made. So be careful what you comment on!!
 
+Future improvements would involve refactoring the current Comments code to store all of the comments in one `comments` table and set up polymorphic associations between the `posts`, `images`, and `friendships` tables. Another improvement would involve adding a "Remove Comment" button that would appear for the author of the comment, the author and recipient of the post/image, and both participants in the friendship.
 
 ### Likes
+Similar to comments, `Like`s are currently stored in three separate tables: `post_likes`, `image_likes`, and `friendship_likes`. They have a single foreign key (`post_id`, `image_id`, or `friendship_id`) pointing to their relevant item as well as the `user_id` of the user who liked the item. This table is a join table that tracks the boolean relationship between an item and a user. If a row is present, the user likes the item, otherwise they do not.
+
+The `PostStore` and `NewsfeedStore` also listen to the `LikeActions` dispatches to update their relevant items appropriately.
+
+At the bottom of each `PostIndexItem`, the number of `likes` a post has are displayed. The `LikeButton` also toggles to blue when the current user likes an item.
 
 ### Search
+Users are able to search for more friends using the `SearchBar` React component in the `Header`. The `SearchBar` calls a `SearchAction` that executes a simple Active Record query to pull all users whose usernames match the query string.
+
+```ruby
+class Api::SearchController < ApplicationController
+
+  def index
+    query = params[:query]
+    @users = User.where("username LIKE '%#{query}%' OR username LIKE '%#{query.downcase}%' OR username LIKE '%#{query.capitalize!}'")
+
+    render "api/search/index"
+  end
+
+end
+```
+
+Clicking on a search result will bring you to that user's `ProfileAbout` tab, where the current user can then click around to see the user's photos, about page, and current friends. From the user's profile, the current user can send them a friend request using the "Add Friend" button.
+
+A future improvement on the `SearchBar` feature would be to also pull query results by location/hometown/current_city/workplace or other profile details.
 
 
 ## Future Directions for the Project
@@ -96,45 +123,3 @@ I will add a modified `FriendIndex` to the `profile-left` aside in the `ProfileT
 
 ### About Edit Form
 New users can currently update their `profile_img` and `background_img` by clicking on their current images, and uploading a new photo. I will add a link in the `ProfileAbout` component to render a `ProfileAboutEdit` form that will enable users to edit & update their current account information. They will be able to add additional personal information (`workplace`, `current_city`, `hometown`, `relationship`) which will be rendered in the `ProfileAbout` component.
-
-
-
-
-
-
-
-
-### Note Rendering and Editing
-
-  On the database side, the notes are stored in one table in the database, which contains columns for `id`, `user_id`, `content`, and `updated_at`.  Upon login, an API call is made to the database which joins the user table and the note table on `user_id` and filters by the current user's `id`.  These notes are held in the `NoteStore` until the user's session is destroyed.  
-
-  Notes are rendered in two different components: the `CondensedNote` components, which show the title and first few words of the note content, and the `ExpandedNote` components, which are editable and show all note text.  The `NoteIndex` renders all of the `CondensedNote`s as subcomponents, as well as one `ExpandedNote` component, which renders based on `NoteStore.selectedNote()`. The UI of the `NoteIndex` is taken directly from Evernote for a professional, clean look:  
-
-![image of notebook index](noteIndex.png)
-
-Note editing is implemented using the Quill.js library, allowing for a Word-processor-like user experience.
-
-### Notebooks
-
-Implementing Notebooks started with a notebook table in the database.  The `Notebook` table contains two columns: `title` and `id`.  Additionally, a `notebook_id` column was added to the `Note` table.  
-
-The React component structure for notebooks mirrored that of notes: the `NotebookIndex` component renders a list of `CondensedNotebook`s as subcomponents, along with one `ExpandedNotebook`, kept track of by `NotebookStore.selectedNotebook()`.  
-
-`NotebookIndex` render method:
-
-```javascript
-render: function () {
-  return ({this.state.notebooks.map(function (notebook) {
-    return <CondensedNotebook notebook={notebook} />
-  }
-  <ExpandedNotebook notebook={this.state.selectedNotebook} />)
-}
-```
-
-### Tags
-
-As with notebooks, tags are stored in the database through a `tag` table and a join table.  The `tag` table contains the columns `id` and `tag_name`.  The `tagged_notes` table is the associated join table, which contains three columns: `id`, `tag_id`, and `note_id`.  
-
-Tags are maintained on the frontend in the `TagStore`.  Because creating, editing, and destroying notes can potentially affect `Tag` objects, the `NoteIndex` and the `NotebookIndex` both listen to the `TagStore`.  It was not necessary to create a `Tag` component, as tags are simply rendered as part of the individual `Note` components.  
-
-![tag screenshot](tagScreenshot.png)
