@@ -25,12 +25,12 @@ const LoginPage = React.createClass({
               <ul className="logged-out-left">
                 <li>
                   <img src="https://scontent-lax.xx.fbcdn.net/t39.2365-6/851565_602269956474188_918638970_n.png"></img>
-                  <span className="login-bold">See photos and updates.</span>
+                  <span className="login-bold">See photos and updates</span>
                   <span className="login-normal">from friends in News Feed</span>
                 </li>
                 <li>
                   <img src="https://scontent-lax.xx.fbcdn.net/t39.2365-6/851585_216271631855613_2121533625_n.png"></img>
-                  <span className="login-bold">Share whta's new</span>
+                  <span className="login-bold">Share what's new</span>
                   <span className="login-normal">in your life on your Timeline.</span>
                 </li>
                 <li>
