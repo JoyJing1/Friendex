@@ -17,10 +17,8 @@ const PostIndex = React.createClass({
   componentDidMount() {
     // console.log("componentDidMount() in post_index.jsx");
     const ids = { receiver_id: this.props.profile.user_id };
-    // console.log(ids);
     PostActions.fetchManyPosts(ids);
     this.postListener = PostStore.addListener(this._onChange);
-    // this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
@@ -33,12 +31,11 @@ const PostIndex = React.createClass({
 
   componentWillUnmount() {
     this.postListener.remove();
-    // this.sessionListener.remove();
   },
 
   _onChange() {
-    this.setState( { posts: PostStore.all() });
     // console.log("_onChange() in post_index.jsx");
+    this.setState( { posts: PostStore.all() });
   },
 
   render() {

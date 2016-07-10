@@ -39,7 +39,6 @@ const Newsfeed = React.createClass({
   },
 
   _onChange() {
-    // const currentUserProfile = SessionStore.currentUserProfile();
     this.setState( { newsfeed: NewsfeedStore.all(),
                       currentUserProfile: SessionStore.currentUserProfile() } );
   },

@@ -15,26 +15,8 @@ const ErrorStore         = require('../../stores/error_store')
 
 const NewPostForm = React.createClass({
   getInitialState() {
-    // console.log('getInitialState() in new_post_form.jsx');
-    // console.log(this.props);
     return { body: "" };
   },
-
-  // componentWillReceiveProps(newProps) {
-
-  // },
-  // componentDidMount() {
-  //   this.sessionListener = SessionStore.addListener(this._onChange);
-  // },
-  //
-  // componentWillUnmount() {
-  //   this.sessionListener.remove();
-  // },
-
-  // _onChange() {
-    // const currentUserProfile = SessionStore.currentUserProfile();
-    // this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
-  // },
 
   _newPostPrompt() {
     if (this.props.profile && this.props.currentUserProfile) {
@@ -114,8 +96,6 @@ const NewPostForm = React.createClass({
     let profileImg = "";
     let userId = 1;
     if (this.props.currentUserProfile.profile_img) {
-      // console.log('in render() where this.props.currentUserProfile should be present');
-      // console.log(this.props);
       userId = this.props.currentUserProfile.user_id;
       profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }

@@ -43,7 +43,7 @@ const NewCommentForm = React.createClass({
   render() {
     const numRows = Math.floor(this.state.body.length / 18);
     let profileImg = "";
-    // debugger;
+
     if (this.props.currentUserProfile.profile_img) {
       profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }
