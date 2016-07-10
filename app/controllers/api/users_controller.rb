@@ -10,12 +10,9 @@ class Api::UsersController < ApplicationController
 
       if @profile.save
         login(@user)
-        # debugger;
         render "api/users/show"
       else
-        # debugger;
         @user.destroy!
-        # debugger;
         render json: @profile.errors, status: 422
       end
     else

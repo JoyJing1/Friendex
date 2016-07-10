@@ -44,8 +44,8 @@ const NewsfeedIndex = React.createClass({
 
   render() {
     // Should be current_user becaues coming from newsfeed
-    console.log('render() in newsfeed_index.jsx');
-    console.log(this.props);
+    // console.log('render() in newsfeed_index.jsx');
+    // console.log(this.props);
     const profile = {user_id: SessionStore.currentUser().id};
     // const profile = ProfileActions.fetchSingleProfile();
     return (
@@ -56,7 +56,7 @@ const NewsfeedIndex = React.createClass({
           { this.props.newsfeed.map( news => {
           return (
             <NewsfeedIndexItem news={news}
-              key={news.type+news.id}
+              key={`${news.type}-${news.id}`}
               currentUserProfile={this.props.currentUserProfile}/>
           );
         })}

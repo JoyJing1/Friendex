@@ -15,7 +15,7 @@ const ErrorStore         = require('../../stores/error_store')
 
 const NewPostForm = React.createClass({
   getInitialState() {
-    console.log('getInitialState() in new_post_form.jsx');
+    // console.log('getInitialState() in new_post_form.jsx');
     // console.log(this.props);
     return { body: "" };
   },
@@ -110,24 +110,15 @@ const NewPostForm = React.createClass({
   },
 
   render() {
-    // let profileImg = "";
-    // if (this.props.currentUserProfile) {
-    //   profileImg = this.props.currentUserProfile.profile_img.
-    // }
-
     const numRows = Math.floor(this.state.body.length / 18);
     let profileImg = "";
     let userId = 1;
     if (this.props.currentUserProfile.profile_img) {
-      // debugger;
-      console.log('in render() where this.props.currentUserProfile should be present');
+      // console.log('in render() where this.props.currentUserProfile should be present');
       // console.log(this.props);
       userId = this.props.currentUserProfile.user_id;
       profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }
-  //  if (this.props.currentUserProfile.profile_img) {
-      // debugger;
-    // }
 
     return(
       <div className="new-post-form-container">

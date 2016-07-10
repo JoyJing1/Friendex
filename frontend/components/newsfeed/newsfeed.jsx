@@ -32,7 +32,7 @@ const Newsfeed = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    console.log("componentWillReceiveProps(newProps) in newsfeed_index.jsx");
+    // console.log("componentWillReceiveProps(newProps) in newsfeed_index.jsx");
     const id = SessionStore.currentUser().id;
     NewsfeedActions.fetchNewsfeed(id);
     ProfileActions.fetchCurrentUserProfile();
