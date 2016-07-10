@@ -191,6 +191,7 @@ BEACH = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1468105833/150710153020-isla-mujeres-780x439_yibf5j.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468105830/images_e13wej.jpg"
 ]
+
 ## SURFING ##
 SURFING = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1468105954/images_ljdgwq.jpg",
