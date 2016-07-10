@@ -49,7 +49,7 @@ const Header = React.createClass({
 
     let profileImg = "";
     if (this.state.currentUserProfile.profile_img) {
-      profileImg = this.state.currentUserProfile.profile_img.replace("upload", "upload/c_scale,h_40")
+      profileImg = this.state.currentUserProfile.profile_img.replace("upload", "upload/c_limit,h_40")
     }
 
     return(
@@ -58,7 +58,7 @@ const Header = React.createClass({
 
           <aside className="header-left">
             <Link to={"/"} className="f-square-icon">
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467995683/icons/Facebook-48.png"></img>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467995683/icons/Facebook-48.png"></img>
             </Link>
 
             <SearchBar/>

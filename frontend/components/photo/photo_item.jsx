@@ -67,7 +67,7 @@ const PhotoItem = React.createClass({
           key={this.props.image.id}>
         <button onClick={this.openModal}>
 
-          <img src={this.props.image.url.replace("upload", "upload/c_scale,h_250")}></img>
+          <img src={this.props.image.url.replace("upload", "upload/c_limit,h_250")}></img>
 
           <Modal
             isOpen={this.state.modalIsOpen}

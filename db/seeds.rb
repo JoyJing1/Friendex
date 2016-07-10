@@ -106,15 +106,24 @@ end
 
 # Mark's Photos
 
-SCUBA.each do |url|
+SCUBA.each_with_index do |url, i|
   posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-  Image.create!(
-    author_id: 1,
-    receiver_id: 1,
-    url: url,
-    created_at: posted_at,
-    updated_at: posted_at)
+  if i <= 8
+    Image.create!(
+      author_id: 1,
+      receiver_id: 1,
+      url: url,
+      created_at: posted_at,
+      updated_at: posted_at)
+  else
+    Image.create!(
+      author_id: 5,
+      receiver_id: 5,
+      url: url,
+      created_at: posted_at,
+      updated_at: posted_at)
+  end
 end
 
 15.times do

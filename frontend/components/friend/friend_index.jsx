@@ -29,7 +29,7 @@ const FriendIndex = React.createClass({
     return (
       <div className="friend-container">
           <h3>
-            <img className="friend-icon" src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_35,w_35/v1467347814/icons/iconmonstr-user-29-240.png">
+            <img className="friend-icon" src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_35,w_35/v1467347814/icons/iconmonstr-user-29-240.png">
             </img>Friends
           </h3>
 

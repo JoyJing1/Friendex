@@ -49,7 +49,7 @@ const SearchBar = React.createClass({
                   onClick={this.clickedUser}
                   key={user.id}
                   value={user.id}>
-                  <img src={user.profile_img.replace('upload', 'upload/c_scale,w_50')}></img>
+                  <img src={user.profile_img.replace('upload', 'upload/c_limit,w_50')}></img>
                   {user.username}
                 </li>
               );
@@ -69,7 +69,7 @@ const SearchBar = React.createClass({
             placeholder="Search Friendex"
             value={this.state.query}></input>
 
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_30/v1467837986/icons/iconmonstr-magnifier-2-240.png"
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,w_30/v1467837986/icons/iconmonstr-magnifier-2-240.png"
             className="search-icon"></img>
         </div>
 

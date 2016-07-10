@@ -51,7 +51,7 @@ const NewsfeedFriendshipItem = React.createClass({
     if (this.state.liked) {
       return (
         <button onClick={this.setUnliked} className="clickable color-liked">
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
             className="post-footer-like" alt="like">
           </img>Like
         </button>
@@ -59,7 +59,7 @@ const NewsfeedFriendshipItem = React.createClass({
     } else {
       return (
         <button onClick={this.setLiked} className="clickable">
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
             className="post-footer-like" alt="like">
           </img>Like
         </button>
@@ -75,7 +75,7 @@ const NewsfeedFriendshipItem = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.friendship.friend_id}`}>
-                <img src={this.props.friendship.friend_img.replace('upload','upload/c_scale,h_100')} alt='friend'></img>
+                <img src={this.props.friendship.friend_img.replace('upload','upload/c_limit,h_100')} alt='friend'></img>
               </Link>
             </div>
 
@@ -95,7 +95,7 @@ const NewsfeedFriendshipItem = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.friendship.new_friend_id}`}>
-                <img src={this.props.friendship.new_friend_img.replace('upload', 'upload/c_scale,h_100')} alt="new-friend"></img>
+                <img src={this.props.friendship.new_friend_img.replace('upload', 'upload/c_limit,h_100')} alt="new-friend"></img>
               </Link>
             </div>
 
@@ -110,7 +110,7 @@ const NewsfeedFriendshipItem = React.createClass({
             {this.likeButton()}
 
             <button onClick={this.changeFocus}>
-              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
+              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
                 className="post-footer-comment" alt="comment">
               </img>Comment
             </button>

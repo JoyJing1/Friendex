@@ -36,7 +36,7 @@ const NewsfeedLeft = React.createClass({
     const currentUserProfile = SessionStore.currentUserProfile();
     let profileImg = "";
     if ( this.state.profile.profile_img) {
-      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,w_50');
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_limit,w_50');
     }
 
     return(
@@ -53,7 +53,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/about`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597686/icons/iconmonstr-pencil-14-240_2.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467597686/icons/iconmonstr-pencil-14-240_2.png"
                     className="left-icon"></img>
                   <h5>Profile Page</h5>
             </Link>
@@ -61,7 +61,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png"
                     className="left-icon"></img>
                   <h5>Timeline</h5>
             </Link>
@@ -69,7 +69,7 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/photos`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467675714/icons/iconmonstr-picture-12-240.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467675714/icons/iconmonstr-picture-12-240.png"
                     className="left-icon"></img>
                   <h5>Photos</h5>
             </Link>
