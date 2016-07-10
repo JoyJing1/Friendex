@@ -1,6 +1,15 @@
 ######################################################################################
 ######################################################################################
 
+RELATIONSHIPS = [
+  "single",
+  "divorced",
+  "married",
+  "engaged",
+  "in a relationship",
+  "it's complicated",
+]
+
 ##    WOMEN   ##
 
 WOMEN = [
@@ -147,13 +156,13 @@ BACKGROUNDS = [
 ## PENGUINS ##
 PENGUINS = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009632/friendex_imgs/gunytvyb7h7s8tej3npi.jpg",
-  "http://res.cloudinary.com/joyjing1/image/upload/v1468097286/friendex_imgs/v4racv3esuudxhbkarhi.png",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009618/friendex_imgs/amrdxje381zysut1adxp.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009608/friendex_imgs/niwlccfydbu7j12uooaz.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009371/friendex_imgs/ntc7unjycccusl6ufm5i.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009237/friendex_imgs/ubdfjy0ipklaueqaf6na.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1468009217/friendex_imgs/i3c3gbsj7lqgpjfxli4n.jpg",
-  "http://res.cloudinary.com/joyjing1/image/upload/v1468005039/friendex_imgs/kuumr4lbp3rjgd8gkemw.jpg"
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468005039/friendex_imgs/kuumr4lbp3rjgd8gkemw.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468109249/penguin-walking-ss-1920-800x450_w6i9ze.jpg"
 ]
 
 ## SCUBA DIVING ##
@@ -265,8 +274,7 @@ DOGS = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1467685830/friendex_imgs/rg5iligxupqms9fizlu2.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1467685729/friendex_imgs/rl952fnnaonblmvbijb3.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1467680622/friendex_imgs/kmal7thf5twegzuf9wqh.jpg",
-  "http://res.cloudinary.com/joyjing1/image/upload/v1467678965/friendex_imgs/iitaleva6i4megj6rssh.jpg",
-  "http://res.cloudinary.com/joyjing1/image/upload/v1467687702/friendex_imgs/n0cnskhnw4j71hrcf35o.jpg"
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467678965/friendex_imgs/iitaleva6i4megj6rssh.jpg"
 ]
 
 ## CATS ##
@@ -371,10 +379,26 @@ FAMILIES = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1468105988/family-730320_960_720_akpme5.jpg"
 ]
 
+PANDAS = [
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467687702/friendex_imgs/n0cnskhnw4j71hrcf35o.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108838/images_bhq8z4.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108835/sold__handmade_poseable_baby_panda__glummy_bear__by_wood_splitter_lee-d964mvo_m09hyi.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108830/potd-pandas-_3482869b_ewj8sv.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108826/landscape-1454612525-baby-pandas_zlkx5l.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108822/panda-010_lifa4h.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108819/panda-cubs_yqyrn9.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108813/GiantPandaEatingBamboo_ikrbqf.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108804/Panda-2-sm_c21ybs.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108799/150980-004-EE46999B_shk0lb.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108795/Panda_Cub_from_Wolong__Sichuan__China_s1epni.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468108793/four-pandas-ss-1920_hyvtka.jpg"
+]
+
 ## RANDOM ##
 RANDOM = [
   "http://res.cloudinary.com/joyjing1/image/upload/v1467869385/friendex_imgs/j6ppuhucqf7xsjwvsmny.png",
   "http://res.cloudinary.com/joyjing1/image/upload/v1467820259/friendex_imgs/clwp2ghca1gcgcg3qwlu.jpg",
   "http://res.cloudinary.com/joyjing1/image/upload/v1467759488/friendex_imgs/ujqjby4bgr3wdxygkswi.jpg",
-  "http://res.cloudinary.com/joyjing1/image/upload/v1467698743/friendex_imgs/kx2v8be6htgnzfc6jpvr.jpg"
+  "http://res.cloudinary.com/joyjing1/image/upload/v1467698743/friendex_imgs/kx2v8be6htgnzfc6jpvr.jpg",
+  "http://res.cloudinary.com/joyjing1/image/upload/v1468097286/friendex_imgs/v4racv3esuudxhbkarhi.png"
 ]

@@ -8,7 +8,7 @@ let _profile = {};
 const ProfileStore = new Store(AppDispatcher);
 
 const _setProfile = function(profile) {
-  console.log("set _profile = profile in profile_store.js");
+  // console.log("set _profile = profile in profile_store.js");
   _profile = profile;
 };
 

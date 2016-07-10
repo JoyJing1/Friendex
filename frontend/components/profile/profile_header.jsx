@@ -137,7 +137,7 @@ const ProfileHeader = React.createClass({
   render() {
     let profileImg = "";
     if (this.state.profile.profile_img) {
-      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_100');
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_200');
     }
     return(
       <header className="profile-nav clearfix">
@@ -160,10 +160,10 @@ const ProfileHeader = React.createClass({
           </div>
 
           <nav className="profile-tabs">
-            <Link to={`/users/${this.state.profile.user_id}/timeline`}>Timeline</Link>
-            <Link to={`/users/${this.state.profile.user_id}/about`}>About</Link>
-            <Link to={`/users/${this.state.profile.user_id}/friends`}>Friends</Link>
-            <Link to={`/users/${this.state.profile.user_id}/photos`}>Photos</Link>
+            <Link to={`/users/${this.props.params.id}/timeline`}>Timeline</Link>
+            <Link to={`/users/${this.props.params.id}/about`}>About</Link>
+            <Link to={`/users/${this.props.params.id}/friends`}>Friends</Link>
+            <Link to={`/users/${this.props.params.id}/photos`}>Photos</Link>
           </nav>
         </div>
 

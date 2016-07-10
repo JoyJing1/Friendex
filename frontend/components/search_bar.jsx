@@ -66,6 +66,7 @@ const SearchBar = React.createClass({
         <div className="search-bar-head">
           <input type="text"
             onChange={this.filterUsers}
+            placeholder="Search Friendex"
             value={this.state.query}></input>
 
           <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_30/v1467837986/icons/iconmonstr-magnifier-2-240.png"

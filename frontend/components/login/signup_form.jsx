@@ -181,7 +181,7 @@ const SignupForm = React.createClass({
             value={this.state.email2}
             label="email2"
             placeholder="Re-enter email"
-                  onChange={this.update("email2")}/>
+            onChange={this.update("email2")}/>
 
           <input id={this.passwordLongEnough()}
             type="password"

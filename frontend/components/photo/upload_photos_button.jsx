@@ -17,8 +17,8 @@ const UploadPhotosButton = React.createClass({
             that.props.postImage(images[i].url);
           }
         } else {
-          console.log("Upload failed in uploa_photos_button.jsx");
-          console.log(error);
+          // console.log("Upload failed in uploa_photos_button.jsx");
+          // console.log(error);
         }
       }
     );

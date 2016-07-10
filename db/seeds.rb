@@ -10,11 +10,13 @@ require_relative 'seed_imgs'
 
 my_rand = Random.new(4928)
 
-User.destroy_all()
-Profile.destroy_all()
-Friendship.destroy_all()
-Post.destroy_all()
+# User.destroy_all()
+# Profile.destroy_all()
+# Friendship.destroy_all()
+# Post.destroy_all()
+#
 
+# INITIAL SEEDING ###################################################
 User.create!(email: "mark@facebook.com", password: "testtest", username: "Mark Zuckerberg")
 User.create!(email: "sheryl@facebook.com", password: "testtest", username: "Sheryl Sandberg")
 User.create!(email: "marc@facebook.com", password: "testtest", username: "Marc Andreessen")
@@ -24,28 +26,106 @@ User.create!(email: "sergey@gmail.com", password: "testtest", username: "Sergey 
 User.create!(email: "jan@whatsapp.com", password: "testtest", username: "Jan Koum")
 User.create!(email: "jeff@linkedin.com", password: "testtest", username: "Jeff Weiner")
 
-Friendship.create!(requestor_id: 2, receiver_id: 1, status: "pending")
+# FRIENDSHIPS AMONGST SPECIAL USERS ########################################################
+
+Friendship.create!(requestor_id: 2, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
 Friendship.create!(requestor_id: 3, receiver_id: 1, status: "pending")
 Friendship.create!(requestor_id: 4, receiver_id: 1, status: "pending")
 Friendship.create!(requestor_id: 3, receiver_id: 2, status: "pending")
 Friendship.create!(requestor_id: 4, receiver_id: 2, status: "pending")
 Friendship.create!(requestor_id: 6, receiver_id: 2, status: "pending")
-Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted")
+Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
 Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
 Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
 Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
-Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted")
-Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted")
-Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted")
-Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted")
+Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
 Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
 Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
-20.times do
-  Post.create!(author_id: my_rand.rand(1..8), receiver_id: my_rand.rand(1..8), body: Faker::Hacker.say_something_smart )
-  Post.create!(author_id: my_rand.rand(1..8), receiver_id: my_rand.rand(1..8), body: Faker::StarWars.quote )
-  # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
+# POSTS AMONGST SPECIAL USERS ########################################################
+
+10.times do
+  posted_at = Faker::Time.between(90.days.ago, 7.days.ago, :all)
+
+  Post.create!(
+    author_id: my_rand.rand(1..8),
+    receiver_id: my_rand.rand(1..8),
+    body: Faker::Hacker.say_something_smart,
+    created_at: posted_at,
+    updated_at: posted_at
+  )
+
+  Post.create!(
+    author_id: my_rand.rand(1..8),
+    receiver_id: my_rand.rand(1..8),
+    body: Faker::StarWars.quote,
+    created_at: posted_at,
+    updated_at: posted_at
+  )
 end
+
+# COMMENTS AMONGST SPECIAL USERS ########################################################
+
+15.times do
+  posted_at = Faker::Time.between(7.days.ago, DateTime.now, :all)
+
+  PostComment.create!(
+    post_id: my_rand.rand(1..20),
+    user_id: my_rand.rand(1..8),
+    body: Faker::Hacker.say_something_smart
+  )
+
+  PostComment.create!(
+    post_id: my_rand.rand(1..20),
+    user_id: my_rand.rand(1..8),
+    body: Faker::StarWars.quote
+  )
+end
+
+# LIKES AMONGST SPECIAL USERS ########################################################
+
+90.times do
+  PostLike.create!(
+    post_id: my_rand.rand(1..20),
+    user_id: my_rand.rand(1..78)
+  )
+
+  ImageLike.create!(
+    image_id: my_rand.rand(1..20),
+    user_id: my_rand.rand(1..78)
+  )
+
+  FriendshipLike.create!(
+    friendship_id: my_rand.rand(1..16),
+    user_id: my_rand.rand(1..78)
+  )
+end
+
+# Mark's Photos
+
+SCUBA.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: 1,
+    receiver_id: 1,
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+15.times do
+  ImageComment.create!(
+    image_id: my_rand.rand(1..10),
+    user_id: my_rand.rand(1..8),
+    body: Faker::Hacker.say_something_smart
+  )
+end
+
+# SPECIFIC USERS #########################################################
 
 # Facebook
 Profile.create!(user_id: 1,
@@ -139,197 +219,281 @@ Profile.create!(user_id: 8,
     current_city: "New York City, NY",
     workplace: "LinkedIn")
 
-SCUBA.each do |url|
+# MISCELLANEOUS USERS #######################################################################
+WOMEN.each_with_index do |profile_img, i|
+  fname = FactoryHelper::Name.first_name
+  lname = FactoryHelper::Name.last_name
+
+  User.create!(
+    email: FactoryHelper::Internet.free_email(fname),
+    password: "testtest",
+    username: "#{fname} #{lname}")
+
+  Profile.create!(
+    user_id: i+9,
+    first_name: fname,
+    last_name: lname,
+    birthday: Faker::Date.between(50.year.ago, 13.year.ago),
+    gender: "female",
+    relationship: RELATIONSHIPS[my_rand.rand(0...RELATIONSHIPS.length)],
+    profile_img: profile_img,
+    background_img: BACKGROUNDS[my_rand.rand(0...BACKGROUNDS.length)],
+    current_city: "#{FactoryHelper::Address.city}, #{FactoryHelper::Address.state_abbr}",
+    workplace: FactoryHelper::Company.name
+  )
+end
+
+MEN.each_with_index do |profile_img, i|
+  fname = FactoryHelper::Name.first_name
+  lname = FactoryHelper::Name.last_name
+
+  User.create!(
+    email: FactoryHelper::Internet.free_email(fname),
+    password: "testtest",
+    username: "#{fname} #{lname}")
+
+  Profile.create!(
+    user_id: i+48,
+    first_name: fname,
+    last_name: lname,
+    birthday: Faker::Date.between(50.year.ago, 13.year.ago),
+    gender: "male",
+    relationship: RELATIONSHIPS[my_rand.rand(0...RELATIONSHIPS.length)],
+    profile_img: profile_img,
+    background_img: BACKGROUNDS[my_rand.rand(0...BACKGROUNDS.length)],
+    current_city: "#{FactoryHelper::Address.city}, #{FactoryHelper::Address.state_abbr}",
+    workplace: FactoryHelper::Company.name
+  )
+end
+
+200.times do
+  requestor_id = my_rand.rand(9..78)
+  receiver_id = my_rand.rand(9..78)
+  next if requestor_id == receiver_id
+
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Friendship.create!(
+    requestor_id: requestor_id,
+    receiver_id: receiver_id,
+    status: "accepted",
+    updated_at: posted_at,
+    created_at: posted_at
+  )
+end
+
+# POSTS ##############################################################
+
+100.times do
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Post.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    body: Faker::Hacker.say_something_smart,
+    created_at: posted_at,
+    updated_at: posted_at
+  )
+
+  Post.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    body: Faker::StarWars.quote,
+    created_at: posted_at,
+    updated_at: posted_at
+  )
+end
+
+## PHOTOS / IMAGES #######################################################
+
+CAPYBARA.each do |url|
   Image.create!(
-    author_id: 1,
-    receiver_id: 1,
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
     url: url)
 end
 
+OTTERS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-# WOMEN
-# MEN
-# BACKGROUNDS
-# PENGUINS
-# SCUBA
-# BEACH
-# SURFING
-# SNOW
-# BIRDS
-# PIGS
-# DOGS - many
-# CATS - many
-# RABBITS
-# CAPYBARA - many
-# OTTERS - many
-# FAMILIES - many
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
+FAMILIES.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
+  Image.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
+DOGS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
-  # Faker::StarWars.quote
+CATS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-  #
-  # Faker::ChuckNorris.fact
-  # Faker::Avatar.image
-  #
-  # User.create!
-  # Profile.create!()
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
+RABBITS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-  # (9..30).each |i| do
-  #   User.create(email: Faker::Internet.email, password: "password")
-  #   Profile.create!(user_id: i,
-  #     first_name:
-  #     )
-  # end
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
-  # FactoryHelper::Address.city
-  # FactoryHelper::Address.state_abbr
-  # FactoryHelper::Company.name
-  # FactoryHelper::Date.between(2.days.ago, Date.today)
-  # FactoryHelper::Internet.free_email('Nancy')
-  # FactoryHelper::Name.first_name
-  # FactoryHelper::Name.last_name
+SNOW.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
+BEACH.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-#Figure out why FactoryHelper not letting me specify male/female names
-# (9..20).each do |i|
-#   username = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
-#   User.create(email: Faker::Internet.email, password: "password", username: username)
-#   Profile.create!(user_id: i,
-#     first_name: username.split(' ').first,
-#     last_name: username.split(' ').last,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: "female",
-#     workplace: Faker::Company.name,
-#     # school: Faker::Educator.university,
-#     current_city: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-#     hometown: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-#     profile_img: Faker::Avatar.image,
-#     background_img: backgrounds[my_rand.rand(0...backgrounds.length)] )
-# end
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
-# (21..30).each do |i|
-#   username = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
-#   User.create(email: Faker::Internet.email, password: "password", username: username)
-#   Profile.create!(user_id: i,
-#     first_name: username.split(' ').first,
-#     last_name: username.split(' ').last,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: "male",
-#     workplace: Faker::Company.name,
-#     # school: Faker::Educator.university,
-#     current_city: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-#     hometown: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-#     profile_img: Faker::Avatar.image,
-#     background_img: backgrounds[my_rand.rand(0...backgrounds.length)] )
-# end
-#
-# 20.times do
-#   requestor_id = my_rand.rand(0..30)
-#   receiver_id = my_rand.rand(0..30)
-#   next if requestor_id == receiver_id
-#   Friendship.create!(requestor_id: requestor_id, receiver_id: receiver_id, status: "pending")
-# end
+SURFING.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-# 20.times do
-#   requestor_id = my_rand.rand(0..30)
-#   receiver_id = my_rand.rand(0..30)
-#   prev_friendship = Friendship.where(requestor_id: requestor_id, receiver_id: receiver_id)
-#   prev_friendship_opp = Friendship.where(requestor_id: receiver_id, receiver_id: requestor_id)
-#
-#   if prev_friendship.empty? && prev_friendship_opp.empty?
-#     Friendship.create!(requestor_id: requestor_id, receiver_id: receiver_id, status: "accepted")
-#   end
-# end
-#
-# 20.times do
-#   Post.create!(author_id: my_rand.rand(0..30), receiver_id: my_rand.rand(0..30), body: Faker::Hacker.say_something_smart )
-#   Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::StarWars.quote )
-#   # Post.create!(author_id: my_rand.rand(0..8), receiver_id: my_rand.rand(0..2), body: Faker::ChuckNorris.fact )
-# end
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
-# (9..20).each |i| do
-#   Profile.create(user_id: i, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: "female")
-# end
-#
-# (21..29).each |i| do
-#   Profile.create(user_id: i, first_name: FactoryHelper::Name.male_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: "male")
-# end
+PIGS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
+  Image.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
-# User.create!([
-#   {email: "test", password: "testtest"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"},
-#   {email: Faker::Internet.email, password: "password"}
-# ])
-#
-#
-# Profile.create!([
-#   {user_id: 1, first_name: "Mark",
-#     last_name: "Zuckerberg",
-#     birthday: "1984-05-14",
-#     gender: "male"
-#   },
-#   {user_id: 2, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 3, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 4, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 5, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 6, first_name: FactoryHelper::Name.female_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 7, first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 8, first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 9, first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   },
-#   {user_id: 10, first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     birthday: Faker::Date.between(50.year.ago, 13.year.ago),
-#     gender: genders[my_rand.rand(0..2)]
-#   }
-# ])
+PANDAS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+BIRDS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+PENGUINS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+RABBITS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(2..78),
+    receiver_id: my_rand.rand(2..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+OTTERS.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(9..78),
+    receiver_id: my_rand.rand(9..78),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
+
+# CREATE COMMENTS & LIKES FOR RANDOM USERS
+
+300.times do
+  PostComment.create!(
+    post_id: my_rand.rand(41..240),
+    user_id: my_rand.rand(9..78),
+    body: Faker::Hacker.say_something_smart
+  )
+
+  PostComment.create!(
+    post_id: my_rand.rand(41..240),
+    user_id: my_rand.rand(9..78),
+    body: Faker::StarWars.quote
+  )
+
+  PostLike.create!(
+    post_id: my_rand.rand(41..240),
+    user_id: my_rand.rand(9..78),
+  )
+
+  ImageLike.create!(
+    image_id: my_rand.rand(1..214),
+    user_id: my_rand.rand(9..78),
+  )
+
+  FriendshipLike.create!(
+    friendship_id: my_rand.rand(1..213),
+    user_id: my_rand.rand(1..78),
+  )
+end

@@ -34,7 +34,7 @@ const PhotosPage = React.createClass({
     // console.log("_onChange() in photos_page.js");
     this.setState( { images: ImageStore.all(),
                       ownProfile: SessionStore.currentUser().id === parseInt(this.props.params.id) } );
-    console.log(this.state);
+    // console.log(this.state);
   },
 
   addImage(url) {

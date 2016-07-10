@@ -2,8 +2,8 @@
 
 const ProfileApiUtil = {
 	fetchProfile(id, success, error) {
-    console.log("fetchProfile(id, success, error) in profile_api_util.js");
-    console.log(id);
+    // console.log("fetchProfile(id, success, error) in profile_api_util.js");
+    // console.log(id);
 
 		$.ajax({
 			url: `/api/profiles/${id}`,

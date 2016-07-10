@@ -59,21 +59,21 @@ const ImageApiUtil = {
   // },
 
   fetchManyImages(user_id, success, error) {
-    console.log("fetchImages(ids, success, error) in image_api_util.js");
+    // console.log("fetchImages(ids, success, error) in image_api_util.js");
 
     $.ajax({
       url: `/api/images/`,
       type: 'GET',
       data: { user_id: user_id },
       success(resp) {
-        console.log("successfully fetched images");
-        console.log(resp);
+        // console.log("successfully fetched images");
+        // console.log(resp);
         success(resp);
       },
       error(xhr) {
-        console.log("failed to fetch images");
+        // console.log("failed to fetch images");
         const errors = xhr.responseJSON;
-        console.log(errors);
+        // console.log(errors);
       }
     });
   }

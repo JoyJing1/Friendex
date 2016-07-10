@@ -176,7 +176,7 @@ function _updateItem(item) {
   } else {
     _posts[idx] = item;
   }
-  console.log(_posts);
+  // console.log(_posts);
 }
 
 function _removeItem(item) {

@@ -69,11 +69,6 @@ const NewPostForm = React.createClass({
     }
   },
 
-  _toCurrUserProfile() {
-    const currUserId = SessionStore.currentUser().id;
-    hashHistory.push(`users/${currUserId}`);
-  },
-
   selectImage(e) {
     e.preventDefault(e);
     const that = this;
@@ -138,7 +133,7 @@ const NewPostForm = React.createClass({
 
             <div className="new-post-profile-pic">
               <Link className="redirect"
-                    to={`users/${this._toCurrUserProfile.user_id}`}>
+                    to={`users/${SessionStore.currentUser().id}`}>
                 <img src={profileImg}></img>
               </Link>
             </div>

@@ -93,9 +93,9 @@ const LikeApiUtil = {
         success(resp);
       },
       error(xhr) {
-        console.log("failed to create friendship_like in like_api_util.js");
+        // console.log("failed to create friendship_like in like_api_util.js");
         const errors = xhr.responseJSON;
-        console.log(errors);
+        // console.log(errors);
       }
     });
 	},
