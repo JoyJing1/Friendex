@@ -191,6 +191,7 @@ const SignupForm = React.createClass({
             onChange={this.update("password")}/>
 
           <div className="signup-birthday">
+            <span>Birthday</span>
             <select className="birthday-month" defaultValue={0}
               onChange={this.update("birthMonth")}>
               <option value={0} disabled>Month</option>

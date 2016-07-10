@@ -189,12 +189,14 @@ ul.logged-out-left li {
 .signup-form-header > h1 {
   font-size: 36px;
   font-weight: bold;
-  margin: 10px
+  margin: 10px;
+  margin-left: 0;
 }
 
 .signup-form-header > h2 {
   font-size: 19px;
-  margin: 10px
+  margin: 10px;
+  margin-left: 0;
 }
 
 .signup-form-box {
@@ -243,6 +245,11 @@ input[type='submit'].signup-button {
 form > p {
   font-size: 12px;
   margin-top: 10px;
+}
+
+.signup-birthday span {
+  display: block;
+  padding-bottom: 6px;
 }
 
 .signup-birthday select {
