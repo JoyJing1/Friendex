@@ -11,8 +11,7 @@ const ImageStore    = require('../../stores/image_store')
 
 const PostIndex = React.createClass({
   getInitialState() {
-    return { posts: PostStore.all(),
-              currentUserProfile: SessionStore.currentUserProfile() };
+    return { posts: PostStore.all() };
   },
 
   componentDidMount() {
@@ -21,7 +20,7 @@ const PostIndex = React.createClass({
     // console.log(ids);
     PostActions.fetchManyPosts(ids);
     this.postListener = PostStore.addListener(this._onChange);
-    this.sessionListener = SessionStore.addListener(this._onChange);
+    // this.sessionListener = SessionStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
@@ -34,12 +33,11 @@ const PostIndex = React.createClass({
 
   componentWillUnmount() {
     this.postListener.remove();
-    this.sessionListener.remove();
+    // this.sessionListener.remove();
   },
 
   _onChange() {
-    this.setState( { posts: PostStore.all(),
-                    currentUserProfile: SessionStore.currentUserProfile() } );
+    this.setState( { posts: PostStore.all() });
     // console.log("_onChange() in post_index.jsx");
   },
 
@@ -50,7 +48,7 @@ const PostIndex = React.createClass({
           return(
             <PostIndexItem post={post}
               key={`${post.type}${post.id}`}
-              currentUserProfile={this.state.currentUserProfile}/>
+              currentUserProfile={this.props.currentUserProfile}/>
           );
         })}
 

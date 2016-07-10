@@ -15,30 +15,39 @@ const ErrorStore         = require('../../stores/error_store')
 
 const NewPostForm = React.createClass({
   getInitialState() {
-    return { body: "",
-            currentUserProfileImg: "" };
+    console.log('getInitialState() in new_post_form.jsx');
+    // console.log(this.props);
+    return { body: "" };
   },
 
-  componentDidMount() {
-    this.sessionListener = SessionStore.addListener(this._onChange);
-  },
+  // componentWillReceiveProps(newProps) {
 
-  componentWillUnmount() {
-    this.sessionListener.remove();
-  },
+  // },
+  // componentDidMount() {
+  //   this.sessionListener = SessionStore.addListener(this._onChange);
+  // },
+  //
+  // componentWillUnmount() {
+  //   this.sessionListener.remove();
+  // },
 
-  _onChange() {
-    const currentUserProfile = SessionStore.currentUserProfile();
-    this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
-  },
+  // _onChange() {
+    // const currentUserProfile = SessionStore.currentUserProfile();
+    // this.setState( { currentUserProfileImg: currentUserProfile.profile_img } );
+  // },
 
   _newPostPrompt() {
-    const receiverId = this.props.profile.user_id;
+    if (this.props.profile && this.props.currentUserProfile) {
+      const receiverId = this.props.profile.user_id;
+      const currentUserId = this.props.currentUserProfile.user_id;
 
-    if (receiverId && receiverId === SessionStore.currentUser().id) {
-      return `What's on your mind?`;
-    } else if (receiverId && receiverId !== SessionStore.currentUser().id) {
-      return `Write something to ${this.props.profile.first_name}...`;
+      if (receiverId && receiverId === currentUserId) {
+        return `What's on your mind?`;
+      } else if (receiverId && receiverId !== currentUserId) {
+        return `Write something to ${this.props.profile.first_name}...`;
+      } else {
+        return "Write a new post!";
+      }
     } else {
       return "Write a new post!";
     }
@@ -53,7 +62,7 @@ const NewPostForm = React.createClass({
     e.preventDefault();
     const post = { body: this.state.body,
                     receiver_id: parseInt(this.props.profile.user_id),
-                    author_id: parseInt(SessionStore.currentUser().id) };
+                    author_id: parseInt(this.props.currentUserProfile.user_id) };
 
     PostActions.createPost(post, () => {this.setState( {body: ""} );} );
   },
@@ -95,17 +104,30 @@ const NewPostForm = React.createClass({
   addImage(url) {
     let img = { url: url,
                 receiver_id: parseInt(this.props.profile.user_id),
-                author_id: parseInt(SessionStore.currentUser().id) };
+                author_id: parseInt(this.props.currentUserProfile.user_id) };
 
     ImageActions.createImage(img);
   },
 
   render() {
+    // let profileImg = "";
+    // if (this.props.currentUserProfile) {
+    //   profileImg = this.props.currentUserProfile.profile_img.
+    // }
+
     const numRows = Math.floor(this.state.body.length / 18);
     let profileImg = "";
-    if (this.state.currentUserProfileImg) {
-      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,h_100');
+    let userId = 1;
+    if (this.props.currentUserProfile.profile_img) {
+      // debugger;
+      console.log('in render() where this.props.currentUserProfile should be present');
+      // console.log(this.props);
+      userId = this.props.currentUserProfile.user_id;
+      profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }
+  //  if (this.props.currentUserProfile.profile_img) {
+      // debugger;
+    // }
 
     return(
       <div className="new-post-form-container">
@@ -133,7 +155,7 @@ const NewPostForm = React.createClass({
 
             <div className="new-post-profile-pic">
               <Link className="redirect"
-                    to={`users/${SessionStore.currentUser().id}`}>
+                    to={`users/${userId}`}>
                 <img src={profileImg}></img>
               </Link>
             </div>

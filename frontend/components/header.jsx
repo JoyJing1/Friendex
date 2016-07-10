@@ -49,7 +49,7 @@ const Header = React.createClass({
 
     let profileImg = "";
     if (this.state.currentUserProfile.profile_img) {
-      profileImg = this.state.currentUserProfile.profile_img.replace("upload", "upload/c_scale,h_40")
+      profileImg = this.state.currentUserProfile.profile_img.replace("upload", "upload/c_scale,h_40");
     }
 
     return(
