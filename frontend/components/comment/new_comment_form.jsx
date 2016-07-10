@@ -45,7 +45,7 @@ const NewCommentForm = React.createClass({
     let profileImg = "";
     // debugger;
     if (this.props.currentUserProfile.profile_img) {
-      profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_limit,h_100');
+      profileImg = this.props.currentUserProfile.profile_img.replace('upload', 'upload/c_scale,h_100');
     }
 
     return(

@@ -9,7 +9,7 @@ const CommentIndexItem = React.createClass({
     return (
       <li className="comment-item">
         <div className="comment-profile-icon">
-          <img src={this.props.comment.author_img.replace('upload', 'upload/c_limit,h_100')}></img>
+          <img src={this.props.comment.author_img.replace('upload', 'upload/c_scale,h_100')}></img>
         </div>
 
         <div className="comment-body">

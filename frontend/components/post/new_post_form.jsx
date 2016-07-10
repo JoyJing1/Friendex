@@ -104,7 +104,7 @@ const NewPostForm = React.createClass({
     const numRows = Math.floor(this.state.body.length / 18);
     let profileImg = "";
     if (this.state.currentUserProfileImg) {
-      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_limit,h_100');
+      profileImg = this.state.currentUserProfileImg.replace('upload', 'upload/c_scale,h_100');
     }
 
     return(
@@ -113,14 +113,14 @@ const NewPostForm = React.createClass({
 
           <button className="add-post text-post"
                   onClick={this.handleClickedTextPost}>
-            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
+            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png"
               className="icon-status" alt="status">
             </img>Status
           </button>
 
           <button className="add-post photo-post"
                   onClick={this.selectImage}>
-            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
+            <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png"
               className="icon-photo" alt="photo">
             </img>Photo/Video
           </button>

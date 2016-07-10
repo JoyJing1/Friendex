@@ -29,7 +29,7 @@ const FriendRequestIndexItem = React.createClass({
 
         <Link to={`/users/${friend.friend_id}`}>
           <div className="friend-img-container">
-            <img src={friend.profile_img.replace('upload', 'upload/c_limit,h_100')}></img>
+            <img src={friend.profile_img.replace('upload', 'upload/c_scale,h_100')}></img>
           </div>
 
           <h4>

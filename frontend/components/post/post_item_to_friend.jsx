@@ -44,7 +44,7 @@ const PostItemToFriend = React.createClass({
 
     } else if (this.props.post.type === "image") {
       return (
-        <img src={this.props.post.url.replace('upload', 'upload/c_limit,w_375')}
+        <img src={this.props.post.url.replace('upload', 'upload/c_scale,w_375')}
         className="post-photo"></img>
       );
     }
@@ -92,7 +92,7 @@ const PostItemToFriend = React.createClass({
     if (this.state.liked) {
       return (
         <button onClick={this.setUnliked} className="clickable color-liked">
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467778561/icons/iconmonstr-thumb-9-240_2.png"
             className="post-footer-like" alt="like">
           </img>Like
         </button>
@@ -100,7 +100,7 @@ const PostItemToFriend = React.createClass({
     } else {
       return (
         <button onClick={this.setLiked} className="clickable">
-          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
+          <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png"
             className="post-footer-like" alt="like">
           </img>Like
         </button>
@@ -116,7 +116,7 @@ const PostItemToFriend = React.createClass({
 
             <div className="user-profile-img-container">
               <Link to={`/users/${this.props.post.author_id}`}>
-                <img src={this.props.post.profile_img.replace('upload', 'upload/c_limit,h_100')}></img>
+                <img src={this.props.post.profile_img.replace('upload', 'upload/c_scale,h_100')}></img>
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ const PostItemToFriend = React.createClass({
                 <Link to={`/users/${this.props.post.author_id}`}>
                   <h5>{this.props.post.author_name}</h5>
                 </Link>
-                <img className="post-arrow" src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467588331/icons/iconmonstr-arrow-37-240.png" alt="arrow"></img>
+                <img className="post-arrow" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467588331/icons/iconmonstr-arrow-37-240.png" alt="arrow"></img>
                 <Link to={`/users/${this.props.post.receiver_id}`}>
                   <h5>{this.props.post.receiver_name}</h5>
                 </Link>
@@ -144,7 +144,7 @@ const PostItemToFriend = React.createClass({
             {this.likeButton()}
 
             <button className="clickable" onClick={this.changeFocus}>
-              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
+              <img src="https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png"
                 className="post-footer-comment" alt="comment">
               </img>Comment
             </button>

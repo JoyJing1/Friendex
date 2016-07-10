@@ -29,19 +29,19 @@ User.create!(email: "jeff@linkedin.com", password: "testtest", username: "Jeff W
 # FRIENDSHIPS AMONGST SPECIAL USERS ########################################################
 
 Friendship.create!(requestor_id: 2, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
+Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
+Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
+Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
 Friendship.create!(requestor_id: 3, receiver_id: 1, status: "pending")
 Friendship.create!(requestor_id: 4, receiver_id: 1, status: "pending")
 Friendship.create!(requestor_id: 3, receiver_id: 2, status: "pending")
 Friendship.create!(requestor_id: 4, receiver_id: 2, status: "pending")
 Friendship.create!(requestor_id: 6, receiver_id: 2, status: "pending")
-Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
-Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
-Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
-Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
 Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
 Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
@@ -69,7 +69,7 @@ end
 
 # COMMENTS AMONGST SPECIAL USERS ########################################################
 
-15.times do
+10.times do
   posted_at = Faker::Time.between(7.days.ago, DateTime.now, :all)
 
   PostComment.create!(
@@ -87,7 +87,7 @@ end
 
 # LIKES AMONGST SPECIAL USERS ########################################################
 
-90.times do
+70.times do
   PostLike.create!(
     post_id: my_rand.rand(1..20),
     user_id: my_rand.rand(1..78)
@@ -99,7 +99,7 @@ end
   )
 
   FriendshipLike.create!(
-    friendship_id: my_rand.rand(1..16),
+    friendship_id: my_rand.rand(1..6),
     user_id: my_rand.rand(1..78)
   )
 end
@@ -109,7 +109,7 @@ end
 SCUBA.each_with_index do |url, i|
   posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
-  if i <= 8
+  if i < 4
     Image.create!(
       author_id: 1,
       receiver_id: 1,
@@ -275,7 +275,7 @@ MEN.each_with_index do |profile_img, i|
   )
 end
 
-200.times do
+100.times do
   requestor_id = my_rand.rand(9..78)
   receiver_id = my_rand.rand(9..78)
   next if requestor_id == receiver_id
@@ -478,7 +478,7 @@ end
 
 # CREATE COMMENTS & LIKES FOR RANDOM USERS
 
-300.times do
+150.times do
   PostComment.create!(
     post_id: my_rand.rand(41..240),
     user_id: my_rand.rand(9..78),

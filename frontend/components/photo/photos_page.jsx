@@ -74,7 +74,7 @@ const PhotosPage = React.createClass({
       <div className="profile-photos-full">
 
         <h3>
-          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_limit,w_40/v1467669448/icons/iconmonstr-picture-5-240.png"
+          <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_40/v1467669448/icons/iconmonstr-picture-5-240.png"
             className="photos-icon">
           </img>Photos
 

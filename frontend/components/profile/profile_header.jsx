@@ -114,7 +114,7 @@ const ProfileHeader = React.createClass({
   backgroundImg() {
     let backgroundUrl = "";
     if (this.state.profile.background_img) {
-      backgroundUrl = this.state.profile.background_img.replace('upload', 'upload/c_limit,w_900');
+      backgroundUrl = this.state.profile.background_img.replace('upload', 'upload/c_scale,w_900');
     }
 
     if (this.state.currentUser.id === this.state.profile.user_id) {
@@ -137,7 +137,7 @@ const ProfileHeader = React.createClass({
   render() {
     let profileImg = "";
     if (this.state.profile.profile_img) {
-      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_limit,h_200');
+      profileImg = this.state.profile.profile_img.replace('upload', 'upload/c_scale,h_200');
     }
     return(
       <header className="profile-nav clearfix">

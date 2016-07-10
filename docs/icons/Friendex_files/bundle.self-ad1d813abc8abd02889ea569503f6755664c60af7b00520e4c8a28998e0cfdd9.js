@@ -33201,7 +33201,7 @@
 	          Link,
 	          { to: "/", className: 'f-square-icon', __self: this
 	          },
-	          React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467255790/icons/f-logo-white.png', __self: this
+	          React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467255790/icons/f-logo-white.png', __self: this
 	          })
 	        ),
 	        React.createElement(
@@ -34589,7 +34589,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { className: 'friend-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_35,w_35/v1467347814/icons/iconmonstr-user-29-240.png', __self: this
+	        React.createElement('img', { className: 'friend-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_35,w_35/v1467347814/icons/iconmonstr-user-29-240.png', __self: this
 	        }),
 	        'Friends'
 	      ),
@@ -34732,7 +34732,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { className: 'friend-request-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_25,w_25/v1467347738/icons/iconmonstr-user-21-240_1.png', __self: this
+	        React.createElement('img', { className: 'friend-request-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_25,w_25/v1467347738/icons/iconmonstr-user-21-240_1.png', __self: this
 	        }),
 	        'Friend Requests'
 	      ),
@@ -35794,7 +35794,7 @@
 	            {
 	              __self: this
 	            },
-	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323227/icons/iconmonstr-thumb-9-240_1.png',
 	              className: 'post-footer-like', __self: this
 	            }),
 	            'Like'
@@ -35804,7 +35804,7 @@
 	            {
 	              __self: this
 	            },
-	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
+	            React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20/v1467323294/icons/iconmonstr-speech-bubble-15-240_1.png',
 	              className: 'post-footer-comment', __self: this
 	            }),
 	            'Comment'
@@ -36053,7 +36053,7 @@
 	            Link,
 	            { to: '/users/' + this.state.profile.user_id + '/about', __self: this
 	            },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467597686/icons/iconmonstr-pencil-14-240_2.png',
+	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597686/icons/iconmonstr-pencil-14-240_2.png',
 	              className: 'left-icon', __self: this
 	            }),
 	            React.createElement(
@@ -36074,7 +36074,7 @@
 	            Link,
 	            { to: '/users/' + this.state.profile.user_id + '/timeline', __self: this
 	            },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png',
+	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png',
 	              className: 'left-icon', __self: this
 	            }),
 	            React.createElement(
@@ -36095,7 +36095,7 @@
 	            Link,
 	            { to: '/users/' + this.state.profile.user_id + '/photos', __self: this
 	            },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467675714/icons/iconmonstr-picture-12-240.png',
+	            React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467675714/icons/iconmonstr-picture-12-240.png',
 	              className: 'left-icon', __self: this
 	            }),
 	            React.createElement(
@@ -36177,7 +36177,7 @@
 	          { href: 'https://www.linkedin.com/in/joyjing1', __self: this
 	          },
 	          'Connect with Joy Jing',
-	          React.createElement('img', { className: 'linkedin-logo', src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,w_100/v1467599657/icons/LinkedIn_IN_Icon_5inCMYK1.jpg', __self: this
+	          React.createElement('img', { className: 'linkedin-logo', src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1467599657/icons/LinkedIn_IN_Icon_5inCMYK1.jpg', __self: this
 	          })
 	        )
 	      )
@@ -36422,7 +36422,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_40,w_40/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_40,w_40/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
 	        }),
 	        'Was born in ',
 	        this.props.profile.hometown
@@ -36433,7 +36433,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_40,w_40/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_40,w_40/v1467221755/icons/iconmonstr-location-1-240.png', __self: this
 	        }),
 	        'Lives in ',
 	        this.props.profile.current_city
@@ -36447,7 +36447,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_40,w_40/v1467222106/icons/iconmonstr-briefcase-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_40,w_40/v1467222106/icons/iconmonstr-briefcase-1-240.png', __self: this
 	        }),
 	        this.props.profile.workplace
 	      );
@@ -36460,7 +36460,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_40,w_40/v1467222543/icons/iconmonstr-email-1-240.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_40,w_40/v1467222543/icons/iconmonstr-email-1-240.png', __self: this
 	        }),
 	        this.props.profile.email
 	      );
@@ -36473,7 +36473,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_40,w_40/v1467223004/icons/Birthday_Cake-52.png', __self: this
+	        React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_40,w_40/v1467223004/icons/Birthday_Cake-52.png', __self: this
 	        }),
 	        this._parseDate(this.props.profile.birthday)
 	      );
@@ -36494,7 +36494,7 @@
 	        {
 	          __self: this
 	        },
-	        React.createElement('img', { className: 'profile-about-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20,w_20/v1467220595/icons/iconmonstr-user-1-240_1.png', __self: this
+	        React.createElement('img', { className: 'profile-about-icon', src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467220595/icons/iconmonstr-user-1-240_1.png', __self: this
 	        }),
 	        'About'
 	      ),
@@ -36644,7 +36644,7 @@
 	      'button',
 	      { className: 'add-friend currently-friends', onClick: this._toCurrUserFriends, __self: this
 	      },
-	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png', __self: this
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467497415/iconmonstr-check-mark-1-240_uufxhe.png', __self: this
 	      }),
 	      'Friends'
 	    );
@@ -36654,7 +36654,7 @@
 	      'button',
 	      { className: 'add-friend', onClick: this._sendFriendRequest, __self: this
 	      },
-	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
 	      }),
 	      'Add Friend'
 	    );
@@ -36664,7 +36664,7 @@
 	      'button',
 	      { className: 'add-friend cancel-request', onClick: this._cancelFriendRequest, __self: this
 	      },
-	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
 	      }),
 	      'Cancel Request'
 	    );
@@ -36674,7 +36674,7 @@
 	      'button',
 	      { className: 'add-friend accept-request', onClick: this._acceptFriendship, __self: this
 	      },
-	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
+	      React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467342419/icons/iconmonstr-user-8-240.png', __self: this
 	      }),
 	      'Confirm Friendship'
 	    );
@@ -36684,7 +36684,7 @@
 	      'button',
 	      { className: 'add-friend cancel-request', onClick: this._rejectFriendship, __self: this
 	      },
-	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_limit,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
+	      React.createElement('img', { src: 'http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_10,w_10/v1467495849/iconmonstr-user-11-240_1_ehz8lh.png', __self: this
 	      }),
 	      'Delete Request'
 	    );
@@ -37049,7 +37049,7 @@
 	          { className: 'add-post text-post',
 	            onClick: this.handleClickedTextPost, __self: this
 	          },
-	          React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png',
+	          React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_20,w_20/v1467237872/icons/iconmonstr-pencil-14-240.png',
 	            className: 'icon-status', __self: this
 	          }),
 	          'Status'
@@ -37059,7 +37059,7 @@
 	          { className: 'add-post photo-post',
 	            onClick: this.selectImage, __self: this
 	          },
-	          React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_limit,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
+	          React.createElement('img', { src: 'https://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467238143/icons/iconmonstr-photo-camera-4-240.png',
 	            className: 'icon-photo', __self: this
 	          }),
 	          'Photo/Video'
