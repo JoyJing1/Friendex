@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)http://www.freedevelopertutorials.com/jsplumb-tutorial/examples/jsplumb-endpoint-connection-drag-drop-example/ -->
+<html ng-app=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        #diagramContainer {
+            padding: 20px;
+            width:80%; height: 150px;
+            border: 1px solid gray;
+        }
+        
+        .item {
+            height:80px; width: 80px;
+            border: 1px solid blue;
+            float: left;
+        }	
+    </style>
+</head>
+<body>
+
+    <div id="diagramContainer">
+        <div id="item_left" class="item _jsPlumb_endpoint_anchor_"></div>
+        <div id="item_right" class="item _jsPlumb_endpoint_anchor_" style="margin-left:50px;"></div>
+    <div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-droppable" style="position: absolute; height: 20px; width: 20px; left: 101px; top: 60px;"><svg style="position:absolute;left:0px;top:0px" width="20" height="20" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="10" cy="10" r="10" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#456" stroke="none" style=""></circle></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-droppable" style="position: absolute; height: 20px; width: 20px; left: 151px; top: 60px;"><svg style="position:absolute;left:0px;top:0px" width="20" height="20" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="10" cy="10" r="10" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#456" stroke="none" style=""></circle></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-droppable" style="position: absolute; height: 20px; width: 20px; left: 233px; top: 60px;"><svg style="position:absolute;left:0px;top:0px" width="20" height="20" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="10" cy="10" r="10" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#456" stroke="none" style=""></circle></svg></div></div>
+    
+    <p>Drag from the left items endpoint and drop on the right items endpoint.</p>
+
+    <p><a href="http://www.freedevelopertutorials.com/jsplumb-tutorial/introduction/">Visit the full jsPlumb-Tutorial</a> to learn it and see many more interesting examples.</p>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./jquery-ui.min.js"></script>
+    <script src="./jquery.jsPlumb-1.6.4-min.js"></script>
+    
+    <script>
+        jsPlumb.ready(function() {
+            jsPlumb.setContainer("diagramContainer");
+            
+            var common = {
+              isSource:true,
+              isTarget:true,
+              connector: ["Straight"]
+            };
+            
+            jsPlumb.addEndpoint("item_left", { 
+              anchors:["Right"]
+            }, common); 
+            
+            jsPlumb.addEndpoint("item_right", { 
+              anchor:"Left"
+            }, common);
+
+            jsPlumb.addEndpoint("item_right", { 
+              anchor:"Right" 
+            }, common);
+        });
+    </script> 
+
+
+</body></html>

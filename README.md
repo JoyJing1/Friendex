@@ -149,3 +149,6 @@ I will add a modified `FriendIndex` to the `profile-left` aside in the `ProfileT
 
 ### About Edit Form
 New users can currently update their `profile_img` and `background_img` by clicking on their current images, and uploading a new photo. I will add a link in the `ProfileAbout` component to render a `ProfileAboutEdit` form that will enable users to edit & update their current account information. They will be able to add additional personal information (`workplace`, `current_city`, `hometown`, `relationship`) which will be rendered in the `ProfileAbout` component.
+
+Developed by [Joy Jing][joy-jing]
+[joy-jing]: https://joyjing1.github.io/
