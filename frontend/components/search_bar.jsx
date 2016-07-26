@@ -31,12 +31,10 @@ const SearchBar = React.createClass({
     }
   },
 
-  clickedUser(e) {
+  clickedUser(user, e) {
     e.preventDefault();
-    console.log("clickedUser(e) in search_bar.jsx");
-    console.log(e);
-    debugger;
-    hashHistory.push(`/users/${e.target.userId}`);
+    // console.log("clickedUser(e) in search_bar.jsx");
+    hashHistory.push(`/users/${user.id}`);
     this.setState( { query: '' } );
   },
 
@@ -45,11 +43,10 @@ const SearchBar = React.createClass({
       return (
         <ul className="search-results">
           { this.state.matches.map ( (user, i) => {
-            console.log(user)
             if (i <= 12) {
               return (
                 <li className="search-item"
-                  onClick={this.clickedUser}
+                  onClick={this.clickedUser.bind(this, user)}
                   key={user.id}
                   userId={user.id}
                   value={user.id}>
