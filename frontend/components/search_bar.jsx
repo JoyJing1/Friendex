@@ -33,9 +33,10 @@ const SearchBar = React.createClass({
 
   clickedUser(e) {
     e.preventDefault();
-    // console.log("clickedUser(e) in search_bar.jsx");
+    console.log("clickedUser(e) in search_bar.jsx");
     console.log(e);
-    hashHistory.push(`/users/${e.target.value}`);
+    debugger;
+    hashHistory.push(`/users/${e.target.userId}`);
     this.setState( { query: '' } );
   },
 
@@ -50,6 +51,7 @@ const SearchBar = React.createClass({
                 <li className="search-item"
                   onClick={this.clickedUser}
                   key={user.id}
+                  userId={user.id}
                   value={user.id}>
                   <img src={user.profile_img.replace('upload', 'upload/c_scale,w_50')}></img>
                   {user.username}
