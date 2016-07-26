@@ -34,6 +34,7 @@ const SearchBar = React.createClass({
   clickedUser(e) {
     e.preventDefault();
     // console.log("clickedUser(e) in search_bar.jsx");
+    console.log(e);
     hashHistory.push(`/users/${e.target.value}`);
     this.setState( { query: '' } );
   },
@@ -43,6 +44,7 @@ const SearchBar = React.createClass({
       return (
         <ul className="search-results">
           { this.state.matches.map ( (user, i) => {
+            console.log(user)
             if (i <= 12) {
               return (
                 <li className="search-item"

@@ -25,42 +25,110 @@ User.create!(email: "larry@gmail.com", password: "testtest", username: "Larry Pa
 User.create!(email: "sergey@gmail.com", password: "testtest", username: "Sergey Brin")
 User.create!(email: "jan@whatsapp.com", password: "testtest", username: "Jan Koum")
 User.create!(email: "jeff@linkedin.com", password: "testtest", username: "Jeff Weiner")
+User.create!(email: "alan@imgur.com", password: "testtest", username: "Alan Schaaf")
+User.create!(email: "stewart@slack.com", password: "testtest", username: "Stewart Butterfield")
+User.create!(email: "travis@uber.com", password: "testtest", username: "Travis Kalanick")
+User.create!(email: "anne@23andme.com", password: "testtest", username: "Anne Wojcicki")
+User.create!(email: "susan@youtube.com", password: "testtest", username: "Susan Wojcicki")
+User.create!(email: "meg@hp.com", password: "testtest", username: "Meg Whitman")
+User.create!(email: "angela@apple.com", password: "testtest", username: "Angela Ahrendts")
+User.create!(email: "safra@oracle.com", password: "testtest", username: "Safra A. Catz")
+User.create!(email: "virginia@ibm.com", password: "testtest", username: "Ginni Rometty")
+User.create!(email: "ursula@xerox.com", password: "testtest", username: "Ursula Burns")
+User.create!(email: "lisa@amd.com", password: "testtest", username: "Lisa T. Su")
+User.create!(email: "tim@apple.com", password: "testtest", username: "Tim Cook")
 
 # FRIENDSHIPS AMONGST SPECIAL USERS ########################################################
 
-Friendship.create!(requestor_id: 2, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
-Friendship.create!(requestor_id: 5, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
-Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
-Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
-Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
 Friendship.create!(requestor_id: 3, receiver_id: 1, status: "pending")
-Friendship.create!(requestor_id: 4, receiver_id: 1, status: "pending")
-Friendship.create!(requestor_id: 3, receiver_id: 2, status: "pending")
-Friendship.create!(requestor_id: 4, receiver_id: 2, status: "pending")
-Friendship.create!(requestor_id: 6, receiver_id: 2, status: "pending")
-Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
-Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
+Friendship.create!(requestor_id: 10, receiver_id: 1, status: "pending")
+Friendship.create!(requestor_id: 15, receiver_id: 1, status: "pending")
+
+Friendship.create!(requestor_id: 2, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
+Friendship.create!(requestor_id: 5, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
+Friendship.create!(requestor_id: 12, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
+Friendship.create!(requestor_id: 20, receiver_id: 1, status: "accepted", updated_at: Faker::Time.between(90.days.ago, DateTime.now, :all))
+
+# Friendship.create!(requestor_id: 3, receiver_id: 3, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 7, receiver_id: 3, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 12, receiver_id: 3, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 17, receiver_id: 3, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 14, receiver_id: 10, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 19, receiver_id: 10, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 19, receiver_id: 15, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 10, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 15, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+#
+
+Friendship.create!(requestor_id: 3, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 6, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 11, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 16, receiver_id: 2, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+
+Friendship.create!(requestor_id: 8, receiver_id: 4, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 13, receiver_id: 4, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 18, receiver_id: 4, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 9, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 14, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 19, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 20, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 11, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 16, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+# Friendship.create!(requestor_id: 20, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 12, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 17, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 13, receiver_id: 9, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 18, receiver_id: 9, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+
+Friendship.create!(requestor_id: 15, receiver_id: 11, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 20, receiver_id: 11, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+Friendship.create!(requestor_id: 16, receiver_id: 12, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 17, receiver_id: 13, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 18, receiver_id: 14, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+Friendship.create!(requestor_id: 20, receiver_id: 16, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+
+# Friendship.create!(requestor_id: 6, receiver_id: 7, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+# Friendship.create!(requestor_id: 6, receiver_id: 8, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+# Friendship.create!(requestor_id: 1, receiver_id: 5, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+# Friendship.create!(requestor_id: 1, receiver_id: 6, status: "accepted", updated_at: Faker::Time.between(90.days.ago, 7.days.ago, :all))
+# Friendship.create!(requestor_id: 4, receiver_id: 3, status: "pending")
+# Friendship.create!(requestor_id: 5, receiver_id: 3, status: "pending")
+# Friendship.create!(requestor_id: 6, receiver_id: 5, status: "pending")
+# Friendship.create!(requestor_id: 4, receiver_id: 1, status: "pending")
+# Friendship.create!(requestor_id: 3, receiver_id: 2, status: "pending")
+# Friendship.create!(requestor_id: 4, receiver_id: 2, status: "pending")
+# Friendship.create!(requestor_id: 6, receiver_id: 2, status: "pending")
+# Friendship.create!(requestor_id: 1, receiver_id: 7, status: "pending")
+# Friendship.create!(requestor_id: 1, receiver_id: 8, status: "pending")
 
 # POSTS AMONGST SPECIAL USERS ########################################################
 
-10.times do
+25.times do
   posted_at = Faker::Time.between(90.days.ago, 7.days.ago, :all)
 
   Post.create!(
-    author_id: my_rand.rand(1..8),
-    receiver_id: my_rand.rand(1..8),
+    author_id: my_rand.rand(1..20),
+    receiver_id: my_rand.rand(1..20),
     body: Faker::Hacker.say_something_smart,
     created_at: posted_at,
     updated_at: posted_at
   )
 
   Post.create!(
-    author_id: my_rand.rand(1..8),
-    receiver_id: my_rand.rand(1..8),
+    author_id: my_rand.rand(1..20),
+    receiver_id: my_rand.rand(1..20),
     body: Faker::StarWars.quote,
     created_at: posted_at,
     updated_at: posted_at
@@ -69,38 +137,38 @@ end
 
 # COMMENTS AMONGST SPECIAL USERS ########################################################
 
-10.times do
+25.times do
   posted_at = Faker::Time.between(7.days.ago, DateTime.now, :all)
 
   PostComment.create!(
-    post_id: my_rand.rand(1..20),
-    user_id: my_rand.rand(1..8),
+    post_id: my_rand.rand(1..50),
+    user_id: my_rand.rand(1..20),
     body: Faker::Hacker.say_something_smart
   )
 
   PostComment.create!(
-    post_id: my_rand.rand(1..20),
-    user_id: my_rand.rand(1..8),
+    post_id: my_rand.rand(1..50),
+    user_id: my_rand.rand(1..20),
     body: Faker::StarWars.quote
   )
 end
 
 # LIKES AMONGST SPECIAL USERS ########################################################
 
-30.times do
+70.times do
   PostLike.create!(
-    post_id: my_rand.rand(1..20),
-    user_id: my_rand.rand(1..8)
+    post_id: my_rand.rand(1..50),
+    user_id: my_rand.rand(1..20)
   )
 
   ImageLike.create!(
-    image_id: my_rand.rand(1..20),
-    user_id: my_rand.rand(1..8)
+    image_id: my_rand.rand(1..50),
+    user_id: my_rand.rand(1..20)
   )
 
   FriendshipLike.create!(
-    friendship_id: my_rand.rand(1..6),
-    user_id: my_rand.rand(1..8)
+    friendship_id: my_rand.rand(4..15),
+    user_id: my_rand.rand(1..20)
   )
 end
 
@@ -129,7 +197,7 @@ end
 30.times do
   ImageComment.create!(
     image_id: my_rand.rand(1..29),
-    user_id: my_rand.rand(1..8),
+    user_id: my_rand.rand(1..20),
     body: Faker::Hacker.say_something_smart
   )
 end
@@ -227,6 +295,147 @@ Profile.create!(user_id: 8,
     background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
     current_city: "New York City, NY",
     workplace: "LinkedIn")
+
+Profile.create!(user_id: 9,
+    first_name: "Alan",
+    last_name: "Schaaf",
+    birthday: "1987-10-21",
+    gender: "male",
+    relationship: "single",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469559173/profiles/13tUQntv.jpg",
+    background_img: "http://res.cloudinary.com/joyjing1/image/upload/v1467968317/backgrounds/HD-landscape-Photographs.png",
+    hometown: "Granville, OH",
+    current_city: "New York City, NY",
+    workplace: "Imgur")
+
+Profile.create!(user_id: 10,
+    first_name: "Stewart",
+    last_name: "Butterfield",
+    birthday: "1973-09-16",
+    gender: "male",
+    relationship: "single",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469559503/profiles/Stewart-Butterfield.png",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467968260/backgrounds/landscape-mountains-nature-lake.jpg",
+    hometown: "Vancouver, Canada",
+    workplace: "Slack")
+
+Profile.create!(user_id: 11,
+    first_name: "Travis",
+    last_name: "Kalanick",
+    birthday: "1976-08-06",
+    gender: "male",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469559731/profiles/ut_uber_f.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1468108793/four-pandas-ss-1920_hyvtka.jpg",
+    current_city: "San Francisco, CA",
+    hometown: "Los Angeles, CA",
+    workplace: "Uber")
+
+Profile.create!(user_id: 12,
+    first_name: "Anne",
+    last_name: "Wojcicki",
+    birthday: "1973-07-28",
+    gender: "female",
+    relationship: "single",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469560419/profiles/01_R07INT_1114272k.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467969046/backgrounds/6510447_orig.jpg",
+    current_city: "San Francisco, CA",
+    hometown: "Palo Alto, CA",
+    workplace: "23andMe")
+
+Profile.create!(user_id: 13,
+    first_name: "Susan",
+    last_name: "Wojcicki",
+    birthday: "1968-07-05",
+    gender: "female",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469560888/profiles/susan_wojcicki.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467968362/backgrounds/landscape-mountains-nature-clouds.jpg",
+    current_city: "San Francisco, CA",
+    hometown: "Palo Alto, CA",
+    workplace: "YouTube")
+
+Profile.create!(user_id: 14,
+    first_name: "Margaret",
+    last_name: "Whitman",
+    birthday: "1956-08-04",
+    gender: "female",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469561058/profiles/hp-ceo-meg-whitman-made-154-million-in-2012-even-after-missing-targets.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339102/backgrounds/landscape-photography-argentina-landscape-lenticular-cloud-natural-landscape-panorama-patagonia-ultra-wide-angle-lens-landscape-1643236926.jpg",
+    current_city: "Atherton, CA",
+    hometown: "Huntington, NY",
+    workplace: "YouTube")
+
+Profile.create!(user_id: 15,
+    first_name: "Angela",
+    last_name: "Ahrendts",
+    birthday: "1960-06-12",
+    gender: "female",
+    relationship: "married",
+    profile_img: "http://res.cloudinary.com/joyjing1/image/upload/v1469563580/profiles/angela-ahrendts_416x416.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339102/backgrounds/landscape-photography-argentina-landscape-lenticular-cloud-natural-landscape-panorama-patagonia-ultra-wide-angle-lens-landscape-1643236926.jpg",
+    current_city: "Cupertino, CA",
+    hometown: "New Palestine, IN",
+    workplace: "Apple")
+
+Profile.create!(user_id: 16,
+    first_name: "Safra A.",
+    last_name: "Catz",
+    birthday: "1961-12-01",
+    gender: "female",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469561365/profiles/safra_catz.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339181/backgrounds/4964-4967.jpg",
+    current_city: "Redwood City, CA",
+    hometown: "Israel",
+    workplace: "Oracle")
+
+Profile.create!(user_id: 17,
+    first_name: "Virginia",
+    last_name: "Rometty",
+    birthday: "1957-07-29",
+    gender: "female",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469561485/profiles/Virginia-Rometty-IBM.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339137/backgrounds/unionsquare_panorama_wideangle_306923_o.jpg",
+    current_city: "North Castle, NY",
+    hometown: "Chicago, IL",
+    workplace: "IBM")
+
+Profile.create!(user_id: 18,
+    first_name: "Ursula",
+    last_name: "Burns",
+    birthday: "1958-09-20",
+    gender: "female",
+    relationship: "married",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469561705/profiles/ursulaburns.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339505/backgrounds/Lakes.jpg",
+    current_city: "Norwalk, CT",
+    hometown: "New York, NY",
+    workplace: "Xerox")
+
+Profile.create!(user_id: 19,
+    first_name: "Lisa T.",
+    last_name: "Su",
+    birthday: "1969-11-16",
+    gender: "female",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469561877/profiles/AMD_CEO_Lisa_Su_20130415_cropped.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339268/backgrounds/panorama-sali2000.jpg",
+    current_city: "Sunnyvale, CA",
+    hometown: "Tainan, Taiwan",
+    workplace: "Advanced Micro Devices")
+
+Profile.create!(user_id: 20,
+    first_name: "Tim",
+    last_name: "Cook",
+    birthday: "1960-11-01",
+    gender: "male",
+    profile_img: "https://res.cloudinary.com/joyjing1/image/upload/v1469562104/profiles/150908192226-tim-cook-apple-logo-thinking-780x439.jpg",
+    background_img: "https://res.cloudinary.com/joyjing1/image/upload/v1467339201/backgrounds/manali_to_leh_road.jpg",
+    current_city: "Palo Alto, CA",
+    hometown: "Mobile, AL",
+    workplace: "Apple")
 
 # MISCELLANEOUS USERS #######################################################################
 # WOMEN.each_with_index do |profile_img, i|
@@ -381,30 +590,30 @@ SNOW.each do |url|
   posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
   Image.create!(
-    author_id: my_rand.rand(2..8),
-    receiver_id: my_rand.rand(2..8),
+    author_id: my_rand.rand(2..20),
+    receiver_id: my_rand.rand(2..20),
     url: url,
     created_at: posted_at,
     updated_at: posted_at)
 end
 
-# BEACH.each do |url|
-#   posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
-#
-#   Image.create!(
-#     author_id: my_rand.rand(2..78),
-#     receiver_id: my_rand.rand(9..78),
-#     url: url,
-#     created_at: posted_at,
-#     updated_at: posted_at)
-# end
+BEACH.each do |url|
+  posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
+
+  Image.create!(
+    author_id: my_rand.rand(2..20),
+    receiver_id: my_rand.rand(2..20),
+    url: url,
+    created_at: posted_at,
+    updated_at: posted_at)
+end
 
 SURFING.each do |url|
   posted_at = Faker::Time.between(90.days.ago, DateTime.now, :all)
 
   Image.create!(
-    author_id: my_rand.rand(2..8),
-    receiver_id: my_rand.rand(2..8),
+    author_id: my_rand.rand(2..20),
+    receiver_id: my_rand.rand(2..20),
     url: url,
     created_at: posted_at,
     updated_at: posted_at)
