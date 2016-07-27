@@ -88,8 +88,9 @@ const NewsfeedLeft = React.createClass({
           <li className="title-gray">GAMES</li>
 
           <li>
-            <a href={"https://joyjing1.github.io/Planarity/"}>
+            <a href={"https://joyjing1.github.io/Planarity/"} target="_blank">
               <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1469592356/icons/iconmonstr-share-1-240_1.png"
+                    target="_blank"
                     className="left-icon"></img>
                   <h5>Planarity</h5>
             </a>
@@ -100,6 +101,7 @@ const NewsfeedLeft = React.createClass({
           <li>
             <a href={"http://www.pixpy.tech/login"}>
               <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1469593514/icons/Fantasy_Filled-50_2.png"
+                    target="_blank"
                     className="left-icon"></img>
                   <h5>Pixpy</h5>
             </a>

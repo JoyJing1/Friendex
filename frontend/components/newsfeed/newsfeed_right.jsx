@@ -12,7 +12,7 @@ const Newsfeed = React.createClass({
       <aside className="newsfeed-right">
 
         <div className="newsfeed-right-item">
-          <a href="https://github.com/JoyJing1">
+          <a href="https://github.com/JoyJing1" target="_blank">
             Check out the Developer
             <img className="git-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1467598347/icons/iconmonstr-github-1-240.png"></img>
             joyjing1
@@ -20,14 +20,14 @@ const Newsfeed = React.createClass({
         </div>
 
         <div className="newsfeed-right-item">
-          <a href="https://www.linkedin.com/in/joyjing1">
+          <a href="https://www.linkedin.com/in/joyjing1" target="_blank">
             Connect with Joy Jing
             <img className="linkedin-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1467599657/icons/LinkedIn_IN_Icon_5inCMYK1.jpg"></img>
           </a>
         </div>
 
         <div className="newsfeed-right-item">
-          <a href="http://www.joyjing.com/">
+          <a href="http://www.joyjing.com/" target="_blank">
             Find Talent
             <img className="portfolio-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1469593902/AAEAAQAAAAAAAAEwAAAAJDY0NjNlNDZiLTQ4NjEtNGRmYS04ZGJkLTEyMzJmNGU3YjkxOQ_copy_cdoohe.png"></img>
             View Joy's Portfolio
