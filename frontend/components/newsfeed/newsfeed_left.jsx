@@ -99,9 +99,8 @@ const NewsfeedLeft = React.createClass({
           <li className="title-gray">APPS</li>
 
           <li>
-            <a href={"http://www.pixpy.tech/login"}>
+            <a href={"http://www.pixpy.tech/login"} target="_blank">
               <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1469593514/icons/Fantasy_Filled-50_2.png"
-                    target="_blank"
                     className="left-icon"></img>
                   <h5>Pixpy</h5>
             </a>
