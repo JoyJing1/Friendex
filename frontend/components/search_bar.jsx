@@ -28,6 +28,8 @@ const SearchBar = React.createClass({
     this.setState({ query: e.target.value });
     if (e.target.value.length > 0) {
       SearchActions.fetchMatches(e.target.value);
+    } else {
+      this.setState( { matches: [] } );
     }
   },
 
@@ -35,7 +37,7 @@ const SearchBar = React.createClass({
     e.preventDefault();
     // console.log("clickedUser(e) in search_bar.jsx");
     hashHistory.push(`/users/${user.id}`);
-    this.setState( { query: '' } );
+    this.setState( { query: '', matches: [] } );
   },
 
   searchResults() {
