@@ -128,7 +128,7 @@ const ProfileHeader = React.createClass({
     } else {
       return (
         <div className="background-container clearfix">
-          <img src={this.state.profile.background_img} className="background-img" alt="background-img"/>
+          <img src={backgroundUrl} className="background-img" alt="background-img"/>
         </div>
       );
     }
