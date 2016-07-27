@@ -34,6 +34,8 @@ const SearchBar = React.createClass({
   clickedUser(user, e) {
     e.preventDefault();
     // console.log("clickedUser(e) in search_bar.jsx");
+    console.log(user);
+    console.log(e);
     hashHistory.push(`/users/${user.id}`);
     this.setState( { query: '' } );
   },
