@@ -84,11 +84,17 @@ li.search-item:hover {
   cursor: pointer;
 }
 
-li.search-item img {
+div.search-photo {
   height: 30px;
   width: 30px;
   display: inline-block;
   padding: 5px 10px 5px 5px;
+}
+
+div.search-photo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 // CURRENT USER ///////////////////////////////////////
