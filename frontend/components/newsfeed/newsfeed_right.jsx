@@ -30,7 +30,7 @@ const Newsfeed = React.createClass({
           <a href="http://www.joyjing.com/">
             Find Talent
             <img className="portfolio-logo" src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,w_100/v1469593902/AAEAAQAAAAAAAAEwAAAAJDY0NjNlNDZiLTQ4NjEtNGRmYS04ZGJkLTEyMzJmNGU3YjkxOQ_copy_cdoohe.png"></img>
-            <span>View Joy's Portfolio</span>
+            View Joy's Portfolio
           </a>
         </div>
 
