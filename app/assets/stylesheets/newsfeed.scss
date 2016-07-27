@@ -13,7 +13,30 @@
 
 .newsfeed-left li {
   vertical-align: middle;
-  margin-bottom: 10px;
+}
+
+.newsfeed-left li:hover {
+  cursor: pointer;
+  background-color: #DDDFE2;
+}
+
+.newsfeed-left li a {
+  height: 100%;
+  width: 100%;
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+li.title-gray {
+  color: #666666;
+  margin-top: 22px;
+  margin-bottom: 4px;
+}
+
+li.title-gray:hover {
+  background-color: none;
+  cursor: default;
 }
 
 .left-icon {
@@ -54,6 +77,10 @@
   height: auto;
 }
 
+.newsfeed-right-item span {
+  // font-size: 12px;
+}
+
 .git-logo {
   width: 30%;
   margin: 10px auto;
@@ -63,6 +90,11 @@
   width: 30%;
   margin: 10px auto;
   margin-bottom: 0;
+}
+
+.portfolio-logo {
+  width: 40%;
+  margin: 10px auto;
 }
 
 .newsfeed-main {

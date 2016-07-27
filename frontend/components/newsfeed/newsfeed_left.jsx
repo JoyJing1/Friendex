@@ -59,6 +59,8 @@ const NewsfeedLeft = React.createClass({
             </Link>
           </li>
 
+          <li className="title-gray">FAVORITES</li>
+
           <li>
             <Link to={`/users/${this.state.profile.user_id}/timeline`}>
               <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467597860/icons/iconmonstr-user-1-240_2.png"
@@ -77,10 +79,30 @@ const NewsfeedLeft = React.createClass({
 
           <li>
             <Link to={`/users/${this.state.profile.user_id}/friends`}>
-              <img src="http://res.cloudinary.com/joyjing1/image/upload/v1467691394/icons/iconmonstr-user-29-240_1.png"
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1467691394/icons/iconmonstr-user-29-240_1.png"
                     className="left-icon left-friends-icon"></img>
                   <h5>Friends</h5>
             </Link>
+          </li>
+
+          <li className="title-gray">GAMES</li>
+
+          <li>
+            <a href={"https://joyjing1.github.io/Planarity/"}>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1469592356/icons/iconmonstr-share-1-240_1.png"
+                    className="left-icon"></img>
+                  <h5>Planarity</h5>
+            </a>
+          </li>
+
+          <li className="title-gray">APPS</li>
+
+          <li>
+            <a href={"http://www.pixpy.tech/login"}>
+              <img src="http://res.cloudinary.com/joyjing1/image/upload/c_scale,h_30,w_30/v1469593514/icons/Fantasy_Filled-50_2.png"
+                    className="left-icon"></img>
+                  <h5>Pixpy</h5>
+            </a>
           </li>
 
         </ul>
