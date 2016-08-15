@@ -24,7 +24,6 @@ const PostActions = {
     // console.log("deletePost(id) in post_actions.js");
     PostApiUtil.deletePost(id, (resp) => {
       PostActions.removedPost(resp);
-      // console.log("Post successfully deleted");
     });
   },
 

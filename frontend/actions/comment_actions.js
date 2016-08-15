@@ -1,6 +1,5 @@
 "use strict";
 
-// const hashHistory = require('react-router').hashHistory;
 const AppDispatcher    = require('../dispatcher/dispatcher')
     , CommentConstants = require('../constants/comment_constants')
     , CommentApiUtil   = require('../util/comment_api_util')
@@ -59,7 +58,6 @@ const CommentActions = {
 
   removedComment(comment) {
     // console.log('in removedComment(comment) in comment_actions.js');
-    // console.log(comment);
     AppDispatcher.dispatch({
       actionType: CommentConstants.REMOVED_COMMENT,
       comment: comment

@@ -19,7 +19,6 @@ const ImageActions = {
     // console.log("deleteImage(id) in image_actions.js");
     ImageApiUtil.deleteImage(id, (resp) => {
       ImageActions.removedImage(resp);
-      // console.log("Image successfully deleted");
     });
   },
 

@@ -15,7 +15,6 @@ const NewsfeedActions = {
 
   receiveNewsfeed(newsfeed) {
     // console.log("receiveNewsfeed(newsfeed) in newsfeed_actions.jsx");
-
     AppDispatcher.dispatch({
       actionType: NewsfeedConstants.UPDATE_NEWSFEED,
       newsfeed: newsfeed

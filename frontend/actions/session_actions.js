@@ -46,7 +46,6 @@ const SessionActions = {
       formData,
       (resp) => {
         SessionActions.receiveCurrentUser(resp);
-        // SessionActions._redirectToTimeline();
       },
       (resp) => {
         ErrorActions.setErrors;

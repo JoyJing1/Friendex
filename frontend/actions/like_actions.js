@@ -1,7 +1,5 @@
 "use strict";
 
-// const hashHistory = require('react-router').hashHistory;
-
 const AppDispatcher = require('../dispatcher/dispatcher')
     , ErrorActions  = require('./error_actions')
     , LikeConstants = require('../constants/like_constants')
@@ -15,7 +13,6 @@ const LikeActions = {
       // console.log("calling LikeApiUtil.createPostLike(like) in like_actions.js");
       LikeApiUtil.createPostLike(like, (resp) => {
         this.receiveSingleLike(resp);
-        // console.log("executing callbacks for LikeApiUtil.createPostLike(like, callbacks)");
       });
 
     } else if (like.image_id) {
@@ -36,19 +33,16 @@ const LikeActions = {
     if (ids.post_id) {
       LikeApiUtil.deletePostLike(ids, (resp) => {
         LikeActions.removedLike(resp);
-        // console.log("PostLike successfully deleted");
       });
 
     } else if (ids.image_id) {
       LikeApiUtil.deleteImageLike(ids, (resp) => {
         LikeActions.removedLike(resp);
-        // console.log("ImageLike successfully deleted");
       });
 
     } else if (ids.friendship_id) {
       LikeApiUtil.deleteFriendshipLike(ids, (resp) => {
         LikeActions.removedLike(resp);
-        // console.log("FriendshipLike successfully deleted");
       });
     }
   },
