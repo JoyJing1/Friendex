@@ -44,11 +44,6 @@ function _resetFriendships(payload) {
   payload.friend_requests_sent.forEach( friend => {
     _friendRequestsSent[friend.id] = friend;
   });
-
-  // console.log('saved friend_request payload to store');
-  // console.log(_friends);
-  // console.log(_friendRequestsReceived);
-  // console.log(_friendRequestsSent);
 }
 
 function _updateFriendship(friendship) {
@@ -93,7 +88,6 @@ FriendshipStore.find = function(id) {
 
 FriendshipStore.friends = function() {
   // console.log('pulling FriendshipStore.friends in friendship_store.js');
-  // console.log(_friends);
   let friends = [];
 
   for (let id in _friends) {
@@ -106,7 +100,6 @@ FriendshipStore.friends = function() {
 
 FriendshipStore.friendRequestsReceived = function() {
   // console.log('pulling FriendshipStore.friendRequestsReceived in friendship_store.js');
-  // console.log(_friendRequestsReceived);
   let friendRequestsReceived = [];
 
   for (let id in _friendRequestsReceived) {
@@ -119,7 +112,6 @@ FriendshipStore.friendRequestsReceived = function() {
 
 FriendshipStore.friendRequestsSent = function() {
   // console.log('pulling FriendshipStore.friendRequestsSent in friendship_store.js');
-  // console.log(_friendRequestsSent);
   let friendRequestsSent = [];
 
   for (let id in _friendRequestsSent) {
