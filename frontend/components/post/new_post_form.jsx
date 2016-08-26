@@ -68,15 +68,10 @@ const NewPostForm = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, images) {
         if (error === null) {
-          // console.log("Photo Upload succeeded in new_post_form.jsx");
           for (let i = 0; i < images.length; i++) {
             that.addImage(images[i].url);
           }
           that.setState( {body: ""});
-
-        } else {
-          // console.log("Photo Upload failed in new_post_form.jsx");
-          // console.log(error);
         }
       }
     );

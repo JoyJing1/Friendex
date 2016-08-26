@@ -2,12 +2,12 @@
 
 const React = require('react');
 
-const ImageStore    = require('../../stores/image_store')
-    , PostActions   = require('../../actions/post_actions')
-    , PostIndexItem = require('./post_index_item')
-    , PostStore     = require('../../stores/post_store')
-    , ProfileActions   = require('../../actions/profile_actions')
-    , SessionStore       = require('../../stores/session_store');
+const ImageStore      = require('../../stores/image_store')
+    , PostActions     = require('../../actions/post_actions')
+    , PostIndexItem   = require('./post_index_item')
+    , PostStore       = require('../../stores/post_store')
+    , ProfileActions  = require('../../actions/profile_actions')
+    , SessionStore    = require('../../stores/session_store');
 
 const PostIndex = React.createClass({
   getInitialState() {
@@ -15,14 +15,12 @@ const PostIndex = React.createClass({
   },
 
   componentDidMount() {
-    // console.log("componentDidMount() in post_index.jsx");
     const ids = { receiver_id: this.props.profile.user_id };
     PostActions.fetchManyPosts(ids);
     this.postListener = PostStore.addListener(this._onChange);
   },
 
   componentWillReceiveProps(newProps) {
-    // console.log("componentWillreceiveProps(newProps) in post_index.jsx");
     const ids = { receiver_id: newProps.profile.user_id };
 
     PostActions.fetchManyPosts(ids);
@@ -34,7 +32,6 @@ const PostIndex = React.createClass({
   },
 
   _onChange() {
-    // console.log("_onChange() in post_index.jsx");
     this.setState( { posts: PostStore.all() });
   },
 
